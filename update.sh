@@ -10,7 +10,7 @@
 
 ## For subsequent manual updates, if you are not using the procedure in .travis.yml
 Rscript --vanilla -e "pkgdown::build_site(lazy=TRUE)"
-git checkout --orphan gh-pages
+git checkout gh-pages # git checkout --orphan gh-pages
 git pull origin gh-pages
 mv docs/* .
 rm -rf docs/
