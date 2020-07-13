@@ -6,16 +6,23 @@ Description: This package provides PCA workflow and PCA-based index for extensiv
 URL: https://shbrief.github.io/PCAGenomicSignatures
 Depends: R (>= 3.5)
 Imports:
-  SummarizedExperiment
+  SummarizedExperiment,
+  methods,
+  dplyr,
+  S4Vectors
 Suggests:
   knitr,
   rmarkdown,
   devtools,
   roxygen2,
   pkgdown,
-  usethis
-License: CC0 1.0
+  usethis,
+  BiocStyle
+License: Artistic-2.0
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1
 VignetteBuilder: knitr
+Collate: 
+    'GenomicSignatures-class.R'
+    'PCAGenomicSignatures-class.R'

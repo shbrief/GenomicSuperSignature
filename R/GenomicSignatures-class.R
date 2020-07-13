@@ -1,12 +1,27 @@
 ### ==============================================
-### Class
+### GenomicSignatures-Class
 ### ==============================================
-#' @import methods
-#' @importClassesFrom SummarizedExperiment SummarizedExperiment
+#' GenomicSignatures
+#' @title Construct \code{GenomicSignatures} object
+#' @name GenomicSignatures-class
+#' @import SummarizedExperiment
+#' @return A \code{GenomicSignatures} object
 #' @exportClass GenomicSignatures
 GenomicSignatures <- setClass("GenomicSignatures",
                               contains = c("SummarizedExperiment", "VIRTUAL")
 )
+
+#' @name GenomicSignatures-methods
+#' @title Accessing and modifying information in GenomicSignatures
+#'
+#' @description A set of accessor and setter generic functions to extract
+#' either the \code{assay}, \code{colData}, or \code{metadata} slots of a
+#' \code{\link{GenomicSignatures}} object
+#'
+#' @param x A \code{GenomicSignatures} object
+#' @param value See details.
+NULL
+
 
 ### ----------------------------------------------
 ### Getter
@@ -48,6 +63,7 @@ setMethod("updateNote", "GenomicSignatures", function(x) {
 #' @export
 setGeneric("geneSets<-", function(x, ..., value) standardGeneric("geneSets<-"))
 
+#' @importMethodsFrom S4Vectors metadata
 #' @exportMethod geneSets<-
 #' @rdname GenomicSignatures-methods
 setMethod("geneSets<-", "GenomicSignatures", function(x, value) {
