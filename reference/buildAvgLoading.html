@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Accessing and modifying information in PCAGenomicSignatures — PCAGenomicSignatures-methods • PCAGenomicSignatures</title>
+<title>Calculate average loadings of each cluster — buildAvgLoading • PCAGenomicSignatures</title>
 
 
 <!-- jquery -->
@@ -39,10 +39,11 @@
 
 
 
-<meta property="og:title" content="Accessing and modifying information in PCAGenomicSignatures — PCAGenomicSignatures-methods" />
-<meta property="og:description" content="A set of accessor and setter generic functions to extract
-either the assay, colData, or metadata slots of a
-PCAGenomicSignatures object" />
+<meta property="og:title" content="Calculate average loadings of each cluster — buildAvgLoading" />
+<meta property="og:description" content="Name of the input vector is principle component (pc) from different datasets (ds)
+and the integer is the cluster number assigned to each ds.pc. This function includes
+kmenas clustering, so set.seed before using this function for reproducible
+results." />
 
 
 
@@ -105,60 +106,91 @@ PCAGenomicSignatures object" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Accessing and modifying information in PCAGenomicSignatures</h1>
+    <h1>Calculate average loadings of each cluster</h1>
     
-    <div class="hidden name"><code>PCAGenomicSignatures-methods.Rd</code></div>
+    <div class="hidden name"><code>buildAvgLoading.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>A set of accessor and setter generic functions to extract
-either the <code>assay</code>, <code>colData</code>, or <code>metadata</code> slots of a
-<code><a href='PCAGenomicSignatures.html'>PCAGenomicSignatures</a></code> object</p>
+    <p>Name of the input vector is principle component (pc) from different datasets (ds)
+and the integer is the cluster number assigned to each ds.pc. This function includes
+kmenas clustering, so <code>set.seed</code> before using this function for reproducible
+results.</p>
     </div>
 
+    <pre class="usage"><span class='fu'>buildAvgLoading</span>(
+  <span class='no'>dat</span>,
+  <span class='no'>k</span>,
+  <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>20</span>,
+  <span class='kw'>clustering</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>cluster</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>iter.max</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+  <span class='kw'>seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>study</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>A <code>PCAGenomicSignatures</code> object</p></td>
+      <th>dat</th>
+      <td><p>A data frame. Each row represents principle components from different
+training datasets. Each column represents genes used for PCA analysis.</p></td>
     </tr>
     <tr>
-      <th>value</th>
-      <td><p>See details.</p></td>
+      <th>k</th>
+      <td><p>The number of clusters used for k-means clustering</p></td>
+    </tr>
+    <tr>
+      <th>n</th>
+      <td><p>The number of top principle components from each datasets used for model buildling. Default is 20.</p></td>
+    </tr>
+    <tr>
+      <th>clustering</th>
+      <td><p>Under the default condition (<code>TRUE</code>), Kmeans clustering
+will be done and you should provide <code>k</code>. If <code>FALSE</code>, you don't need
+to provide <code>k</code>, but should provide pre-defined cluster membership of your
+data through <code>cluster</code> argument.</p></td>
+    </tr>
+    <tr>
+      <th>cluster</th>
+      <td><p>Default is <code>NULL</code>. Provide pre-defined cluster membership
+of your data if <code>clustering=FALSE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>iter.max</th>
+      <td><p>The maximum number of iterations allowed for <code>kmeans</code></p></td>
+    </tr>
+    <tr>
+      <th>seed</th>
+      <td><p>A random seed</p></td>
+    </tr>
+    <tr>
+      <th>study</th>
+      <td><p>Under default (<code>TRUE</code>), studies involved in each cluster will be added in the output.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="setters"><a class="anchor" href="#setters"></a>Setters</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    
+    <p>A named list of 13 elements is returned if <code>clustering=TRUE</code>. It contains:</p><dl'>
+   <dt><code>kmeans</code> outputs</dt><dd><p>9 outputs from <code>kmeans</code></p></dd>
+   <dt><code>avgLoading</code></dt><dd><p>A matrix of average loadings. Columns for clusters and rows for genes</p></dd>
+   <dt><code>k</code></dt><dd><p>The number of clusters</p></dd>
+   <dt><code>n</code></dt><dd><p>The number of top PCs used for clustering</p></dd>
+   <dt><code>studies</code></dt><dd><p>A list of character vector containing studies in each cluster</p></dd>
 
-<p>Setter method values (i.e., <code>function(x) &lt;- value</code>):</p><ul>
-<li><p>geneSets&lt;- : A character vector containing the name of gene sets used
-    to annotate average loadings</p></li>
-<li><p>studies&lt;- : A list of character vectors containing gene sets used to annotate average loadings</p></li>
-<li><p>gsea&lt;- : A list of <code>gseaResult</code> objects.</p></li>
-<li><p>metadata&lt;- : A <code>list</code> object of metadata</p></li>
-<li><p>`$&lt;-` : A vector to replace the indicated column in <code>colData</code></p></li>
-</ul>
+</dl>
 
-    <h2 class="hasAnchor" id="accessors"><a class="anchor" href="#accessors"></a>Accessors</h2>
+<p>If <code>clustering=FALSE</code>, a named list of 6 elements is returned. It contains:</p><dl'>
+   <dt><code>cluster</code></dt><dd><p>A numeric vector on cluster membership of PCs</p></dd>
+   <dt><code>size</code></dt><dd><p>A integer vector on the size of clusters</p></dd>
+   <dt><code>avgLoading</code></dt><dd><p>A matrix of average loadings. Columns for clusters and rows for genes</p></dd>
+   <dt><code>k</code></dt><dd><p>The number of clusters</p></dd>
+   <dt><code>n</code></dt><dd><p>The number of top PCs used for clustering</p></dd>
+   <dt><code>studies</code></dt><dd><p>A list of character vector containing studies in each cluster</p></dd>
 
-    
-
-<p>All the accessors inherited from <code>SummarizedExperiment</code> are available and
-the additional accessors for <code>PCAGenomicSignatures</code> specific data are listed
-below.</p><ul>
-<li><p>model : Equivalent to the <code>assays(x)$model</code> accessor for convenience</p></li>
-<li><p>geneSets : Access the <code>metadata(x)$geneSets</code> slot</p></li>
-<li><p>studies : Access the <code>colData(x)$studies</code> slot</p></li>
-<li><p>gsea : Access the <code>colData(x)$gsea</code></p></li>
-<li><p>`$` : Access a column in <code>colData</code></p></li>
-<li><p>trainingData : Access the <code>trainingData</code> slot</p></li>
-<li><p>mesh : Access the <code>trainingData(x)$MeSH</code> slot</p></li>
-<li><p>PCAsummary : Access the <code>trainingData(x)$PCAsummary</code> slot</p></li>
-</ul>
+</dl>
 
 
   </div>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Accessing and modifying information in PCAGenomicSignatures — PCAGenomicSignatures-methods • PCAGenomicSignatures</title>
+<title>Plot validation results in an interactive graph — plotValidate • PCAGenomicSignatures</title>
 
 
 <!-- jquery -->
@@ -39,10 +39,16 @@
 
 
 
-<meta property="og:title" content="Accessing and modifying information in PCAGenomicSignatures — PCAGenomicSignatures-methods" />
-<meta property="og:description" content="A set of accessor and setter generic functions to extract
-either the assay, colData, or metadata slots of a
-PCAGenomicSignatures object" />
+<meta property="og:title" content="Plot validation results in an interactive graph — plotValidate" />
+<meta property="og:description" content="There are three main information on the graph:
+x-axis : Pearson correlation coefficient. Higher value means that
+    test dataset and PCcluster is more tightly associated with.
+y-axis : Silhouette width representing the quality of PCclusters.
+size : The number of studies in each PCcluster. (= cluster size)
+color : Test dataset's PC number that validate each PCcluster. Because we
+    used top 8 PCs of the test dataset, there are 8 categories.
+
+" />
 
 
 
@@ -105,60 +111,65 @@ PCAGenomicSignatures object" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Accessing and modifying information in PCAGenomicSignatures</h1>
+    <h1>Plot validation results in an interactive graph</h1>
     
-    <div class="hidden name"><code>PCAGenomicSignatures-methods.Rd</code></div>
+    <div class="hidden name"><code>plotValidate.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>A set of accessor and setter generic functions to extract
-either the <code>assay</code>, <code>colData</code>, or <code>metadata</code> slots of a
-<code><a href='PCAGenomicSignatures.html'>PCAGenomicSignatures</a></code> object</p>
+    <p>There are three main information on the graph:</p><ul>
+<li><p>x-axis : Pearson correlation coefficient. Higher value means that
+    test dataset and PCcluster is more tightly associated with.</p></li>
+<li><p>y-axis : Silhouette width representing the quality of PCclusters.</p></li>
+<li><p>size : The number of studies in each PCcluster. (= cluster size)</p></li>
+<li><p>color : Test dataset's PC number that validate each PCcluster. Because we
+    used top 8 PCs of the test dataset, there are 8 categories.</p></li>
+</ul>
+
     </div>
 
+    <pre class="usage"><span class='fu'>plotValidate</span>(
+  <span class='no'>res</span>,
+  <span class='kw'>minClusterSize</span> <span class='kw'>=</span> <span class='fl'>1</span>,
+  <span class='kw'>swFilter</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>minSilhouetteWidth</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>interactive</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>colorPalette</span> <span class='kw'>=</span> <span class='st'>"Dark2"</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>A <code>PCAGenomicSignatures</code> object</p></td>
+      <th>res</th>
+      <td><p>Output from <code><a href='validate.html'>validate</a></code> function.</p></td>
     </tr>
     <tr>
-      <th>value</th>
-      <td><p>See details.</p></td>
+      <th>minClusterSize</th>
+      <td><p>The minimum size of clusters to exclude from plotting.
+Default value is 1, so any single-element clusters are excluded.</p></td>
+    </tr>
+    <tr>
+      <th>swFilter</th>
+      <td><p>If <code>swFilter=TRUE</code>, only PCcluster above the cutoff, defined
+through <code>minSilhouetteWidth</code> argument will be plotted. Default is <code>swFilter=FALSE</code></p></td>
+    </tr>
+    <tr>
+      <th>minSilhouetteWidth</th>
+      <td><p>A minimum average silhouette width to be plotted. Only
+effective under <code>swFilter=TRUE</code> condition. Default is 0.</p></td>
+    </tr>
+    <tr>
+      <th>interactive</th>
+      <td><p>If set to <code>TRUE</code>, the output will be interactive plot.
+Default is <code>FALSE</code>.</p></td>
+    </tr>
+    <tr>
+      <th>colorPalette</th>
+      <td><p>Default is <code>Dark2</code>. For other color options, please
+check <code><a href='https://ggplot2.tidyverse.org/reference/scale_brewer.html'>scale_color_brewer</a></code></p></td>
     </tr>
     </table>
-
-    <h2 class="hasAnchor" id="setters"><a class="anchor" href="#setters"></a>Setters</h2>
-
-    
-
-<p>Setter method values (i.e., <code>function(x) &lt;- value</code>):</p><ul>
-<li><p>geneSets&lt;- : A character vector containing the name of gene sets used
-    to annotate average loadings</p></li>
-<li><p>studies&lt;- : A list of character vectors containing gene sets used to annotate average loadings</p></li>
-<li><p>gsea&lt;- : A list of <code>gseaResult</code> objects.</p></li>
-<li><p>metadata&lt;- : A <code>list</code> object of metadata</p></li>
-<li><p>`$&lt;-` : A vector to replace the indicated column in <code>colData</code></p></li>
-</ul>
-
-    <h2 class="hasAnchor" id="accessors"><a class="anchor" href="#accessors"></a>Accessors</h2>
-
-    
-
-<p>All the accessors inherited from <code>SummarizedExperiment</code> are available and
-the additional accessors for <code>PCAGenomicSignatures</code> specific data are listed
-below.</p><ul>
-<li><p>model : Equivalent to the <code>assays(x)$model</code> accessor for convenience</p></li>
-<li><p>geneSets : Access the <code>metadata(x)$geneSets</code> slot</p></li>
-<li><p>studies : Access the <code>colData(x)$studies</code> slot</p></li>
-<li><p>gsea : Access the <code>colData(x)$gsea</code></p></li>
-<li><p>`$` : Access a column in <code>colData</code></p></li>
-<li><p>trainingData : Access the <code>trainingData</code> slot</p></li>
-<li><p>mesh : Access the <code>trainingData(x)$MeSH</code> slot</p></li>
-<li><p>PCAsummary : Access the <code>trainingData(x)$PCAsummary</code> slot</p></li>
-</ul>
 
 
   </div>

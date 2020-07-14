@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Accessing and modifying information in PCAGenomicSignatures — PCAGenomicSignatures-methods • PCAGenomicSignatures</title>
+<title>Draw wordcloud using the collection of PCclusters' MeSH terms — drawWordcloud • PCAGenomicSignatures</title>
 
 
 <!-- jquery -->
@@ -39,10 +39,9 @@
 
 
 
-<meta property="og:title" content="Accessing and modifying information in PCAGenomicSignatures — PCAGenomicSignatures-methods" />
-<meta property="og:description" content="A set of accessor and setter generic functions to extract
-either the assay, colData, or metadata slots of a
-PCAGenomicSignatures object" />
+<meta property="og:title" content="Draw wordcloud using the collection of PCclusters' MeSH terms — drawWordcloud" />
+<meta property="og:description" content="Plot a word cloud using the remaining MeSH terms in the selected
+PCcluster after user-defined filtering." />
 
 
 
@@ -105,61 +104,62 @@ PCAGenomicSignatures object" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Accessing and modifying information in PCAGenomicSignatures</h1>
+    <h1>Draw wordcloud using the collection of PCclusters' MeSH terms</h1>
     
-    <div class="hidden name"><code>PCAGenomicSignatures-methods.Rd</code></div>
+    <div class="hidden name"><code>drawWordcloud.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>A set of accessor and setter generic functions to extract
-either the <code>assay</code>, <code>colData</code>, or <code>metadata</code> slots of a
-<code><a href='PCAGenomicSignatures.html'>PCAGenomicSignatures</a></code> object</p>
+    <p>Plot a word cloud using the remaining MeSH terms in the selected
+PCcluster after user-defined filtering.</p>
     </div>
 
+    <pre class="usage"><span class='fu'>drawWordcloud</span>(
+  <span class='no'>x</span>,
+  <span class='no'>ind</span>,
+  <span class='kw'>rm.noise</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>scale</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>3</span>, <span class='fl'>0.5</span>),
+  <span class='kw'>weighted</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>A <code>PCAGenomicSignatures</code> object</p></td>
+      <td><p>PCAGenomicSignatures object</p></td>
     </tr>
     <tr>
-      <th>value</th>
-      <td><p>See details.</p></td>
+      <th>ind</th>
+      <td><p>An index of the PCcluster you want to draw wordcloud.</p></td>
+    </tr>
+    <tr>
+      <th>rm.noise</th>
+      <td><p>An integer. Under the default condition (<code>rm.noise=NULL</code>),
+if cluster size (= <code>s</code>) is smaller than 8, <code>rm.noise = floor(s*0.5)</code>.
+For clusters with &gt;= 8 PCs, <code>rm.noise = 4</code>. If <code>rm.noise = 0</code>, all
+the MeSH terms in PCcluster will be used to draw wordcloud.</p></td>
+    </tr>
+    <tr>
+      <th>scale</th>
+      <td><p>A <code>scale</code> argument for <code><a href='https://rdrr.io/pkg/wordcloud/man/wordcloud.html'>wordcloud</a></code> function</p></td>
+    </tr>
+    <tr>
+      <th>weighted</th>
+      <td><p>A logical. If <code>TRUE</code> (default), MeSH terms from each study are
+weighted based on the variance explained by the principle component of the
+study contributing a give PCcluster.</p></td>
+    </tr>
+    <tr>
+      <th>seed</th>
+      <td><p>Random seed. If it is not specified, <code><a href='https://rdrr.io/r/base/Random.html'>set.seed(1234)</a></code> will be used.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="setters"><a class="anchor" href="#setters"></a>Setters</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    
-
-<p>Setter method values (i.e., <code>function(x) &lt;- value</code>):</p><ul>
-<li><p>geneSets&lt;- : A character vector containing the name of gene sets used
-    to annotate average loadings</p></li>
-<li><p>studies&lt;- : A list of character vectors containing gene sets used to annotate average loadings</p></li>
-<li><p>gsea&lt;- : A list of <code>gseaResult</code> objects.</p></li>
-<li><p>metadata&lt;- : A <code>list</code> object of metadata</p></li>
-<li><p>`$&lt;-` : A vector to replace the indicated column in <code>colData</code></p></li>
-</ul>
-
-    <h2 class="hasAnchor" id="accessors"><a class="anchor" href="#accessors"></a>Accessors</h2>
-
-    
-
-<p>All the accessors inherited from <code>SummarizedExperiment</code> are available and
-the additional accessors for <code>PCAGenomicSignatures</code> specific data are listed
-below.</p><ul>
-<li><p>model : Equivalent to the <code>assays(x)$model</code> accessor for convenience</p></li>
-<li><p>geneSets : Access the <code>metadata(x)$geneSets</code> slot</p></li>
-<li><p>studies : Access the <code>colData(x)$studies</code> slot</p></li>
-<li><p>gsea : Access the <code>colData(x)$gsea</code></p></li>
-<li><p>`$` : Access a column in <code>colData</code></p></li>
-<li><p>trainingData : Access the <code>trainingData</code> slot</p></li>
-<li><p>mesh : Access the <code>trainingData(x)$MeSH</code> slot</p></li>
-<li><p>PCAsummary : Access the <code>trainingData(x)$PCAsummary</code> slot</p></li>
-</ul>
-
+    <p>A word cloud</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

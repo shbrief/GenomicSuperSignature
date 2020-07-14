@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Accessing and modifying information in PCAGenomicSignatures — PCAGenomicSignatures-methods • PCAGenomicSignatures</title>
+<title>Validation result in heatmap format — heatmapTable • PCAGenomicSignatures</title>
 
 
 <!-- jquery -->
@@ -39,10 +39,8 @@
 
 
 
-<meta property="og:title" content="Accessing and modifying information in PCAGenomicSignatures — PCAGenomicSignatures-methods" />
-<meta property="og:description" content="A set of accessor and setter generic functions to extract
-either the assay, colData, or metadata slots of a
-PCAGenomicSignatures object" />
+<meta property="og:title" content="Validation result in heatmap format — heatmapTable" />
+<meta property="og:description" content="Validation result in heatmap format" />
 
 
 
@@ -105,61 +103,67 @@ PCAGenomicSignatures object" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Accessing and modifying information in PCAGenomicSignatures</h1>
+    <h1>Validation result in heatmap format</h1>
     
-    <div class="hidden name"><code>PCAGenomicSignatures-methods.Rd</code></div>
+    <div class="hidden name"><code>heatmapTable.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>A set of accessor and setter generic functions to extract
-either the <code>assay</code>, <code>colData</code>, or <code>metadata</code> slots of a
-<code><a href='PCAGenomicSignatures.html'>PCAGenomicSignatures</a></code> object</p>
+    <p>Validation result in heatmap format</p>
     </div>
 
+    <pre class="usage"><span class='fu'>heatmapTable</span>(
+  <span class='no'>data</span>,
+  <span class='no'>row_title</span>,
+  <span class='kw'>num.out</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+  <span class='kw'>cutoff</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>breaks</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>0.5</span>, <span class='fl'>1</span>),
+  <span class='kw'>colors</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"white"</span>, <span class='st'>"white smoke"</span>, <span class='st'>"red"</span>),
+  <span class='no'>...</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>A <code>PCAGenomicSignatures</code> object</p></td>
+      <th>data</th>
+      <td><p>An output matrix from <code><a href='validate.html'>validate</a></code> function. Subset of
+this matrix is plotted as a heatmap using <code><a href='https://rdrr.io/pkg/ComplexHeatmap/man/Heatmap.html'>Heatmap</a></code></p></td>
     </tr>
     <tr>
-      <th>value</th>
-      <td><p>See details.</p></td>
+      <th>row_title</th>
+      <td><p>A character string. Provide the row title.</p></td>
+    </tr>
+    <tr>
+      <th>num.out</th>
+      <td><p>A number of highly validated PCclusters to subset to. Default is 5.
+If <code>cutoff</code> is provided, this argument is ignored.</p></td>
+    </tr>
+    <tr>
+      <th>cutoff</th>
+      <td><p>A numeric value for the minimum correlation. If you don't specify
+this argument, this function will output the number of highly validated PCclusters
+defined through <code>num.out</code>.</p></td>
+    </tr>
+    <tr>
+      <th>breaks</th>
+      <td><p>A numeric vector of length 3. Number represents the values assigned
+to three colors. Default is <code><a href='https://rdrr.io/r/base/c.html'>c(0, 0.5, 1)</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>colors</th>
+      <td><p>A character vector of length 3. Each represents the color assigned
+to three breaks. Default is <code><a href='https://rdrr.io/r/base/c.html'>c("white", "white smoke", "red")</a></code>.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>any additional argument for <code><a href='https://rdrr.io/pkg/ComplexHeatmap/man/Heatmap.html'>ComplexHeatmap::Heatmap</a></code></p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="setters"><a class="anchor" href="#setters"></a>Setters</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    
-
-<p>Setter method values (i.e., <code>function(x) &lt;- value</code>):</p><ul>
-<li><p>geneSets&lt;- : A character vector containing the name of gene sets used
-    to annotate average loadings</p></li>
-<li><p>studies&lt;- : A list of character vectors containing gene sets used to annotate average loadings</p></li>
-<li><p>gsea&lt;- : A list of <code>gseaResult</code> objects.</p></li>
-<li><p>metadata&lt;- : A <code>list</code> object of metadata</p></li>
-<li><p>`$&lt;-` : A vector to replace the indicated column in <code>colData</code></p></li>
-</ul>
-
-    <h2 class="hasAnchor" id="accessors"><a class="anchor" href="#accessors"></a>Accessors</h2>
-
-    
-
-<p>All the accessors inherited from <code>SummarizedExperiment</code> are available and
-the additional accessors for <code>PCAGenomicSignatures</code> specific data are listed
-below.</p><ul>
-<li><p>model : Equivalent to the <code>assays(x)$model</code> accessor for convenience</p></li>
-<li><p>geneSets : Access the <code>metadata(x)$geneSets</code> slot</p></li>
-<li><p>studies : Access the <code>colData(x)$studies</code> slot</p></li>
-<li><p>gsea : Access the <code>colData(x)$gsea</code></p></li>
-<li><p>`$` : Access a column in <code>colData</code></p></li>
-<li><p>trainingData : Access the <code>trainingData</code> slot</p></li>
-<li><p>mesh : Access the <code>trainingData(x)$MeSH</code> slot</p></li>
-<li><p>PCAsummary : Access the <code>trainingData(x)$PCAsummary</code> slot</p></li>
-</ul>
-
+    <p>A heatmap with the validation result subset through the given conditions.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

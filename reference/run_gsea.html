@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Accessing and modifying information in PCAGenomicSignatures — PCAGenomicSignatures-methods • PCAGenomicSignatures</title>
+<title>GSEA on pre-ordered gene lists — run_gsea • PCAGenomicSignatures</title>
 
 
 <!-- jquery -->
@@ -39,10 +39,9 @@
 
 
 
-<meta property="og:title" content="Accessing and modifying information in PCAGenomicSignatures — PCAGenomicSignatures-methods" />
-<meta property="og:description" content="A set of accessor and setter generic functions to extract
-either the assay, colData, or metadata slots of a
-PCAGenomicSignatures object" />
+<meta property="og:title" content="GSEA on pre-ordered gene lists — run_gsea" />
+<meta property="og:description" content="This function is a wrapper of GSEA function,
+making it applicable to a list of gene lists. Set seed for reproducible result." />
 
 
 
@@ -105,61 +104,67 @@ PCAGenomicSignatures object" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Accessing and modifying information in PCAGenomicSignatures</h1>
+    <h1>GSEA on pre-ordered gene lists</h1>
     
-    <div class="hidden name"><code>PCAGenomicSignatures-methods.Rd</code></div>
+    <div class="hidden name"><code>run_gsea.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>A set of accessor and setter generic functions to extract
-either the <code>assay</code>, <code>colData</code>, or <code>metadata</code> slots of a
-<code><a href='PCAGenomicSignatures.html'>PCAGenomicSignatures</a></code> object</p>
+    <p>This function is a wrapper of <code><a href='https://rdrr.io/pkg/clusterProfiler/man/GSEA.html'>GSEA</a></code> function,
+making it applicable to a list of gene lists. Set seed for reproducible result.</p>
     </div>
 
+    <pre class="usage"><span class='fu'>run_gsea</span>(
+  <span class='no'>geneList</span>,
+  <span class='no'>TERM2GENE</span>,
+  <span class='no'>TERM2NAME</span>,
+  <span class='kw'>minGSSize</span> <span class='kw'>=</span> <span class='fl'>10</span>,
+  <span class='kw'>maxGSSize</span> <span class='kw'>=</span> <span class='fl'>500</span>,
+  <span class='kw'>pvalueCutoff</span> <span class='kw'>=</span> <span class='fl'>0.05</span>,
+  <span class='kw'>verbose</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='no'>...</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>A <code>PCAGenomicSignatures</code> object</p></td>
+      <th>geneList</th>
+      <td><p>A list of genes ordered by rank</p></td>
     </tr>
     <tr>
-      <th>value</th>
-      <td><p>See details.</p></td>
+      <th>TERM2GENE</th>
+      <td><p>User input annotation of TERM TO GENE mapping, a data.frame of 2 column with term and gene</p></td>
+    </tr>
+    <tr>
+      <th>TERM2NAME</th>
+      <td><p>User input of TERM TO NAME mapping, a data.frame of 2 column with term and name. Optional.</p></td>
+    </tr>
+    <tr>
+      <th>minGSSize</th>
+      <td><p>A mininum size of gene set to be analyzed</p></td>
+    </tr>
+    <tr>
+      <th>maxGSSize</th>
+      <td><p>A maximum size of gene set to be analyzed</p></td>
+    </tr>
+    <tr>
+      <th>pvalueCutoff</th>
+      <td><p>p-value cutoff</p></td>
+    </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>Logical. Default is <code>FALSE</code></p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Any additional argument inherited from <code><a href='https://rdrr.io/pkg/clusterProfiler/man/GSEA.html'>GSEA</a></code>.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="setters"><a class="anchor" href="#setters"></a>Setters</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    
-
-<p>Setter method values (i.e., <code>function(x) &lt;- value</code>):</p><ul>
-<li><p>geneSets&lt;- : A character vector containing the name of gene sets used
-    to annotate average loadings</p></li>
-<li><p>studies&lt;- : A list of character vectors containing gene sets used to annotate average loadings</p></li>
-<li><p>gsea&lt;- : A list of <code>gseaResult</code> objects.</p></li>
-<li><p>metadata&lt;- : A <code>list</code> object of metadata</p></li>
-<li><p>`$&lt;-` : A vector to replace the indicated column in <code>colData</code></p></li>
-</ul>
-
-    <h2 class="hasAnchor" id="accessors"><a class="anchor" href="#accessors"></a>Accessors</h2>
-
-    
-
-<p>All the accessors inherited from <code>SummarizedExperiment</code> are available and
-the additional accessors for <code>PCAGenomicSignatures</code> specific data are listed
-below.</p><ul>
-<li><p>model : Equivalent to the <code>assays(x)$model</code> accessor for convenience</p></li>
-<li><p>geneSets : Access the <code>metadata(x)$geneSets</code> slot</p></li>
-<li><p>studies : Access the <code>colData(x)$studies</code> slot</p></li>
-<li><p>gsea : Access the <code>colData(x)$gsea</code></p></li>
-<li><p>`$` : Access a column in <code>colData</code></p></li>
-<li><p>trainingData : Access the <code>trainingData</code> slot</p></li>
-<li><p>mesh : Access the <code>trainingData(x)$MeSH</code> slot</p></li>
-<li><p>PCAsummary : Access the <code>trainingData(x)$PCAsummary</code> slot</p></li>
-</ul>
-
+    <p>A list of <code>gseaResult</code> objects. <code>NA</code> if there is no enrichment result.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
