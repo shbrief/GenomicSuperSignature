@@ -7,9 +7,6 @@
     <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/GenomicSignatures-class.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/GenomicSignatures-methods.html</loc>
-  </url>
-  <url>
     <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/PCAGenomicSignatures-class.html</loc>
   </url>
   <url>
@@ -19,6 +16,63 @@
     <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/PCAGenomicSignatures.html</loc>
   </url>
   <url>
+    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/PCinCluster.html</loc>
+  </url>
+  <url>
+    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/buildAvgLoading.html</loc>
+  </url>
+  <url>
+    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/calculateScore.html</loc>
+  </url>
+  <url>
+    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/commonGene.html</loc>
+  </url>
+  <url>
     <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/dot-PCclusterName.html</loc>
+  </url>
+  <url>
+    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/dot-calculateSilhouetteWidth.html</loc>
+  </url>
+  <url>
+    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/dot-loadingCor.html</loc>
+  </url>
+  <url>
+    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/drawWordcloud.html</loc>
+  </url>
+  <url>
+    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/extractPC.html</loc>
+  </url>
+  <url>
+    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/findStudiesInCluster.html</loc>
+  </url>
+  <url>
+    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/heatmapTable.html</loc>
+  </url>
+  <url>
+    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/makeGeneList.html</loc>
+  </url>
+  <url>
+    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/meshTable.html</loc>
+  </url>
+  <url>
+    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/plotValidate.html</loc>
+  </url>
+  <url>
+    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/rmNaInf.html</loc>
+  </url>
+  <url>
+    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/rowNorm.html</loc>
+  </url>
+  <url>
+    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/run_gsea.html</loc>
+  </url>
+  <url>
+    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/subsetPathways.html</loc>
+  </url>
+  <url>
+    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/validate.html</loc>
+  </url>
+  <url>
+    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/validatedIndex.html</loc>
   </url>
 </urlset>
