@@ -11,16 +11,6 @@ GenomicSignatures <- setClass("GenomicSignatures",
                               contains = c("SummarizedExperiment", "VIRTUAL")
 )
 
-#' @name GenomicSignatures-methods
-#' @title Accessing and modifying information in GenomicSignatures
-#'
-#' @description A set of accessor and setter generic functions to extract
-#' either the \code{assay}, \code{colData}, or \code{metadata} slots of a
-#' \code{\link{GenomicSignatures}} object
-#'
-#' @param x A \code{GenomicSignatures} object
-#' @param value See details.
-NULL
 
 
 ### ----------------------------------------------
@@ -36,21 +26,22 @@ setMethod("model", "GenomicSignatures", function(x) {
 
 setGeneric("geneSets", function(x, ...) standardGeneric("geneSets"))
 setMethod("geneSets", "GenomicSignatures", function(x) {
-    out <- metadata(x)$geneSets
+    out <- S4Vectors::metadata(x)$geneSets
     return(out)
 })
 
 
 setGeneric("updateNote", function(x, ...) standardGeneric("updateNote"))
 setMethod("updateNote", "GenomicSignatures", function(x) {
-    out <- metadata(x)$updateNote
+    out <- S4Vectors::metadata(x)$updateNote
     return(out)
 })
+
+
 
 ### ----------------------------------------------
 ### Setter
 ### ----------------------------------------------
-
 
 setGeneric("geneSets<-", function(x, ..., value) standardGeneric("geneSets<-"))
 setMethod("geneSets<-", "GenomicSignatures", function(x, value) {
@@ -61,6 +52,6 @@ setMethod("geneSets<-", "GenomicSignatures", function(x, value) {
 
 setGeneric("updateNote<-", function(x, ..., value) standardGeneric("updateNote<-"))
 setMethod("updateNote<-", "GenomicSignatures", function(x, value) {
-    metadata(x)$updateNote <- value
+    S4Vectors::metadata(x)$updateNote <- value
     return(x)
 })

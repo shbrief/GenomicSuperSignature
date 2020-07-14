@@ -29,6 +29,7 @@
 }
 
 
+
 ### ==============================================
 ### PCAGenomicSignatures Constructor
 ### ==============================================
@@ -99,11 +100,10 @@ PCAGenomicSignatures <- function(...)
 NULL
 
 
+
 ### ==============================================
 ### Setter
 ### ==============================================
-
-### PCAGenomicSignatures
 setGeneric("studies<-", function(x, ..., value) standardGeneric("studies<-"))
 setMethod("studies<-", "PCAGenomicSignatures", function(x, value) {
     x@colData$studies <- value
@@ -120,7 +120,6 @@ setMethod("silhouetteWidth<-", "PCAGenomicSignatures", function(x, value) {
     x@colData$silhouetteWidth <- value
     return(x)
 })
-
 
 
 setGeneric("gsea<-", function(x, ..., value) standardGeneric("gsea<-"))
@@ -155,7 +154,6 @@ setMethod("mesh<-", "PCAGenomicSignatures", function(x, value) {
 })
 
 
-
 setGeneric("PCAsummary<-", function(x, ..., value) standardGeneric("PCAsummary<-"))
 setMethod("PCAsummary<-", "PCAGenomicSignatures", function(x, value) {
     trainingData(x)$PCAsummary = NA
@@ -169,16 +167,9 @@ setMethod("PCAsummary<-", "PCAGenomicSignatures", function(x, value) {
 
 
 
-
-
-
-
-
 ### ==============================================
 ### Getter
 ### ==============================================
-
-### PCAGenomicSignatures
 setGeneric("studies", function(x, ...) standardGeneric("studies"))
 setMethod("studies", "PCAGenomicSignatures", function(x) {
     out <- x@colData$studies
@@ -186,13 +177,11 @@ setMethod("studies", "PCAGenomicSignatures", function(x) {
 })
 
 
-
 setGeneric("silhouetteWidth", function(x, ...) standardGeneric("silhouetteWidth"))
 setMethod("silhouetteWidth", "PCAGenomicSignatures", function(x) {
     out <- x@colData$silhouetteWidth
     return(out)
 })
-
 
 
 setGeneric("gsea", function(x, ...) standardGeneric("gsea"))
@@ -221,6 +210,7 @@ setMethod("PCAsummary", "PCAGenomicSignatures", function(x) {
     out <- x@trainingData$PCAsummary
     return(out)
 })
+
 
 
 ### ==============================================

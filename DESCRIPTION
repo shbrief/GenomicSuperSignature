@@ -9,7 +9,17 @@ Imports:
   SummarizedExperiment,
   methods,
   dplyr,
-  S4Vectors
+  S4Vectors,
+  Biobase,
+  ComplexHeatmap,
+  circlize,
+  cluster,
+  clusterProfiler,
+  enrichplot,
+  ggplot2,
+  magrittr,
+  plotly,
+  wordcloud
 Suggests:
   knitr,
   rmarkdown,
@@ -26,3 +36,14 @@ VignetteBuilder: knitr
 Collate: 
     'GenomicSignatures-class.R'
     'PCAGenomicSignatures-class.R'
+    'buildAvgLoading.R'
+    'calculateScore.R'
+    'commonGene.R'
+    'drawWordcloud.R'
+    'extractPC.R'
+    'funcForGSEA.R'
+    'heatmapTable.R'
+    'plotValidate.R'
+    'rmNaInf.R'
+    'rowNorm.R'
+    'validate.R'
