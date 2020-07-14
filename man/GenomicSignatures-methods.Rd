@@ -2,23 +2,7 @@
 % Please edit documentation in R/GenomicSignatures-class.R
 \name{GenomicSignatures-methods}
 \alias{GenomicSignatures-methods}
-\alias{model,GenomicSignatures-method}
-\alias{geneSets,GenomicSignatures-method}
-\alias{updateNote,GenomicSignatures-method}
-\alias{geneSets<-,GenomicSignatures-method}
-\alias{updateNote<-,GenomicSignatures-method}
 \title{Accessing and modifying information in GenomicSignatures}
-\usage{
-\S4method{model}{GenomicSignatures}(x)
-
-\S4method{geneSets}{GenomicSignatures}(x)
-
-\S4method{updateNote}{GenomicSignatures}(x)
-
-\S4method{geneSets}{GenomicSignatures}(x) <- value
-
-\S4method{updateNote}{GenomicSignatures}(x) <- value
-}
 \arguments{
 \item{x}{A \code{GenomicSignatures} object}
 

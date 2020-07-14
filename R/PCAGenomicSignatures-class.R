@@ -104,40 +104,27 @@ NULL
 ### ==============================================
 
 ### PCAGenomicSignatures
-#' @export
 setGeneric("studies<-", function(x, ..., value) standardGeneric("studies<-"))
-
-#' @import dplyr
-#' @exportMethod studies<-
-#' @rdname PCAGenomicSignatures-methods Studies associated with each cluster
 setMethod("studies<-", "PCAGenomicSignatures", function(x, value) {
     x@colData$studies <- value
-    allStudies <- unlist(value) %>% unique
+    allStudies <- unlist(value)
+    allStudies <- unique(allStudies)
     x@trainingData <- DataFrame(row.names = allStudies)
-
     # validObject(x)
     return(x)
 })
 
-#' @export
-setGeneric("silhouetteWidth<-", function(x, ..., value) standardGeneric("silhouetteWidth<-"))
 
-#' @import dplyr
-#' @exportMethod silhouetteWidth<-
-#' @rdname PCAGenomicSignatures-methods Average Silhouette width of each cluster
+setGeneric("silhouetteWidth<-", function(x, ..., value) standardGeneric("silhouetteWidth<-"))
 setMethod("silhouetteWidth<-", "PCAGenomicSignatures", function(x, value) {
     x@colData$silhouetteWidth <- value
     return(x)
 })
 
 
-#' @export
+
 setGeneric("gsea<-", function(x, ..., value) standardGeneric("gsea<-"))
-
-#' @exportMethod gsea<-
-#' @rdname PCAGenomicSignatures-methods GSEA output of each cluster
 setMethod("gsea<-", "PCAGenomicSignatures", function(x, value) {
-
     allValue <- vector(mode = "list", length = length(colnames(x)))
     names(allValue) <- colnames(x)
     ind = which(x@colData$PCcluster %in% names(value))
@@ -147,24 +134,16 @@ setMethod("gsea<-", "PCAGenomicSignatures", function(x, value) {
     return(x)
 })
 
-#' @export
-setGeneric("trainingData<-", function(x, ..., value) standardGeneric("trainingData<-"))
 
-#' @import dplyr
-#' @exportMethod trainingData<-
-#' @rdname PCAGenomicSignatures-methods Metadata, such as PCAsummary and MeSH, associated
-#' with each study used for model
+setGeneric("trainingData<-", function(x, ..., value) standardGeneric("trainingData<-"))
 setMethod("trainingData<-", "PCAGenomicSignatures", function(x, value) {
     x@trainingData <- value
     # validObject(x)
     return(x)
 })
 
-#' @export
-setGeneric("mesh<-", function(x, ..., value) standardGeneric("mesh<-"))
 
-#' @exportMethod mesh<-
-#' @rdname PCAGenomicSignatures-methods MeSH terms assigned to each study
+setGeneric("mesh<-", function(x, ..., value) standardGeneric("mesh<-"))
 setMethod("mesh<-", "PCAGenomicSignatures", function(x, value) {
     trainingData(x)$MeSH = NA
     for (i in seq_along(value)) {
@@ -176,11 +155,8 @@ setMethod("mesh<-", "PCAGenomicSignatures", function(x, value) {
 })
 
 
-#' @export
-setGeneric("PCAsummary<-", function(x, ..., value) standardGeneric("PCAsummary<-"))
 
-#' @exportMethod PCAsummary<-
-#' @rdname PCAGenomicSignatures-methods PCA output summary including variance explained
+setGeneric("PCAsummary<-", function(x, ..., value) standardGeneric("PCAsummary<-"))
 setMethod("PCAsummary<-", "PCAGenomicSignatures", function(x, value) {
     trainingData(x)$PCAsummary = NA
     for (i in seq_along(value)) {
@@ -203,63 +179,44 @@ setMethod("PCAsummary<-", "PCAGenomicSignatures", function(x, value) {
 ### ==============================================
 
 ### PCAGenomicSignatures
-#' @export
 setGeneric("studies", function(x, ...) standardGeneric("studies"))
-
-#' @exportMethod studies
-#' @rdname PCAGenomicSignatures-methods Access studies in each cluster
 setMethod("studies", "PCAGenomicSignatures", function(x) {
     out <- x@colData$studies
     return(out)
 })
 
 
-#' @export
-setGeneric("silhouetteWidth", function(x, ...) standardGeneric("silhouetteWidth"))
 
-#' @exportMethod silhouetteWidth
-#' @rdname PCAGenomicSignatures-methods Access average silhouette width of each cluster
+setGeneric("silhouetteWidth", function(x, ...) standardGeneric("silhouetteWidth"))
 setMethod("silhouetteWidth", "PCAGenomicSignatures", function(x) {
     out <- x@colData$silhouetteWidth
     return(out)
 })
 
 
-#' @export
-setGeneric("gsea", function(x, ...) standardGeneric("gsea"))
 
-#' @exportMethod gsea
-#' @rdname PCAGenomicSignatures-methods Acess GSEA output of each cluster
+setGeneric("gsea", function(x, ...) standardGeneric("gsea"))
 setMethod("gsea", "PCAGenomicSignatures", function(x) {
     out <- x@colData$gsea
     return(out)
 })
 
-#' @export
-setGeneric("trainingData", function(x, ...) standardGeneric("trainingData"))
 
-#' @exportMethod trainingData
-#' @rdname PCAGenomicSignatures-methods Access metadata, such as PCAsummary and MeSH, of clusters
+setGeneric("trainingData", function(x, ...) standardGeneric("trainingData"))
 setMethod("trainingData", "PCAGenomicSignatures", function(x) {
     out <- x@trainingData
     return(out)
 })
 
-#' @export
-setGeneric("mesh", function(x, ...) standardGeneric("mesh"))
 
-#' @exportMethod mesh
-#' @rdname PCAGenomicSignatures-methods Access MeSH terms assigned to each study
+setGeneric("mesh", function(x, ...) standardGeneric("mesh"))
 setMethod("mesh", "PCAGenomicSignatures", function(x) {
     out <- x@trainingData$MeSH
     return(out)
 })
 
-#' @export
-setGeneric("PCAsummary", function(x, ...) standardGeneric("PCAsummary"))
 
-#' @exportMethod PCAsummary
-#' @rdname PCAGenomicSignatures-methods Access PCA summary of each study
+setGeneric("PCAsummary", function(x, ...) standardGeneric("PCAsummary"))
 setMethod("PCAsummary", "PCAGenomicSignatures", function(x) {
     out <- x@trainingData$PCAsummary
     return(out)
@@ -269,16 +226,13 @@ setMethod("PCAsummary", "PCAGenomicSignatures", function(x) {
 ### ==============================================
 ### Show method
 ### ==============================================
-#' @import dplyr
-#' @import S4Vectors
-#' @export
 setMethod("show", "PCAGenomicSignatures", function(object) {
     callNextMethod()
 
     colnames <- colnames(trainingData(object))
-    coolcat("trainingData(%d): %s\n", colnames)
+    S4Vectors::coolcat("trainingData(%d): %s\n", colnames)
 
     rownames <- rownames(trainingData(object))
-    coolcat("trainingData names(%d): %s\n", rownames)
+    S4Vectors::coolcat("trainingData names(%d): %s\n", rownames)
 })
 

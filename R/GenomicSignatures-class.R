@@ -26,31 +26,22 @@ NULL
 ### ----------------------------------------------
 ### Getter
 ### ----------------------------------------------
-#' @export
-setGeneric("model", function(x, ...) standardGeneric("model"))
 
-#' @exportMethod model
-#' @rdname GenomicSignatures-methods
+setGeneric("model", function(x, ...) standardGeneric("model"))
 setMethod("model", "GenomicSignatures", function(x) {
     out <- assay(x)
     return(out)
 })
 
-#' @export
-setGeneric("geneSets", function(x, ...) standardGeneric("geneSets"))
 
-#' @exportMethod geneSets
-#' @rdname GenomicSignatures-methods
+setGeneric("geneSets", function(x, ...) standardGeneric("geneSets"))
 setMethod("geneSets", "GenomicSignatures", function(x) {
     out <- metadata(x)$geneSets
     return(out)
 })
 
-#' @export
-setGeneric("updateNote", function(x, ...) standardGeneric("updateNote"))
 
-#' @exportMethod updateNote
-#' @rdname GenomicSignatures-methods
+setGeneric("updateNote", function(x, ...) standardGeneric("updateNote"))
 setMethod("updateNote", "GenomicSignatures", function(x) {
     out <- metadata(x)$updateNote
     return(out)
@@ -60,22 +51,15 @@ setMethod("updateNote", "GenomicSignatures", function(x) {
 ### Setter
 ### ----------------------------------------------
 
-#' @export
-setGeneric("geneSets<-", function(x, ..., value) standardGeneric("geneSets<-"))
 
-#' @importMethodsFrom S4Vectors metadata
-#' @exportMethod geneSets<-
-#' @rdname GenomicSignatures-methods
+setGeneric("geneSets<-", function(x, ..., value) standardGeneric("geneSets<-"))
 setMethod("geneSets<-", "GenomicSignatures", function(x, value) {
-    metadata(x)$geneSets <- value
+    S4Vectors::metadata(x)$geneSets <- value
     return(x)
 })
 
-#' @export
-setGeneric("updateNote<-", function(x, ..., value) standardGeneric("updateNote<-"))
 
-#' @exportMethod updateNote<-
-#' @rdname GenomicSignatures-methods
+setGeneric("updateNote<-", function(x, ..., value) standardGeneric("updateNote<-"))
 setMethod("updateNote<-", "GenomicSignatures", function(x, value) {
     metadata(x)$updateNote <- value
     return(x)
