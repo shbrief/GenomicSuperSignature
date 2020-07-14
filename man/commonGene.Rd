@@ -7,7 +7,8 @@
 commonGene(dat, loaded = TRUE)
 }
 \arguments{
-\item{dat}{A character vector with name of the datasets loaded in memory. You
+\item{dat}{A character vector containint the name of datasets loaded in memory.
+Currently, the loaded dataset format should be in ExpressionSet class. You
 can also provide a list of genes you want to merge into a common gene list.}
 
 \item{loaded}{Under the default condition (\code{TRUE}), the dataset (e.g. expression

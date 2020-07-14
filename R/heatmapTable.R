@@ -38,10 +38,6 @@ subsetTop <- function(data, num.out, subset.by = c("score", "sw")) {
 
 #' Validation result in heatmap format
 #'
-#' @importFrom ComplexHeatmap anno_barplot Heatmap
-#' @importFrom circlize colorRamp2
-#' @importFrom grid gpar
-#'
 #' @param data An output matrix from \code{\link{validate}} function. Subset of
 #' this matrix is plotted as a heatmap using \code{\link[ComplexHeatmap]{Heatmap}}
 #' @param row_title A character string. Provide the row title.
@@ -93,27 +89,27 @@ heatmapTable <- function(data, row_title,
     }
 
     # Heatmap annotation representing Silhouette width of selected PCclusters
-    ha <- ComplexHeatmap::HeatmapAnnotation(avg.sw = anno_barplot(sw, baseline = 0,
-                                                                  gp = gpar(fill = ifelse(sw > 0, "red", "blue"), alpha = 0.5)),
+    ha <- ComplexHeatmap::HeatmapAnnotation(avg.sw = ComplexHeatmap::anno_barplot(sw, baseline = 0,
+                                                                  gp = grid::gpar(fill = ifelse(sw > 0, "red", "blue"), alpha = 0.5)),
                             annotation_name_side = "left",
-                            annotation_name_gp = gpar(fontsize = 10))
+                            annotation_name_gp = grid::gpar(fontsize = 10))
 
     # Draw Heatmap
-    ComplexHeatmap::Heatmap(dat, col = colorRamp2(breaks, colors), name = "Corr",
+    ComplexHeatmap::Heatmap(dat, col = circlize::colorRamp2(breaks, colors), name = "Corr",
                             cluster_rows = FALSE,
                             cluster_columns = FALSE,
                             cell_fun = function(j, i, x, y, width, height, fill) {
-                                grid.text(sprintf("%.2f", dat[i, j]), x, y, gp = gpar(fontsize = 8))
+                              grid::grid.text(sprintf("%.2f", dat[i, j]), x, y, gp = grid::gpar(fontsize = 8))
                             },
                             row_title = row_title,
-                            row_title_gp = gpar(fontsize = 11, fontface = "bold"),
-                            row_names_gp = gpar(fontsize = 10),
+                            row_title_gp = grid::gpar(fontsize = 11, fontface = "bold"),
+                            row_names_gp = grid::gpar(fontsize = 10),
                             row_names_side = "left",
                             row_names_max_width = unit(0.5, "cm"),
                             column_title = column_title,
-                            column_title_gp = gpar(fontsize = 11, fontface = "bold"),
+                            column_title_gp = grid::gpar(fontsize = 11, fontface = "bold"),
                             column_names_side = "bottom",
-                            column_names_gp = gpar(fontsize = 10),
+                            column_names_gp = grid::gpar(fontsize = 10),
                             column_names_rot = 90,
                             column_names_max_height = unit(1, "cm"),
                             heatmap_width = unit(hmWidth, "cm"),

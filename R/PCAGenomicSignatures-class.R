@@ -51,12 +51,11 @@
 #'     \item colData(x)$gsea : A list of \code{gseaResult} objects. Build using \code{clusterProfiler::GSEA} function.
 #' }
 #'
-#' @importFrom SummarizedExperiment SummarizedExperiment
 #' @param ... Additional arguments for supporting functions
 #' @export
 PCAGenomicSignatures <- function(...)
 {
-    se <- SummarizedExperiment(...)
+    se <- SummarizedExperiment::SummarizedExperiment(...)
     gs <- .PCAGenomicSignatures(se)
     .PCclusterName(gs)
 }

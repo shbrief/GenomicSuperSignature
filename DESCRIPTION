@@ -19,7 +19,9 @@ Imports:
   ggplot2,
   magrittr,
   plotly,
-  wordcloud
+  wordcloud,
+  RColorBrewer,
+  stats
 Suggests:
   knitr,
   rmarkdown,

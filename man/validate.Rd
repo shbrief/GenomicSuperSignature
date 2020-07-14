@@ -4,13 +4,13 @@
 \alias{validate}
 \title{Validate new datasets}
 \usage{
-validate(dataset, model, method = "pearson", maxFrom = "PC", level = "max")
+validate(dataset, PCAmodel, method = "pearson", maxFrom = "PC", level = "max")
 }
 \arguments{
 \item{dataset}{Single or a list of SummarizedExperiment (RangedSummarizedExperiment,
 ExpressionSet or matrix) object(s). Gene names should be in 'symbol' format.}
 
-\item{model}{PCAGenomicSignature object. You can also provide signature model matrix directly.}
+\item{PCAmodel}{PCAGenomicSignature object. You can also provide signature model matrix directly.}
 
 \item{method}{A character string indicating which correlation coefficient is
 to be computed. One of "pearson" (default), "kendall", or "spearman": can be abbreviated.}

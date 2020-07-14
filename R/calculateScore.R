@@ -1,7 +1,5 @@
 #' Calculate the validation score for a new dataset
 #'
-#' @importFrom SummarizedExperiment assay
-#' @importFrom Biobase exprs
 #' @import methods
 #'
 #' @param dataset A gene expression matrix, where genes are in rows and rownames
@@ -23,9 +21,9 @@ calculateScore <- function(dataset, PCAmodel) {
     if (!is.list(dataset)) {dataset <- list(dataset)}
     lapply(dataset, function(dat) {
         if (is(dat, "ExpressionSet")) {
-            count <- exprs(dat)
+            count <- Biobase::exprs(dat)
         } else if (is(dat, "SummarizedExperiment")) {
-            count <- assay(dat)
+            count <- SummarizedExperiment::assay(dat)
         } else if (is(dat, "matrix")) {
             count <- dat
         }

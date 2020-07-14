@@ -13,9 +13,9 @@
 .loadingCor <- function(dataset, avgLoading, method) {
 
     if (class(dataset) == "ExpressionSet") {
-        dat <- exprs(dataset)
+        dat <- Biobase::exprs(dataset)
     } else if (class(dataset) %in% c("SummarizedExperiment", "RangedSummarizedExperiment")) {
-        dat <- assay(dataset)
+        dat <- SummarizedExperiment::assay(dataset)
     } else if (class(dataset) == "matrix") {
         dat <- dataset
     } else {
@@ -25,7 +25,7 @@
 
     dat <- dat[apply(dat, 1, function (x) {!any(is.na(x) | (x==Inf) | (x==-Inf))}),]
     gene_common <- intersect(rownames(avgLoading), rownames(dat))
-    prcomRes <- prcomp(t(dat[gene_common,]))
+    prcomRes <- stats::prcomp(t(dat[gene_common,]))
     loadings <- prcomRes$rotation[, 1:8]
     loading_cor <- abs(cor(avgLoading[gene_common,], loadings[gene_common,],
                           use = "pairwise.complete.obs",
@@ -36,12 +36,11 @@
 
 #' Validate new datasets
 #'
-#' @importFrom SummarizedExperiment assay
 #' @importFrom dplyr tbl_df
 #'
 #' @param dataset Single or a list of SummarizedExperiment (RangedSummarizedExperiment,
 #' ExpressionSet or matrix) object(s). Gene names should be in 'symbol' format.
-#' @param model PCAGenomicSignature object. You can also provide signature model matrix directly.
+#' @param PCAmodel PCAGenomicSignature object. You can also provide signature model matrix directly.
 #' @param method A character string indicating which correlation coefficient is
 #' to be computed. One of "pearson" (default), "kendall", or "spearman": can be abbreviated.
 #' @param maxFrom Select whether to display the maximum value from dataset's PCs or avgLoadings.
@@ -60,15 +59,15 @@
 #' avgLoading.
 #'
 #' @export
-validate <- function(dataset, model, method = "pearson",
+validate <- function(dataset, PCAmodel, method = "pearson",
                      maxFrom = "PC", level = "max")
     {
-    sw <- silhouetteWidth(model)
-    cl_size <- metadata(PCAmodel)$size
+    sw <- silhouetteWidth(PCAmodel)
+    cl_size <- S4Vectors::metadata(PCAmodel)$size
 
-    if (class(model) %in% c("PCAGenomicSignatures", "PLIERGenomicSignatures")) {
-        avgLoading = assay(model)
-    } else {avgLoading = model}
+    if (class(PCAmodel) %in% c("PCAGenomicSignatures", "PLIERGenomicSignatures")) {
+        avgLoading <- SummarizedExperiment::assay(PCAmodel)
+    } else {avgLoading <- PCAmodel}
 
     # The maximum correlation coefficient among PCs
     if (maxFrom == "PC") {

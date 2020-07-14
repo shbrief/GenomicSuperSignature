@@ -11,6 +11,6 @@
 #' @seealso \code{\link[stats]{prcomp}}
 #' @export
 extractPC <- function(x) {
-    dat.pca <- prcomp(t(x))
+    dat.pca <- stats::prcomp(t(x))
     return(dat.pca)
 }

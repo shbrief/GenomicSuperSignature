@@ -7,23 +7,18 @@
 #'
 #' @seealso \code{\link[stats]{kmeans}}
 #'
-#' @importFrom cluster silhouette
-#'
 #' @param dat A matrix with all the top PCs from training data to be clustered.
 #' @param kmeansRes Output from \code{stats::kmeans}.
 #'
 #' @return Silhouette-class object, which is an n x 3 matrix with attributes.
 #'
 .calculateSilhouetteWidth <- function (dat, kmeansRes) {
-    swRes <- silhouette(x = kmeansRes$cluster, dist = daisy(dat))
+    swRes <- cluster::silhouette(x = kmeansRes$cluster, dist = cluster::daisy(dat))
     SW <- summary(swRes)
     return(SW)
 }
 
 #' Find the studies contributing each PCcluster
-#'
-#' @import SummarizedExperiment
-#' @importMethodsFrom SummarizedExperiment metadata
 #'
 #' @param PCAmodel PCAGenomicSignatures object.
 #' @param ind A numeric vector containing the index of PCclusters you want to
@@ -44,7 +39,7 @@ findStudiesInCluster <- function(PCAmodel, ind = NULL, clustering = TRUE) {
         x <- PCAmodel
         k <- x$k   # the number of clusters
     } else if (class(PCAmodel) == "PCAGenomicSignatures") {
-        x <- metadata(PCAmodel)
+        x <- S4Vectors::metadata(PCAmodel)
         k <- x$k   # the number of clusters
     } else if (isFALSE(clustering)) {
         x <- PCAmodel
@@ -131,7 +126,7 @@ buildAvgLoading <- function(dat, k, n = 20, clustering = TRUE, cluster = NULL,
         if (!is.null(seed)) {
             set.seed(123)
         }
-        res <- kmeans(dat, centers = k, iter.max = iter.max)
+        res <- stats::kmeans(dat, centers = k, iter.max = iter.max)
         print("Clustering is done.")
         x <- table(res$cluster) %>% as.data.frame()
     } else if (isFALSE(clustering) & !is.null(cluster)) {

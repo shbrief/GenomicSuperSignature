@@ -29,11 +29,15 @@ plotValidate <- function(res, minClusterSize = 1, swFilter = FALSE,
                          minSilhouetteWidth = 0, interactive = FALSE,
                          colorPalette = "Dark2") {
 
-    res <- t(res) %>% as.data.frame
-    clSizeFiltered <- res %>% filter(cl_size > minClusterSize)
+    ## Binding the variables from res locally to the function
+    cl_size <- sw <- score <- cl_num <- PC <- NULL
+
+    res <-  as.data.frame(t(res))
+    clSizeFiltered <- dplyr::filter(res, cl_size > minClusterSize)
 
     if (isTRUE(swFilter)) {
-        filtered <- clSizeFiltered %>% filter(sw > minSilhouetteWidth)
+        # filtered <- clSizeFiltered %>% filter(sw > minSilhouetteWidth)
+        filtered <- dplyr::filter(clSizeFiltered, sw > minSilhouetteWidth)
     } else {filtered <- clSizeFiltered}
 
     ind <- which(colnames(filtered) == "PC")

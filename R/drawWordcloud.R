@@ -14,7 +14,7 @@ PCinCluster <- function(x, ind) {
 
 #' Build a two-column word/frequency table
 #'
-#' @import dplyr
+#' @importFrom dplyr %>% group_by summarise
 #'
 #' @param x A PCAGenomicSignatures object
 #' @param ind An index of PCcluster
@@ -32,7 +32,7 @@ PCinCluster <- function(x, ind) {
 meshTable <- function(x, ind, rm.noise, weighted) {
 
     ### Create a 'universe' for bag-of-words model
-    bow <- metadata(x)$MeSH_freq %>% unlist  # frequency of the `name` in the background
+    bow <- unlist(S4Vectors::metadata(x)$MeSH_freq)  # frequency of the `name` in the background
     bow <- bow[which(bow > rm.noise)]   # remove rare terms
 
     ### Variance explained by PC
@@ -48,7 +48,8 @@ meshTable <- function(x, ind, rm.noise, weighted) {
         }
 
         ### Build a term-frequency table
-        summary <- unlist(d) %>% table(.)
+        summary <- unlist(d)
+        summary <- table(summary)
         summary <- summary[names(summary) %in% names(bow)]
 
     ### Weighted, counting on variance explained by
@@ -73,7 +74,7 @@ meshTable <- function(x, ind, rm.noise, weighted) {
         weight <- weight %>% group_by(mesh) %>% summarise(total_var = sum(var))
 
         ### Build a term-frequency table
-        summary <- setNames(weight$total_var, as.character(weight$mesh))
+        summary <- stats::setNames(weight$total_var, as.character(weight$mesh))
         summary <- summary[names(summary) %in% names(bow)]
     }
 
@@ -114,12 +115,12 @@ drawWordcloud <- function(x, ind, rm.noise = NULL, scale = c(3, 0.5),
                          weighted = TRUE, seed = NULL) {
 
     if (is.null(rm.noise)) {
-        s <- metadata(x)$size[ind]
+        s <- S4Vectors::metadata(x)$size[ind]
         if (s < 8) {rm.noise = floor(s*0.5)}
         else if (s >= 8) {rm.noise = 4}
 
         ## Minimum rm.noise version
-        # s <- metadata(x)$size[ind]
+        # s <- S4Vectors::metadata(x)$size[ind]
         # rm.noise = floor(s*0.2)
         # if (rm.noise > 4) {rm.noise = 4}
         # else if (rm.noise == 0) {rm.noise = 1}
@@ -132,5 +133,5 @@ drawWordcloud <- function(x, ind, rm.noise = NULL, scale = c(3, 0.5),
     if (is.null(seed)) {set.seed(1234)}
     wordcloud(words = all$word, freq = all$freq, scale = scale,
               max.words = Inf, random.order = FALSE,
-              colors = brewer.pal(8, "Dark2"))
+              colors = RColorBrewer::brewer.pal(8, "Dark2"))
 }
