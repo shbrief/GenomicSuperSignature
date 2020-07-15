@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PCAGenomicSignatures - Contents • PCAGenomicSignatures</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../bootstrap-toc.css">
 <script src="../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
@@ -38,31 +38,32 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
+    Vignettes
      
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/PCAGenomicSignatures_Contents.html">PCAGenomicSignatures - Contents</a>
+      <a href="../articles/Quickstart.html">Quick Start Guide</a>
     </li>
     <li>
-      <a href="../articles/Quickstart.html">PCAGenomicSignatures - Quickstart</a>
+      <a href="../articles/PCAGeomicSignatures_Contents.html">Content Overview</a>
     </li>
   </ul>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/shbrief/PCAGenomicSignatures">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -146,13 +147,13 @@
 <div id="pcclusters-avgloadings-model" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pcclusters-avgloadings-model" class="anchor"></a>PCclusters/ avgLoadings/ model</h2>
-<p>Average loadings (= avgLoading = PCclusters) is the main part of GenomicSignatures, serving as an index connecting new datasets and the existing database used to build it. You can access it through <code><a href="../reference/PCAGenomicSignatures.html">PCAGenomicSignatures::model</a></code> (equivalent of <code><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html">SummarizedExperiment::assay</a></code>). Rows are genes and columns are avgLoading vectors.</p>
+<p>Average loadings (= avgLoading = PCclusters) is the main part of GenomicSignatures, serving as an index connecting new datasets and the existing database used to build it. You can access it through <code><a href="../reference/PCAGenomicSignatures-methods.html">PCAGenomicSignatures::model</a></code> (equivalent of <code><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html">SummarizedExperiment::assay</a></code>). Rows are genes and columns are avgLoading vectors.</p>
 <p>Here, PCAmodel consists of 7,951 genes and 12,436 PCclusters.</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span>(<span class="fu"><a href="../reference/PCAGenomicSignatures.html">model</a></span>(<span class="no">PCAmodel</span>))
+<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span>(<span class="fu"><a href="../reference/PCAGenomicSignatures-methods.html">model</a></span>(<span class="no">PCAmodel</span>))
 <span class="co">#&gt; [1] "matrix" "array"</span>
-<span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span>(<span class="fu"><a href="../reference/PCAGenomicSignatures.html">model</a></span>(<span class="no">PCAmodel</span>))
+<span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span>(<span class="fu"><a href="../reference/PCAGenomicSignatures-methods.html">model</a></span>(<span class="no">PCAmodel</span>))
 <span class="co">#&gt; [1]  7951 12436</span>
-<span class="fu"><a href="../reference/PCAGenomicSignatures.html">model</a></span>(<span class="no">PCAmodel</span>)[<span class="fl">1</span>:<span class="fl">4</span>, <span class="fl">1</span>:<span class="fl">4</span>]
+<span class="fu"><a href="../reference/PCAGenomicSignatures-methods.html">model</a></span>(<span class="no">PCAmodel</span>)[<span class="fl">1</span>:<span class="fl">4</span>, <span class="fl">1</span>:<span class="fl">4</span>]
 <span class="co">#&gt;            PCcluster1   PCcluster2    PCcluster3   PCcluster4</span>
 <span class="co">#&gt; 5S_rRNA  0.0014536985  0.007203501  6.277371e-03 -0.019858317</span>
 <span class="co">#&gt; 7SK     -0.0028296151 -0.004445093  4.778814e-03  0.008085082</span>
@@ -184,16 +185,16 @@
 <span class="co">#&gt;                   1163                    591                    576 </span>
 <span class="co">#&gt;                    RNA Whole Exome Sequencing        Sequencing, RNA </span>
 <span class="co">#&gt;                    372                    284                    277</span>
-<span class="fu"><a href="../reference/PCAGenomicSignatures.html">updateNote</a></span>(<span class="no">PCAmodel</span>)
+<span class="fu"><a href="../reference/PCAGenomicSignatures-methods.html">updateNote</a></span>(<span class="no">PCAmodel</span>)
 <span class="co">#&gt; [1] "1,399 refine.bio studies/ no control/ no annotation-based gene subset"</span></pre></body></html></div>
 </div>
 <div id="studies-in-each-loading" class="section level2">
 <h2 class="hasAnchor">
 <a href="#studies-in-each-loading" class="anchor"></a>Studies in each loading</h2>
-<p>You can find which studies are in each cluster using <code><a href="../reference/PCAGenomicSignatures.html">studies(x)</a></code> method. Output is a list with the length of clusters, where each element is a character vector containing the name of studies in each cluster.</p>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="fu"><a href="../reference/PCAGenomicSignatures.html">studies</a></span>(<span class="no">PCAmodel</span>))
+<p>You can find which studies are in each cluster using <code><a href="../reference/PCAGenomicSignatures-methods.html">studies(x)</a></code> method. Output is a list with the length of clusters, where each element is a character vector containing the name of studies in each cluster.</p>
+<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="fu"><a href="../reference/PCAGenomicSignatures-methods.html">studies</a></span>(<span class="no">PCAmodel</span>))
 <span class="co">#&gt; [1] 12436</span>
-<span class="fu"><a href="../reference/PCAGenomicSignatures.html">studies</a></span>(<span class="no">PCAmodel</span>)[<span class="fl">1</span>:<span class="fl">3</span>]
+<span class="fu"><a href="../reference/PCAGenomicSignatures-methods.html">studies</a></span>(<span class="no">PCAmodel</span>)[<span class="fl">1</span>:<span class="fl">3</span>]
 <span class="co">#&gt; $Cl12436_01</span>
 <span class="co">#&gt; [1] "DRP000499" "ERP023890" "SRP028336" "SRP047192" "SRP069760" "SRP107366"</span>
 <span class="co">#&gt; [7] "SRP109805"</span>
@@ -208,10 +209,10 @@
 <div id="mesh-terms-for-each-study" class="section level2">
 <h2 class="hasAnchor">
 <a href="#mesh-terms-for-each-study" class="anchor"></a>MeSH terms for each study</h2>
-<p>You can find MeSH terms associated with each study using <code><a href="../reference/PCAGenomicSignatures.html">mesh(x)</a></code> method. Output is a list with the length of studies in training dataset, where each element is a data frame containing the assigned MeSH terms and the detail of them. The last column <code>bagOfWords</code> is the frequency of that MeSH term in the whole training dataset.</p>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="fu"><a href="../reference/PCAGenomicSignatures.html">mesh</a></span>(<span class="no">PCAmodel</span>))
+<p>You can find MeSH terms associated with each study using <code><a href="../reference/PCAGenomicSignatures-methods.html">mesh(x)</a></code> method. Output is a list with the length of studies in training dataset, where each element is a data frame containing the assigned MeSH terms and the detail of them. The last column <code>bagOfWords</code> is the frequency of that MeSH term in the whole training dataset.</p>
+<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="fu"><a href="../reference/PCAGenomicSignatures-methods.html">mesh</a></span>(<span class="no">PCAmodel</span>))
 <span class="co">#&gt; [1] 1399</span>
-<span class="fu"><a href="../reference/PCAGenomicSignatures.html">mesh</a></span>(<span class="no">PCAmodel</span>)[<span class="fl">1</span>]
+<span class="fu"><a href="../reference/PCAGenomicSignatures-methods.html">mesh</a></span>(<span class="no">PCAmodel</span>)[<span class="fl">1</span>]
 <span class="co">#&gt; $DRP000499</span>
 <span class="co">#&gt;         score identifier               name</span>
 <span class="co">#&gt; 1604326  4303  DRP000499             Humans</span>
@@ -232,10 +233,10 @@
 <div id="pca-summary" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pca-summary" class="anchor"></a>PCA summary</h2>
-<p>You can find the PCA summary of each study using <code><a href="../reference/PCAGenomicSignatures.html">PCAsummary(x)</a></code> method. Output is a list with the length of studies, where each element is a matrix containing PCA summary results with SD/Variance/Cumulative.</p>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="fu"><a href="../reference/PCAGenomicSignatures.html">PCAsummary</a></span>(<span class="no">PCAmodel</span>))
+<p>You can find the PCA summary of each study using <code><a href="../reference/PCAGenomicSignatures-methods.html">PCAsummary(x)</a></code> method. Output is a list with the length of studies, where each element is a matrix containing PCA summary results with SD/Variance/Cumulative.</p>
+<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="fu"><a href="../reference/PCAGenomicSignatures-methods.html">PCAsummary</a></span>(<span class="no">PCAmodel</span>))
 <span class="co">#&gt; [1] 1399</span>
-<span class="fu"><a href="../reference/PCAGenomicSignatures.html">PCAsummary</a></span>(<span class="no">PCAmodel</span>)[<span class="fl">1</span>]
+<span class="fu"><a href="../reference/PCAGenomicSignatures-methods.html">PCAsummary</a></span>(<span class="no">PCAmodel</span>)[<span class="fl">1</span>]
 <span class="co">#&gt; $DRP000499</span>
 <span class="co">#&gt;            DRP000499.PC1 DRP000499.PC2 DRP000499.PC3 DRP000499.PC4</span>
 <span class="co">#&gt; SD            59.0820395   16.41547959    6.57735211   6.138468877</span>

@@ -6,14 +6,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Accessing and modifying information in PCAGenomicSignatures — PCAGenomicSignatures-methods • PCAGenomicSignatures</title>
+<title>Methods and accesors for <code>PCAGenomicSignatures</code> object — PCAGenomicSignatures-methods • PCAGenomicSignatures</title>
 
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
@@ -39,10 +39,12 @@
 
 
 
-<meta property="og:title" content="Accessing and modifying information in PCAGenomicSignatures — PCAGenomicSignatures-methods" />
-<meta property="og:description" content="A set of accessor and setter generic functions to extract
-either the assay, colData, or metadata slots of a
-PCAGenomicSignatures object" />
+<meta property="og:title" content="Methods and accesors for <code>PCAGenomicSignatures</code> object — PCAGenomicSignatures-methods" />
+<meta property="og:description" content="The default contents of PCAGenomicSignatures object, with
+a set of accessor and setter generic functions, which extract either the assay,
+colData, metadata, or trainingData slots of a PCAGenomicSignatures-class
+object. When you create this object, colData$studies should be populated
+before adding any information in trainingData slot" />
 
 
 
@@ -81,17 +83,31 @@ PCAGenomicSignatures object" />
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Vignettes
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/Quickstart.html">Quick Start Guide</a>
+    </li>
+    <li>
+      <a href="../articles/PCAGeomicSignatures_Contents.html">Content Overview</a>
+    </li>
+  </ul>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/shbrief/PCAGenomicSignatures">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
       </ul>
       
     </div><!--/.nav-collapse -->
@@ -105,31 +121,121 @@ PCAGenomicSignatures object" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Accessing and modifying information in PCAGenomicSignatures</h1>
+    <h1>Methods and accesors for <code>PCAGenomicSignatures</code> object</h1>
     
     <div class="hidden name"><code>PCAGenomicSignatures-methods.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>A set of accessor and setter generic functions to extract
-either the <code>assay</code>, <code>colData</code>, or <code>metadata</code> slots of a
-<code><a href='PCAGenomicSignatures.html'>PCAGenomicSignatures</a></code> object</p>
+    <p>The default contents of <code>PCAGenomicSignatures</code> object, with
+a set of accessor and setter generic functions, which extract either the <code>assay</code>,
+<code>colData</code>, <code>metadata</code>, or <code>trainingData</code> slots of a <code><a href='PCAGenomicSignatures-class.html'>PCAGenomicSignatures-class</a></code>
+object. When you create this object, <code>colData$studies</code> should be populated
+before adding any information in <code>trainingData</code> slot</p>
     </div>
 
+    <pre class="usage"><span class='co'># S4 method for PCAGenomicSignatures</span>
+<span class='fu'>studies</span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
+
+<span class='co'># S4 method for PCAGenomicSignatures</span>
+<span class='fu'>silhouetteWidth</span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
+
+<span class='co'># S4 method for PCAGenomicSignatures</span>
+<span class='fu'>gsea</span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
+
+<span class='co'># S4 method for PCAGenomicSignatures</span>
+<span class='fu'>trainingData</span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
+
+<span class='co'># S4 method for PCAGenomicSignatures</span>
+<span class='fu'>mesh</span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
+
+<span class='co'># S4 method for PCAGenomicSignatures</span>
+<span class='fu'>PCAsummary</span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
+
+<span class='co'># S4 method for PCAGenomicSignatures</span>
+<span class='fu'>studies</span>(<span class='no'>x</span>)
+
+<span class='co'># S4 method for PCAGenomicSignatures</span>
+<span class='fu'>silhouetteWidth</span>(<span class='no'>x</span>)
+
+<span class='co'># S4 method for PCAGenomicSignatures</span>
+<span class='fu'>gsea</span>(<span class='no'>x</span>)
+
+<span class='co'># S4 method for PCAGenomicSignatures</span>
+<span class='fu'>trainingData</span>(<span class='no'>x</span>)
+
+<span class='co'># S4 method for PCAGenomicSignatures</span>
+<span class='fu'>mesh</span>(<span class='no'>x</span>)
+
+<span class='co'># S4 method for PCAGenomicSignatures</span>
+<span class='fu'>PCAsummary</span>(<span class='no'>x</span>)
+
+<span class='co'># S4 method for PCAGenomicSignatures</span>
+<span class='fu'>show</span>(<span class='no'>object</span>)
+
+<span class='co'># S4 method for GenomicSignatures</span>
+<span class='fu'>model</span>(<span class='no'>x</span>)
+
+<span class='co'># S4 method for GenomicSignatures</span>
+<span class='fu'>metadata</span>(<span class='no'>x</span>)
+
+<span class='co'># S4 method for GenomicSignatures</span>
+<span class='fu'>geneSets</span>(<span class='no'>x</span>)
+
+<span class='co'># S4 method for GenomicSignatures</span>
+<span class='fu'>updateNote</span>(<span class='no'>x</span>)
+
+<span class='co'># S4 method for GenomicSignatures</span>
+<span class='fu'>geneSets</span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
+
+<span class='co'># S4 method for GenomicSignatures</span>
+<span class='fu'>updateNote</span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>A <code>PCAGenomicSignatures</code> object</p></td>
-    </tr>
-    <tr>
       <th>value</th>
       <td><p>See details.</p></td>
     </tr>
+    <tr>
+      <th>object, x</th>
+      <td><p>A <code>PCAGenomicSignatures</code> object</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments for supporting functions.</p></td>
+    </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>PCAGenomicSignatures object with multiple setters or accessors</p>
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    
+<ul>
+<li><p>assay(x) : PCAmodel (= avgLoading) containing genes x PCclusters</p></li>
+<li><p>metadata(x)$cluster : A vector of integers (from 1:k) indicating the
+    cluster to which each point is allocated. Check <code><a href='https://rdrr.io/r/stats/kmeans.html'>stats::kmeans</a></code> function.</p></li>
+<li><p>metadata(x)$size : The number of points in each cluster. Check <code><a href='https://rdrr.io/r/stats/kmeans.html'>stats::kmeans</a></code> function.</p></li>
+<li><p>metadata(x)$iter : The number of (outer) iterations. Check <code><a href='https://rdrr.io/r/stats/kmeans.html'>stats::kmeans</a></code> function.</p></li>
+<li><p>metadata(x)$k : The number of PCclusters.</p></li>
+<li><p>metadata(x)$n : The number of top PCs from each dataset.</p></li>
+<li><p>metadata(x)$geneSets : Name of the prior gene sets used to annotate average loadings.</p></li>
+<li><p>colData(x)$studies : A list of character vectors containing studies contributing to each PC cluster.</p></li>
+<li><p>colData(x)$gsea : A list of <code>gseaResult</code> objects. Build using <code><a href='https://rdrr.io/pkg/clusterProfiler/man/GSEA.html'>clusterProfiler::GSEA</a></code> function.</p></li>
+</ul>
+
+    <h2 class="hasAnchor" id="slots"><a class="anchor" href="#slots"></a>Slots</h2>
+
+    
+
+<dl'>
+<dt><code>trainingData</code></dt><dd><p>A <code><a href='https://rdrr.io/pkg/S4Vectors/man/DataFrame-class.html'>DataFrame</a></code> class object for metadata
+associated with training data</p></dd>
+
+</dl>
     <h2 class="hasAnchor" id="setters"><a class="anchor" href="#setters"></a>Setters</h2>
 
     
