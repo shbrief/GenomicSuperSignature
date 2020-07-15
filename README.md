@@ -13,10 +13,11 @@ devtools::install_github("shbrief/PCAGenomicSignatures")
 
 ## Schematic
 Here is the overview of using PCAGenomicSignatures.
-<img src="vignettes/GSig_model_usage_diagram.png"/>
+<img src="https://raw.githubusercontent.com/shbrief/PCAGenomicSignatures/master/vignettes/GSig_model_usage_diagram.png"/>
 
 PCAGenomicSignatures allows you to connect your gene expression data to the existing 
 database through the expression profile itself. You only need to provide your gene
 expression matrix.
-<img src="vignettes/GSig_knowledge_network.png"/>
+<img src="https://raw.githubusercontent.com/shbrief/PCAGenomicSignatures/master/vignettes/GSig_knowledge_network.png"/>
+
 
