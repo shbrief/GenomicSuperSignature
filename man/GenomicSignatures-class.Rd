@@ -3,7 +3,7 @@
 \docType{class}
 \name{GenomicSignatures-class}
 \alias{GenomicSignatures-class}
-\title{Construct GenomicSignatures-class object}
+\title{GenomicSignatures virtual class inherited from SummarizedExperiment}
 \arguments{
 \item{x}{A \code{GenomicSignatures-class} object}
 

@@ -3,7 +3,7 @@
 ### ==============================================
 #' GenomicSignatures
 #' @name GenomicSignatures-class
-#' @title Construct GenomicSignatures-class object
+#' @title GenomicSignatures virtual class inherited from SummarizedExperiment
 #'
 #' @description GenomicSignatures is a virtual class inherited from SummarizedExperiment
 #' and hosts GenomicSignatures models built from different dimensional reduction methods.
@@ -24,7 +24,7 @@ setClass("GenomicSignatures",
 ### ==============================================
 #' PCAGenomicSignatures
 #' @name PCAGenomicSignatures-class
-#' @title Construct PCAGenomicSignatures-class object
+#' @title PCAGenomicSignatures-class
 #'
 #' @description PCA-based GenomicSignatures.
 #'
