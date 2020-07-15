@@ -2,56 +2,42 @@
 ### GenomicSignatures-Class
 ### ==============================================
 #' GenomicSignatures
-#' @title Construct \code{GenomicSignatures} object
 #' @name GenomicSignatures-class
+#' @title Construct GenomicSignatures-class object
+#'
+#' @description GenomicSignatures is a virtual class inherited from SummarizedExperiment
+#' and hosts GenomicSignatures models built from different dimensional reduction methods.
+#' Currently, PCA-based model, called PCAGenomicSignatures, is available.
+#'
+#' @param x A \code{GenomicSignatures-class} object
+#' @param value See details.
+#'
 #' @import SummarizedExperiment
-#' @return A \code{GenomicSignatures} object
+#' @docType class
 #' @exportClass GenomicSignatures
-GenomicSignatures <- setClass("GenomicSignatures",
-                              contains = c("SummarizedExperiment", "VIRTUAL")
+setClass("GenomicSignatures",
+         contains = c("SummarizedExperiment", "VIRTUAL")
 )
 
-
-
-### ----------------------------------------------
-### Getter
-### ----------------------------------------------
-
-setGeneric("model", function(x, ...) standardGeneric("model"))
-setMethod("model", "GenomicSignatures", function(x) {
-    out <- assay(x)
-    return(out)
-})
-
-
-setGeneric("geneSets", function(x, ...) standardGeneric("geneSets"))
-setMethod("geneSets", "GenomicSignatures", function(x) {
-    out <- S4Vectors::metadata(x)$geneSets
-    return(out)
-})
-
-
-setGeneric("updateNote", function(x, ...) standardGeneric("updateNote"))
-setMethod("updateNote", "GenomicSignatures", function(x) {
-    out <- S4Vectors::metadata(x)$updateNote
-    return(out)
-})
-
-
-
-### ----------------------------------------------
-### Setter
-### ----------------------------------------------
-
-setGeneric("geneSets<-", function(x, ..., value) standardGeneric("geneSets<-"))
-setMethod("geneSets<-", "GenomicSignatures", function(x, value) {
-    S4Vectors::metadata(x)$geneSets <- value
-    return(x)
-})
-
-
-setGeneric("updateNote<-", function(x, ..., value) standardGeneric("updateNote<-"))
-setMethod("updateNote<-", "GenomicSignatures", function(x, value) {
-    S4Vectors::metadata(x)$updateNote <- value
-    return(x)
-})
+### ==============================================
+### PCAGenomicSignatures-Class
+### ==============================================
+#' PCAGenomicSignatures
+#' @name PCAGenomicSignatures-class
+#' @title Construct PCAGenomicSignatures-class object
+#'
+#' @description PCA-based GenomicSignatures.
+#'
+#' @slot trainingData A \code{\link[S4Vectors]{DataFrame}} class object for metadata
+#' associated with training data
+#' @param x A \code{GenomicSignatures-class} object
+#' @param value See details.
+#'
+#' @docType class
+#' @exportClass PCAGenomicSignatures
+setClass("PCAGenomicSignatures",
+         slots = representation(
+             trainingData = "DataFrame"
+         ),
+         contains = "GenomicSignatures"
+)

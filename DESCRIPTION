@@ -37,7 +37,8 @@ RoxygenNote: 7.1.1.9000
 VignetteBuilder: knitr
 Collate: 
     'GenomicSignatures-class.R'
-    'PCAGenomicSignatures-class.R'
+    'PCAGenomicSignatures-methods.R'
+    'GenomicSignatures-methods.R'
     'buildAvgLoading.R'
     'calculateScore.R'
     'commonGene.R'

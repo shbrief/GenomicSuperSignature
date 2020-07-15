@@ -1,21 +1,10 @@
-### ==============================================
-### PCAGenomicSignatures-Class
-### ==============================================
-#' PCAGenomicSignatures
-#' @import methods SummarizedExperiment S4Vectors
 #' @include GenomicSignatures-class.R
-#' @exportClass PCAGenomicSignatures
-#' @slot trainingData Containing metadata of each studies used in model building
-.PCAGenomicSignatures <- setClass("PCAGenomicSignatures",
-                                  slots = representation(
-                                      trainingData = "DataFrame"
-                                  ),
-                                  contains = "GenomicSignatures"
-)
 
-#' Formatting PCcluster name
+
+#' @name PCclusterName
+#' @title Formatting PCcluster name
 #'
-#' Keep the name with 'k + cluster number + number of PCs + number of unique studies'
+#' @description Keep the name with 'k + cluster number + number of PCs + number of unique studies'
 #' info during the model construction to make it easy to keep track of them, but at the
 #' PCAGenomicSignatures-class object building step, covert them into a short version,
 #' mPC (mean of PCs).
@@ -29,15 +18,19 @@
 }
 
 
-
 ### ==============================================
 ### PCAGenomicSignatures Constructor
 ### ==============================================
 #' @name PCAGenomicSignatures
 #' @title Construct \code{PCAGenomicSignatures} object
-#' @description The default contents of \code{PCAGenomicSignatures} object, with a set
-#' of accessor and setter generic functions. When you create this object, \code{colData(x)$studies}
-#' should be populated before adding any information in \code{trainingData(x)} slot
+#'
+#' @description The default contents of \code{PCAGenomicSignatures} object, with
+#' a set of accessor and setter generic functions, which extract either the \code{assay},
+#' \code{colData}, \code{metadata}, or \code{trainingData} slots of a \code{\link{PCAGenomicSignatures-class}}
+#' object. When you create this object, \code{colData$studies} should be populated
+#' before adding any information in \code{trainingData} slot
+#'
+#' @details
 #' \itemize{
 #'     \item assay(x) : PCAmodel (= avgLoading) containing genes x PCclusters
 #'     \item metadata(x)$cluster : A vector of integers (from 1:k) indicating the
@@ -50,23 +43,6 @@
 #'     \item colData(x)$studies : A list of character vectors containing studies contributing to each PC cluster.
 #'     \item colData(x)$gsea : A list of \code{gseaResult} objects. Build using \code{clusterProfiler::GSEA} function.
 #' }
-#'
-#' @param ... Additional arguments for supporting functions
-#' @export
-PCAGenomicSignatures <- function(...)
-{
-    se <- SummarizedExperiment::SummarizedExperiment(...)
-    gs <- .PCAGenomicSignatures(se)
-    .PCclusterName(gs)
-}
-
-
-#' @name PCAGenomicSignatures-methods
-#' @title Accessing and modifying information in PCAGenomicSignatures
-#'
-#' @description A set of accessor and setter generic functions to extract
-#' either the \code{assay}, \code{colData}, or \code{metadata} slots of a
-#' \code{\link{PCAGenomicSignatures}} object
 #'
 #' @section Setters:
 #' Setter method values (i.e., \code{function(x) <- value}):
@@ -94,34 +70,62 @@ PCAGenomicSignatures <- function(...)
 #'    \item PCAsummary : Access the \code{trainingData(x)$PCAsummary} slot
 #' }
 #'
-#' @param x A \code{PCAGenomicSignatures} object
+#' @slot trainingData A \code{\link[S4Vectors]{DataFrame}} class object for metadata
+#' associated with training data
+#'
+#' @param object,x A \code{PCAGenomicSignatures} object
 #' @param value See details.
-NULL
+#' @param ... Additional arguments for supporting functions.
+#'
+#' @return PCAGenomicSignatures object with multiple setters or accessors
+#' @aliases studies<- silhouetteWidth<- gsea<- trainingData<- mesh<- PCAsummary<-
+#' studies silhouetteWidth gsea trainingData mesh PCAsummary model geneSets updateNote
+#' geneSets<- updateNote<-
+#'
+#' @export
+PCAGenomicSignatures <- function(...)
+{
+    se <- SummarizedExperiment::SummarizedExperiment(...)
+    gs <- PCAGenomicSignatures(se)
+    .PCclusterName(gs)
+}
 
 
 
 ### ==============================================
 ### Setter
 ### ==============================================
-setGeneric("studies<-", function(x, ..., value) standardGeneric("studies<-"))
+#' @export
+setGeneric("studies<-", function(x, value) standardGeneric("studies<-"))
+
+#' @exportMethod studies<-
+#' @rdname PCAGenomicSignatures
 setMethod("studies<-", "PCAGenomicSignatures", function(x, value) {
     x@colData$studies <- value
     allStudies <- unlist(value)
     allStudies <- unique(allStudies)
-    x@trainingData <- DataFrame(row.names = allStudies)
+    x@trainingData <- S4Vectors::DataFrame(row.names = allStudies)
     # validObject(x)
     return(x)
 })
 
 
-setGeneric("silhouetteWidth<-", function(x, ..., value) standardGeneric("silhouetteWidth<-"))
+#' @export
+setGeneric("silhouetteWidth<-", function(x, value) standardGeneric("silhouetteWidth<-"))
+
+#' @exportMethod silhouetteWidth<-
+#' @rdname PCAGenomicSignatures
 setMethod("silhouetteWidth<-", "PCAGenomicSignatures", function(x, value) {
     x@colData$silhouetteWidth <- value
     return(x)
 })
 
 
-setGeneric("gsea<-", function(x, ..., value) standardGeneric("gsea<-"))
+#' @export
+setGeneric("gsea<-", function(x, value) standardGeneric("gsea<-"))
+
+#' @exportMethod gsea<-
+#' @rdname PCAGenomicSignatures
 setMethod("gsea<-", "PCAGenomicSignatures", function(x, value) {
     allValue <- vector(mode = "list", length = length(colnames(x)))
     names(allValue) <- colnames(x)
@@ -133,7 +137,11 @@ setMethod("gsea<-", "PCAGenomicSignatures", function(x, value) {
 })
 
 
-setGeneric("trainingData<-", function(x, ..., value) standardGeneric("trainingData<-"))
+#' @export
+setGeneric("trainingData<-", function(x, value) standardGeneric("trainingData<-"))
+
+#' @exportMethod trainingData<-
+#' @rdname PCAGenomicSignatures
 setMethod("trainingData<-", "PCAGenomicSignatures", function(x, value) {
     x@trainingData <- value
     # validObject(x)
@@ -141,7 +149,11 @@ setMethod("trainingData<-", "PCAGenomicSignatures", function(x, value) {
 })
 
 
-setGeneric("mesh<-", function(x, ..., value) standardGeneric("mesh<-"))
+#' @export
+setGeneric("mesh<-", function(x, value) standardGeneric("mesh<-"))
+
+#' @exportMethod mesh<-
+#' @rdname PCAGenomicSignatures
 setMethod("mesh<-", "PCAGenomicSignatures", function(x, value) {
     trainingData(x)$MeSH = NA
     for (i in seq_along(value)) {
@@ -153,7 +165,11 @@ setMethod("mesh<-", "PCAGenomicSignatures", function(x, value) {
 })
 
 
-setGeneric("PCAsummary<-", function(x, ..., value) standardGeneric("PCAsummary<-"))
+#' @export
+setGeneric("PCAsummary<-", function(x, value) standardGeneric("PCAsummary<-"))
+
+#' @exportMethod PCAsummary<-
+#' @rdname PCAGenomicSignatures
 setMethod("PCAsummary<-", "PCAGenomicSignatures", function(x, value) {
     trainingData(x)$PCAsummary = NA
     for (i in seq_along(value)) {
@@ -169,42 +185,66 @@ setMethod("PCAsummary<-", "PCAGenomicSignatures", function(x, value) {
 ### ==============================================
 ### Getter
 ### ==============================================
-setGeneric("studies", function(x, ...) standardGeneric("studies"))
+#' @export
+setGeneric("studies", function(x) standardGeneric("studies"))
+
+#' @exportMethod studies
+#' @rdname PCAGenomicSignatures
 setMethod("studies", "PCAGenomicSignatures", function(x) {
     out <- x@colData$studies
     return(out)
 })
 
 
-setGeneric("silhouetteWidth", function(x, ...) standardGeneric("silhouetteWidth"))
+#' @export
+setGeneric("silhouetteWidth", function(x) standardGeneric("silhouetteWidth"))
+
+#' @exportMethod silhouetteWidth
+#' @rdname PCAGenomicSignatures
 setMethod("silhouetteWidth", "PCAGenomicSignatures", function(x) {
     out <- x@colData$silhouetteWidth
     return(out)
 })
 
 
-setGeneric("gsea", function(x, ...) standardGeneric("gsea"))
+#' @export
+setGeneric("gsea", function(x) standardGeneric("gsea"))
+
+#' @exportMethod gsea
+#' @rdname PCAGenomicSignatures
 setMethod("gsea", "PCAGenomicSignatures", function(x) {
     out <- x@colData$gsea
     return(out)
 })
 
 
-setGeneric("trainingData", function(x, ...) standardGeneric("trainingData"))
+#' @export
+setGeneric("trainingData", function(x) standardGeneric("trainingData"))
+
+#' @exportMethod trainingData
+#' @rdname PCAGenomicSignatures
 setMethod("trainingData", "PCAGenomicSignatures", function(x) {
     out <- x@trainingData
     return(out)
 })
 
 
-setGeneric("mesh", function(x, ...) standardGeneric("mesh"))
+#' @export
+setGeneric("mesh", function(x) standardGeneric("mesh"))
+
+#' @exportMethod mesh
+#' @rdname PCAGenomicSignatures
 setMethod("mesh", "PCAGenomicSignatures", function(x) {
     out <- x@trainingData$MeSH
     return(out)
 })
 
 
-setGeneric("PCAsummary", function(x, ...) standardGeneric("PCAsummary"))
+#' @export
+setGeneric("PCAsummary", function(x) standardGeneric("PCAsummary"))
+
+#' @exportMethod PCAsummary
+#' @rdname PCAGenomicSignatures
 setMethod("PCAsummary", "PCAGenomicSignatures", function(x) {
     out <- x@trainingData$PCAsummary
     return(out)
@@ -215,6 +255,8 @@ setMethod("PCAsummary", "PCAGenomicSignatures", function(x) {
 ### ==============================================
 ### Show method
 ### ==============================================
+#' @exportMethod show
+#' @rdname PCAGenomicSignatures
 setMethod("show", "PCAGenomicSignatures", function(object) {
     callNextMethod()
 

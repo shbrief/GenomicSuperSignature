@@ -12,7 +12,7 @@
 Rscript --vanilla -e "pkgdown::build_site(lazy=TRUE)"
 git checkout gh-pages # git checkout --orphan gh-pages
 git pull origin gh-pages
-mv docs/* .
+mv docs/* .   # check whether docs/reference/* or docs/*
 rm -rf docs/
 git stage *
 git commit -m "update GitHub pages"

@@ -7,3 +7,4 @@
 ^\.travis\.yml$
 ^\.post_script_build.sh$
 update.sh
+vignettes/refinebioRseq_canonicalPathways_PCAmodel_hclust.rds

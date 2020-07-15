@@ -131,12 +131,12 @@ subsetPathways <- function(PCAmodel, ind = NULL, n = 10, both = FALSE) {
     if (both == FALSE) {res <- res[1:n,]}
 
     if (is.null(ind)) {
-        res <- DataFrame(res)
+        res <- S4Vectors::DataFrame(res)
         return(res)
     } else {
         col_num <- which(colnames(res) %in% c(paste0("PCcluster", ind)))
         res <- res[, col_num, drop = FALSE]
-        res <- DataFrame(res)
+        res <- S4Vectors::DataFrame(res)
         return(res)
     }
 }

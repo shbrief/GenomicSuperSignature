@@ -3,11 +3,17 @@
 \docType{class}
 \name{GenomicSignatures-class}
 \alias{GenomicSignatures-class}
-\alias{GenomicSignatures}
-\title{Construct \code{GenomicSignatures} object}
-\value{
-A \code{GenomicSignatures} object
+\title{Construct GenomicSignatures-class object}
+\arguments{
+\item{x}{A \code{GenomicSignatures-class} object}
+
+\item{value}{See details.}
 }
 \description{
+GenomicSignatures is a virtual class inherited from SummarizedExperiment
+and hosts GenomicSignatures models built from different dimensional reduction methods.
+Currently, PCA-based model, called PCAGenomicSignatures, is available.
+}
+\details{
 GenomicSignatures
 }

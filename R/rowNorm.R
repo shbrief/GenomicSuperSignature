@@ -5,7 +5,7 @@
 #'
 #' @export
 rowNorm <- function(x){
-  s <- apply(x, 1, sd)
+  s <- apply(x, 1, stats::sd)
   m <- apply(x, 1, mean);
   x <- sweep(x, 1, m)
   x <- sweep(x, 1, s, "/")

@@ -27,9 +27,9 @@
     gene_common <- intersect(rownames(avgLoading), rownames(dat))
     prcomRes <- stats::prcomp(t(dat[gene_common,]))
     loadings <- prcomRes$rotation[, 1:8]
-    loading_cor <- abs(cor(avgLoading[gene_common,], loadings[gene_common,],
-                          use = "pairwise.complete.obs",
-                          method = method))
+    loading_cor <- abs(stats::cor(avgLoading[gene_common,], loadings[gene_common,],
+                                  use = "pairwise.complete.obs",
+                                  method = method))
     return(loading_cor)
 }
 
