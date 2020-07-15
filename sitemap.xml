@@ -73,6 +73,9 @@
     <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/validatedIndex.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/PCAGenomicSignatures/articles/PCAGenomicSignatures_Content.html</loc>
+    <loc>https://shbrief.github.io/PCAGenomicSignatures/articles/PCAGenomicSignatures_Contents.html</loc>
+  </url>
+  <url>
+    <loc>https://shbrief.github.io/PCAGenomicSignatures/articles/Quickstart.html</loc>
   </url>
 </urlset>
