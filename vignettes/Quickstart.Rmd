@@ -74,7 +74,7 @@ if (!"bcellViper" %in% rownames(installed.packages())) {
 ```
 
 ```{r}
-library(bcellViper)
+library(bcellViper, quietly = TRUE, verbose = FALSE)
 data(bcellViper)
 dset
 dataset <- exprs(dset)
@@ -138,17 +138,15 @@ function. You need to provide PCAmodel and the index of the PCcluster you are in
 wc_ind <- validated_ind[2:4]
 
 set.seed(1)
-for (i in seq_along(wc_ind)) {
-  wc <- drawWordcloud(PCAmodel, wc_ind[i]) 
-  print(wc)
-}
+drawWordcloud(PCAmodel, wc_ind[1])
+drawWordcloud(PCAmodel, wc_ind[2])
+drawWordcloud(PCAmodel, wc_ind[3])
 ```
 
 
 
 
-# GSEA 
-Coming soon...
+# GSEA (Coming soon...)
 
 ```{r message=FALSE, warning=FALSE, echo=FALSE, eval=FALSE}
 library(org.Hs.eg.db)
