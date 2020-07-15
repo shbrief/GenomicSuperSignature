@@ -22,14 +22,14 @@ validatedIndex <- function(data, num.out = 5, cutoff = NULL) {
 
 subsetByCutoff <- function(data, cutoff, subset.by = c("score", "sw")) {
     ind <- which(rownames(data) == subset.by)
-    validated_ind <- validatedIndex(data, cutoff)
+    validated_ind <- validatedIndex(data, cutoff = cutoff)
     dat <- data[ind, validated_ind, drop=FALSE]
     return(dat)
 }
 
 subsetTop <- function(data, num.out, subset.by = c("score", "sw")) {
     ind <- which(rownames(data) == "score")
-    validated_ind <- validatedIndex(data, cutoff = NULL, num.out)
+    validated_ind <- validatedIndex(data, cutoff = NULL, num.out = num.out)
 
     ind2 <- which(rownames(data) == subset.by)
     dat <- data[ind2, validated_ind, drop=FALSE]

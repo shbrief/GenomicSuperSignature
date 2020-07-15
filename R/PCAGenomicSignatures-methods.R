@@ -86,7 +86,7 @@
 PCAGenomicSignatures <- function(...)
 {
     se <- SummarizedExperiment::SummarizedExperiment(...)
-    gs <- PCAGenomicSignatures(se)
+    gs <- .PCAGenomicSignatures(se)
     .PCclusterName(gs)
 }
 

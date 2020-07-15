@@ -3,6 +3,7 @@
 \docType{class}
 \name{PCAGenomicSignatures-class}
 \alias{PCAGenomicSignatures-class}
+\alias{.PCAGenomicSignatures}
 \title{Construct PCAGenomicSignatures-class object}
 \arguments{
 \item{x}{A \code{GenomicSignatures-class} object}

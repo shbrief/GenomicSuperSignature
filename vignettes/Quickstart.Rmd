@@ -1,0 +1,173 @@
+---
+title: "PCAGenomicSignatures - Quickstart"
+author: "Sehyun Oh"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Quickstart}
+  %\VignetteEncoding{UTF-8}
+output:
+  BiocStyle::html_document:
+    number_sections: no
+    toc: yes
+    toc_depth: 4
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE, comment = "#>", collapse = TRUE 
+)
+```
+
+# Setup
+
+## Install and load package
+```{r eval = FALSE}
+if (!require("devtools")) {
+  install.packages("devtools")
+}
+devtools::install_github("shbrief/PCAGenomicSignatures")
+```
+
+```{r results="hide", message=FALSE, warning=FALSE}
+library(PCAGenomicSignatures)
+```
+
+
+## Download PCAmodel
+Currently, you can download PCAGenomicSignatures (711.2 MB) from Google Cloud 
+bucket using AnVIL Bioconductor/R package. This model is built from 1,399 studies 
+(containing 75,433 samples) and 7,951 common genes from each of 1,399 study's top
+90% varying genes based on thier study-level standard deviation.
+
+```{r message=FALSE, warning=FALSE}
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("AnVIL")
+```
+
+```{r load_model, eval=FALSE}
+library(AnVIL)
+wd <- getwd()
+gsutil_cp("gs://genomic_signatures/refinebioRseq_PCAmodel_hclust.rds", wd)
+PCAmodel <- readRDS(file.path(wd, "refinebioRseq_PCAmodel_hclust.rds"))
+PCAmodel
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+wd <- getwd()
+PCAmodel <- readRDS(file.path(wd, "refinebioRseq_PCAmodel_hclust.rds"))
+PCAmodel
+```
+
+
+## Example dataset
+**Human B-cell expression dataset** The human B-cell dataset (Gene Expression Omnibus series GSE2350) 
+consists of 211 normal and tumor human B-cell phenotypes whose expression was profiled on Affymatrix
+HG-U95Av2 arrays, and it is contained in an ExpressionSet object with 6,249 features x 211 samples.
+
+```{r echo=FALSE}
+if (!"bcellViper" %in% rownames(installed.packages())) {
+  BiocManager::install("bcellViper")
+}
+```
+
+```{r}
+library(bcellViper)
+data(bcellViper)
+dset
+dataset <- exprs(dset)
+```
+
+You can provide your own expression dataset in any of these formats: simple matrix, 
+ExpressionSet, or SummarizedExperiment. Just make sure that genes in rows are in
+a 'symbol' format. 
+
+
+# Validate
+## HeatmapTable
+`heatmapTable` outputs a two panel table: top panel represents average silhouette
+width (avg.sw) and the bottom panel represents the validation score.
+
+You can subset the validation output in two ways - cutoff value and top ranked.
+If you specify cutoff value though `cutoff` argument of `heatmapTable`, any validation
+result above cutoff value will be shown. If you specify the number of top validation
+results (= n) through `num.out` argument of `heatmapTable`, the output will be a n-columned
+heatmap table.
+
+```{r fig.width=5, fig.height=3, message=FALSE, warning=FALSE}
+val_all <- validate(dataset, PCAmodel)  
+heatmapTable(val_all, cutoff = 0.55)
+```
+
+```{r fig.width=4.5, fig.height=3}
+heatmapTable(val_all, num.out = 7)
+```
+
+## Interactive Graph
+Under the default condition, `plotValidate` plots all non single-element clusters'
+validation results in a single graph, where x-axis represent average Silhouette
+width of the PCcluster (a quality control measure of the signature) and y-axis
+represent validation score. We recommend users to focus on PCclusters with higher
+validation score and use avgerage silhouette width as a secondary criteria. 
+
+```{r plotValidate_function}
+plotValidate(val_all, interactive = TRUE)
+```
+
+
+
+
+# MeSH terms in wordcloud
+You can draw a wordcloud with the enriched MeSH term of PCclusters that validate
+your dataset. `validatedIndex` function will output the validated index based on 
+`num.out` or `cutoff` argument in a same way as `heatmapTable`. Here we select the
+top 5 validated PCclusters.
+
+```{r fig.width=4, fig.height=3}
+validated_ind <- validatedIndex(val_all, num.out = 5)
+heatmapTable(val_all, num.out = 5)
+```
+
+Because 2nd-4th PCclusters (2516, 2847, 1210) show high validation scores with positive
+average silhouette widths, we draw wordclouds of those PCclusters using `drawWordclout` 
+function. You need to provide PCAmodel and the index of the PCcluster you are interested in.
+
+```{r fig.height=8, fig.width=8}
+wc_ind <- validated_ind[2:4]
+
+set.seed(1)
+for (i in seq_along(wc_ind)) {
+  wc <- drawWordcloud(PCAmodel, wc_ind[i]) 
+  print(wc)
+}
+```
+
+
+
+
+# GSEA (Coming soon...)
+
+Preview...
+```{r message=FALSE, warning=FALSE}
+library(org.Hs.eg.db)
+library(ggplot2)
+library(forcats)
+source('/inst/scripts/funcForGSEA.R')
+msigdb_gsea(wc_ind[2], PCAmodel, category = "C2")
+```
+
+## MSigDB C2
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+msigdb_gsea(wc_ind[1], PCAmodel, category = "C2")
+msigdb_gsea(wc_ind[2], PCAmodel, category = "C2")
+msigdb_gsea(wc_ind[3], PCAmodel, category = "C2")
+```
+
+## MSigDB C7
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+msigdb_gsea(wc_ind[1], PCAmodel, category = "C7")
+msigdb_gsea(wc_ind[2], PCAmodel, category = "C7")
+msigdb_gsea(wc_ind[3], PCAmodel, category = "C7")
+```

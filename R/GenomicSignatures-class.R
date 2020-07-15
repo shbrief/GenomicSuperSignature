@@ -35,7 +35,7 @@ setClass("GenomicSignatures",
 #'
 #' @docType class
 #' @exportClass PCAGenomicSignatures
-setClass("PCAGenomicSignatures",
+.PCAGenomicSignatures <- setClass("PCAGenomicSignatures",
          slots = representation(
              trainingData = "DataFrame"
          ),
