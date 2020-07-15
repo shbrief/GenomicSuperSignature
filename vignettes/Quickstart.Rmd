@@ -47,7 +47,7 @@ if (!requireNamespace("BiocManager", quietly = TRUE))
 BiocManager::install("AnVIL")
 ```
 
-```{r load_model, eval=FALSE}
+```{r load_model}
 library(AnVIL)
 wd <- getwd()
 gsutil_cp("gs://genomic_signatures/refinebioRseq_PCAmodel_hclust.rds", wd)
@@ -55,7 +55,7 @@ PCAmodel <- readRDS(file.path(wd, "refinebioRseq_PCAmodel_hclust.rds"))
 PCAmodel
 ```
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE, eval=FALSE}
 wd <- getwd()
 PCAmodel <- readRDS(file.path(wd, "refinebioRseq_PCAmodel_hclust.rds"))
 PCAmodel

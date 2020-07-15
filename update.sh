@@ -8,12 +8,25 @@
 # git push origin gh-pages
 # git checkout master
 
-## For subsequent manual updates, if you are not using the procedure in .travis.yml
+# ## For subsequent manual updates, if you are not using the procedure in .travis.yml
+# Rscript --vanilla -e "pkgdown::build_site(lazy=TRUE)"
+# git checkout --orphan gh-pages
+# git pull origin gh-pages
+# mv docs/* .
+# rm -rf docs/
+# git stage *
+# git commit -m "update GitHub pages"
+# git push origin gh-pages
+
+
+## For PCAGenomicSignatures package
 Rscript --vanilla -e "pkgdown::build_site(lazy=TRUE)"
-git checkout gh-pages # git checkout --orphan gh-pages
+git checkout gh-pages
 git pull origin gh-pages
-mv docs/* .   # check whether docs/reference/* or docs/*
+mv docs/articles/* articles
+mv docs/reference/* reference
 rm -rf docs/
+rm vignettes/refinebioRseq_PCAmodel_hclust.rds  # large data file
 git stage *
 git commit -m "update GitHub pages"
 git push origin gh-pages

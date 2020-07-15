@@ -1,2 +1,63 @@
 destination: docs
 url: https://shbrief.github.io/PCAGenomicSignatures
+
+template:
+  params:
+    bootswatch: flatly
+
+reference:
+  - title: Classes
+    desc: Exported classes
+    contents:
+      - GenomicSignatures-class
+      - PCAGenomicSignatures-class
+  - title: Constructors
+    desc: Build objects with designated constructor functions
+    contents:
+      - PCAGenomicSignatures
+  - title: Methods and Accessors
+    desc: Discover content within PCAGenomicSignatures
+    contents:
+      - PCAGenomicSignatures-methods
+  - title: Model Building
+    desc: Functions for PGCGenomicSignatures model buildling
+    contents:
+      - .PCclusterName
+      - PCinCluster
+      - buildAvgLoading
+      - commonGene
+      - .calculateSilhouetteWidth
+      - findStudiesInCluster
+      - rmNaInf
+      - rowNorm
+  - title: Model Application
+    desc: Functions for applying PGCGenomicSignatures model to a new data
+    contents:
+      - calculateScore
+      - .loadingCor
+      - drawWordcloud
+      - extractPC
+      - heatmapTable
+      - makeGeneList
+      - meshTable
+      - plotValidate
+      - run_gsea
+      - subsetPathways
+      - validate
+      - validatedIndex
+
+navbar:
+  title: ~
+  type: default
+  left:
+    - text: Reference
+      href: reference/index.html
+    - text: Vignettes
+      menu:
+      - text: Quick Start Guide
+        href: articles/Quickstart.html
+      - text: Content Overview
+        href: articles/PCAGeomicSignatures_Contents.html
+  right:
+  - icon: fa-github fa-lg
+    href: https://github.com/shbrief/PCAGenomicSignatures
