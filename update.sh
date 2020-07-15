@@ -26,7 +26,7 @@ git pull origin gh-pages
 mv docs/articles/* articles
 mv docs/reference/* reference
 rm -rf docs/
-rm vignettes/refinebioRseq_PCAmodel_hclust.rds  # large data file
 git stage *
+git reset HEAD vignettes/refinebioRseq_PCAmodel_hclust.rds   # large data file
 git commit -m "update GitHub pages"
 git push origin gh-pages
