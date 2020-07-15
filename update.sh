@@ -23,8 +23,7 @@
 Rscript --vanilla -e "pkgdown::build_site(lazy=TRUE)"
 git checkout gh-pages
 git pull origin gh-pages
-mv docs/articles/* articles
-mv docs/reference/* reference
+cp -r docs/* .
 rm -rf docs/
 git stage *
 git reset HEAD vignettes/refinebioRseq_PCAmodel_hclust.rds   # large data file

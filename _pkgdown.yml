@@ -1,5 +1,4 @@
-destination: docs
-url: https://shbrief.github.io/PCAGenomicSignatures
+title: PCAGenomicSignatures
 
 template:
   params:
@@ -57,7 +56,7 @@ navbar:
       - text: Quick Start Guide
         href: articles/Quickstart.html
       - text: Content Overview
-        href: articles/PCAGeomicSignatures_Contents.html
+        href: articles/PCAGenomicSignatures_Contents.html
   right:
   - icon: fa-github fa-lg
     href: https://github.com/shbrief/PCAGenomicSignatures
