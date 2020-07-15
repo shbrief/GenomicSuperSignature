@@ -15,6 +15,15 @@ setMethod("model", "GenomicSignatures", function(x) {
     return(out)
 })
 
+#' @export
+setGeneric("metadata", function(x) standardGeneric("metadata"))
+
+#' @exportMethod metadata
+#' @rdname PCAGenomicSignatures
+setMethod("metadata", "GenomicSignatures", function(x) {
+    out <- S4Vectors::metadata(x)
+    return(out)
+})
 
 #' @export
 setGeneric("geneSets", function(x) standardGeneric("geneSets"))

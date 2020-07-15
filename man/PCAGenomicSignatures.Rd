@@ -34,6 +34,7 @@
 \alias{PCAsummary,PCAGenomicSignatures-method}
 \alias{show,PCAGenomicSignatures-method}
 \alias{model,GenomicSignatures-method}
+\alias{metadata,GenomicSignatures-method}
 \alias{geneSets,GenomicSignatures-method}
 \alias{updateNote,GenomicSignatures-method}
 \alias{geneSets<-,GenomicSignatures-method}
@@ -69,6 +70,8 @@ PCAGenomicSignatures(...)
 \S4method{show}{PCAGenomicSignatures}(object)
 
 \S4method{model}{GenomicSignatures}(x)
+
+\S4method{metadata}{GenomicSignatures}(x)
 
 \S4method{geneSets}{GenomicSignatures}(x)
 

@@ -147,14 +147,14 @@ for (i in seq_along(wc_ind)) {
 
 
 
-# GSEA (Coming soon...)
+# GSEA 
+Coming soon...
 
-Preview...
-```{r message=FALSE, warning=FALSE}
+```{r message=FALSE, warning=FALSE, echo=FALSE, eval=FALSE}
 library(org.Hs.eg.db)
 library(ggplot2)
 library(forcats)
-source('/inst/scripts/funcForGSEA.R')
+source('inst/scripts/funcForGSEA.R')
 msigdb_gsea(wc_ind[2], PCAmodel, category = "C2")
 ```
 
