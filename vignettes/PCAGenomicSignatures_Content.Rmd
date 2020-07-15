@@ -1,0 +1,131 @@
+---
+title: "PCAGenomicSignatures"
+author: "Sehyun Oh"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+vignette: >
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteIndexEntry{Information in PCAGenomicSignatures}
+  %\VignetteEncoding{UTF-8}
+output:
+  BiocStyle::html_document:
+    number_sections: no
+    toc: yes
+    toc_depth: 4
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE, comment = "#>", collapse = TRUE, eval = FALSE 
+)
+```
+
+# Install and load the package
+
+```{r eval = FALSE}
+if (!require("devtools")) {
+  install.packages("devtools")
+}
+devtools::install_github("shbrief/PCAGenomicSignatures")
+```
+
+```{r results="hide", message=FALSE, warning=FALSE}
+library(PCAGenomicSignatures)
+```
+
+
+# Load PCAmodel
+Currently, you can download PCAGenomicSignatures (711.2 MB) from Google Cloud 
+bucket using AnVIL Bioconductor/R package. This model is built from 1,399 studies 
+(containing 75,433 samples) and 7,951 common genes from each of 1,399 study's top
+90% varying genes based on thier study-level standard deviation.
+
+```{r eval=FALSE}
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("AnVIL")
+```
+
+```{r load_model, eval=FALSE}
+library(AnVIL)
+wd <- getwd()
+gsutil_cp("gs://genomic_signatures/refinebioRseq_canonicalPathways_PCAmodel_hclust.rds", wd)
+PCAmodel <- readRDS(file.path(wd, "refinebioRseq_canonicalPathways_PCAmodel_hclust.rds"))
+PCAmodel
+```
+
+```{r echo=FALSE}
+wd <- getwd()
+PCAmodel <- readRDS(file.path(wd, "refinebioRseq_canonicalPathways_PCAmodel_hclust.rds"))
+PCAmodel
+```
+
+
+## Quick Summary
+```{r eval=FALSE}
+model(PCAmodel) # avgLoading matrix
+geneSets(PCAmodel) # gene sets used for model buildling
+studies(PCAmodel) # a list of character vectors, containing studies in each loading
+gsea(PCAmodel) # a list of gseaResult objects of each loading
+mesh(PCAmodel) # a list of data frames containing MeSH information associated with each study
+PCAsummary(PCAmodel) # a list of matrix (3 by 20) containing PCA summary of each study
+```
+
+# Accessors
+## avgLoading
+Rows are genes and columns are avgLoading vectors.
+
+```{r}
+class(model(PCAmodel))
+dim(model(PCAmodel))
+model(PCAmodel)[1:4, 1:4]
+```
+
+## metadata
+```{r}
+names(metadata(PCAmodel))
+head(metadata(PCAmodel)$cluster)
+head(metadata(PCAmodel)$size)
+metadata(PCAmodel)$iter
+metadata(PCAmodel)$k
+metadata(PCAmodel)$n
+geneSets(PCAmodel)
+
+## Not working yet. Use this for now: `metadata(PCAmodel)$updateNote`
+# updateNote(PCAmodel)  
+```
+
+## Studies in each loading
+A list with the length of clusters. Each element is a character vector containing
+the name of studies in each cluster.
+
+```{r}
+class(studies(PCAmodel))
+class(studies(PCAmodel)[[1]])
+length(studies(PCAmodel))
+studies(PCAmodel)[1:3]
+```
+
+## GSEA on each loading
+```{r}
+class(gsea(PCAmodel))
+class(gsea(PCAmodel)[[1]])
+length(gsea(PCAmodel))
+gsea(PCAmodel)[1]
+```
+
+## MeSH terms for each study
+```{r}
+class(mesh(PCAmodel))
+class(mesh(PCAmodel)[[1]])
+length(mesh(PCAmodel))
+mesh(PCAmodel)[1]
+```
+
+## PCA summary
+```{r}
+class(PCAsummary(PCAmodel))
+class(PCAsummary(PCAmodel)[[1]])
+length(PCAsummary(PCAmodel))
+PCAsummary(PCAmodel)[1]
+```

@@ -10,10 +10,10 @@
     <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/PCAGenomicSignatures-class.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/PCAGenomicSignatures-methods.html</loc>
+    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/PCAGenomicSignatures.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/PCAGenomicSignatures.html</loc>
+    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/PCclusterName.html</loc>
   </url>
   <url>
     <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/PCinCluster.html</loc>
@@ -26,9 +26,6 @@
   </url>
   <url>
     <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/commonGene.html</loc>
-  </url>
-  <url>
-    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/dot-PCclusterName.html</loc>
   </url>
   <url>
     <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/dot-calculateSilhouetteWidth.html</loc>
@@ -74,5 +71,8 @@
   </url>
   <url>
     <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/validatedIndex.html</loc>
+  </url>
+  <url>
+    <loc>https://shbrief.github.io/PCAGenomicSignatures/articles/PCAGenomicSignatures_Content.html</loc>
   </url>
 </urlset>

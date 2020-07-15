@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>z-score each row of the data — rowNorm • PCAGenomicSignatures</title>
+<title>Formatting PCcluster name — PCclusterName • PCAGenomicSignatures</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,11 @@
 
 
 
-<meta property="og:title" content="z-score each row of the data — rowNorm" />
-<meta property="og:description" content="z-score each row of the data" />
+<meta property="og:title" content="Formatting PCcluster name — PCclusterName" />
+<meta property="og:description" content="Keep the name with 'k + cluster number + number of PCs + number of unique studies'
+info during the model construction to make it easy to keep track of them, but at the
+PCAGenomicSignatures-class object building step, covert them into a short version,
+mPC (mean of PCs)." />
 
 
 
@@ -115,23 +118,30 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>z-score each row of the data</h1>
+    <h1>Formatting PCcluster name</h1>
     
-    <div class="hidden name"><code>rowNorm.Rd</code></div>
+    <div class="hidden name"><code>PCclusterName.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>z-score each row of the data</p>
+    <p>Keep the name with 'k + cluster number + number of PCs + number of unique studies'
+info during the model construction to make it easy to keep track of them, but at the
+PCAGenomicSignatures-class object building step, covert them into a short version,
+mPC (mean of PCs).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>rowNorm</span>(<span class='no'>x</span>)</pre>
+    <pre class="usage"><span class='fu'>.PCclusterName</span>(<span class='no'>x</span>, <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>A gene-expression matrix with genes in rows and samples in columns</p></td>
+      <td><p>PCAGenomicSignature-object</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments for supporting functions.</p></td>
     </tr>
     </table>
 
