@@ -3,7 +3,7 @@
 ### ==============================================
 #' GenomicSignatures
 #' @name GenomicSignatures-class
-#' @title GenomicSignatures virtual class inherited from SummarizedExperiment
+#' @title Virtual class inherited from SummarizedExperiment
 #'
 #' @description GenomicSignatures is a virtual class inherited from SummarizedExperiment
 #' and hosts GenomicSignatures models built from different dimensional reduction methods.

@@ -21,19 +21,19 @@ reference:
   - title: Model Building
     desc: Functions for PGCGenomicSignatures model buildling
     contents:
+      - .calculateSilhouetteWidth
       - .PCclusterName
-      - PCinCluster
       - buildAvgLoading
       - commonGene
-      - .calculateSilhouetteWidth
       - findStudiesInCluster
+      - PCinCluster
       - rmNaInf
       - rowNorm
   - title: Model Application
     desc: Functions for applying PGCGenomicSignatures model to a new data
     contents:
-      - calculateScore
       - .loadingCor
+      - calculateScore
       - drawWordcloud
       - extractPC
       - heatmapTable
@@ -55,7 +55,7 @@ navbar:
       menu:
       - text: Quick Start Guide
         href: articles/Quickstart.html
-      - text: Content Overview
+      - text: Overview Contents
         href: articles/PCAGenomicSignatures_Contents.html
   right:
   - icon: fa-github fa-lg

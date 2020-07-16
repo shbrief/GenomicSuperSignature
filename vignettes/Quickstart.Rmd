@@ -73,8 +73,8 @@ if (!"bcellViper" %in% rownames(installed.packages())) {
 }
 ```
 
-```{r}
-library(bcellViper, quietly = TRUE, verbose = FALSE)
+```{r message=FALSE, warning=FALSE}
+suppressPackageStartupMessages(library(bcellViper))
 data(bcellViper)
 dset
 dataset <- exprs(dset)
@@ -134,7 +134,7 @@ Because 2nd-4th PCclusters (2516, 2847, 1210) show high validation scores with p
 average silhouette widths, we draw wordclouds of those PCclusters using `drawWordclout` 
 function. You need to provide PCAmodel and the index of the PCcluster you are interested in.
 
-```{r fig.height=8, fig.width=8}
+```{r warning=FALSE, message=FALSE}
 wc_ind <- validated_ind[2:4]
 
 set.seed(1)
@@ -148,11 +148,12 @@ drawWordcloud(PCAmodel, wc_ind[3])
 
 # GSEA (Coming soon...)
 
-```{r message=FALSE, warning=FALSE, echo=FALSE, eval=FALSE}
+Preview...
+```{r message=FALSE, warning=FALSE, echo=FALSE}
 library(org.Hs.eg.db)
 library(ggplot2)
 library(forcats)
-source('inst/scripts/funcForGSEA.R')
+source('inst/scripts/funcForGSEA_plot.R')
 msigdb_gsea(wc_ind[2], PCAmodel, category = "C2")
 ```
 

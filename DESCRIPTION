@@ -29,7 +29,9 @@ Suggests:
   roxygen2,
   pkgdown,
   usethis,
-  BiocStyle
+  BiocStyle,
+  forcats,
+  org.Hs.eg.db
 License: Artistic-2.0
 Encoding: UTF-8
 LazyData: true
