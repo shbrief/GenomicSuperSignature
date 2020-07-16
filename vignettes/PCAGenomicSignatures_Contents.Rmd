@@ -98,8 +98,8 @@ each cluster. `k` is the number of clusters and `n` is the number of top PCs kep
 from each study in training dataset. `MeSH_freq` is the information on the frequency
 of MeSH terms assigned to training dataset. You can see that MeSH term 'Humans' 
 and 'RNA-seq' are top ranked, which is very expected because the training dataset
-of this model is Human RNA sequencing. `updateNote` gives a brief character of 
-this model.
+of this model is Human RNA sequencing. `updateNote` tells you a brief note on the
+given model's specification.
 
 ```{r}
 head(metadata(PCAmodel)$cluster)
