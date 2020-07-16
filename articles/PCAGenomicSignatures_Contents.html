@@ -79,7 +79,7 @@
       <h1 data-toc-skip>PCAGenomicSignatures - Contents</h1>
                         <h4 class="author">Sehyun Oh</h4>
             
-            <h4 class="date">July 15, 2020</h4>
+            <h4 class="date">July 16, 2020</h4>
       
       
       <div class="hidden name"><code>PCAGenomicSignatures_Contents.Rmd</code></div>
@@ -167,7 +167,7 @@
 <div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="fu">metadata</span>(<span class="no">PCAmodel</span>))
 <span class="co">#&gt; [1] "cluster"    "size"       "k"          "n"          "MeSH_freq" </span>
 <span class="co">#&gt; [6] "updateNote"</span></pre></body></html></div>
-<p><code>cluster</code> contains the cluster membership of each PCs from training dataset and <code>size</code> is the integer vector with the length of clusters, containing the size of each cluster. <code>k</code> is the number of clusters and <code>n</code> is the number of top PCs kept from each study in training dataset. <code>MeSH_freq</code> is the information on the frequency of MeSH terms assigned to training dataset. You can see that MeSH term ‘Humans’ and ‘RNA-seq’ are top ranked, which is very expected because the training dataset of this model is Human RNA sequencing. <code>updateNote</code> gives a brief character of this model.</p>
+<p><code>cluster</code> contains the cluster membership of each PCs from training dataset and <code>size</code> is the integer vector with the length of clusters, containing the size of each cluster. <code>k</code> is the number of clusters and <code>n</code> is the number of top PCs kept from each study in training dataset. <code>MeSH_freq</code> is the information on the frequency of MeSH terms assigned to training dataset. You can see that MeSH term ‘Humans’ and ‘RNA-seq’ are top ranked, which is very expected because the training dataset of this model is Human RNA sequencing. <code>updateNote</code> tells you a brief note on the given model’s specification.</p>
 <div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="fu">metadata</span>(<span class="no">PCAmodel</span>)$<span class="no">cluster</span>)
 <span class="co">#&gt; DRP000499.PC1 DRP000499.PC2 DRP000499.PC3 DRP000499.PC4 DRP000499.PC5 </span>
 <span class="co">#&gt;             1             2             3             4             5 </span>
