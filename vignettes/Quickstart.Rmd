@@ -148,8 +148,7 @@ drawWordcloud(PCAmodel, wc_ind[3])
 
 # GSEA (Coming soon...)
 
-Preview...
-```{r message=FALSE, warning=FALSE, echo=FALSE}
+```{r message=FALSE, warning=FALSE, echo=FALSE, eval=FALSE}
 library(org.Hs.eg.db)
 library(ggplot2)
 library(forcats)
