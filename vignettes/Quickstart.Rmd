@@ -153,6 +153,8 @@ Preview...
 library(org.Hs.eg.db)
 library(ggplot2)
 library(forcats)
+library(S4Vectors)
+
 source('inst/scripts/funcForGSEA_plot.R')
 msigdb_gsea(wc_ind[2], PCAmodel, category = "C2")
 ```
