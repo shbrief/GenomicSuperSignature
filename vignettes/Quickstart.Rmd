@@ -116,16 +116,16 @@ validation score and use avgerage silhouette width as a secondary criteria.
 plotValidate(val_all, interactive = TRUE)
 ```
 
-You can hover each data point for more information:    
-- sw : the average silhouette width of the clutser   
-- score : the top validation score between 8 PCs of the dataset and the cluster   
-- cl_size : the size of the cluster, represented by the dot size   
-- cl_num : the PCcluster number of the model. You need this index to find more information
-about the cluster.
-- PC : Test dataset's PC number that validate each PCcluster. Because we used 
-top 8 PCs of the test dataset, there are 8 categories. 
-
 <br>
+
+You can hover each data point for more information:    
+- **sw** : the average silhouette width of the clutser   
+- **score** : the top validation score between 8 PCs of the dataset and the cluster   
+- **cl_size** : the size of the cluster, represented by the dot size   
+- **cl_num** : the PCcluster number of the model. You need this index to find more information
+about the cluster.      
+- **PC** : Test dataset's PC number that validate each PCcluster. Because we used 
+top 8 PCs of the test dataset, there are 8 categories. 
 
 If you double-click the PC legend on the right, you will enter an individual display
 mode where you can add an additional group of data point by single-click. 
@@ -146,7 +146,7 @@ Because 2nd-4th PCclusters (2516, 2847, 1210) show high validation scores with p
 average silhouette widths, we draw wordclouds of those PCclusters using `drawWordclout` 
 function. You need to provide PCAmodel and the index of the PCcluster you are interested in.
 
-```{r}
+```{r fig.height=8, fig.width=8}
 wc_ind <- validated_ind[2:4]
 
 set.seed(1)
