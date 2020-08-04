@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Methods and accesors for <code>GenomicSignatures</code> object — GenomicSignatures-methods • PCAGenomicSignatures</title>
+<title>Barplot GSEA output — msigdb_gsea • PCAGenomicSignatures</title>
 
 
 <!-- jquery -->
@@ -39,12 +39,8 @@
 
 
 
-<meta property="og:title" content="Methods and accesors for <code>GenomicSignatures</code> object — GenomicSignatures-methods" />
-<meta property="og:description" content="The default contents of GenomicSignatures object, with
-a set of accessor and setter generic functions, which extract either the assay,
-colData, or metadata slots of a GenomicSignatures-class
-object. When you create this object, colData$studies should be populated
-before adding any information in trainingData slot" />
+<meta property="og:title" content="Barplot GSEA output — msigdb_gsea" />
+<meta property="og:description" content="Barplot GSEA output" />
 
 
 
@@ -121,82 +117,47 @@ before adding any information in trainingData slot" />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Methods and accesors for <code>GenomicSignatures</code> object</h1>
+    <h1>Barplot GSEA output</h1>
     
-    <div class="hidden name"><code>GenomicSignatures-methods.Rd</code></div>
+    <div class="hidden name"><code>msigdb_gsea.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>The default contents of <code>GenomicSignatures</code> object, with
-a set of accessor and setter generic functions, which extract either the <code>assay</code>,
-<code>colData</code>, or <code>metadata</code> slots of a <code><a href='GenomicSignatures-class.html'>GenomicSignatures-class</a></code>
-object. When you create this object, <code>colData$studies</code> should be populated
-before adding any information in <code>trainingData</code> slot</p>
+    <p>Barplot GSEA output</p>
     </div>
 
-    <pre class="usage"><span class='co'># S4 method for GenomicSignatures</span>
-<span class='fu'><a href='PCAGenomicSignatures-methods.html'>model</a></span>(<span class='no'>x</span>)
-
-<span class='co'># S4 method for GenomicSignatures</span>
-<span class='fu'>colData</span>(<span class='no'>x</span>)
-
-<span class='co'># S4 method for GenomicSignatures</span>
-<span class='fu'>metadata</span>(<span class='no'>x</span>)
-
-<span class='co'># S4 method for GenomicSignatures</span>
-<span class='fu'><a href='PCAGenomicSignatures-methods.html'>geneSets</a></span>(<span class='no'>x</span>)
-
-<span class='co'># S4 method for GenomicSignatures</span>
-<span class='fu'><a href='PCAGenomicSignatures-methods.html'>updateNote</a></span>(<span class='no'>x</span>)
-
-<span class='co'># S4 method for GenomicSignatures</span>
-<span class='fu'><a href='PCAGenomicSignatures-methods.html'>geneSets</a></span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
-
-<span class='co'># S4 method for GenomicSignatures</span>
-<span class='fu'><a href='PCAGenomicSignatures-methods.html'>updateNote</a></span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span></pre>
+    <pre class="usage"><span class='fu'>msigdb_gsea</span>(<span class='no'>ind</span>, <span class='no'>PCAmodel</span>, <span class='kw'>category</span> <span class='kw'>=</span> <span class='st'>"C2"</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>pvalueCutoff</span> <span class='kw'>=</span> <span class='fl'>0.5</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>A <code>GenomicSignatures</code> object</p></td>
+      <th>ind</th>
+      <td><p>An interger. Index of avgLoading/PCcluster to apply GSEA.</p></td>
     </tr>
     <tr>
-      <th>value</th>
-      <td><p>See details.</p></td>
+      <th>PCAmodel</th>
+      <td><p>PCAGenomicSignature object.</p></td>
+    </tr>
+    <tr>
+      <th>category</th>
+      <td><p>A character vector representing MSigDB category. Options are
+"H","C1","C2"(default), "C3","C4","C5","C6", and "C7"</p></td>
+    </tr>
+    <tr>
+      <th>n</th>
+      <td><p>An interger. The number of top and bottom enriched pathways to plot. Default is 10.</p></td>
+    </tr>
+    <tr>
+      <th>pvalueCutoff</th>
+      <td><p>Cutoff for both pvalue and p.adjust. Default is 0.5.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    
-<ul>
-<li><p>assay(x) : PCAmodel (= avgLoading) containing genes x PCclusters</p></li>
-<li><p>metadata(x) : Metadata associated with the PCAmodel buildling process</p></li>
-<li><p>colData(x) : Information on PCclusters</p></li>
-</ul>
-
-    <h2 class="hasAnchor" id="setters"><a class="anchor" href="#setters"></a>Setters</h2>
-
-    
-
-<p>Setter method values (i.e., <code>function(x) &lt;- value</code>):</p><ul>
-<li><p>geneSets&lt;- : A character vector containing the name of gene sets used
-    to annotate average loadings</p></li>
-<li><p>updateNote&lt;- : A character vetor. Describes the main feature of a model construction</p></li>
-</ul>
-
-    <h2 class="hasAnchor" id="accessors"><a class="anchor" href="#accessors"></a>Accessors</h2>
-
-    
-
-<ul>
-<li><p>model : Equivalent to the <code>assays(x)$model</code> accessor for convenience</p></li>
-<li><p>geneSets : Access the <code>metadata(x)$geneSets</code> slot</p></li>
-<li><p>updateNote : Access the <code>metadata(x)$updateNote</code> slot</p></li>
-</ul>
-
+    <p>Barplot of GSEA output. Top and bottom <code>n</code> genesets based on NES
+are plotted and qvalues are denoted by color.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
