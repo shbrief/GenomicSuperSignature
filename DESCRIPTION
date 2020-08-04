@@ -1,6 +1,6 @@
 Package: PCAGenomicSignatures
-Title: PCAGenomicSignatures, a bridge between the new and existing expression datasets
-Version: 0.0.1
+Title: PCAGenomicSignatures, connecting new expression data to the existing knowledge database
+Version: 0.0.2
 Authors@R: person("Sehyun", "Oh", email = "Sehyun.Oh@cuny.sph.edu", role = c("aut", "cre"))
 Description: This package provides PCA workflow and PCA-based index for extensive annotation with existing knowledge database. 
 URL: https://shbrief.github.io/PCAGenomicSignatures
@@ -31,7 +31,8 @@ Suggests:
   usethis,
   BiocStyle,
   forcats,
-  org.Hs.eg.db
+  org.Hs.eg.db,
+  AnVIL
 License: Artistic-2.0
 Encoding: UTF-8
 LazyData: true
@@ -39,14 +40,15 @@ RoxygenNote: 7.1.1.9000
 VignetteBuilder: knitr
 Collate: 
     'GenomicSignatures-class.R'
-    'PCAGenomicSignatures-methods.R'
     'GenomicSignatures-methods.R'
+    'PCAGenomicSignatures-methods.R'
     'buildAvgLoading.R'
     'calculateScore.R'
     'commonGene.R'
     'drawWordcloud.R'
     'extractPC.R'
     'funcForGSEA.R'
+    'funcForGSEA_plot.R'
     'heatmapTable.R'
     'plotValidate.R'
     'rmNaInf.R'

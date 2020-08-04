@@ -32,7 +32,7 @@
 #'
 #' @details
 #' \itemize{
-#'     \item assay(x) : PCAmodel (= avgLoading) containing genes x PCclusters
+#'     \item model(x) : PCAmodel (= avgLoading) containing genes x PCclusters
 #'     \item metadata(x)$cluster : A vector of integers (from 1:k) indicating the
 #'     cluster to which each point is allocated. Check \code{stats::kmeans} function.
 #'     \item metadata(x)$size : The number of points in each cluster. Check \code{stats::kmeans} function.

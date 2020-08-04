@@ -26,7 +26,7 @@ setClass("GenomicSignatures",
 #' @name PCAGenomicSignatures-class
 #' @title PCAGenomicSignatures-class
 #'
-#' @description PCA-based GenomicSignatures.
+#' @description PCA-based \code{\link{GenomicSignatures}}.
 #'
 #' @slot trainingData A \code{\link[S4Vectors]{DataFrame}} class object for metadata
 #' associated with training data
