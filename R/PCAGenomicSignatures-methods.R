@@ -73,6 +73,7 @@
 #' @slot trainingData A \code{\link[S4Vectors]{DataFrame}} class object for metadata
 #' associated with training data
 #'
+#' @param ... Additional arguments for supporting functions.
 #' @return PCAGenomicSignatures object with multiple setters or accessors
 #'
 #' @export
@@ -138,12 +139,10 @@ PCAGenomicSignatures <- function(...)
 #'
 #' @param object,x A \code{PCAGenomicSignatures} object
 #' @param value See details.
-#' @param ... Additional arguments for supporting functions.
 #'
 #' @return PCAGenomicSignatures object with multiple setters or accessors
 #' @aliases studies<- silhouetteWidth<- gsea<- trainingData<- mesh<- PCAsummary<-
-#' studies silhouetteWidth gsea trainingData mesh PCAsummary model geneSets updateNote
-#' geneSets<- updateNote<-
+#' studies silhouetteWidth gsea trainingData mesh PCAsummary
 NULL
 
 ### ==============================================

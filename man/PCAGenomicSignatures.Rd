@@ -6,6 +6,9 @@
 \usage{
 PCAGenomicSignatures(...)
 }
+\arguments{
+\item{...}{Additional arguments for supporting functions.}
+}
 \value{
 PCAGenomicSignatures object with multiple setters or accessors
 }

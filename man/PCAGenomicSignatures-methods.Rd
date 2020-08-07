@@ -14,11 +14,6 @@
 \alias{trainingData}
 \alias{mesh}
 \alias{PCAsummary}
-\alias{model}
-\alias{geneSets}
-\alias{updateNote}
-\alias{geneSets<-}
-\alias{updateNote<-}
 \alias{studies<-,PCAGenomicSignatures-method}
 \alias{silhouetteWidth<-,PCAGenomicSignatures-method}
 \alias{gsea<-,PCAGenomicSignatures-method}
@@ -64,8 +59,6 @@
 \item{value}{See details.}
 
 \item{object, x}{A \code{PCAGenomicSignatures} object}
-
-\item{...}{Additional arguments for supporting functions.}
 }
 \value{
 PCAGenomicSignatures object with multiple setters or accessors

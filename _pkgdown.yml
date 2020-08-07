@@ -17,6 +17,7 @@ reference:
   - title: Methods and Accessors
     desc: Discover content within PCAGenomicSignatures
     contents:
+      - GenomicSignatures-methods
       - PCAGenomicSignatures-methods
   - title: Model Building
     desc: Functions for PGCGenomicSignatures model buildling
@@ -45,6 +46,8 @@ reference:
       - validate
       - validatedIndex
       - msigdb_gsea
+      - gseaBarplot
+      - gseaNetwork
 
 navbar:
   title: ~

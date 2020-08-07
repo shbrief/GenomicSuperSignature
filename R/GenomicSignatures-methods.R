@@ -33,6 +33,8 @@
 #'
 #' @param x A \code{GenomicSignatures} object
 #' @param value See details.
+#'
+#' @aliases model colData metadata geneSets updateNote geneSets<- updateNote<-
 NULL
 
 
@@ -93,6 +95,15 @@ setMethod("updateNote", "GenomicSignatures", function(x) {
 ### ----------------------------------------------
 ### Setter
 ### ----------------------------------------------
+
+#' @exportMethod metadata<-
+#' @rdname GenomicSignatures-methods
+setReplaceMethod("metadata", c("GenomicSignatures", "ANY"),
+                 function(x, ..., value) {
+                     slot(x, "metadata") <- value
+                     return(x)
+                 })
+
 
 #' @export
 setGeneric("geneSets<-", function(x, value) standardGeneric("geneSets<-"))

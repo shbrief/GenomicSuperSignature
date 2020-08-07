@@ -2,11 +2,19 @@
 % Please edit documentation in R/GenomicSignatures-methods.R
 \name{GenomicSignatures-methods}
 \alias{GenomicSignatures-methods}
+\alias{model}
+\alias{colData}
+\alias{metadata}
+\alias{geneSets}
+\alias{updateNote}
+\alias{geneSets<-}
+\alias{updateNote<-}
 \alias{model,GenomicSignatures-method}
 \alias{colData,GenomicSignatures-method}
 \alias{metadata,GenomicSignatures-method}
 \alias{geneSets,GenomicSignatures-method}
 \alias{updateNote,GenomicSignatures-method}
+\alias{metadata<-,GenomicSignatures-method}
 \alias{geneSets<-,GenomicSignatures-method}
 \alias{updateNote<-,GenomicSignatures-method}
 \title{Methods and accesors for \code{GenomicSignatures} object}
@@ -20,6 +28,8 @@
 \S4method{geneSets}{GenomicSignatures}(x)
 
 \S4method{updateNote}{GenomicSignatures}(x)
+
+\S4method{metadata}{GenomicSignatures}(x, ...) <- value
 
 \S4method{geneSets}{GenomicSignatures}(x) <- value
 

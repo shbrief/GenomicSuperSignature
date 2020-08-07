@@ -1,6 +1,6 @@
 Package: PCAGenomicSignatures
 Title: PCAGenomicSignatures, connecting new expression data to the existing knowledge database
-Version: 0.0.2
+Version: 0.0.3
 Authors@R: person("Sehyun", "Oh", email = "Sehyun.Oh@cuny.sph.edu", role = c("aut", "cre"))
 Description: This package provides PCA workflow and PCA-based index for extensive annotation with existing knowledge database. 
 URL: https://shbrief.github.io/PCAGenomicSignatures
@@ -21,7 +21,10 @@ Imports:
   plotly,
   wordcloud,
   RColorBrewer,
-  stats
+  stats,
+  clusterProfiler.dplyr,
+  msigdbr,
+  EnrichmentBrowser
 Suggests:
   knitr,
   rmarkdown,
@@ -31,7 +34,6 @@ Suggests:
   usethis,
   BiocStyle,
   forcats,
-  org.Hs.eg.db,
   AnVIL
 License: Artistic-2.0
 Encoding: UTF-8

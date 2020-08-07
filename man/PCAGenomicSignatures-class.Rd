@@ -11,7 +11,7 @@
 \item{value}{See details.}
 }
 \description{
-PCA-based \code{\link{GenomicSignatures}}.
+PCA-based \code{\link{GenomicSignatures-class}}.
 }
 \details{
 PCAGenomicSignatures

@@ -38,8 +38,17 @@ meshTable <- function(x, ind, rm.noise, weighted) {
     ### Variance explained by PC
     if (weighted == FALSE) {
         study_id <- studies(x)[[ind]]   # a list of studies in PCcluster
-        recount2_MeSH <- mesh(x)   # all the MeSH data
-        mesh_subset <- recount2_MeSH[study_id]   # subset to the participating studies
+        all_MeSH <- mesh(x)   # all the MeSH data
+
+        # remove SRP069088 (no MeSH term)
+        if ("SRP069088" %in% study_id) {
+            ind_rm <- which(study_id == "SRP069088")
+            PCs <- PCs[-ind_rm]
+            var <- var[,-ind_rm]
+            study_id <- study_id[-ind_rm]
+        }
+
+        mesh_subset <- all_MeSH[study_id]   # subset to the participating studies
 
         ### Combine all MeSH words
         d <- list()
@@ -58,8 +67,17 @@ meshTable <- function(x, ind, rm.noise, weighted) {
         varAll <- Reduce(cbind, PCAsummary(x))
         var <- varAll[,PCs,drop=FALSE]
         study_id <- gsub("\\.PC.*$", "", PCs)
-        recount2_MeSH <- mesh(x)   # all the MeSH data
-        mesh_subset <- sapply(recount2_MeSH[study_id], function(x) {x$name})
+        all_MeSH <- mesh(x)   # all the MeSH data
+
+        # remove SRP069088 (no MeSH term)
+        if ("SRP069088" %in% study_id) {
+            ind_rm <- which(study_id == "SRP069088")
+            PCs <- PCs[-ind_rm]
+            var <- var[,-ind_rm]
+            study_id <- study_id[-ind_rm]
+        }
+
+        mesh_subset <- sapply(all_MeSH[study_id], function(x) {x$name})
 
         weight <- as.data.frame(matrix(nrow = 0, ncol = 3))
         colnames(weight) <- c("PCs", "var", "mesh")

@@ -7,7 +7,7 @@
 subsetPathways(PCAmodel, ind = NULL, n = 10, both = FALSE)
 }
 \arguments{
-\item{PCAmodel}{PCAGenomicSignatures object. Also an output from `clusterProfiler::GSEA` can be used.}
+\item{PCAmodel}{PCAGenomicSignatures object. Also an output from \code{\link[clusterProfiler]{GSEA}} can be used.}
 
 \item{ind}{A numeric vector containing the PCcluster number you want to check
 enriched pathways. If not specified, this function returns results from all the PCclusters.}
@@ -23,5 +23,5 @@ bottom \code{n} pathways.}
 A data frame with top and bottom \code{n} pathways from the enrichment results.
 }
 \description{
-This function is renamed from `topPathways` to `subsetPathways`.
+This function is renamed from \code{topPathways} to \code{subsetPathways}.
 }

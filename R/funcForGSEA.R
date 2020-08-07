@@ -1,3 +1,65 @@
+#' MSigDB GSEA results
+#'
+#' @param ind An interger. Index of avgLoading/PCcluster to apply GSEA.
+#' @param PCAmodel PCAGenomicSignature object.
+#' @param category A character vector representing MSigDB category. Options are
+#' "H", "C1", "C2"(default), "C3", "C4", "C5", "C6", and "C7"
+#' @param n An interger. The number of top and bottom enriched pathways to plot.
+#' Default is \code{NULL} and print out all the pathways enriched under \code{pvalueCutoff}.
+#' @param pvalueCutoff Cutoff for both pvalue and p.adjust. Default is 0.5.
+#' @param minGSSize A mininum size of gene set to be analyzed
+#' @param maxGSSize A maximum size of gene set to be analyzed
+#' @param pAdjustMethod p-value adjustment methods, which will be used as an input
+#' for \code{method} argument of \code{\link[stats]{p.adjust}} function. Available
+#' options are "holm", "hochberg", "hommel", "bonferroni", "BH"(default), "BY", "fdr", "none".
+#' @param verbose Logical. Default is FALSE.
+#' @param seed Logical. Default is FALSE.
+#' @param by Available options are \code{c("fgsea", "DOSE)}. Default is "fgsea".
+#'
+#' @return Barplot of GSEA output. Top and bottom \code{n} genesets based on NES
+#' are plotted and qvalues are denoted by color.
+#'
+#' @export
+msigdb_gsea <- function(ind, PCAmodel, category = "C2", n = NULL, pvalueCutoff = 0.5,
+                        minGSSize = 10, maxGSSize = 500, pAdjustMethod = "BH",
+                        verbose = FALSE, seed = FALSE, by = "fgsea") {
+
+    ## Target geneList
+    al <- model(PCAmodel)[, ind]
+    obj <- list()
+    obj[[1]] <- names(al)
+    names(al) <- EnrichmentBrowser::idMap(obj, "hsa", from = "SYMBOL", to = "ENTREZID")[[1]]
+    al <- sort(al, decreasing = TRUE)
+
+    ## Formating
+    geneList <- al
+    gene <- names(geneList)[abs(geneList) > mean(abs(geneList))]
+
+    ## MSigDB
+    m <- msigdbr::msigdbr(species = "Homo sapiens", category = category) %>%
+        clusterProfiler.dplyr::select(gs_name, entrez_gene)
+
+    ## GSEA
+    ms <- clusterProfiler::GSEA(geneList, TERM2GENE = m, pvalueCutoff = pvalueCutoff,
+                                minGSSize = minGSSize, maxGSSize = maxGSSize,
+                                pAdjustMethod = pAdjustMethod, verbose = verbose,
+                                seed = seed, by = by)
+
+    ## Subset
+    y <- clusterProfiler.dplyr::mutate(ms, ordering = abs(NES)) %>%
+        clusterProfiler.dplyr::arrange(dplyr::desc(ordering))
+
+    if (is.null(n)) {
+        y <- clusterProfiler.dplyr::group_by(y, sign(NES))
+        return(y)
+    } else {
+        y <- clusterProfiler.dplyr::group_by(y, sign(NES)) %>%
+            clusterProfiler.dplyr::slice(1:n)
+        return(y)
+    }
+}
+
+
 #' @title Order genes in loading vectors
 #' @description This function takes Z matrix (= average loadings) and orders the
 #' genes in each loading vector (= PCcluster) in a descending manner.
@@ -84,12 +146,12 @@ run_gsea <- function(geneList, TERM2GENE, TERM2NAME,
 
 #' Subset enriched pathways of loading vectors
 #'
-#' This function is renamed from `topPathways` to `subsetPathways`.
+#' This function is renamed from \code{topPathways} to \code{subsetPathways}.
 #'
 #' @importFrom enrichplot cnetplot
 #' @import methods
 #'
-#' @param PCAmodel PCAGenomicSignatures object. Also an output from `clusterProfiler::GSEA` can be used.
+#' @param PCAmodel PCAGenomicSignatures object. Also an output from \code{\link[clusterProfiler]{GSEA}} can be used.
 #' @param ind A numeric vector containing the PCcluster number you want to check
 #' enriched pathways. If not specified, this function returns results from all the PCclusters.
 #' @param n The number of top and bottom pathways to be selected based on normalized
