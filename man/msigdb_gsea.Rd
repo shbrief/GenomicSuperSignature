@@ -15,7 +15,8 @@ msigdb_gsea(
   pAdjustMethod = "BH",
   verbose = FALSE,
   seed = FALSE,
-  by = "fgsea"
+  by = "fgsea",
+  geneSets = NULL
 )
 }
 \arguments{
@@ -43,7 +44,10 @@ options are "holm", "hochberg", "hommel", "bonferroni", "BH"(default), "BY", "fd
 
 \item{seed}{Logical. Default is FALSE.}
 
-\item{by}{Available options are \code{c("fgsea", "DOSE)}. Default is "fgsea".}
+\item{by}{Available options are \code{c("fgsea", "DOSE")}. Default is "fgsea".}
+
+\item{geneSets}{Custom genesets to use with MSigDB genesets. It should be in
+a named list format.}
 }
 \value{
 Barplot of GSEA output. Top and bottom \code{n} genesets based on NES

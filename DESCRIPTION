@@ -56,3 +56,4 @@ Collate:
     'rmNaInf.R'
     'rowNorm.R'
     'validate.R'
+    'validatedSignatures.R'

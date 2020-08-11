@@ -16,7 +16,7 @@
 gseaBarplot <- function(ind, PCAmodel, category = "C2", n = 10, pvalueCutoff = 0.5, gseaRes = NULL) {
 
     if (is.null(gseaRes)) {
-        gseaRes <- gsea_msigdb(ind, PCAmodel, category = category, n = n, pvalueCutoff = pvalueCutoff)
+        gseaRes <- msigdb_gsea(ind, PCAmodel, category = category, n = n, pvalueCutoff = pvalueCutoff)
     } else {gseaRes <- gseaRes}
 
     if (nrow(gseaRes) == 0) return("No pathway is enriched")   # Handle empty dataframes
@@ -82,7 +82,7 @@ gseaNetwork <- function(ind, PCAmodel, category = category, n = n, pvalueCutoff 
                         similarity_cutoff = 0.3, title = "") {
 
     if (is.null(gseaRes)) {
-        gseaRes <- gsea_msigdb(ind, PCAmodel, category = category, n = n, pvalueCutoff = pvalueCutoff)
+        gseaRes <- msigdb_gsea(ind, PCAmodel, category = category, n = n, pvalueCutoff = pvalueCutoff)
         gseaRes <- as.data.frame(gseaRes)
     } else {
         gseaRes <- as.data.frame(gseaRes)

@@ -14,7 +14,9 @@
 #' options are "holm", "hochberg", "hommel", "bonferroni", "BH"(default), "BY", "fdr", "none".
 #' @param verbose Logical. Default is FALSE.
 #' @param seed Logical. Default is FALSE.
-#' @param by Available options are \code{c("fgsea", "DOSE)}. Default is "fgsea".
+#' @param by Available options are \code{c("fgsea", "DOSE")}. Default is "fgsea".
+#' @param geneSets Custom genesets to use with MSigDB genesets. It should be in
+#' a named list format.
 #'
 #' @return Barplot of GSEA output. Top and bottom \code{n} genesets based on NES
 #' are plotted and qvalues are denoted by color.
@@ -22,7 +24,7 @@
 #' @export
 msigdb_gsea <- function(ind, PCAmodel, category = "C2", n = NULL, pvalueCutoff = 0.5,
                         minGSSize = 10, maxGSSize = 500, pAdjustMethod = "BH",
-                        verbose = FALSE, seed = FALSE, by = "fgsea") {
+                        verbose = FALSE, seed = FALSE, by = "fgsea", geneSets = NULL) {
 
     ## Target geneList
     al <- model(PCAmodel)[, ind]
@@ -38,6 +40,17 @@ msigdb_gsea <- function(ind, PCAmodel, category = "C2", n = NULL, pvalueCutoff =
     ## MSigDB
     m <- msigdbr::msigdbr(species = "Homo sapiens", category = category) %>%
         clusterProfiler.dplyr::select(gs_name, entrez_gene)
+
+    ## Custom genesets
+    if (!is.null(geneSets)) {
+        if (is.list(geneSets)) {
+            geneSets <- EnrichmentBrowser::idMap(geneSets, "hsa", from = "SYMBOL", to = "ENTREZID")
+            custom_m <- reshape2::melt(geneSets)
+            colnames(custom_m) <- c("entrez_gene", "gs_name")
+            custom_m$gs_name <- gsub(" ", "_", custom_m$gs_name)
+        }
+        m <- rbind(m, custom_m)
+    }
 
     ## GSEA
     ms <- clusterProfiler::GSEA(geneList, TERM2GENE = m, pvalueCutoff = pvalueCutoff,
@@ -58,6 +71,21 @@ msigdb_gsea <- function(ind, PCAmodel, category = "C2", n = NULL, pvalueCutoff =
         return(y)
     }
 }
+
+
+#' Subset GSEA output
+#'
+#'
+#' @export
+subsetGSEA <- function(gseaRes, n = 20) {
+
+    topPathways <- clusterProfiler.dplyr::mutate(gseaRes, ordering = abs(NES)) %>%
+        clusterProfiler.dplyr::arrange(dplyr::desc(ordering)) %>%
+        clusterProfiler.dplyr::group_by(sign(NES)) %>%
+        clusterProfiler.dplyr::slice(1:n)
+    return(topPathways)
+}
+
 
 
 #' @title Order genes in loading vectors

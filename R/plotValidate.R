@@ -13,10 +13,10 @@
 #' @import ggplot2
 #'
 #' @param res Output from \code{\link{validate}} function.
-#' @param minClusterSize The minimum size of clusters to exclude from plotting.
-#' Default value is 1, so any single-element clusters are excluded.
 #' @param swFilter If \code{swFilter=TRUE}, only PCcluster above the cutoff, defined
 #' through \code{minSilhouetteWidth} argument will be plotted. Default is \code{swFilter=FALSE}
+#' @param minClusterSize The minimum size of clusters to be included in the plotting.
+#' Default value is 2, so any single-element clusters are excluded.
 #' @param minSilhouetteWidth A minimum average silhouette width to be plotted. Only
 #' effective under \code{swFilter=TRUE} condition. Default is 0.
 #' @param interactive If set to \code{TRUE}, the output will be interactive plot.
@@ -25,19 +25,20 @@
 #' check \code{\link[ggplot2]{scale_color_brewer}}
 #'
 #' @export
-plotValidate <- function(res, minClusterSize = 1, swFilter = FALSE,
+plotValidate <- function(res, minClusterSize = 2, swFilter = FALSE,
                          minSilhouetteWidth = 0, interactive = FALSE,
+                         minClSize = NULL, maxClSize = NULL,
                          colorPalette = "Dark2") {
 
     ## Binding the variables from res locally to the function
     cl_size <- sw <- score <- cl_num <- PC <- NULL
 
     res <-  as.data.frame(t(res))
-    clSizeFiltered <- dplyr::filter(res, cl_size > minClusterSize)
+    clSizeFiltered <- dplyr::filter(res, cl_size >= minClusterSize)
 
     if (isTRUE(swFilter)) {
         # filtered <- clSizeFiltered %>% filter(sw > minSilhouetteWidth)
-        filtered <- dplyr::filter(clSizeFiltered, sw > minSilhouetteWidth)
+        filtered <- dplyr::filter(clSizeFiltered, sw >= minSilhouetteWidth)
     } else {filtered <- clSizeFiltered}
 
     ind <- which(colnames(filtered) == "PC")

@@ -6,18 +6,20 @@
 \usage{
 plotValidate(
   res,
-  minClusterSize = 1,
+  minClusterSize = 2,
   swFilter = FALSE,
   minSilhouetteWidth = 0,
   interactive = FALSE,
+  minClSize = NULL,
+  maxClSize = NULL,
   colorPalette = "Dark2"
 )
 }
 \arguments{
 \item{res}{Output from \code{\link{validate}} function.}
 
-\item{minClusterSize}{The minimum size of clusters to exclude from plotting.
-Default value is 1, so any single-element clusters are excluded.}
+\item{minClusterSize}{The minimum size of clusters to be included in the plotting.
+Default value is 2, so any single-element clusters are excluded.}
 
 \item{swFilter}{If \code{swFilter=TRUE}, only PCcluster above the cutoff, defined
 through \code{minSilhouetteWidth} argument will be plotted. Default is \code{swFilter=FALSE}}

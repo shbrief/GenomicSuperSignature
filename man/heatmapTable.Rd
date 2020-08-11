@@ -6,11 +6,14 @@
 \usage{
 heatmapTable(
   data,
-  row_title,
   num.out = 5,
-  cutoff = NULL,
+  scoreCutoff = NULL,
+  swCutoff = NULL,
+  clsizeCutoff = NULL,
   breaks = c(0, 0.5, 1),
   colors = c("white", "white smoke", "red"),
+  column_title = NULL,
+  row_title = NULL,
   ...
 )
 }
@@ -18,14 +21,13 @@ heatmapTable(
 \item{data}{An output matrix from \code{\link{validate}} function. Subset of
 this matrix is plotted as a heatmap using \code{\link[ComplexHeatmap]{Heatmap}}}
 
-\item{row_title}{A character string. Provide the row title.}
+\item{num.out}{A number of highly validated PCclusters to output. Default is 5.
+If any of the cutoff parameters are provided, \code{num.out} or the number of
+filtered PCclusters, whichever smaller, will be chosen.}
 
-\item{num.out}{A number of highly validated PCclusters to subset to. Default is 5.
-If \code{cutoff} is provided, this argument is ignored.}
+\item{scoreCutoff}{A numeric value for the minimum correlation.}
 
-\item{cutoff}{A numeric value for the minimum correlation. If you don't specify
-this argument, this function will output the number of highly validated PCclusters
-defined through \code{num.out}.}
+\item{swCutoff}{A numeric value for the minimum average silhouette width.}
 
 \item{breaks}{A numeric vector of length 3. Number represents the values assigned
 to three colors. Default is \code{c(0, 0.5, 1)}.}
@@ -33,7 +35,11 @@ to three colors. Default is \code{c(0, 0.5, 1)}.}
 \item{colors}{A character vector of length 3. Each represents the color assigned
 to three breaks. Default is \code{c("white", "white smoke", "red")}.}
 
-\item{...}{any additional argument for \code{ComplexHeatmap::Heatmap}}
+\item{row_title}{A character string. Provide the row title.}
+
+\item{...}{any additional argument for \code{\link[ComplexHeatmap]{Heatmap}}}
+
+\item{clsizeCuoff}{A integer value for the minimum cluster size.}
 }
 \value{
 A heatmap with the validation result subset through the given conditions.
