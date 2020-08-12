@@ -9,7 +9,9 @@ validatedSignatures(
   num.out = 5,
   scoreCutoff = NULL,
   swCutoff = NULL,
-  clsizeCutoff = NULL
+  clsizeCutoff = NULL,
+  indexOnly = FALSE,
+  whichPC = NULL
 )
 }
 \arguments{
@@ -23,7 +25,15 @@ filtered PCclusters, whichever smaller, will be chosen.}
 
 \item{swCutoff}{A numeric value for the minimum average silhouette width.}
 
-\item{clsizeCuoff}{A integer value for the minimum cluster size.}
+\item{indexOnly}{A logical. Under the default (= FALSE), the detailed information
+on validated PCclusters, such as score, average silhouette width, cluster size, is
+printed. If it is set TRUE, only the PCcluster number will be printed.}
+
+\item{whichPC}{An integer value between 1 and 8. PC number of your data to check
+the validated signatures with. Under the default (\code{NULL}), it outputs top
+scored signatures with any PC of your data.}
+
+\item{clsizeCuoff}{An integer value for the minimum cluster size.}
 }
 \value{
 A subset of the input matrix, which meets the given condition.

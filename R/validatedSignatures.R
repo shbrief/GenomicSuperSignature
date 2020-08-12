@@ -29,12 +29,27 @@
 #' filtered PCclusters, whichever smaller, will be chosen.
 #' @param scoreCutoff A numeric value for the minimum correlation.
 #' @param swCutoff A numeric value for the minimum average silhouette width.
-#' @param clsizeCuoff A integer value for the minimum cluster size.
+#' @param clsizeCuoff An integer value for the minimum cluster size.
+#' @param indexOnly A logical. Under the default (= FALSE), the detailed information
+#' on validated PCclusters, such as score, average silhouette width, cluster size, is
+#' printed. If it is set TRUE, only the PCcluster number will be printed.
+#' @param whichPC An integer value between 1 and 8. PC number of your data to check
+#' the validated signatures with. Under the default (\code{NULL}), it outputs top
+#' scored signatures with any PC of your data.
 #'
 #' @return A subset of the input matrix, which meets the given condition.
 #' @export
-validatedSignatures <- function(data, num.out = 5, scoreCutoff = NULL, swCutoff = NULL, clsizeCutoff = NULL) {
+validatedSignatures <- function(data, num.out = 5, scoreCutoff = NULL, swCutoff = NULL,
+                                clsizeCutoff = NULL, indexOnly = FALSE, whichPC = NULL) {
+  data <- t(data)
   ind <- which(rownames(data) == "score")
+  pc_ind <- which(rownames(data) == "PC")
+
+  if (!is.null(whichPC)) {
+    if (!whichPC %in% c(1:8)) {stop("whichPC should be an integer between 1 and 8.")}
+    subset_ind <- which(data[pc_ind,] == whichPC)
+    data <- data[,subset_ind]
+  }
 
   if (!is.null(scoreCutoff)) {score_subset <- .filterByScore(data, scoreCutoff)} else {score_subset <- data}
   if (!is.null(swCutoff)) {sw_subset <- .filterByAvgSW(data, swCutoff)} else {sw_subset <- data}
@@ -45,5 +60,12 @@ validatedSignatures <- function(data, num.out = 5, scoreCutoff = NULL, swCutoff 
   common_subset <- data[, common_col]
   ordered_ind <- order(common_subset[ind,], decreasing = TRUE)[1:min(num.out, ncol(common_subset))]
   dat <- common_subset[,ordered_ind]
-  return(dat)
+
+  if (isFALSE(indexOnly)) {
+    return(t(dat))
+  } else {
+    validatedIndex <- dat["cl_num",]
+    validatedIndex <- as.numeric(validatedIndex)
+    return(validatedIndex)
+  }
 }

@@ -19,7 +19,7 @@ calculateScore <- function(dataset, PCAmodel) {
     }
 
     if (!is.list(dataset)) {dataset <- list(dataset)}
-    lapply(dataset, function(dat) {
+    validationScore <- lapply(dataset, function(dat) {
         if (is(dat, "ExpressionSet")) {
             count <- Biobase::exprs(dat)
         } else if (is(dat, "SummarizedExperiment")) {
@@ -33,7 +33,7 @@ calculateScore <- function(dataset, PCAmodel) {
         gene_common <- intersect(rownames(avg.loadings), rownames(count))
 
         score <- t(count[gene_common,]) %*% apply(avg.loadings[gene_common,], 2,
-                                                 function(x) x / sqrt(sum(x^2, na.rm = TRUE)))
+                                                  function(x) x / sqrt(sum(x^2, na.rm = TRUE)))
         ## CRC paper version
         # score <- t(count[gene_common,]) %*% as.matrix(avg.loadings[gene_common,])
         # score <- (t(score) / apply(score, 2, sd)) %>% t
@@ -41,4 +41,6 @@ calculateScore <- function(dataset, PCAmodel) {
         colnames(score) <- colnames(avg.loadings)
         return(score)
     })
+
+    if (length(dataset) == 1) {return(validationScore[[1]])} else {return(validationScore)}
 }
