@@ -33,7 +33,7 @@ plotValidate <- function(res, minClusterSize = 2, swFilter = FALSE,
     ## Binding the variables from res locally to the function
     cl_size <- sw <- score <- cl_num <- PC <- NULL
 
-    res <-  as.data.frame(t(res))
+    res <-  as.data.frame(res)
     clSizeFiltered <- dplyr::filter(res, cl_size >= minClusterSize)
 
     if (isTRUE(swFilter)) {

@@ -25,11 +25,16 @@ Default is "max", which outputs the matrix containing only the maximum coefficie
 To get the coefficient of all 8 PCs, set this argument as "all".}
 }
 \value{
-A matrix containing the maximum pearson correlation coefficient between
-the top 8 PCs of the dataset(s) and pre-calculated average loadings of training
-datasets. Each row represents a new dataset for test, and each column represents
+A data frame containing the maximum pearson correlation coefficient between
+the top 8 PCs of the dataset and pre-calculated average loadings (in row) of training
+datasets (\code{score} column). It also contains other metadata associated with
+each PCcluster: \code{PC} for one of the top 8 PCs of the dataset that results
+in the given \code{score}, \code{sw} for the average silhouette width of the PCcluster,
+\code{cl_size} for the size of each PCcluster.
+If the input for \code{dataset} argument is a list of different datasets, each row
+of the output represents a new dataset for test, and each column represents
 clusters from training datasets. If \code{level = "all"}, a list containing the matrices
-of the pearson correlation coefficient between all top 8 PCs of the dataset(s) and
+of the pearson correlation coefficient between all top 8 PCs of the datasets and
 avgLoading.
 }
 \description{

@@ -24,13 +24,13 @@ heatmapTable <- function(data, num.out = 5,
                          colors = c("white", "white smoke", "red"),
                          column_title = NULL, row_title = NULL, ...) {
 
-  score_ind <- which(rownames(data) == "score")
-  sw_ind <- which(rownames(data) == "sw")
+  score_ind <- which(colnames(data) == "score")
+  sw_ind <- which(colnames(data) == "sw")
 
   val <- validatedSignatures(data, num.out = num.out,
                              scoreCutoff = scoreCutoff, swCutoff = swCutoff, clsizeCutoff = clsizeCutoff)
-  dat <- val[score_ind,,drop=FALSE]
-  sw <- val[sw_ind,,drop=FALSE] %>% as.numeric
+  dat <- val[,score_ind,drop=FALSE] %>% t
+  sw <- val[,sw_ind,drop=FALSE] %>% as.numeric
 
   # Define Heatmap Table Size
   if (is.null(column_title)) {
