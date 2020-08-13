@@ -23,7 +23,8 @@ Imports:
   wordcloud,
   RColorBrewer,
   stats,
-  clusterProfiler.dplyr,
+  clusterProfiler,
+  dplyr,
   msigdbr,
   EnrichmentBrowser
 Suggests:
