@@ -13,6 +13,9 @@
 #' to three colors. Default is \code{c(0, 0.5, 1)}.
 #' @param colors A character vector of length 3. Each represents the color assigned
 #' to three breaks. Default is \code{c("white", "white smoke", "red")}.
+#' @param whichPC An integer value between 1 and 8. PC number of your data to check
+#' the validated signatures with. Under the default (\code{NULL}), it outputs top
+#' scored signatures with any PC of your data.
 #' @param ... any additional argument for \code{\link[ComplexHeatmap]{Heatmap}}
 #'
 #' @return A heatmap with the validation result subset through the given conditions.
@@ -22,12 +25,12 @@ heatmapTable <- function(data, num.out = 5,
                          scoreCutoff = NULL, swCutoff = NULL, clsizeCutoff = NULL,
                          breaks = c(0, 0.5, 1),
                          colors = c("white", "white smoke", "red"),
-                         column_title = NULL, row_title = NULL, ...) {
+                         column_title = NULL, row_title = NULL, whichPC = NULL, ...) {
 
   score_ind <- which(colnames(data) == "score")
   sw_ind <- which(colnames(data) == "sw")
 
-  val <- validatedSignatures(data, num.out = num.out,
+  val <- validatedSignatures(data, num.out = num.out, whichPC = whichPC,
                              scoreCutoff = scoreCutoff, swCutoff = swCutoff, clsizeCutoff = clsizeCutoff)
   dat <- val[,score_ind,drop=FALSE] %>% t
   sw <- val[,sw_ind,drop=FALSE] %>% as.numeric
