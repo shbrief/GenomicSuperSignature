@@ -14,6 +14,7 @@ Imports:
   Biobase,
   ComplexHeatmap,
   circlize,
+  grid,
   cluster,
   clusterProfiler,
   enrichplot,
@@ -23,7 +24,6 @@ Imports:
   wordcloud,
   RColorBrewer,
   stats,
-  clusterProfiler.dplyr,
   msigdbr,
   EnrichmentBrowser
 Suggests:
