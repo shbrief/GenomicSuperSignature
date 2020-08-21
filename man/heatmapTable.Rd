@@ -14,6 +14,7 @@ heatmapTable(
   colors = c("white", "white smoke", "red"),
   column_title = NULL,
   row_title = NULL,
+  whichPC = NULL,
   ...
 )
 }
@@ -36,6 +37,10 @@ to three colors. Default is \code{c(0, 0.5, 1)}.}
 to three breaks. Default is \code{c("white", "white smoke", "red")}.}
 
 \item{row_title}{A character string. Provide the row title.}
+
+\item{whichPC}{An integer value between 1 and 8. PC number of your data to check
+the validated signatures with. Under the default (\code{NULL}), it outputs top
+scored signatures with any PC of your data.}
 
 \item{...}{any additional argument for \code{\link[ComplexHeatmap]{Heatmap}}}
 

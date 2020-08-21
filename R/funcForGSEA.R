@@ -39,7 +39,7 @@ msigdb_gsea <- function(ind, PCAmodel, category = "C2", n = NULL, pvalueCutoff =
 
     ## MSigDB
     m <- msigdbr::msigdbr(species = "Homo sapiens", category = category) %>%
-        clusterProfiler.dplyr::select(gs_name, entrez_gene)
+        clusterProfiler::select(gs_name, entrez_gene)
 
     ## Custom genesets
     if (!is.null(geneSets)) {
@@ -59,15 +59,15 @@ msigdb_gsea <- function(ind, PCAmodel, category = "C2", n = NULL, pvalueCutoff =
                                 seed = seed, by = by)
 
     ## Subset
-    y <- clusterProfiler.dplyr::mutate(ms, ordering = abs(NES)) %>%
-        clusterProfiler.dplyr::arrange(dplyr::desc(ordering))
+    y <- clusterProfiler::mutate(ms, ordering = abs(NES)) %>%
+        clusterProfiler::arrange(dplyr::desc(ordering))
 
     if (is.null(n)) {
-        y <- clusterProfiler.dplyr::group_by(y, sign(NES))
+        y <- clusterProfiler::group_by(y, sign(NES))
         return(y)
     } else {
-        y <- clusterProfiler.dplyr::group_by(y, sign(NES)) %>%
-            clusterProfiler.dplyr::slice(1:n)
+        y <- clusterProfiler::group_by(y, sign(NES)) %>%
+            clusterProfiler::slice(1:n)
         return(y)
     }
 }
@@ -79,10 +79,10 @@ msigdb_gsea <- function(ind, PCAmodel, category = "C2", n = NULL, pvalueCutoff =
 #' @export
 subsetGSEA <- function(gseaRes, n = 20) {
 
-    topPathways <- clusterProfiler.dplyr::mutate(gseaRes, ordering = abs(NES)) %>%
-        clusterProfiler.dplyr::arrange(dplyr::desc(ordering)) %>%
-        clusterProfiler.dplyr::group_by(sign(NES)) %>%
-        clusterProfiler.dplyr::slice(1:n)
+    topPathways <- clusterProfiler::mutate(gseaRes, ordering = abs(NES)) %>%
+        clusterProfiler::arrange(dplyr::desc(ordering)) %>%
+        clusterProfiler::group_by(sign(NES)) %>%
+        clusterProfiler::slice(1:n)
     return(topPathways)
 }
 
