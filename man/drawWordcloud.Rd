@@ -5,7 +5,7 @@
 \title{Draw wordcloud using the collection of PCclusters' MeSH terms}
 \usage{
 drawWordcloud(
-  x,
+  PCAmodel,
   ind,
   rm.noise = NULL,
   scale = c(3, 0.5),
@@ -14,7 +14,7 @@ drawWordcloud(
 )
 }
 \arguments{
-\item{x}{PCAGenomicSignatures object}
+\item{PCAmodel}{PCAGenomicSignatures object}
 
 \item{ind}{An index of the PCcluster you want to draw wordcloud.}
 

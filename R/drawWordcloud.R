@@ -1,11 +1,11 @@
 #' Extract the list of PCs in a cluster
 #'
-#' @param x A PCAGenomicSignatures object
+#' @param PCAmodel A PCAGenomicSignatures object
 #' @param ind An index of PCcluster
 #'
 #' @export
-PCinCluster <- function(x, ind) {
-    cluster <- S4Vectors::metadata(x)$cluster
+PCinCluster <- function(PCAmodel, ind) {
+    cluster <- S4Vectors::metadata(PCAmodel)$cluster
     k <- which(cluster == ind)
     out <- names(k)
     return(out)
@@ -16,7 +16,7 @@ PCinCluster <- function(x, ind) {
 #'
 #' @importFrom dplyr %>% group_by summarise
 #'
-#' @param x A PCAGenomicSignatures object
+#' @param PCAmodel A PCAGenomicSignatures object
 #' @param ind An index of PCcluster
 #' @param rm.noise An integer. Any MeSH term found less than the given value here
 #' will be excluded from wordcloud. If \code{rm.noise = 0}, all the MeSH terms
@@ -29,16 +29,16 @@ PCinCluster <- function(x, ind) {
 #' the defined PCcluster (by \code{ind} argument) is ordered based on their frequency.
 #'
 #' @export
-meshTable <- function(x, ind, rm.noise, weighted) {
+meshTable <- function(PCAmodel, ind, rm.noise, weighted) {
 
     ### Create a 'universe' for bag-of-words model
-    bow <- unlist(S4Vectors::metadata(x)$MeSH_freq)  # frequency of the `name` in the background
+    bow <- unlist(S4Vectors::metadata(PCAmodel)$MeSH_freq)  # frequency of the `name` in the background
     bow <- bow[which(bow > rm.noise)]   # remove rare terms
 
     ### Variance explained by PC
     if (weighted == FALSE) {
-        study_id <- studies(x)[[ind]]   # a list of studies in PCcluster
-        all_MeSH <- mesh(x)   # all the MeSH data
+        study_id <- studies(PCAmodel)[[ind]]   # a list of studies in PCcluster
+        all_MeSH <- mesh(PCAmodel)   # all the MeSH data
 
         # remove SRP069088 (no MeSH term)
         if ("SRP069088" %in% study_id) {
@@ -63,11 +63,11 @@ meshTable <- function(x, ind, rm.noise, weighted) {
 
     ### Weighted, counting on variance explained by
     } else {
-        PCs <- PCinCluster(x, ind)
-        varAll <- Reduce(cbind, PCAsummary(x))
+        PCs <- PCinCluster(PCAmodel, ind)
+        varAll <- Reduce(cbind, PCAsummary(PCAmodel))
         var <- varAll[,PCs,drop=FALSE]
         study_id <- gsub("\\.PC.*$", "", PCs)
-        all_MeSH <- mesh(x)   # all the MeSH data
+        all_MeSH <- mesh(PCAmodel)   # all the MeSH data
 
         # remove SRP069088 (no MeSH term)
         if ("SRP069088" %in% study_id) {
@@ -114,7 +114,7 @@ meshTable <- function(x, ind, rm.noise, weighted) {
 #'
 #' @importFrom wordcloud wordcloud
 #'
-#' @param x PCAGenomicSignatures object
+#' @param PCAmodel PCAGenomicSignatures object
 #' @param ind An index of the PCcluster you want to draw wordcloud.
 #' @param rm.noise An integer. Under the default condition (\code{rm.noise=NULL}),
 #' if cluster size (= \code{s}) is smaller than 8, \code{rm.noise = floor(s*0.5)}.
@@ -129,27 +129,28 @@ meshTable <- function(x, ind, rm.noise, weighted) {
 #' @return A word cloud
 #'
 #' @export
-drawWordcloud <- function(x, ind, rm.noise = NULL, scale = c(3, 0.5),
+drawWordcloud <- function(PCAmodel, ind, rm.noise = NULL, scale = c(3, 0.5),
                          weighted = TRUE, seed = NULL) {
 
     if (is.null(rm.noise)) {
-        s <- S4Vectors::metadata(x)$size[ind]
+        s <- S4Vectors::metadata(PCAmodel)$size[ind]
         if (s < 8) {rm.noise = floor(s*0.5)}
         else if (s >= 8) {rm.noise = 4}
 
         ## Minimum rm.noise version
-        # s <- S4Vectors::metadata(x)$size[ind]
+        # s <- S4Vectors::metadata(PCAmodel)$size[ind]
         # rm.noise = floor(s*0.2)
         # if (rm.noise > 4) {rm.noise = 4}
         # else if (rm.noise == 0) {rm.noise = 1}
     }
 
     # MeSH word table
-    all <- meshTable(x, ind, rm.noise = rm.noise, weighted = weighted)
+    all <- meshTable(PCAmodel, ind, rm.noise = rm.noise, weighted = weighted)
+    if (nrow(all) == 0) {stop("No MeSH term is enriched.")}
 
     # generate the word cloud
     if (is.null(seed)) {set.seed(1234)}
     wordcloud(words = all$word, freq = all$freq, scale = scale,
-              max.words = Inf, random.order = FALSE,
+              max.words = Inf, random.order = FALSE, rot.per = 0,
               colors = RColorBrewer::brewer.pal(8, "Dark2"))
 }

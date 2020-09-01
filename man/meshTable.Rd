@@ -4,10 +4,10 @@
 \alias{meshTable}
 \title{Build a two-column word/frequency table}
 \usage{
-meshTable(x, ind, rm.noise, weighted)
+meshTable(PCAmodel, ind, rm.noise, weighted)
 }
 \arguments{
-\item{x}{A PCAGenomicSignatures object}
+\item{PCAmodel}{A PCAGenomicSignatures object}
 
 \item{ind}{An index of PCcluster}
 

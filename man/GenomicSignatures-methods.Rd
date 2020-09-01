@@ -15,6 +15,7 @@
 \alias{geneSets,GenomicSignatures-method}
 \alias{updateNote,GenomicSignatures-method}
 \alias{metadata<-,GenomicSignatures-method}
+\alias{colData<-,GenomicSignatures,ANY-method}
 \alias{geneSets<-,GenomicSignatures-method}
 \alias{updateNote<-,GenomicSignatures-method}
 \title{Methods and accesors for \code{GenomicSignatures} object}
@@ -30,6 +31,8 @@
 \S4method{updateNote}{GenomicSignatures}(x)
 
 \S4method{metadata}{GenomicSignatures}(x, ...) <- value
+
+\S4method{colData}{GenomicSignatures,ANY}(x, ...) <- value
 
 \S4method{geneSets}{GenomicSignatures}(x) <- value
 
@@ -58,6 +61,8 @@ before adding any information in \code{trainingData} slot
 
 Setter method values (i.e., \code{function(x) <- value}):
 \itemize{
+    \item metadata<- : Assign metadata
+    \item coldata<- : Assign extra information associated with PCclusters
     \item geneSets<- : A character vector containing the name of gene sets used
     to annotate average loadings
     \item updateNote<- : A character vetor. Describes the main feature of a model construction

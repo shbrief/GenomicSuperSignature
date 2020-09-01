@@ -56,5 +56,6 @@ Collate:
     'plotValidate.R'
     'rmNaInf.R'
     'rowNorm.R'
+    'sampleScoreHeatmap.R'
     'validate.R'
     'validatedSignatures.R'

@@ -6,6 +6,7 @@
 \usage{
 heatmapTable(
   data,
+  ind = NULL,
   num.out = 5,
   scoreCutoff = NULL,
   swCutoff = NULL,
@@ -22,6 +23,10 @@ heatmapTable(
 \item{data}{An output matrix from \code{\link{validate}} function. Subset of
 this matrix is plotted as a heatmap using \code{\link[ComplexHeatmap]{Heatmap}}}
 
+\item{ind}{An integer vector. If this parameter is provided, the other parameters,
+\code{num.out, scoreCutoff, swCutoff, clsizeCutoff} will be ignored and the heatmap
+table containing only the provided index will be printed.}
+
 \item{num.out}{A number of highly validated PCclusters to output. Default is 5.
 If any of the cutoff parameters are provided, \code{num.out} or the number of
 filtered PCclusters, whichever smaller, will be chosen.}
@@ -29,6 +34,8 @@ filtered PCclusters, whichever smaller, will be chosen.}
 \item{scoreCutoff}{A numeric value for the minimum correlation.}
 
 \item{swCutoff}{A numeric value for the minimum average silhouette width.}
+
+\item{clsizeCutoff}{A integer value for the minimum cluster size.}
 
 \item{breaks}{A numeric vector of length 3. Number represents the values assigned
 to three colors. Default is \code{c(0, 0.5, 1)}.}
@@ -43,8 +50,6 @@ the validated signatures with. Under the default (\code{NULL}), it outputs top
 scored signatures with any PC of your data.}
 
 \item{...}{any additional argument for \code{\link[ComplexHeatmap]{Heatmap}}}
-
-\item{clsizeCuoff}{A integer value for the minimum cluster size.}
 }
 \value{
 A heatmap with the validation result subset through the given conditions.

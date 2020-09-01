@@ -4,10 +4,10 @@
 \alias{PCinCluster}
 \title{Extract the list of PCs in a cluster}
 \usage{
-PCinCluster(x, ind)
+PCinCluster(PCAmodel, ind)
 }
 \arguments{
-\item{x}{A PCAGenomicSignatures object}
+\item{PCAmodel}{A PCAGenomicSignatures object}
 
 \item{ind}{An index of PCcluster}
 }

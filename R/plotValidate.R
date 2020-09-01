@@ -52,7 +52,6 @@ plotValidate <- function(res, minClusterSize = 2, swFilter = FALSE,
         xlab("Average Silhouette width of each cluster") +
         ylab("Validation score")
 
-
     if (isTRUE(interactive)) {plotly::ggplotly(p)} else {p}
 }
 

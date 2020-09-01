@@ -1,14 +1,17 @@
 #' Validation result in heatmap format
 #'
-#' @param data An output matrix from \code{\link{validate}} function. Subset of
+#' @param val_all An output matrix from \code{\link{validate}} function. Subset of
 #' this matrix is plotted as a heatmap using \code{\link[ComplexHeatmap]{Heatmap}}
+#' @param ind An integer vector. If this parameter is provided, the other parameters,
+#' \code{num.out, scoreCutoff, swCutoff, clsizeCutoff} will be ignored and the heatmap
+#' table containing only the provided index will be printed.
 #' @param row_title A character string. Provide the row title.
 #' @param num.out A number of highly validated PCclusters to output. Default is 5.
 #' If any of the cutoff parameters are provided, \code{num.out} or the number of
 #' filtered PCclusters, whichever smaller, will be chosen.
 #' @param scoreCutoff A numeric value for the minimum correlation.
 #' @param swCutoff A numeric value for the minimum average silhouette width.
-#' @param clsizeCuoff A integer value for the minimum cluster size.
+#' @param clsizeCutoff A integer value for the minimum cluster size.
 #' @param breaks A numeric vector of length 3. Number represents the values assigned
 #' to three colors. Default is \code{c(0, 0.5, 1)}.
 #' @param colors A character vector of length 3. Each represents the color assigned
@@ -21,19 +24,26 @@
 #' @return A heatmap with the validation result subset through the given conditions.
 #'
 #' @export
-heatmapTable <- function(data, num.out = 5,
+heatmapTable <- function(val_all, ind = NULL, num.out = 5,
                          scoreCutoff = NULL, swCutoff = NULL, clsizeCutoff = NULL,
                          breaks = c(0, 0.5, 1),
                          colors = c("white", "white smoke", "red"),
                          column_title = NULL, row_title = NULL, whichPC = NULL, ...) {
 
-  score_ind <- which(colnames(data) == "score")
-  sw_ind <- which(colnames(data) == "sw")
+  score_ind <- which(colnames(val_all) == "score")
+  sw_ind <- which(colnames(val_all) == "sw")
 
-  val <- validatedSignatures(data, num.out = num.out, whichPC = whichPC,
-                             scoreCutoff = scoreCutoff, swCutoff = swCutoff, clsizeCutoff = clsizeCutoff)
-  dat <- val[,score_ind,drop=FALSE] %>% t
-  sw <- val[,sw_ind,drop=FALSE] %>% as.numeric
+  if (is.null(ind)) {
+    val <- validatedSignatures(val_all, num.out = num.out, whichPC = whichPC, indexOnly = FALSE,
+                               scoreCutoff = scoreCutoff, swCutoff = swCutoff, clsizeCutoff = clsizeCutoff)
+    dat <- val[,score_ind,drop=FALSE] %>% t
+    sw <- val[,sw_ind,drop=FALSE] %>% as.numeric
+  } else {
+    row_ind <- which(rownames(val_all) %in% paste0("PCcluster", ind))
+    val <- val_all[row_ind,]
+    dat <- val[,score_ind,drop=FALSE] %>% t
+    sw <- val[,sw_ind,drop=FALSE] %>% unlist %>% as.numeric
+  }
 
   # Define Heatmap Table Size
   if (is.null(column_title)) {

@@ -12,11 +12,11 @@
 #'
 .loadingCor <- function(dataset, avgLoading, method) {
 
-    if (class(dataset) == "ExpressionSet") {
+    if (any(class(dataset) == "ExpressionSet")) {
         dat <- Biobase::exprs(dataset)
-    } else if (class(dataset) %in% c("SummarizedExperiment", "RangedSummarizedExperiment")) {
+    } else if (any(class(dataset) %in% c("SummarizedExperiment", "RangedSummarizedExperiment"))) {
         dat <- SummarizedExperiment::assay(dataset)
-    } else if (class(dataset) == "matrix") {
+    } else if (any(class(dataset) == "matrix")) {
         dat <- dataset
     } else {
         stop("'dataset' should be one of the following objects: ExpressionSet,

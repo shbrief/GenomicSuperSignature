@@ -180,12 +180,7 @@ setGeneric("gsea<-", function(x, value) standardGeneric("gsea<-"))
 #' @exportMethod gsea<-
 #' @rdname PCAGenomicSignatures-methods
 setMethod("gsea<-", "PCAGenomicSignatures", function(x, value) {
-    allValue <- vector(mode = "list", length = length(colnames(x)))
-    names(allValue) <- colnames(x)
-    ind = which(x@colData$PCcluster %in% names(value))
-    allValue[ind] = value
-
-    x@colData$gsea = allValue
+    x@colData$gsea <- Value
     return(x)
 })
 

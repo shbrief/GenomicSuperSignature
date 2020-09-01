@@ -59,7 +59,7 @@ validatedSignatures <- function(data, num.out = 5, scoreCutoff = NULL, swCutoff 
     intersect(., colnames(clsize_subset))
   common_subset <- data[, common_col]
   ordered_ind <- order(common_subset[ind,], decreasing = TRUE)[1:min(num.out, ncol(common_subset))]
-  dat <- common_subset[,ordered_ind]
+  dat <- common_subset[,ordered_ind, drop = FALSE]
 
   if (isFALSE(indexOnly)) {
     return(t(dat))

@@ -19,6 +19,8 @@
 #' @section Setters:
 #' Setter method values (i.e., \code{function(x) <- value}):
 #' \itemize{
+#'     \item metadata<- : Assign metadata
+#'     \item coldata<- : Assign extra information associated with PCclusters
 #'     \item geneSets<- : A character vector containing the name of gene sets used
 #'     to annotate average loadings
 #'     \item updateNote<- : A character vetor. Describes the main feature of a model construction
@@ -79,7 +81,6 @@ setMethod("geneSets", "GenomicSignatures", function(x) {
     return(out)
 })
 
-
 #' @export
 setGeneric("updateNote", function(x) standardGeneric("updateNote"))
 
@@ -104,6 +105,13 @@ setReplaceMethod("metadata", c("GenomicSignatures", "ANY"),
                      return(x)
                  })
 
+#' @exportMethod colData<-
+#' @rdname GenomicSignatures-methods
+setReplaceMethod("colData", c("GenomicSignatures", "ANY"),
+                 function(x, ..., value) {
+                     slot(x, "colData") <- value
+                     return(x)
+                 })
 
 #' @export
 setGeneric("geneSets<-", function(x, value) standardGeneric("geneSets<-"))
@@ -114,7 +122,6 @@ setMethod("geneSets<-", "GenomicSignatures", function(x, value) {
     metadata(x)$geneSets <- value
     return(x)
 })
-
 
 #' @export
 setGeneric("updateNote<-", function(x, value) standardGeneric("updateNote<-"))
