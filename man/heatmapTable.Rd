@@ -5,7 +5,7 @@
 \title{Validation result in heatmap format}
 \usage{
 heatmapTable(
-  data,
+  val_all,
   ind = NULL,
   num.out = 5,
   scoreCutoff = NULL,
@@ -20,7 +20,7 @@ heatmapTable(
 )
 }
 \arguments{
-\item{data}{An output matrix from \code{\link{validate}} function. Subset of
+\item{val_all}{An output matrix from \code{\link{validate}} function. Subset of
 this matrix is plotted as a heatmap using \code{\link[ComplexHeatmap]{Heatmap}}}
 
 \item{ind}{An integer vector. If this parameter is provided, the other parameters,

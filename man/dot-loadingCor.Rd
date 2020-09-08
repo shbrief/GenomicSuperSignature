@@ -4,7 +4,7 @@
 \alias{.loadingCor}
 \title{Validating new dataset}
 \usage{
-.loadingCor(dataset, avgLoading, method)
+.loadingCor(dataset, avgLoading, method = "pearson")
 }
 \arguments{
 \item{dataset}{A expression dataset to validate. Genes in rows and samples in

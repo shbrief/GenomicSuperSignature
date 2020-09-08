@@ -10,7 +10,7 @@
 #' @return A matrix of Pearson correlation coefficient (default, defined through \code{method}
 #' argument) between PCclusters (row) and the top 8 PCs from the datasets (column)
 #'
-.loadingCor <- function(dataset, avgLoading, method) {
+.loadingCor <- function(dataset, avgLoading, method = "pearson") {
 
     if (any(class(dataset) == "ExpressionSet")) {
         dat <- Biobase::exprs(dataset)
