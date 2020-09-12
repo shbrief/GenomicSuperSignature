@@ -9,6 +9,8 @@ plotAnnotatedPCA(
   PCAmodel,
   PCs,
   val_all = NULL,
+  scoreCutoff = 0.5,
+  nesCutoff = 3,
   color_by = NULL,
   color_lab = NULL,
   trimed_pathway_len = 45
@@ -23,6 +25,11 @@ plotAnnotatedPCA(
 
 \item{val_all}{The output from \code{\link{validate}}}
 
+\item{scoreCutoff}{A numeric value for the minimum correlation. Default is 0.5.}
+
+\item{nesCutoff}{A numeric value for the minimum NES. Default is \code{NULL} and
+the suggested value is 3.}
+
 \item{color_by}{A named vector with the feature you want to color by. Name should
 be match with the sample names of the dataset.}
 
@@ -31,6 +38,11 @@ color legend will be labeld as "Color By" by default.}
 
 \item{trimed_pathway_len}{Positive inter values, which is the display width of
 pathway names. Default is 45.}
+}
+\value{
+Scatter plot and the table with annotation. If enriched pathway didn't
+pass the \code{scoreCutoff} the table will be labeled as "No significant pathways".
+If any enriched pathway didn't pass the \code{nesCutoff}, it will labeled as NA.
 }
 \description{
 Two-dimentional PCA plot with the PC annotation

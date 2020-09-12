@@ -4,6 +4,9 @@
 #' @param PCAmodel PCAGenomicSignatures-class object
 #' @param PCs A numeric vector length of 2. It should be between 1 and 8.
 #' @param val_all The output from \code{\link{validate}}
+#' @param scoreCutoff A numeric value for the minimum correlation. Default is 0.5.
+#' @param nesCutoff A numeric value for the minimum NES. Default is \code{NULL} and
+#' the suggested value is 3.
 #' @param color_by A named vector with the feature you want to color by. Name should
 #' be match with the sample names of the dataset.
 #' @param color_lab A name for color legend. If this argument is not provided, the
@@ -11,12 +14,18 @@
 #' @param trimed_pathway_len Positive inter values, which is the display width of
 #' pathway names. Default is 45.
 #'
+#' @return Scatter plot and the table with annotation. If enriched pathway didn't
+#' pass the \code{scoreCutoff} the table will be labeled as "No significant pathways".
+#' If any enriched pathway didn't pass the \code{nesCutoff}, it will labeled as NA.
+#'
 #' @importFrom ggpubr ggtexttable ttheme table_cell_font ggarrange tab_nrow
 #' @importFrom ggplot2 ggplot geom_point
 #'
 #' @export
-plotAnnotatedPCA <- function(dataset, PCAmodel, PCs, val_all = NULL, color_by = NULL, color_lab = NULL,
-                            trimed_pathway_len = 45) {
+plotAnnotatedPCA <- function(dataset, PCAmodel, PCs, val_all = NULL,
+                             scoreCutoff = 0.5, nesCutoff = 3,
+                             color_by = NULL, color_lab = NULL,
+                             trimed_pathway_len = 45) {
   if (is.null(val_all)) {val_all <- validate(dataset, PCAmodel)}
   PCAres <- prcomp(dataset)$rotation %>% as.data.frame
 
@@ -40,7 +49,7 @@ plotAnnotatedPCA <- function(dataset, PCAmodel, PCs, val_all = NULL, color_by = 
   }
 
   # Trim the long pathway names
-  annotatedPC <- annotatePC(c(ind1, ind2), val_all, PCAmodel)
+  annotatedPC <- annotatePC(c(ind1, ind2), val_all, PCAmodel, scoreCutoff = scoreCutoff, nesCutoff = nesCutoff)
   a <- which(nchar(annotatedPC[,1]) > trimed_pathway_len)
   annotatedPC[a,1] <- paste0(strtrim(annotatedPC[a,1], trimed_pathway_len), "...")
   b <- which(nchar(annotatedPC[,2]) > trimed_pathway_len)

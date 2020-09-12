@@ -5,7 +5,7 @@
 \title{Validation result in data frame}
 \usage{
 validatedSignatures(
-  data,
+  val_all,
   num.out = 5,
   scoreCutoff = NULL,
   swCutoff = NULL,
@@ -15,7 +15,7 @@ validatedSignatures(
 )
 }
 \arguments{
-\item{data}{An output matrix from \code{\link{validate}} function.}
+\item{val_all}{An output matrix from \code{\link{validate}} function.}
 
 \item{num.out}{A number of highly validated PCclusters to output. Default is 5.
 If any of the cutoff parameters are provided, \code{num.out} or the number of

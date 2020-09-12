@@ -10,6 +10,8 @@
 #' @param n An integer. Default is 5. The number of the top enriched pathaways to
 #' print out. If there are fewer than n pathways passed the cutoff, it will print out \code{NA}.
 #' @param scoreCutoff A numeric value for the minimum correlation. Default is 0.5.
+#' @param nesCutoff A numeric value for the minimum NES. Default is \code{NULL} and
+#' the suggested value is 3.
 #' @param simplify A logical. Under default (\code{TRUE}), the output will be a
 #' data frame with the number of column same as the length of \code{PCnum} argument,
 #' and the number of row same as the \code{n} argument. If it is set to \code{FALSE},
@@ -20,7 +22,9 @@
 #' output detail above.
 #'
 #' @export
-annotatePC <- function(PCnum, val_all, PCAmodel, n = 5, scoreCutoff = 0.5, simplify = TRUE) {
+annotatePC <- function(PCnum, val_all, PCAmodel, n = 5,
+                       scoreCutoff = 0.5, nesCutoff = NULL,
+                       simplify = TRUE) {
   res <- vector(mode = "list", length = length(PCnum))
 
   for (i in seq_along(PCnum)) {
@@ -35,7 +39,14 @@ annotatePC <- function(PCnum, val_all, PCAmodel, n = 5, scoreCutoff = 0.5, simpl
       names(res)[i] <- paste0("PC", PCnum[i], "-noAnnot")
     } else {
       # topAnnotation <- annotatedCluster[order(abs(annotatedCluster$NES), decreasing = TRUE),,drop = FALSE][1:n,]
-      topAnnotation <- annotatedCluster[order(annotatedCluster$NES, decreasing = TRUE),,drop = FALSE][1:n,]
+      if (!is.null(nesCutoff)) {
+        topAnnotation <- annotatedCluster[annotatedCluster$NES >= nesCutoff,,drop = FALSE]
+        topAnnotation <- topAnnotation[order(topAnnotation$NES, decreasing = TRUE),,drop = FALSE]
+      } else {
+        topAnnotation <- annotatedCluster[order(annotatedCluster$NES, decreasing = TRUE),,drop = FALSE]
+      }
+
+      topAnnotation <- topAnnotation[1:n,]
       rownames(topAnnotation) <- NULL
       res[[i]] <- topAnnotation
       names(res)[i] <- paste0("PC", PCnum[i], "-", cl_name)

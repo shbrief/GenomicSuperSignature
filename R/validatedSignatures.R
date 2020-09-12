@@ -23,7 +23,7 @@
 
 #' Validation result in data frame
 #'
-#' @param data An output matrix from \code{\link{validate}} function.
+#' @param val_all An output matrix from \code{\link{validate}} function.
 #' @param num.out A number of highly validated PCclusters to output. Default is 5.
 #' If any of the cutoff parameters are provided, \code{num.out} or the number of
 #' filtered PCclusters, whichever smaller, will be chosen.
@@ -39,9 +39,9 @@
 #'
 #' @return A subset of the input matrix, which meets the given condition.
 #' @export
-validatedSignatures <- function(data, num.out = 5, scoreCutoff = NULL, swCutoff = NULL,
+validatedSignatures <- function(val_all, num.out = 5, scoreCutoff = NULL, swCutoff = NULL,
                                 clsizeCutoff = NULL, indexOnly = FALSE, whichPC = NULL) {
-  data <- t(data)
+  data <- t(val_all)
   ind <- which(rownames(data) == "score")
   pc_ind <- which(rownames(data) == "PC")
 

@@ -4,7 +4,15 @@
 \alias{annotatePC}
 \title{Annotate top PCs from the dataset}
 \usage{
-annotatePC(PCnum, val_all, PCAmodel, n = 5, scoreCutoff = 0.5, simplify = TRUE)
+annotatePC(
+  PCnum,
+  val_all,
+  PCAmodel,
+  n = 5,
+  scoreCutoff = 0.5,
+  nesCutoff = NULL,
+  simplify = TRUE
+)
 }
 \arguments{
 \item{PCnum}{PC number of your dataset you want to get the annotation results. It
@@ -18,6 +26,9 @@ should be an integer value between 1 and 8.}
 print out. If there are fewer than n pathways passed the cutoff, it will print out \code{NA}.}
 
 \item{scoreCutoff}{A numeric value for the minimum correlation. Default is 0.5.}
+
+\item{nesCutoff}{A numeric value for the minimum NES. Default is \code{NULL} and
+the suggested value is 3.}
 
 \item{simplify}{A logical. Under default (\code{TRUE}), the output will be a
 data frame with the number of column same as the length of \code{PCnum} argument,
