@@ -6,7 +6,7 @@
 #' @param PCnum PC number of your dataset you want to get the annotation results. It
 #' should be an integer value between 1 and 8.
 #' @param val_all The output from \code{\link{validate}}
-#' @param PCAmodel The PCAmodel used to generate the argument, \code{val}
+#' @param PCAmodel The PCAmodel used to generate the input for the argument, \code{val_all}.
 #' @param n An integer. Default is 5. The number of the top enriched pathaways to
 #' print out. If there are fewer than n pathways passed the cutoff, it will print out \code{NA}.
 #' @param scoreCutoff A numeric value for the minimum correlation. Default is 0.5.

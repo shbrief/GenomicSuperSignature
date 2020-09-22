@@ -10,7 +10,7 @@ findSignature(PCAmodel, keyword, n = 5, k = NULL)
 \item{PCAmodel}{PCAGenomicSignatures-object}
 
 \item{keyword}{A character vector. If you are searching for multiple keywords
-at the same time, use \code{\linkd{paste}} with \code{collapse = "|"} argument.}
+at the same time, use \code{\link{paste}} with \code{collapse = "|"} argument.}
 
 \item{n}{The number of top ranked (based on abs(NES)) pathways you want to search your keyword}
 

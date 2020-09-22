@@ -4,7 +4,14 @@
 \alias{validate}
 \title{Validate new datasets}
 \usage{
-validate(dataset, PCAmodel, method = "pearson", maxFrom = "PC", level = "max")
+validate(
+  dataset,
+  PCAmodel,
+  method = "pearson",
+  maxFrom = "PC",
+  level = "max",
+  scale = FALSE
+)
 }
 \arguments{
 \item{dataset}{Single or a list of SummarizedExperiment (RangedSummarizedExperiment,
@@ -23,6 +30,9 @@ the avgLoading with the maximum correlation coefficient with each PC will be in 
 \item{level}{Defibe how to ouput validation in two different forms, \code{c("max", "all")}.
 Default is "max", which outputs the matrix containing only the maximum coefficient.
 To get the coefficient of all 8 PCs, set this argument as "all".}
+
+\item{scale}{Default is \code{FALSE}. If it is set to \code{TRUE}, dataset will
+be row normalized by \code\link{rowNorm} function.}
 }
 \value{
 A data frame containing the maximum pearson correlation coefficient between

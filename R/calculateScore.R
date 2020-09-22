@@ -6,11 +6,15 @@
 #' are in 'symbol' format. It can be SummarizedExperiment, ExpressionSet, or matrix objects.
 #' @param PCAmodel PCAGenomicSignatures object. Output from \code{buildAvgLoading}
 #' function, a matrix of avaerage loadings, can be directly provided.
+#' @param rescale.after If it is \code{TRUE}, the continuous scores are rescaled
+#' post assignment, so avgerage loadings have the same standard deviation in different
+#' studies. If it is \code{FALSE}, the rescaling of column (= dividing by \code{sqrt(sum(x^2})
+#' is done before score assignment. Default is \code{TRUE}.
 #' @return A list containing the score matrices for input datasets. Scores are
 #' assigned to each sample (row) for each cluster (column).
 #'
 #' @export
-calculateScore <- function(dataset, PCAmodel) {
+calculateScore <- function(dataset, PCAmodel, rescale.after = TRUE) {
 
     if (is(PCAmodel, "PCAGenomicSignatures")) {
         avg.loadings <- assay(PCAmodel)
@@ -32,11 +36,14 @@ calculateScore <- function(dataset, PCAmodel) {
         count <- apply(count, 1, function(x) {x - mean(x)}) %>% t
         gene_common <- intersect(rownames(avg.loadings), rownames(count))
 
-        score <- t(count[gene_common,]) %*% apply(avg.loadings[gene_common,], 2,
-                                                  function(x) x / sqrt(sum(x^2, na.rm = TRUE)))
-        ## CRC paper version
-        # score <- t(count[gene_common,]) %*% as.matrix(avg.loadings[gene_common,])
-        # score <- (t(score) / apply(score, 2, sd)) %>% t
+        if (isFALSE(rescale.after)) {
+          score <- t(count[gene_common,]) %*% apply(avg.loadings[gene_common,], 2,
+                                                    function(x) x / sqrt(sum(x^2, na.rm = TRUE)))
+        } else {
+          # CRC paper version
+          score <- t(count[gene_common,]) %*% as.matrix(avg.loadings[gene_common,])
+          score <- (t(score) / apply(score, 2, sd)) %>% t
+        }
 
         colnames(score) <- colnames(avg.loadings)
         return(score)

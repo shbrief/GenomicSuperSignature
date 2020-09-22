@@ -6,11 +6,13 @@
 #' @param avgLoading A matrix with genes by PCclusters.
 #' @param method A character string indicating which correlation coefficient is
 #' to be computed. One of "pearson" (default), "kendall", or "spearman": can be abbreviated.
+#' @param scale Default is \code{FALSE}. If it is set to \code{TRUE}, dataset will
+#' be row normalized by \code\link{rowNorm} function.
 #'
 #' @return A matrix of Pearson correlation coefficient (default, defined through \code{method}
 #' argument) between PCclusters (row) and the top 8 PCs from the datasets (column)
 #'
-.loadingCor <- function(dataset, avgLoading, method = "pearson") {
+.loadingCor <- function(dataset, avgLoading, method = "pearson", scale = FALSE) {
 
     if (any(class(dataset) == "ExpressionSet")) {
         dat <- Biobase::exprs(dataset)
@@ -23,6 +25,7 @@
              SummarizedExperiment, RangedSummarizedExperiment, and matrix.")
     }
 
+    if (isTRUE(scale)) {dat <- rowNorm(dat)}   # row normalization
     dat <- dat[apply(dat, 1, function (x) {!any(is.na(x) | (x==Inf) | (x==-Inf))}),]
     gene_common <- intersect(rownames(avgLoading), rownames(dat))
     prcomRes <- stats::prcomp(t(dat[gene_common,]))
@@ -50,6 +53,8 @@
 #' @param level Defibe how to ouput validation in two different forms, \code{c("max", "all")}.
 #' Default is "max", which outputs the matrix containing only the maximum coefficient.
 #' To get the coefficient of all 8 PCs, set this argument as "all".
+#' @param scale Default is \code{FALSE}. If it is set to \code{TRUE}, dataset will
+#' be row normalized by \code\link{rowNorm} function.
 #'
 #' @return A data frame containing the maximum pearson correlation coefficient between
 #' the top 8 PCs of the dataset and pre-calculated average loadings (in row) of training
@@ -65,7 +70,7 @@
 #'
 #' @export
 validate <- function(dataset, PCAmodel, method = "pearson",
-                     maxFrom = "PC", level = "max")
+                     maxFrom = "PC", level = "max", scale = FALSE)
     {
     sw <- silhouetteWidth(PCAmodel)
     cl_size <- S4Vectors::metadata(PCAmodel)$size
@@ -78,7 +83,7 @@ validate <- function(dataset, PCAmodel, method = "pearson",
     if (maxFrom == "PC") {
         # For a single dataset
         if (!is.list(dataset)) {
-            x <- .loadingCor(dataset, avgLoading, method)
+            x <- .loadingCor(dataset, avgLoading, method, scale)
             if (level == "max") {
                 z <- apply(x, 1, max) %>% as.data.frame   # rowMax
                 z$PC <- apply(x, 1, which.max)
@@ -92,7 +97,7 @@ validate <- function(dataset, PCAmodel, method = "pearson",
             }
         } else {
             # For a list of datasets
-            x <- lapply(dataset, .loadingCor, avgLoading, method)
+            x <- lapply(dataset, .loadingCor, avgLoading, method, scale)
             if (level == "max") {
                 z <- sapply(x, function(y) {apply(y, 1, max)})
                 zPC <- sapply(x, function(y) {apply(y, 1, which.max)})

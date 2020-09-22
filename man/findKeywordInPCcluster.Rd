@@ -10,7 +10,7 @@ findKeywordInPCcluster(PCAmodel, keyword, ind, n = NULL, includeTotal = FALSE)
 \item{PCAmodel}{PCAGenomicSignatures-object.}
 
 \item{keyword}{A character vector. If you are searching for multiple keywords
-at the same time, use \code{\linkd{paste}} with \code{collapse = "|"} argument.}
+at the same time, use \code{\link{paste}} with \code{collapse = "|"} argument.}
 
 \item{ind}{An integer. The PCcluster number you want to check.}
 

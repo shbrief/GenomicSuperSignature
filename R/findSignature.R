@@ -6,7 +6,7 @@
 #'
 #' @param PCAmodel PCAGenomicSignatures-object
 #' @param keyword A character vector. If you are searching for multiple keywords
-#' at the same time, use \code{\linkd{paste}} with \code{collapse = "|"} argument.
+#' at the same time, use \code{\link{paste}} with \code{collapse = "|"} argument.
 #' @param n The number of top ranked (based on abs(NES)) pathways you want to search your keyword
 #' @param k The number of keyword-containing pathways you want to get the PCcluster
 #' number. Under default (\code{NULL}), the output will be a data frame with two
@@ -52,7 +52,7 @@ findSignature <- function(PCAmodel, keyword, n = 5, k = NULL) {
 #'
 #' @param PCAmodel PCAGenomicSignatures-object.
 #' @param keyword A character vector. If you are searching for multiple keywords
-#' at the same time, use \code{\linkd{paste}} with \code{collapse = "|"} argument.
+#' at the same time, use \code{\link{paste}} with \code{collapse = "|"} argument.
 #' @param ind An integer. The PCcluster number you want to check.
 #' @param n An interger. The number of top enriched pathways (based on abs(NES))
 #' to search. Under default (\code{NULL}), all the enriched pathways are used.

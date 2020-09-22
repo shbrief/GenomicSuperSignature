@@ -4,7 +4,7 @@
 \alias{.loadingCor}
 \title{Validating new dataset}
 \usage{
-.loadingCor(dataset, avgLoading, method = "pearson")
+.loadingCor(dataset, avgLoading, method = "pearson", scale = FALSE)
 }
 \arguments{
 \item{dataset}{A expression dataset to validate. Genes in rows and samples in
@@ -15,6 +15,9 @@ SummarizedExperiment, RangedSummarizedExperiment, or matrix.}
 
 \item{method}{A character string indicating which correlation coefficient is
 to be computed. One of "pearson" (default), "kendall", or "spearman": can be abbreviated.}
+
+\item{scale}{Default is \code{FALSE}. If it is set to \code{TRUE}, dataset will
+be row normalized by \code\link{rowNorm} function.}
 }
 \value{
 A matrix of Pearson correlation coefficient (default, defined through \code{method}

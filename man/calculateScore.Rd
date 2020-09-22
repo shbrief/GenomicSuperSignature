@@ -4,7 +4,7 @@
 \alias{calculateScore}
 \title{Calculate the validation score for a new dataset}
 \usage{
-calculateScore(dataset, PCAmodel)
+calculateScore(dataset, PCAmodel, rescale.after = TRUE)
 }
 \arguments{
 \item{dataset}{A gene expression matrix, where genes are in rows and rownames
@@ -12,6 +12,11 @@ are in 'symbol' format. It can be SummarizedExperiment, ExpressionSet, or matrix
 
 \item{PCAmodel}{PCAGenomicSignatures object. Output from \code{buildAvgLoading}
 function, a matrix of avaerage loadings, can be directly provided.}
+
+\item{rescale.after}{If it is \code{TRUE}, the continuous scores are rescaled
+post assignment, so avgerage loadings have the same standard deviation in different
+studies. If it is \code{FALSE}, the rescaling of column (= dividing by \code{sqrt(sum(x^2})
+is done before score assignment. Default is \code{TRUE}.}
 }
 \value{
 A list containing the score matrices for input datasets. Scores are
