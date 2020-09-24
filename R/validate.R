@@ -7,7 +7,7 @@
 #' @param method A character string indicating which correlation coefficient is
 #' to be computed. One of "pearson" (default), "kendall", or "spearman": can be abbreviated.
 #' @param scale Default is \code{FALSE}. If it is set to \code{TRUE}, dataset will
-#' be row normalized by \code\link{rowNorm} function.
+#' be row normalized by \link{rowNorm} function.
 #'
 #' @return A matrix of Pearson correlation coefficient (default, defined through \code{method}
 #' argument) between PCclusters (row) and the top 8 PCs from the datasets (column)
@@ -28,7 +28,7 @@
     if (isTRUE(scale)) {dat <- rowNorm(dat)}   # row normalization
     dat <- dat[apply(dat, 1, function (x) {!any(is.na(x) | (x==Inf) | (x==-Inf))}),]
     gene_common <- intersect(rownames(avgLoading), rownames(dat))
-    prcomRes <- stats::prcomp(t(dat[gene_common,]))
+    prcomRes <- stats::prcomp(t(dat[gene_common,]))  # centered, but not scaled by default
     loadings <- prcomRes$rotation[, 1:8]
     loading_cor <- abs(stats::cor(avgLoading[gene_common,], loadings[gene_common,],
                                   use = "pairwise.complete.obs",
@@ -54,7 +54,7 @@
 #' Default is "max", which outputs the matrix containing only the maximum coefficient.
 #' To get the coefficient of all 8 PCs, set this argument as "all".
 #' @param scale Default is \code{FALSE}. If it is set to \code{TRUE}, dataset will
-#' be row normalized by \code\link{rowNorm} function.
+#' be row normalized by \link{rowNorm} function.
 #'
 #' @return A data frame containing the maximum pearson correlation coefficient between
 #' the top 8 PCs of the dataset and pre-calculated average loadings (in row) of training

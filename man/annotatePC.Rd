@@ -11,7 +11,8 @@ annotatePC(
   n = 5,
   scoreCutoff = 0.5,
   nesCutoff = NULL,
-  simplify = TRUE
+  simplify = TRUE,
+  abs = FALSE
 )
 }
 \arguments{
@@ -35,6 +36,9 @@ data frame with the number of column same as the length of \code{PCnum} argument
 and the number of row same as the \code{n} argument. If it is set to \code{FALSE},
 the output will be a list with the length of \code{PCnum} argument, where each
 element is a data frame containing detailed GSEA output of enriched pathways.}
+
+\item{abs}{Default is \code{FALSE}. If it's set to \code{TRUE}, the enriched
+pathways will be listed based on \code{abs(NES)}.}
 }
 \value{
 A data frame of a list based on the \code{simplify} argument. Check the

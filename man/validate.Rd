@@ -32,7 +32,7 @@ Default is "max", which outputs the matrix containing only the maximum coefficie
 To get the coefficient of all 8 PCs, set this argument as "all".}
 
 \item{scale}{Default is \code{FALSE}. If it is set to \code{TRUE}, dataset will
-be row normalized by \code\link{rowNorm} function.}
+be row normalized by \link{rowNorm} function.}
 }
 \value{
 A data frame containing the maximum pearson correlation coefficient between

@@ -17,7 +17,7 @@ SummarizedExperiment, RangedSummarizedExperiment, or matrix.}
 to be computed. One of "pearson" (default), "kendall", or "spearman": can be abbreviated.}
 
 \item{scale}{Default is \code{FALSE}. If it is set to \code{TRUE}, dataset will
-be row normalized by \code\link{rowNorm} function.}
+be row normalized by \link{rowNorm} function.}
 }
 \value{
 A matrix of Pearson correlation coefficient (default, defined through \code{method}

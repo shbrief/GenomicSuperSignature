@@ -17,6 +17,8 @@
 #' and the number of row same as the \code{n} argument. If it is set to \code{FALSE},
 #' the output will be a list with the length of \code{PCnum} argument, where each
 #' element is a data frame containing detailed GSEA output of enriched pathways.
+#' @param abs Default is \code{FALSE}. If it's set to \code{TRUE}, the enriched
+#' pathways will be listed based on \code{abs(NES)}.
 #'
 #' @return A data frame of a list based on the \code{simplify} argument. Check the
 #' output detail above.
@@ -24,7 +26,7 @@
 #' @export
 annotatePC <- function(PCnum, val_all, PCAmodel, n = 5,
                        scoreCutoff = 0.5, nesCutoff = NULL,
-                       simplify = TRUE) {
+                       simplify = TRUE, abs = FALSE) {
   res <- vector(mode = "list", length = length(PCnum))
 
   for (i in seq_along(PCnum)) {
@@ -44,6 +46,10 @@ annotatePC <- function(PCnum, val_all, PCAmodel, n = 5,
         topAnnotation <- topAnnotation[order(topAnnotation$NES, decreasing = TRUE),,drop = FALSE]
       } else {
         topAnnotation <- annotatedCluster[order(annotatedCluster$NES, decreasing = TRUE),,drop = FALSE]
+      }
+
+      if (isTRUE(abs)) {
+        topAnnotation <- topAnnotation[order(abs(annotatedCluster$NES), decreasing = TRUE),,drop = FALSE]
       }
 
       topAnnotation <- topAnnotation[1:n,]

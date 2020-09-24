@@ -33,7 +33,7 @@ calculateScore <- function(dataset, PCAmodel, rescale.after = TRUE) {
         }
 
         count <- count[apply(count, 1, function(x) {!any(is.na(x) | (x==Inf) | (x==-Inf))}),]
-        count <- apply(count, 1, function(x) {x - mean(x)}) %>% t
+        count <- apply(count, 1, function(x) {x - mean(x)}) %>% t  # row centered
         gene_common <- intersect(rownames(avg.loadings), rownames(count))
 
         if (isFALSE(rescale.after)) {

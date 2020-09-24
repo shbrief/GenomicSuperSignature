@@ -55,6 +55,7 @@ Collate:
     'findSignature.R'
     'funcForGSEA.R'
     'funcForGSEA_plot.R'
+    'getModel.R'
     'heatmapTable.R'
     'plotAnnotedPCA.R'
     'plotValidate.R'
