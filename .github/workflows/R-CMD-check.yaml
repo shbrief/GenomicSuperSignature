@@ -4,22 +4,19 @@ on:
   push:
     branches:
       - master
-  pull_request:
-    branches:
-      - master
 
 name: R-CMD-check
 
 jobs:
   R-CMD-check:
     runs-on: ubuntu-latest
-    container: bioconductor/bioconductor_docker:devel
     steps:
       - uses: actions/checkout@v2
       - uses: r-lib/actions/setup-r@master
       - name: Install dependencies
         run: |
           options(repos = c(CRAN = "https://cran.r-project.org"))
+          install.packages("BiocManager")
           BiocManager::repositories()
           remotes::install_deps(dependencies = TRUE, repos = BiocManager::repositories())
         shell: Rscript {0}
