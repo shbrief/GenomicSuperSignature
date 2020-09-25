@@ -25,7 +25,8 @@ Imports:
   stats,
   msigdbr,
   EnrichmentBrowser,
-  AnVIL
+  AnVIL, 
+  ggpubr
 Suggests:
   knitr,
   rmarkdown,
