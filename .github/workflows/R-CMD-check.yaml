@@ -4,6 +4,9 @@ on:
   push:
     branches:
       - master
+  pull_request:
+    branches:
+      - master
 
 name: R-CMD-check
 
@@ -15,10 +18,10 @@ jobs:
       - uses: r-lib/actions/setup-r@master
       - name: Install dependencies
         run: |
-          options(repos = c(CRAN = "https://cran.r-project.org"))
-          install.packages("BiocManager")
-          BiocManager::repositories()
-          remotes::install_deps(dependencies = TRUE, repos = BiocManager::repositories())
+          pkgs = c(‘BiocStyle’, ‘AnVIL’, ‘EnrichmentBrowser’, ‘enrichplot’, ‘clusterProfiler’, ‘ComplexHeatmap’, ‘Biobase’, ‘S4Vectors’, ‘SummarizedExperiment’)
+          install.packages(c("remotes", "rcmdcheck", "BiocManager"))
+          BiocManager::install(pkgs)
+          remotes::install_deps(dependencies = TRUE)
         shell: Rscript {0}
       - name: Check
         run: rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "error")

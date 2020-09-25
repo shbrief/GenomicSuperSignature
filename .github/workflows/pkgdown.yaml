@@ -18,7 +18,7 @@ jobs:
 
       - name: Query dependencies
         run: |
-          install.packages(c("remotes", "BiocManager"))
+          install.packages(c("remotes", "rcmdcheck", "BiocManager"))
           saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds", version = 2)
           writeLines(sprintf("R-%i.%i", getRversion()$major, getRversion()$minor), ".github/R-version")
         shell: Rscript {0}
@@ -35,6 +35,8 @@ jobs:
           options(repos = c(CRAN = "https://cran.r-project.org"))
           BiocManager::repositories()
           remotes::install_deps(dependencies = TRUE, repos = BiocManager::repositories())
+          install.packages("pkgdown")
+          remotes::install_cran("rcmdcheck")
         shell: Rscript {0}
 
       - name: Install package
