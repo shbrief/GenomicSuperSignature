@@ -8,3 +8,4 @@
 ^\.post_script_build.sh$
 update.sh
 /vignettes/refinebioRseq_PCAmodel_hclust.rds
+^\.github$

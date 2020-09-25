@@ -20,7 +20,7 @@ reference:
       - GenomicSignatures-methods
       - PCAGenomicSignatures-methods
   - title: Model Building
-    desc: Functions for PGCGenomicSignatures model buildling
+    desc: Functions for PCAGenomicSignatures model buildling
     contents:
       - .calculateSilhouetteWidth
       - .PCclusterName
@@ -31,10 +31,13 @@ reference:
       - rmNaInf
       - rowNorm
   - title: Model Application
-    desc: Functions for applying PGCGenomicSignatures model to a new data
+    desc: Functions for applying PCAGenomicSignatures model to a new data
     contents:
       - .loadingCor
       - calculateScore
+      - validate
+  - title: Visualization
+    contents:
       - drawWordcloud
       - extractPC
       - heatmapTable
@@ -43,7 +46,6 @@ reference:
       - plotValidate
       - run_gsea
       - subsetPathways
-      - validate
       - validatedIndex
       - msigdb_gsea
       - gseaBarplot
