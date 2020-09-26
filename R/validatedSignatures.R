@@ -29,7 +29,7 @@
 #' filtered PCclusters, whichever smaller, will be chosen.
 #' @param scoreCutoff A numeric value for the minimum correlation.
 #' @param swCutoff A numeric value for the minimum average silhouette width.
-#' @param clsizeCuoff An integer value for the minimum cluster size.
+#' @param clsizeCutoff An integer value for the minimum cluster size.
 #' @param indexOnly A logical. Under the default (= FALSE), the detailed information
 #' on validated PCclusters, such as score, average silhouette width, cluster size, is
 #' printed. If it is set TRUE, only the PCcluster number will be printed.
@@ -55,8 +55,8 @@ validatedSignatures <- function(val_all, num.out = 5, scoreCutoff = NULL, swCuto
   if (!is.null(swCutoff)) {sw_subset <- .filterByAvgSW(data, swCutoff)} else {sw_subset <- data}
   if (!is.null(clsizeCutoff)) {clsize_subset <- .filterByClusterSize(data, clsizeCutoff)} else {clsize_subset <- data}
 
-  common_col <- intersect(colnames(score_subset),colnames(sw_subset)) %>%
-    intersect(., colnames(clsize_subset))
+  common_col <- intersect(colnames(score_subset), colnames(sw_subset))
+  common_col <- intersect(common_col, colnames(clsize_subset))
 
   if (length(common_col) == 0) {
     dat <- data[, 0]

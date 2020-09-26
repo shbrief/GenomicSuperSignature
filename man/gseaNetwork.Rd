@@ -28,7 +28,7 @@ gseaNetwork(
 
 \item{pvalueCutoff}{Cutoff for both pvalue and p.adjust. Default is 0.5.}
 
-\item{gseaRes}{An output from \code{\link{gsea_msigdb}} function. If this argument
+\item{gseaRes}{An output from \link{msigdb_gsea} function. If this argument
 is provided, you don't need to provide the above inputs: ind, PCAmodel, category, n, pvalueCutoff.}
 
 \item{similarity_metric}{Metric to calculate geneset similarity. Available values

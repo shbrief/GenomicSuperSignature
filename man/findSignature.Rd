@@ -29,7 +29,7 @@ This function finds PCclusters containing the keyword you provide. If you provid
 it will give you the PCcluster number.
 }
 \examples{
-findSignature(PCAmodel, "CD4|T cell")
-findSignature(PCAmodel, "CD4|T cell", k = 2)
+# findSignature(PCAmodel, "CD4|T cell")
+# findSignature(PCAmodel, "CD4|T cell", k = 2)
 
 }

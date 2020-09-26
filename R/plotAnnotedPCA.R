@@ -20,14 +20,17 @@
 #'
 #' @importFrom ggpubr ggtexttable ttheme table_cell_font ggarrange tab_nrow
 #' @importFrom ggplot2 ggplot geom_point
+#' @importFrom stats prcomp
+#' @importFrom utils stack
 #'
 #' @export
 plotAnnotatedPCA <- function(dataset, PCAmodel, PCs, val_all = NULL,
                              scoreCutoff = 0.5, nesCutoff = 3,
                              color_by = NULL, color_lab = NULL,
                              trimed_pathway_len = 45) {
+
   if (is.null(val_all)) {val_all <- validate(dataset, PCAmodel)}
-  PCAres <- prcomp(dataset)$rotation %>% as.data.frame
+  PCAres <- stats::prcomp(dataset)$rotation %>% as.data.frame
 
   # two PCs to plot
   ind1 <- which(colnames(PCAres) == paste0("PC", PCs[1]))
@@ -35,7 +38,7 @@ plotAnnotatedPCA <- function(dataset, PCAmodel, PCs, val_all = NULL,
 
   if (is.null(color_lab)) {color_lab = "Color By"}
   if (!is.null(color_by)) {
-    colorFeature <- stack(color_by) %>% tibble::column_to_rownames(var = "ind")
+    colorFeature <- utils::stack(color_by) %>% tibble::column_to_rownames(var = "ind")
     PCAres <- cbind(PCAres, colorFeature)
     myPlot <- ggplot(PCAres, mapping = aes_string(x = names(PCAres)[ind1],
                                                   y = names(PCAres)[ind2],
@@ -57,8 +60,8 @@ plotAnnotatedPCA <- function(dataset, PCAmodel, PCs, val_all = NULL,
 
   # PC annotation table
   myTable <- ggpubr::ggtexttable(annotatedPC,
-                                 rows = NULL, theme = ggpubr::ttheme("mOrange")) %>%
-    ggpubr::table_cell_font(row = 2:ggpubr::tab_nrow(.), column = 1:2, size = 9)
+                                 rows = NULL, theme = ggpubr::ttheme("mOrange"))
+  myTable <- ggpubr::table_cell_font(row = 2:ggpubr::tab_nrow(myTable), column = 1:2, size = 9)
 
   res <- ggpubr::ggarrange(myPlot, myTable, ncol = 1, nrow = 2, heights = c(1, 0.5))
   print(res)

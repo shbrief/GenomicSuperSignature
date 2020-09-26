@@ -69,24 +69,24 @@ annotatePC <- function(PCnum, val_all, PCAmodel, n = 5,
 }
 
 
-annotatePC_internal <- function(PCnum, dat, n = 5, simplify = TRUE, gseaDB = NULL) {
-  a <- readRDS(file.path(dat_dir, gseaDB))
-  res <- vector(mode = "list", length = length(PCnum))
-
-  for (i in seq_along(PCnum)) {
-    annotPC <- validatedSignatures(dat, num.out = 1, whichPC = PCnum[i])
-    cl_name <- paste0("PCcluster_", annotPC[,"cl_num"])
-    annotatedCluster <- a[[cl_name]]
-    topAnnotation <- annotatedCluster[order(abs(annotatedCluster$NES), decreasing = TRUE),][1:n,]
-    rownames(topAnnotation) <- NULL
-    res[[i]] <- topAnnotation
-    names(res)[i] <- paste0("PC", PCnum[i], "-", cl_name)
-  }
-
-  if (isTRUE(simplify)) {
-    simple_res <- sapply(res, function(x) x$Description)
-    return(simple_res)
-  } else {
-    return(res)
-  }
-}
+# annotatePC_internal <- function(PCnum, dat, n = 5, simplify = TRUE, gseaDB = NULL) {
+#   a <- readRDS(file.path(dat_dir, gseaDB))
+#   res <- vector(mode = "list", length = length(PCnum))
+#
+#   for (i in seq_along(PCnum)) {
+#     annotPC <- validatedSignatures(dat, num.out = 1, whichPC = PCnum[i])
+#     cl_name <- paste0("PCcluster_", annotPC[,"cl_num"])
+#     annotatedCluster <- a[[cl_name]]
+#     topAnnotation <- annotatedCluster[order(abs(annotatedCluster$NES), decreasing = TRUE),][1:n,]
+#     rownames(topAnnotation) <- NULL
+#     res[[i]] <- topAnnotation
+#     names(res)[i] <- paste0("PC", PCnum[i], "-", cl_name)
+#   }
+#
+#   if (isTRUE(simplify)) {
+#     simple_res <- sapply(res, function(x) x$Description)
+#     return(simple_res)
+#   } else {
+#     return(res)
+#   }
+# }

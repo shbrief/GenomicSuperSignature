@@ -180,7 +180,7 @@ setGeneric("gsea<-", function(x, value) standardGeneric("gsea<-"))
 #' @exportMethod gsea<-
 #' @rdname PCAGenomicSignatures-methods
 setMethod("gsea<-", "PCAGenomicSignatures", function(x, value) {
-    x@colData$gsea <- Value
+    x@colData$gsea <- value
     return(x)
 })
 

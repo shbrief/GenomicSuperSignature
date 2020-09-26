@@ -6,7 +6,7 @@
 #' "H", "C1", "C2"(default), "C3", "C4", "C5", "C6", and "C7"
 #' @param n An interger. The number of top and bottom enriched pathways to plot. Default is 10.
 #' @param pvalueCutoff Cutoff for both pvalue and p.adjust. Default is 0.5.
-#' @param gseaRes An output from \code{\link{gsea_msigdb}} function. If this argument
+#' @param gseaRes An output from \link{msigdb_gsea} function. If this argument
 #' is provided, you don't need to provide the above inputs: ind, PCAmodel, category, n, pvalueCutoff.
 #'
 #' @return Barplot of GSEA output. Top and bottom \code{n} genesets based on NES
@@ -14,6 +14,9 @@
 #'
 #' @export
 gseaBarplot <- function(ind, PCAmodel, category = "C2", n = 10, pvalueCutoff = 0.5, gseaRes = NULL) {
+
+    ## Binding the variables from res locally to the function
+    NES <- Description <- qvalues <- NULL
 
     if (is.null(gseaRes)) {
         gseaRes <- msigdb_gsea(ind, PCAmodel, category = category, n = n, pvalueCutoff = pvalueCutoff)
@@ -51,6 +54,28 @@ gseaBarplot <- function(ind, PCAmodel, category = "C2", n = 10, pvalueCutoff = 0
     length(intersect(a, b)) / min(length(a), length(b))
 }
 
+#' Format a string using placeholders
+#'
+#' @param string A an unformatted string with placeholders
+#' @param ... Variables to format placeholders with
+#' @return A formatted string
+#'
+#' @examples
+#' \dontrun{
+#' format_str("Format with {1} and {2}", "x", "y")
+#' }
+#'
+#' @keywords internal
+.format_str <- function(string, ...) {
+    args <- list(...)
+    for (i in 1:length(args)) {
+        pattern <- paste("\\{", i, "}", sep="")
+        replacement <- args[[i]]
+        string <- gsub(pattern, replacement, string)
+    }
+    return(string)
+}
+
 
 #' Plot the network of enriched pathways
 #'
@@ -60,7 +85,7 @@ gseaBarplot <- function(ind, PCAmodel, category = "C2", n = 10, pvalueCutoff = 0
 #' "H", "C1", "C2"(default), "C3", "C4", "C5", "C6", and "C7"
 #' @param n An interger. The number of top and bottom enriched pathways to plot. Default is 10.
 #' @param pvalueCutoff Cutoff for both pvalue and p.adjust. Default is 0.5.
-#' @param gseaRes An output from \code{\link{gsea_msigdb}} function. If this argument
+#' @param gseaRes An output from \link{msigdb_gsea} function. If this argument
 #' is provided, you don't need to provide the above inputs: ind, PCAmodel, category, n, pvalueCutoff.
 #' @param similarity_metric Metric to calculate geneset similarity. Available values
 #' are \code{c("jaccard_similarity", "overlap_similarity")}.

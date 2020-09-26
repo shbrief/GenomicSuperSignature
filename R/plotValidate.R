@@ -12,7 +12,7 @@
 #'
 #' @import ggplot2
 #'
-#' @param res Output from \code{\link{validate}} function.
+#' @param res Output from \link{validate} function.
 #' @param swFilter If \code{swFilter=TRUE}, only PCcluster above the cutoff, defined
 #' through \code{minSilhouetteWidth} argument will be plotted. Default is \code{swFilter=FALSE}
 #' @param minClusterSize The minimum size of clusters to be included in the plotting.
@@ -21,6 +21,8 @@
 #' effective under \code{swFilter=TRUE} condition. Default is 0.
 #' @param interactive If set to \code{TRUE}, the output will be interactive plot.
 #' Default is \code{FALSE}.
+#' @param minClSize The minimum number of PCs in the clusters you want.
+#' @param maxClSize The maximum number of PCs in the clusters you want.
 #' @param colorPalette Default is \code{Dark2}. For other color options, please
 #' check \code{\link[ggplot2]{scale_color_brewer}}
 #'

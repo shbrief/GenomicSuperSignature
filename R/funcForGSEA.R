@@ -26,6 +26,9 @@ msigdb_gsea <- function(ind, PCAmodel, category = "C2", n = NULL, pvalueCutoff =
                         minGSSize = 10, maxGSSize = 500, pAdjustMethod = "BH",
                         verbose = FALSE, seed = FALSE, by = "fgsea", geneSets = NULL) {
 
+    ## Binding the variables from res locally to the function
+    gs_name <- entrez_gene <- NES <- ordering <- NULL
+
     ## Target geneList
     al <- model(PCAmodel)[, ind]
     obj <- list()
@@ -75,9 +78,13 @@ msigdb_gsea <- function(ind, PCAmodel, category = "C2", n = NULL, pvalueCutoff =
 
 #' Subset GSEA output
 #'
+#' @param gseaRes An output from \code{\link[clusterProfiler]{GSEA}}
+#' @param n A number of output to keep based on the \code{abs(NES)}
 #'
-#' @export
 subsetGSEA <- function(gseaRes, n = 20) {
+
+    ## Binding the variables from res locally to the function
+    NES <- ordering <- NULL
 
     topPathways <- clusterProfiler::mutate(gseaRes, ordering = abs(NES)) %>%
         clusterProfiler::arrange(dplyr::desc(ordering)) %>%

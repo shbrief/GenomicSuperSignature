@@ -6,27 +6,30 @@ Authors@R: person("Sehyun", "Oh", email = "Sehyun.Oh@sph.cuny.edu", role = c("au
 Description: This package provides PCA workflow and PCA-based index for extensive annotation with existing knowledge database. 
 Depends: R (>= 3.5)
 Imports:
+  ComplexHeatmap,
   SummarizedExperiment,
+  ggplot2,
   methods,
-  dplyr,
   S4Vectors,
   Biobase,
-  ComplexHeatmap,
-  circlize,
-  grid,
   cluster,
-  clusterProfiler,
-  enrichplot,
-  ggplot2,
-  magrittr,
   plotly,
-  wordcloud,
   RColorBrewer,
-  stats,
-  msigdbr,
   EnrichmentBrowser,
-  AnVIL, 
-  ggpubr
+  msigdbr,
+  reshape2,
+  stringr,
+  tibble,
+  AnVIL,
+  circlize,
+  clusterProfiler,
+  dplyr,
+  enrichplot,
+  ggpubr,
+  igraph,
+  purrr,
+  visNetwork,
+  wordcloud
 Suggests:
   knitr,
   rmarkdown,
@@ -35,7 +38,10 @@ Suggests:
   pkgdown,
   usethis,
   BiocStyle,
-  forcats
+  forcats,
+  grid,
+  stats,
+  utils
 License: Artistic-2.0
 Encoding: UTF-8
 LazyData: true

@@ -41,6 +41,8 @@
 \arguments{
 \item{x}{A \code{GenomicSignatures} object}
 
+\item{...}{Additional arguments for supporting functions.}
+
 \item{value}{See details.}
 }
 \description{

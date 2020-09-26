@@ -43,6 +43,8 @@ to three colors. Default is \code{c(0, 0.5, 1)}.}
 \item{colors}{A character vector of length 3. Each represents the color assigned
 to three breaks. Default is \code{c("white", "white smoke", "red")}.}
 
+\item{column_title}{A character string. Provide the column title.}
+
 \item{row_title}{A character string. Provide the row title.}
 
 \item{whichPC}{An integer value between 1 and 8. PC number of your data to check

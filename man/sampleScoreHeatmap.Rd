@@ -18,8 +18,8 @@ sampleScoreHeatmap(
 )
 }
 \arguments{
-\item{score}{An output from \code{\link{calculateScore}} function, which is a matrix 
-with samples (row) and PrcompClusters (column) If it is a simple vector, it 
+\item{score}{An output from \code{\link{calculateScore}} function, which is a matrix
+with samples (row) and PrcompClusters (column) If it is a simple vector, it
 will be converted to a one-column matrix.}
 
 \item{dataName}{Title on the row. The name of the dataset to be scored.}
@@ -30,11 +30,15 @@ will be converted to a one-column matrix.}
 
 \item{cluster_columns}{A logical. Under the default (\code{TRUE}), columns will be clustered.}
 
+\item{show_row_names}{Whether show row names. Default is \code{TRUE}, showing the row name.}
+
+\item{show_column_names}{Whether show column names. Default is \code{TRUE}, showing the column name.}
+
 \item{row_names_gp}{Graphic parameters for row names. The default is 0.7.}
 
 \item{column_names_gp}{Graphic parameters for column names. The default is 5.}
 
-\item{`...`}{Any additional argument for \code{\link[ComplexHeatmap]{Heatmap}}}
+\item{...}{Any additional argument for \code{\link[ComplexHeatmap]{Heatmap}}}
 }
 \value{
 A heatmap of the sample score. Rows represent samples and columns

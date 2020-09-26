@@ -119,6 +119,6 @@ for (i in seq_len(ncol(PCAmodel))) {
 
   geneList <- model(PCAmodel)[,i]
   geneList <- sort(geneList, decreasing = TRUE)
-  res <- GSEA(geneList, TERM2GENE = term2gene, pvalueCutoff = 0.05)
+  res <- clusterProfiler::GSEA(geneList, TERM2GENE = term2gene, pvalueCutoff = 0.05)
   saveRDS(res, fpath)
 }

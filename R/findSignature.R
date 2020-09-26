@@ -17,8 +17,8 @@
 #' @return A data frame or integer vector depending on the parameter \code{k}.
 #'
 #' @examples
-#' findSignature(PCAmodel, "CD4|T cell")
-#' findSignature(PCAmodel, "CD4|T cell", k = 2)
+#' # findSignature(PCAmodel, "CD4|T cell")
+#' # findSignature(PCAmodel, "CD4|T cell", k = 2)
 #'
 #' @export
 findSignature <- function(PCAmodel, keyword, n = 5, k = NULL) {

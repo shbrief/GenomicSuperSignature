@@ -35,6 +35,7 @@
 #'
 #' @param x A \code{GenomicSignatures} object
 #' @param value See details.
+#' @param ... Additional arguments for supporting functions.
 #'
 #' @aliases model colData metadata geneSets updateNote geneSets<- updateNote<-
 NULL

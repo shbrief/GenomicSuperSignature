@@ -1,6 +1,7 @@
 #' Calculate the validation score for a new dataset
 #'
 #' @import methods
+#' @importFrom stats sd
 #'
 #' @param dataset A gene expression matrix, where genes are in rows and rownames
 #' are in 'symbol' format. It can be SummarizedExperiment, ExpressionSet, or matrix objects.
@@ -42,7 +43,7 @@ calculateScore <- function(dataset, PCAmodel, rescale.after = TRUE) {
         } else {
           # CRC paper version
           score <- t(count[gene_common,]) %*% as.matrix(avg.loadings[gene_common,])
-          score <- (t(score) / apply(score, 2, sd)) %>% t
+          score <- (t(score) / apply(score, 2, stats::sd)) %>% t
         }
 
         colnames(score) <- colnames(avg.loadings)

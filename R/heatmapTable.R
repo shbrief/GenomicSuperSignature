@@ -5,7 +5,6 @@
 #' @param ind An integer vector. If this parameter is provided, the other parameters,
 #' \code{num.out, scoreCutoff, swCutoff, clsizeCutoff} will be ignored and the heatmap
 #' table containing only the provided index will be printed.
-#' @param row_title A character string. Provide the row title.
 #' @param num.out A number of highly validated PCclusters to output. Default is 5.
 #' If any of the cutoff parameters are provided, \code{num.out} or the number of
 #' filtered PCclusters, whichever smaller, will be chosen.
@@ -16,6 +15,8 @@
 #' to three colors. Default is \code{c(0, 0.5, 1)}.
 #' @param colors A character vector of length 3. Each represents the color assigned
 #' to three breaks. Default is \code{c("white", "white smoke", "red")}.
+#' @param column_title A character string. Provide the column title.
+#' @param row_title A character string. Provide the row title.
 #' @param whichPC An integer value between 1 and 8. PC number of your data to check
 #' the validated signatures with. Under the default (\code{NULL}), it outputs top
 #' scored signatures with any PC of your data.

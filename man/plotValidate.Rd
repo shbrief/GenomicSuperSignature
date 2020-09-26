@@ -16,7 +16,7 @@ plotValidate(
 )
 }
 \arguments{
-\item{res}{Output from \code{\link{validate}} function.}
+\item{res}{Output from \link{validate} function.}
 
 \item{minClusterSize}{The minimum size of clusters to be included in the plotting.
 Default value is 2, so any single-element clusters are excluded.}
@@ -29,6 +29,10 @@ effective under \code{swFilter=TRUE} condition. Default is 0.}
 
 \item{interactive}{If set to \code{TRUE}, the output will be interactive plot.
 Default is \code{FALSE}.}
+
+\item{minClSize}{The minimum number of PCs in the clusters you want.}
+
+\item{maxClSize}{The maximum number of PCs in the clusters you want.}
 
 \item{colorPalette}{Default is \code{Dark2}. For other color options, please
 check \code{\link[ggplot2]{scale_color_brewer}}}

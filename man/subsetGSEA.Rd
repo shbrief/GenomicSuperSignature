@@ -6,6 +6,11 @@
 \usage{
 subsetGSEA(gseaRes, n = 20)
 }
+\arguments{
+\item{gseaRes}{An output from \code{\link[clusterProfiler]{GSEA}}}
+
+\item{n}{A number of output to keep based on the \code{abs(NES)}}
+}
 \description{
 Subset GSEA output
 }
