@@ -26,6 +26,7 @@ git pull origin gh-pages
 cp -r docs/* .
 rm -rf docs/
 git stage *
-git reset HEAD vignettes/refinebioRseq_PCAmodel_hclust.rds   # large data file
+git reset HEAD vignettes/PCAmodel_C2.rds   # large data file
+git reset HEAD vignettes/PCAmodel_PLIERpriors.rds   # large data file
 git commit -m "update GitHub pages"
 git push origin gh-pages

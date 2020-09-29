@@ -202,7 +202,7 @@ run_gsea <- function(geneList, TERM2GENE, TERM2NAME,
 subsetPathways <- function(PCAmodel, ind = NULL, n = 10, both = FALSE) {
 
     if (is(PCAmodel, "PCAGenomicSignatures")) {
-        gsea_loading <- unlist(gsea(PCAmodel))
+        gsea_loading <- gsea(PCAmodel)
     } else if (class(PCAmodel) %in% c("data.frame", "matrix", "list")) {
         gsea_loading <- PCAmodel
     }

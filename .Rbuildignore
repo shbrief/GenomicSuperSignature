@@ -7,5 +7,5 @@
 ^\.travis\.yml$
 ^\.post_script_build.sh$
 update.sh
-/vignettes/refinebioRseq_PCAmodel_hclust.rds
+/vignettes/*.rds
 ^\.github$

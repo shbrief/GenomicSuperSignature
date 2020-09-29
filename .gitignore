@@ -1,5 +1,5 @@
 # large dataset
-/vignettes/refinebioRseq_PCAmodel_hclust.rds
+/vignettes/*.rds
 
 # History files
 .Rhistory

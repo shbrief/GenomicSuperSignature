@@ -15,7 +15,7 @@ output:
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
-  collapse = TRUE, comment = "#>", collapse = TRUE 
+  comment = "#>", collapse = TRUE, message = FALSE, warning = FALSE 
 )
 ```
 
@@ -35,29 +35,20 @@ library(PCAGenomicSignatures)
 
 
 ## Download PCAmodel
-Currently, you can download PCAGenomicSignatures (711.2 MB) from Google Cloud 
-bucket using AnVIL Bioconductor/R package. This model is built from 1,399 studies 
-(containing 75,433 samples) and 7,951 common genes from each of 1,399 study's top
-90% varying genes based on thier study-level standard deviation.
+Currently, you can download PCAGenomicSignatures from Google Cloud bucket using 
+`PCAGenomicSignatures::getModel` function. This model is built from top 20 PCs of 
+536 studies (containing 44,890 samples) containing 13,934 common genes from each 
+of 536 study's top 90% varying genes based on thier study-level standard deviation.
+There are two versions of this using different gene sets for GSEA-based annotation;
+MSigDB C2 (`C2`) and three priors from PLIER package (`PLIERpriors`). In this 
+vignette, we are using the `C2` annotated model.
 
-```{r message=FALSE, warning=FALSE}
-if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-
-BiocManager::install("AnVIL")
-```
-
-```{r load_model, eval=FALSE}
-library(AnVIL)
+```{r load_model}
 wd <- getwd()
-gsutil_cp("gs://genomic_signatures/refinebioRseq_PCAmodel_hclust.rds", wd)
-PCAmodel <- readRDS(file.path(wd, "refinebioRseq_PCAmodel_hclust.rds"))
-PCAmodel
-```
+fpath <- file.path(wd, "PCAmodel_C2.rds")
+if (!file.exists(fpath)) {getModel("C2", dir = wd)} 
 
-```{r echo=FALSE, message=FALSE, warning=FALSE}
-wd <- getwd()
-PCAmodel <- readRDS(file.path(wd, "refinebioRseq_PCAmodel_hclust.rds"))
+PCAmodel <- readRDS(file.path(wd, "PCAmodel_C2.rds"))
 PCAmodel
 ```
 
@@ -67,17 +58,11 @@ PCAmodel
 consists of 211 normal and tumor human B-cell phenotypes whose expression was profiled on Affymatrix
 HG-U95Av2 arrays, and it is contained in an ExpressionSet object with 6,249 features x 211 samples.
 
-```{r echo=FALSE}
-if (!"bcellViper" %in% rownames(installed.packages())) {
-  BiocManager::install("bcellViper")
-}
-```
-
 ```{r message=FALSE, warning=FALSE}
 suppressPackageStartupMessages(library(bcellViper))
 data(bcellViper)
 dset
-dataset <- exprs(dset)
+dataset <- exprs(dset)   # genes in SYMBOL
 ```
 
 You can provide your own expression dataset in any of these formats: simple matrix, 
@@ -90,30 +75,30 @@ a 'symbol' format.
 `heatmapTable` outputs a two panel table: top panel represents average silhouette
 width (avg.sw) and the bottom panel represents the validation score.
 
-You can subset the validation output in two ways - cutoff value and top ranked.
-If you specify cutoff value though `cutoff` argument of `heatmapTable`, any validation
-result above cutoff value will be shown. If you specify the number of top validation
-results (= n) through `num.out` argument of `heatmapTable`, the output will be a n-columned
-heatmap table.
+You can display the validation output in multiple ways. For example, if you specify 
+`scoreCutoff` argument of `heatmapTable`, any validation result above that score 
+will be shown. If you specify the number of top validation results (= n) 
+through `num.out` argument of `heatmapTable`, the output will be a n-columned
+heatmap table. You can also use the average silhouette width (`swCutoff`), the 
+size of cluster (`clsizecutoff`), PC from dataset (`whichPC`).   
 
-```{r fig.width=5, fig.height=3, message=FALSE, warning=FALSE}
+Here, we print out top 5 validated PCclusters with > 0 average silhouette width.
+
+```{r fig.width=4.5, fig.height=2.5, message=FALSE, warning=FALSE}
 val_all <- validate(dataset, PCAmodel)  
-heatmapTable(val_all, cutoff = 0.55)
-```
-
-```{r fig.width=4.5, fig.height=3}
-heatmapTable(val_all, num.out = 7)
+heatmapTable(val_all, num.out = 5, swCutoff = 0)
 ```
 
 ## Interactive Graph
 Under the default condition, `plotValidate` plots all non single-element clusters'
-validation results in a single graph, where x-axis represent average Silhouette
-width of the PCcluster (a quality control measure of the signature) and y-axis
+validation results in a single graph, where x-axis represent average silhouette
+width of the PCclusters (a quality control measure of the signature) and y-axis
 represent validation score. We recommend users to focus on PCclusters with higher
 validation score and use avgerage silhouette width as a secondary criteria. 
 
 ```{r plotValidate_function}
-plotValidate(val_all, interactive = TRUE)
+plotValidate(val_all, interactive = FALSE)
+plotValidate(val_all, interactive = TRUE, minClusterSize = 4)
 ```
 
 <br>
@@ -122,9 +107,8 @@ You can hover each data point for more information:
 - **sw** : the average silhouette width of the clutser   
 - **score** : the top validation score between 8 PCs of the dataset and the cluster   
 - **cl_size** : the size of the cluster, represented by the dot size   
-- **cl_num** : the PCcluster number of the model. You need this index to find more information
-about the cluster.      
-- **PC** : Test dataset's PC number that validate each PCcluster. Because we used 
+- **cl_num** : the PCcluster number. You need this index to find more information about the cluster.      
+- **PC** : Test dataset's PC number that validates the given PCcluster. Because we used 
 top 8 PCs of the test dataset, there are 8 categories. 
 
 If you double-click the PC legend on the right, you will enter an individual display
@@ -133,53 +117,153 @@ mode where you can add an additional group of data point by single-click.
 
 # MeSH terms in wordcloud
 You can draw a wordcloud with the enriched MeSH term of PCclusters that validate
-your dataset. `validatedIndex` function will output the validated index based on 
-`num.out` or `cutoff` argument in a same way as `heatmapTable`. Here we select the
-top 5 validated PCclusters.
+your dataset. Besed on the heatmap table above, 1st-3rd PCclusters (2538, 1139, 884) 
+show high validation scores with positive average silhouette widths, so we draw 
+wordclouds of those PCclusters using `drawWordcloud` function. You need to provide 
+PCAmodel and the index of the PCcluster you are interested in.
 
-```{r fig.width=4, fig.height=3}
-validated_ind <- validatedIndex(val_all, num.out = 5)
-heatmapTable(val_all, num.out = 5)
-```
-
-Because 2nd-4th PCclusters (2516, 2847, 1210) show high validation scores with positive
-average silhouette widths, we draw wordclouds of those PCclusters using `drawWordclout` 
-function. You need to provide PCAmodel and the index of the PCcluster you are interested in.
+Index of validated PCclusters can be easily collected using `validatedSingatures`
+function, which outputs the validated index based on `num.out`, PC from dataset 
+(`whichPC`) or any `*Cutoff` arguments in a same way as `heatmapTable`. 
 
 ```{r fig.height=8, fig.width=8}
-wc_ind <- validated_ind[2:4]
+validatedSig <- validatedSignatures(val_all, num.out = 3, swCutoff = 0)
+validated_ind <- validatedSig[,"cl_num"]
 
 set.seed(1)
-drawWordcloud(PCAmodel, wc_ind[1])
-drawWordcloud(PCAmodel, wc_ind[2])
-drawWordcloud(PCAmodel, wc_ind[3])
+drawWordcloud(PCAmodel, validated_ind[1])
+drawWordcloud(PCAmodel, validated_ind[2])
+drawWordcloud(PCAmodel, validated_ind[3])
 ```
 
 
 
 
-# GSEA (Coming soon...)
+# GSEA
+## Annotation on PCcluster1139
+Because the test dataset is human B-cell expression data, we tried the model annotated
+with blood-associated gene sets. 
 
-```{r message=FALSE, warning=FALSE, echo=FALSE, eval=FALSE}
-library(org.Hs.eg.db)
-library(ggplot2)
-library(forcats)
-library(S4Vectors)
+```{r message=FALSE, warning=FALSE}
+wd <- getwd()
+fpath <- file.path(wd, "PCAmodel_PLIERpriors.rds")
+if (!file.exists(fpath)) {getModel("PLIERpriors", dir = wd)} 
 
-source('inst/scripts/funcForGSEA_plot.R')
-msigdb_gsea(wc_ind[2], PCAmodel, category = "C2")
+PCAmodel <- readRDS(file.path(wd, "PCAmodel_PLIERpriors.rds"))
+PCAmodel
 ```
 
-## MSigDB C2
-```{r message=FALSE, warning=FALSE, eval=FALSE}
-msigdb_gsea(wc_ind[1], PCAmodel, category = "C2")
-msigdb_gsea(wc_ind[2], PCAmodel, category = "C2")
-msigdb_gsea(wc_ind[3], PCAmodel, category = "C2")
+You can directly access the GSEA outputs for each PCcluster using the accessor, `gsea`.
+
+```{r}
+PCNum <- validated_ind[2]   # PCcluster1139
+res <- gsea(PCAmodel)[[PCNum]]   
+head(res)
 ```
 
-## MSigDB C7
-```{r message=FALSE, warning=FALSE, eval=FALSE}
-msigdb_gsea(wc_ind[1], PCAmodel, category = "C7")
-msigdb_gsea(wc_ind[2], PCAmodel, category = "C7")
-msigdb_gsea(wc_ind[3], PCAmodel, category = "C7")
+
+Find the PCclusters annotated with the keyword-containing pathways. Without the `k` argument, 
+the data frame containing the number of PCclusters (`Freq` column) with the different numbers 
+of keyword-containing, enriched pathways (`# of keyword-containing pathways` column).
+
+```{r}
+findSignature(PCAmodel, "Bcell")
+findSignature(PCAmodel, "Bcell", k = 5)
 ```
+
+Enriched pathways of the given PCAmodel, ordered by NES. If `both=TRUE`, both the
+top and bottom enriched pathways will be printed.
+
+```{r}
+subsetPathways(PCAmodel, ind = PCNum, n = 3, both = TRUE)
+subsetPathways(PCAmodel, ind = 695, n = 3, both = TRUE)
+subsetPathways(PCAmodel, ind = 1994, n = 3, both = TRUE)
+```
+
+
+```{r}
+annotatePCcluster(PCAmodel, ind = PCNum, n = 3, abs = FALSE)
+annotatePCcluster(PCAmodel, ind = 695, n = 3, abs = FALSE)
+annotatePCcluster(PCAmodel, ind = 1994, n = 3, abs = FALSE)
+```
+
+
+
+
+
+
+
+
+
+
+```{r collapse=FALSE, echo=FALSE, eval=FALSE}
+### Ordered by NES
+msC2_2nes <- msC2_2[order(msC2_2$NES, decreasing = TRUE),]
+ind2 <- grep(keyword, msC2_2nes$Description, ignore.case = TRUE) # index containing keyword
+
+print(paste("The number of enriched pathways =", nrow(msC2_2nes)))
+print(paste("The number of enriched pathways containing keyword =", length(ind2)))
+
+### Ordered by qvalues
+msC2_2qval <- msC2_2[order(msC2_2$qvalues, decreasing = FALSE),]
+ind2 <- grep(keyword, msC2_2qval$Description, ignore.case = TRUE) # index containing keyword
+
+print(paste("The number of enriched pathways =", nrow(msC2_2qval)))
+print(paste("The number of enriched pathways containing keyword =", length(ind2)))
+```
+
+
+
+
+
+
+
+```{r echo=FALSE, eval=FALSE}
+res1 <- msigdb_gsea(validated_ind[1], PCAmodel, category = "C2")
+dim(res1)
+
+gseaSub <- subsetGSEA(res1, n = 20)
+gseaBarplot(gseaRes = gseaSub)
+res_os <- gseaNetwork(gseaRes = gseaSub, similarity_metric = "overlap_similarity", similarity_cutoff = 0.3)
+res_js <- gseaNetwork(gseaRes = gseaSub, similarity_metric = "jaccard_similarity", similarity_cutoff = 0.3)
+
+visNetwork::visSave(res_os, file = "res_os.html")
+htmltools::includeHTML("res_os.html")
+
+visNetwork::visSave(res_js, file = "res_js.html")
+htmltools::includeHTML("res_js.html")
+```
+
+
+```{r echo=FALSE, eval=FALSE}
+res2 <- msigdb_gsea(validated_ind[2], PCAmodel, category = "C2")
+dim(res2)
+
+gseaSub <- subsetGSEA(res2, n = 20)
+gseaBarplot(gseaRes = gseaSub)
+gseaNetwork(gseaRes = gseaSub, similarity_metric = "overlap_similarity", similarity_cutoff = 0.3)
+gseaNetwork(gseaRes = gseaSub, similarity_metric = "jaccard_similarity", similarity_cutoff = 0.3)
+```
+
+
+```{r echo=FALSE, eval=FALSE}
+res3 <- msigdb_gsea(validated_ind[3], PCAmodel, category = "C2")
+dim(res3)
+
+gseaSub <- subsetGSEA(res3, n = 20)
+gseaBarplot(gseaRes = gseaSub)
+gseaNetwork(gseaRes = gseaSub, similarity_metric = "overlap_similarity", similarity_cutoff = 0.3)
+gseaNetwork(gseaRes = gseaSub, similarity_metric = "jaccard_similarity", similarity_cutoff = 0.3)
+```
+
+
+```{r echo=FALSE, eval=FALSE}
+res4 <- msigdb_gsea(validated_ind[4], PCAmodel, category = "C2")
+dim(res4)
+
+gseaSub <- subsetGSEA(res4, n = 20)
+gseaBarplot(gseaRes = gseaSub)
+gseaNetwork(gseaRes = gseaSub, similarity_metric = "overlap_similarity", similarity_cutoff = 0.3)
+gseaNetwork(gseaRes = gseaSub, similarity_metric = "jaccard_similarity", similarity_cutoff = 0.3)
+```
+

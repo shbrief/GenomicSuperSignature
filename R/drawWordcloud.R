@@ -20,16 +20,16 @@ PCinCluster <- function(PCAmodel, ind) {
 #' @param ind An index of PCcluster
 #' @param rm.noise An integer. Any MeSH term found less than the given value here
 #' will be excluded from wordcloud. If \code{rm.noise = 0}, all the MeSH terms
-#' in PCcluster will be used.
+#' in PCcluster will be used. Default is 4.
 #' @param weighted A logical. If \code{TRUE}, MeSH terms from each study are
 #' weighted based on the variance explained by the principle component of the
-#' study contributing a give PCcluster.
+#' study contributing a give PCcluster. Default is \code{TRUE}.
 #'
 #' @return A table with two columns, \code{word} and \code{freq}. MeSH terms in
 #' the defined PCcluster (by \code{ind} argument) is ordered based on their frequency.
 #'
 #' @export
-meshTable <- function(PCAmodel, ind, rm.noise, weighted) {
+meshTable <- function(PCAmodel, ind, rm.noise = 4, weighted = TRUE) {
 
     ### Create a 'universe' for bag-of-words model
     bow <- unlist(S4Vectors::metadata(PCAmodel)$MeSH_freq)  # frequency of the `name` in the background
