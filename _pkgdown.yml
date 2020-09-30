@@ -35,21 +35,27 @@ reference:
     contents:
       - .loadingCor
       - calculateScore
+      - getModel
       - validate
-  - title: Visualization
+  - title: Visualization and Extract Output
     contents:
+      - annotatePC
+      - annotatePCcluster
       - drawWordcloud
       - extractPC
+      - findKeywordInPCcluster
+      - findSignature
       - heatmapTable
       - makeGeneList
       - meshTable
+      - plotAnnotatedPCA
       - plotValidate
       - run_gsea
+      - sampleScoreHeatmap
+      - subsetGSEA
       - subsetPathways
-      - validatedIndex
+      - validatedSignatures
       - msigdb_gsea
-      - gseaBarplot
-      - gseaNetwork
 
 navbar:
   title: ~
