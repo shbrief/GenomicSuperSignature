@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>z-score each row of the data — rowNorm • PCAGenomicSignatures</title>
+<title>Annotate top PCs from the dataset — annotatePC • PCAGenomicSignatures</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,9 @@
 
 
 
-<meta property="og:title" content="z-score each row of the data — rowNorm" />
-<meta property="og:description" content="z-score each row of the data" />
+<meta property="og:title" content="Annotate top PCs from the dataset — annotatePC" />
+<meta property="og:description" content="This function finds the PCcluster scored highest with the top PCs of the dataset,
+including PCclusters with the negative average silhouette." />
 
 
 
@@ -117,29 +118,76 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>z-score each row of the data</h1>
-    <small class="dont-index">Source: <a href='https://github.com/shbrief/PCAGenomicSignatures/blob/master/R/rowNorm.R'><code>R/rowNorm.R</code></a></small>
-    <div class="hidden name"><code>rowNorm.Rd</code></div>
+    <h1>Annotate top PCs from the dataset</h1>
+    <small class="dont-index">Source: <a href='https://github.com/shbrief/PCAGenomicSignatures/blob/master/R/annotatePC.R'><code>R/annotatePC.R</code></a></small>
+    <div class="hidden name"><code>annotatePC.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>z-score each row of the data</p>
+    <p>This function finds the PCcluster scored highest with the top PCs of the dataset,
+including PCclusters with the negative average silhouette.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>rowNorm</span>(<span class='kw'>x</span>)</pre>
+    <pre class="usage"><span class='fu'>annotatePC</span>(
+  <span class='kw'>PCnum</span>,
+  <span class='kw'>val_all</span>,
+  <span class='kw'>PCAmodel</span>,
+  n = <span class='fl'>5</span>,
+  scoreCutoff = <span class='fl'>0.5</span>,
+  nesCutoff = <span class='kw'>NULL</span>,
+  simplify = <span class='fl'>TRUE</span>,
+  abs = <span class='fl'>FALSE</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>A gene-expression matrix with genes in rows and samples in columns</p></td>
+      <th>PCnum</th>
+      <td><p>PC number of your dataset you want to get the annotation results. It
+should be an integer value between 1 and 8.</p></td>
+    </tr>
+    <tr>
+      <th>val_all</th>
+      <td><p>The output from <code><a href='validate.html'>validate</a></code></p></td>
+    </tr>
+    <tr>
+      <th>PCAmodel</th>
+      <td><p>The PCAmodel used to generate the input for the argument, <code>val_all</code>.</p></td>
+    </tr>
+    <tr>
+      <th>n</th>
+      <td><p>An integer. Default is 5. The number of the top enriched pathaways to
+print out. If there are fewer than n pathways passed the cutoff, it will print out <code>NA</code>.</p></td>
+    </tr>
+    <tr>
+      <th>scoreCutoff</th>
+      <td><p>A numeric value for the minimum correlation. Default is 0.5.</p></td>
+    </tr>
+    <tr>
+      <th>nesCutoff</th>
+      <td><p>A numeric value for the minimum NES. Default is <code>NULL</code> and
+the suggested value is 3.</p></td>
+    </tr>
+    <tr>
+      <th>simplify</th>
+      <td><p>A logical. Under default (<code>TRUE</code>), the output will be a
+data frame with the number of column same as the length of <code>PCnum</code> argument,
+and the number of row same as the <code>n</code> argument. If it is set to <code>FALSE</code>,
+the output will be a list with the length of <code>PCnum</code> argument, where each
+element is a data frame containing detailed GSEA output of enriched pathways.</p></td>
+    </tr>
+    <tr>
+      <th>abs</th>
+      <td><p>Default is <code>FALSE</code>. If it's set to <code>TRUE</code>, the enriched
+pathways will be listed based on <code><a href='https://rdrr.io/r/base/MathFun.html'>abs(NES)</a></code>.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><a href='https://github.com/shbrief/PLIER/blob/master/R/Allfuncs.R'>https://github.com/shbrief/PLIER/blob/master/R/Allfuncs.R</a></p>
+    <p>A data frame of a list based on the <code>simplify</code> argument. Check the
+output detail above.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

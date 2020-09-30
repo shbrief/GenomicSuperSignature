@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">PCAGenomicSignatures</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.5</span>
       </span>
     </div>
 
@@ -118,7 +118,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Validating new dataset</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/shbrief/PCAGenomicSignatures/blob/master/R/validate.R'><code>R/validate.R</code></a></small>
     <div class="hidden name"><code>dot-loadingCor.Rd</code></div>
     </div>
 
@@ -126,7 +126,7 @@
     <p>Validating new dataset</p>
     </div>
 
-    <pre class="usage"><span class='fu'>.loadingCor</span>(<span class='no'>dataset</span>, <span class='no'>avgLoading</span>, <span class='no'>method</span>)</pre>
+    <pre class="usage"><span class='fu'>.loadingCor</span>(<span class='kw'>dataset</span>, <span class='kw'>avgLoading</span>, method = <span class='st'>"pearson"</span>, scale = <span class='fl'>FALSE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -145,6 +145,11 @@ SummarizedExperiment, RangedSummarizedExperiment, or matrix.</p></td>
       <th>method</th>
       <td><p>A character string indicating which correlation coefficient is
 to be computed. One of "pearson" (default), "kendall", or "spearman": can be abbreviated.</p></td>
+    </tr>
+    <tr>
+      <th>scale</th>
+      <td><p>Default is <code>FALSE</code>. If it is set to <code>TRUE</code>, dataset will
+be row normalized by <a href='rowNorm.html'>rowNorm</a> function.</p></td>
     </tr>
     </table>
 
@@ -168,7 +173,7 @@ argument) between PCclusters (row) and the top 8 PCs from the datasets (column)<
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

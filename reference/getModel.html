@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>z-score each row of the data — rowNorm • PCAGenomicSignatures</title>
+<title>Download the PCAmodel from GCP — getModel • PCAGenomicSignatures</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="z-score each row of the data — rowNorm" />
-<meta property="og:description" content="z-score each row of the data" />
+<meta property="og:title" content="Download the PCAmodel from GCP — getModel" />
+<meta property="og:description" content="Download the PCAmodel from GCP" />
 
 
 
@@ -117,29 +117,38 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>z-score each row of the data</h1>
-    <small class="dont-index">Source: <a href='https://github.com/shbrief/PCAGenomicSignatures/blob/master/R/rowNorm.R'><code>R/rowNorm.R</code></a></small>
-    <div class="hidden name"><code>rowNorm.Rd</code></div>
+    <h1>Download the PCAmodel from GCP</h1>
+    <small class="dont-index">Source: <a href='https://github.com/shbrief/PCAGenomicSignatures/blob/master/R/getModel.R'><code>R/getModel.R</code></a></small>
+    <div class="hidden name"><code>getModel.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>z-score each row of the data</p>
+    <p>Download the PCAmodel from GCP</p>
     </div>
 
-    <pre class="usage"><span class='fu'>rowNorm</span>(<span class='kw'>x</span>)</pre>
+    <pre class="usage"><span class='fu'>getModel</span>(prior = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"C2"</span>, <span class='st'>"PLIERpriors"</span>), <span class='kw'>dir</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>A gene-expression matrix with genes in rows and samples in columns</p></td>
+      <th>prior</th>
+      <td><p>The name of gene sets used to annotate PCAGenomicSignatures. Currently
+there are two available options.</p><ul>
+<li><p><code>C2</code> : MSigDB C2 (curated gene sets)</p></li>
+<li><p><code>PLIERpriors</code> : bloodCellMarkersIRISDMAP, svmMarkers, and canonicalPathways</p></li>
+</ul></td>
+    </tr>
+    <tr>
+      <th>dir</th>
+      <td><p>A path to the directory where PCAGenomicSginatures object will be downloaded.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><a href='https://github.com/shbrief/PLIER/blob/master/R/Allfuncs.R'>https://github.com/shbrief/PLIER/blob/master/R/Allfuncs.R</a></p>
+    <p>PCAGenomicSignatures object in <code>.rds</code> format saved in the user
+defined location.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

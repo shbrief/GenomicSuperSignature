@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">PCAGenomicSignatures</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.5</span>
       </span>
     </div>
 
@@ -186,6 +186,12 @@
       <tr>
         
         <td>
+          <p><code><a href="GenomicSignatures-methods.html">model(<i>&lt;GenomicSignatures&gt;</i>)</a></code> <code><a href="GenomicSignatures-methods.html">colData(<i>&lt;GenomicSignatures&gt;</i>)</a></code> <code><a href="GenomicSignatures-methods.html">metadata(<i>&lt;GenomicSignatures&gt;</i>)</a></code> <code><a href="GenomicSignatures-methods.html">geneSets(<i>&lt;GenomicSignatures&gt;</i>)</a></code> <code><a href="GenomicSignatures-methods.html">updateNote(<i>&lt;GenomicSignatures&gt;</i>)</a></code> <code><a href="GenomicSignatures-methods.html">`metadata&lt;-`(<i>&lt;GenomicSignatures&gt;</i>)</a></code> <code><a href="GenomicSignatures-methods.html">`colData&lt;-`(<i>&lt;GenomicSignatures&gt;</i>,<i>&lt;ANY&gt;</i>)</a></code> <code><a href="GenomicSignatures-methods.html">`geneSets&lt;-`(<i>&lt;GenomicSignatures&gt;</i>)</a></code> <code><a href="GenomicSignatures-methods.html">`updateNote&lt;-`(<i>&lt;GenomicSignatures&gt;</i>)</a></code> </p>
+        </td>
+        <td><p>Methods and accesors for <code>GenomicSignatures</code> object</p></td>
+      </tr><tr>
+        
+        <td>
           <p><code><a href="PCAGenomicSignatures-methods.html">`studies&lt;-`(<i>&lt;PCAGenomicSignatures&gt;</i>)</a></code> <code><a href="PCAGenomicSignatures-methods.html">`silhouetteWidth&lt;-`(<i>&lt;PCAGenomicSignatures&gt;</i>)</a></code> <code><a href="PCAGenomicSignatures-methods.html">`gsea&lt;-`(<i>&lt;PCAGenomicSignatures&gt;</i>)</a></code> <code><a href="PCAGenomicSignatures-methods.html">`trainingData&lt;-`(<i>&lt;PCAGenomicSignatures&gt;</i>)</a></code> <code><a href="PCAGenomicSignatures-methods.html">`mesh&lt;-`(<i>&lt;PCAGenomicSignatures&gt;</i>)</a></code> <code><a href="PCAGenomicSignatures-methods.html">`PCAsummary&lt;-`(<i>&lt;PCAGenomicSignatures&gt;</i>)</a></code> <code><a href="PCAGenomicSignatures-methods.html">studies(<i>&lt;PCAGenomicSignatures&gt;</i>)</a></code> <code><a href="PCAGenomicSignatures-methods.html">silhouetteWidth(<i>&lt;PCAGenomicSignatures&gt;</i>)</a></code> <code><a href="PCAGenomicSignatures-methods.html">gsea(<i>&lt;PCAGenomicSignatures&gt;</i>)</a></code> <code><a href="PCAGenomicSignatures-methods.html">trainingData(<i>&lt;PCAGenomicSignatures&gt;</i>)</a></code> <code><a href="PCAGenomicSignatures-methods.html">mesh(<i>&lt;PCAGenomicSignatures&gt;</i>)</a></code> <code><a href="PCAGenomicSignatures-methods.html">PCAsummary(<i>&lt;PCAGenomicSignatures&gt;</i>)</a></code> <code><a href="PCAGenomicSignatures-methods.html">show(<i>&lt;PCAGenomicSignatures&gt;</i>)</a></code> </p>
         </td>
         <td><p>Methods and accesors for <code>PCAGenomicSignatures</code> object</p></td>
@@ -194,7 +200,7 @@
       <tr>
         <th colspan="2">
           <h2 id="section-model-building" class="hasAnchor"><a href="#section-model-building" class="anchor"></a>Model Building</h2>
-          <p class="section-desc"><p>Functions for PGCGenomicSignatures model buildling</p></p>
+          <p class="section-desc"><p>Functions for PCAGenomicSignatures model buildling</p></p>
         </th>
       </tr>
       
@@ -255,7 +261,7 @@
       <tr>
         <th colspan="2">
           <h2 id="section-model-application" class="hasAnchor"><a href="#section-model-application" class="anchor"></a>Model Application</h2>
-          <p class="section-desc"><p>Functions for applying PGCGenomicSignatures model to a new data</p></p>
+          <p class="section-desc"><p>Functions for applying PCAGenomicSignatures model to a new data</p></p>
         </th>
       </tr>
       
@@ -276,6 +282,25 @@
         </td>
         <td><p>Calculate the validation score for a new dataset</p></td>
       </tr><tr>
+        
+        <td>
+          <p><code><a href="validate.html">validate()</a></code> </p>
+        </td>
+        <td><p>Validate new datasets</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-visualization" class="hasAnchor"><a href="#section-visualization" class="anchor"></a>Visualization</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      
+      
+    </tbody><tbody>
+      
+      
+      <tr>
         
         <td>
           <p><code><a href="drawWordcloud.html">drawWordcloud()</a></code> </p>
@@ -326,21 +351,9 @@
       </tr><tr>
         
         <td>
-          <p><code><a href="validate.html">validate()</a></code> </p>
-        </td>
-        <td><p>Validate new datasets</p></td>
-      </tr><tr>
-        
-        <td>
-          <p><code><a href="validatedIndex.html">validatedIndex()</a></code> </p>
-        </td>
-        <td><p>Validation result in data frame</p></td>
-      </tr><tr>
-        
-        <td>
           <p><code><a href="msigdb_gsea.html">msigdb_gsea()</a></code> </p>
         </td>
-        <td><p>Barplot GSEA output</p></td>
+        <td><p>MSigDB GSEA results</p></td>
       </tr>
     </tbody>
     </table>
@@ -360,7 +373,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

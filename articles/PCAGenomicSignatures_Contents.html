@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">PCAGenomicSignatures</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.5</span>
       </span>
     </div>
 
@@ -79,9 +79,9 @@
       <h1 data-toc-skip>PCAGenomicSignatures - Contents</h1>
                         <h4 class="author">Sehyun Oh</h4>
             
-            <h4 class="date">August 04, 2020</h4>
+            <h4 class="date">September 30, 2020</h4>
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/shbrief/PCAGenomicSignatures/blob/master/vignettes/PCAGenomicSignatures_Contents.Rmd"><code>vignettes/PCAGenomicSignatures_Contents.Rmd</code></a></small>
       <div class="hidden name"><code>PCAGenomicSignatures_Contents.Rmd</code></div>
 
     </div>
@@ -94,36 +94,38 @@
 <div id="install-and-load-package" class="section level2">
 <h2 class="hasAnchor">
 <a href="#install-and-load-package" class="anchor"></a>Install and load package</h2>
-<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="kw">if</span> (!<span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="st">"devtools"</span>)) {
+<div class="sourceCode" id="cb1"><pre class="downlit">
+<span class="co">if</span> (<span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/library.html">require</a></span>(<span class="st"><a href="https://devtools.r-lib.org">"devtools"</a></span>)) {
   <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"devtools"</span>)
 }
-<span class="kw pkg">devtools</span><span class="kw ns">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"shbrief/PCAGenomicSignatures"</span>)</pre></body></html></div>
-<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">PCAGenomicSignatures</span>)</pre></body></html></div>
+<span class="kw">devtools</span>::<span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span>(<span class="st">"shbrief/PCAGenomicSignatures"</span>)
+</pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="kw"><a href="https://github.com/shbrief/PCAGenomicSignatures">PCAGenomicSignatures</a></span>)
+</pre></div>
 </div>
 <div id="download-pcamodel" class="section level2">
 <h2 class="hasAnchor">
 <a href="#download-pcamodel" class="anchor"></a>Download PCAmodel</h2>
-<p>Currently, you can download PCAGenomicSignatures (711.2 MB) from Google Cloud bucket using AnVIL Bioconductor/R package. This model is built from 1,399 studies (containing 75,433 samples) and 7,951 common genes from each of 1,399 study’s top 90% varying genes based on thier study-level standard deviation.</p>
-<div class="sourceCode" id="cb3"><html><body><pre class="r"><span class="kw">if</span> (!<span class="fu"><a href="https://rdrr.io/r/base/ns-load.html">requireNamespace</a></span>(<span class="st">"BiocManager"</span>, <span class="kw">quietly</span> <span class="kw">=</span> <span class="fl">TRUE</span>))
-    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"BiocManager"</span>)
+<p>Currently, you can download PCAGenomicSignatures from Google Cloud bucket using <code><a href="../reference/getModel.html">PCAGenomicSignatures::getModel</a></code> function. This model is built from top 20 PCs of 536 studies (containing 44,890 samples) containing 13,934 common genes from each of 536 study’s top 90% varying genes based on thier study-level standard deviation. There are two versions of this using different gene sets for GSEA-based annotation; MSigDB C2 (<code>C2</code>) and three priors from PLIER package (<code>PLIERpriors</code>). In this vignette, we are using the <code>C2</code> annotated model.</p>
+<div class="sourceCode" id="cb3"><pre class="downlit">
+<span class="kw">wd</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/getwd.html">getwd</a></span>()
+<span class="kw">fpath</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(<span class="kw">wd</span>, <span class="st">"PCAmodel_C2.rds"</span>)
+<span class="co">if</span> (<span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/files.html">file.exists</a></span>(<span class="kw">fpath</span>)) {<span class="fu"><a href="../reference/getModel.html">getModel</a></span>(<span class="st">"C2"</span>, dir = <span class="kw">wd</span>)} 
 
-<span class="kw pkg">BiocManager</span><span class="kw ns">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html">install</a></span>(<span class="st">"AnVIL"</span>)</pre></body></html></div>
-<div class="sourceCode" id="cb4"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="no">AnVIL</span>)
-<span class="no">wd</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/getwd.html">getwd</a></span>()
-<span class="fu"><a href="https://rdrr.io/pkg/AnVIL/man/gsutil.html">gsutil_cp</a></span>(<span class="st">"gs://genomic_signatures/refinebioRseq_PCAmodel_hclust.rds"</span>, <span class="no">wd</span>)
-<span class="no">PCAmodel</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(<span class="no">wd</span>, <span class="st">"refinebioRseq_PCAmodel_hclust.rds"</span>))
-<span class="no">PCAmodel</span></pre></body></html></div>
+<span class="kw">PCAmodel</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span>(<span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span>(<span class="kw">wd</span>, <span class="st">"PCAmodel_C2.rds"</span>))
+<span class="kw">PCAmodel</span>
+</pre></div>
 <pre><code>#&gt; class: PCAGenomicSignatures 
-#&gt; dim: 7951 12436 
+#&gt; dim: 13934 4764 
 #&gt; metadata(6): cluster size ... MeSH_freq updateNote
 #&gt; assays(1): model
-#&gt; rownames(7951): 5S_rRNA 7SK ... SLC16A3 SLC38A2
+#&gt; rownames(13934): CASKIN1 DDX3Y ... CTC-457E21.9 AC007966.1
 #&gt; rowData names(0):
-#&gt; colnames(12436): PCcluster1 PCcluster2 ... PCcluster12435
-#&gt;   PCcluster12436
-#&gt; colData names(3): PCcluster studies silhouetteWidth
+#&gt; colnames(4764): PCcluster1 PCcluster2 ... PCcluster4763 PCcluster4764
+#&gt; colData names(4): PCcluster studies silhouetteWidth gsea
 #&gt; trainingData(2): PCAsummary MeSH
-#&gt; trainingData names(1399): DRP000499 ERP023890 ... SRP188526 SRP189762</code></pre>
+#&gt; trainingData names(536): DRP000987 SRP059172 ... SRP164913 SRP188526</code></pre>
 </div>
 <div id="quick-summary-of-main-information" class="section level2">
 <h2 class="hasAnchor">
@@ -133,7 +135,7 @@
 </li>
 <li>studies(PCAmodel) : a list of character vectors, containing studies in each loading<br>
 </li>
-<li>gsea(PCAmodel) : a list of gseaResult objects of each loading (coming soon!)<br>
+<li>gsea(PCAmodel) : a list of gseaResult objects of each loading<br>
 </li>
 <li>mesh(PCAmodel) : a list of data frames containing MeSH information associated with each study<br>
 </li>
@@ -147,117 +149,211 @@
 <div id="pcclusters-avgloadings-model" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pcclusters-avgloadings-model" class="anchor"></a>PCclusters/ avgLoadings/ model</h2>
-<p>Average loadings (= avgLoading = PCclusters) is the main part of GenomicSignatures, serving as an index connecting new datasets and the existing database used to build it. You can access it through <code><a href="../reference/PCAGenomicSignatures-methods.html">PCAGenomicSignatures::model</a></code> (equivalent of <code><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html">SummarizedExperiment::assay</a></code>). Rows are genes and columns are avgLoading vectors.</p>
-<p>Here, PCAmodel consists of 7,951 genes and 12,436 PCclusters.</p>
-<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span>(<span class="fu"><a href="../reference/PCAGenomicSignatures-methods.html">model</a></span>(<span class="no">PCAmodel</span>))
+<p>Average loadings (= avgLoading = PCclusters) is the main part of GenomicSignatures, serving as an index connecting new datasets and the existing database. You can access it through <code><a href="../reference/GenomicSignatures-methods.html">PCAGenomicSignatures::model</a></code> (equivalent of <code><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html">SummarizedExperiment::assay</a></code>). Rows are genes and columns are avgLoading vectors.</p>
+<p>Here, PCAmodel consists of 13,934 genes and 4,764 PCclusters.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span>(<span class="fu"><a href="../reference/GenomicSignatures-methods.html">model</a></span>(<span class="kw">PCAmodel</span>))
 <span class="co">#&gt; [1] "matrix" "array"</span>
-<span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span>(<span class="fu"><a href="../reference/PCAGenomicSignatures-methods.html">model</a></span>(<span class="no">PCAmodel</span>))
-<span class="co">#&gt; [1]  7951 12436</span>
-<span class="fu"><a href="../reference/PCAGenomicSignatures-methods.html">model</a></span>(<span class="no">PCAmodel</span>)[<span class="fl">1</span>:<span class="fl">4</span>, <span class="fl">1</span>:<span class="fl">4</span>]
-<span class="co">#&gt;            PCcluster1   PCcluster2    PCcluster3   PCcluster4</span>
-<span class="co">#&gt; 5S_rRNA  0.0014536985  0.007203501  6.277371e-03 -0.019858317</span>
-<span class="co">#&gt; 7SK     -0.0028296151 -0.004445093  4.778814e-03  0.008085082</span>
-<span class="co">#&gt; A1CF     0.0026854929  0.007484668  3.097421e-03  0.001099322</span>
-<span class="co">#&gt; A2M      0.0003207426 -0.002994387 -6.339345e-05  0.003361415</span></pre></body></html></div>
+<span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span>(<span class="fu"><a href="../reference/GenomicSignatures-methods.html">model</a></span>(<span class="kw">PCAmodel</span>))
+<span class="co">#&gt; [1] 13934  4764</span>
+<span class="fu"><a href="../reference/GenomicSignatures-methods.html">model</a></span>(<span class="kw">PCAmodel</span>)[<span class="fl">1</span><span class="op">:</span><span class="fl">4</span>, <span class="fl">1</span><span class="op">:</span><span class="fl">4</span>]
+<span class="co">#&gt;          PCcluster1    PCcluster2   PCcluster3   PCcluster4</span>
+<span class="co">#&gt; CASKIN1 0.002449532 -2.845471e-03  0.001601715 -0.009366156</span>
+<span class="co">#&gt; DDX3Y   0.006093438  1.870528e-03 -0.004346019 -0.006094526</span>
+<span class="co">#&gt; MDGA1   0.009999975  2.610302e-03 -0.002831447 -0.006710757</span>
+<span class="co">#&gt; EIF1AY  0.007923652  8.507021e-05  0.002322275 -0.007850784</span>
+</pre></div>
 </div>
 <div id="metadata" class="section level2">
 <h2 class="hasAnchor">
 <a href="#metadata" class="anchor"></a>Metadata</h2>
 <p>Metadata slot of the PCAGenomicSignatures object contains information related to the model buildling.</p>
-<div class="sourceCode" id="cb7"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="fu">metadata</span>(<span class="no">PCAmodel</span>))
+<div class="sourceCode" id="cb6"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span>(<span class="fu"><a href="../reference/GenomicSignatures-methods.html">metadata</a></span>(<span class="kw">PCAmodel</span>))
 <span class="co">#&gt; [1] "cluster"    "size"       "k"          "n"          "MeSH_freq" </span>
-<span class="co">#&gt; [6] "updateNote"</span></pre></body></html></div>
+<span class="co">#&gt; [6] "updateNote"</span>
+</pre></div>
 <p><code>cluster</code> contains the cluster membership of each PCs from training dataset and <code>size</code> is the integer vector with the length of clusters, containing the size of each cluster. <code>k</code> is the number of clusters and <code>n</code> is the number of top PCs kept from each study in training dataset. <code>MeSH_freq</code> is the information on the frequency of MeSH terms assigned to training dataset. You can see that MeSH term ‘Humans’ and ‘RNA-seq’ are top ranked, which is very expected because the training dataset of this model is Human RNA sequencing. <code>updateNote</code> tells you a brief note on the given model’s specification.</p>
-<div class="sourceCode" id="cb8"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="fu">metadata</span>(<span class="no">PCAmodel</span>)$<span class="no">cluster</span>)
-<span class="co">#&gt; DRP000499.PC1 DRP000499.PC2 DRP000499.PC3 DRP000499.PC4 DRP000499.PC5 </span>
+<div class="sourceCode" id="cb7"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="fu"><a href="../reference/GenomicSignatures-methods.html">metadata</a></span>(<span class="kw">PCAmodel</span>)<span class="op">$</span><span class="kw">cluster</span>)
+<span class="co">#&gt; DRP000987.PC1 DRP000987.PC2 DRP000987.PC3 DRP000987.PC4 DRP000987.PC5 </span>
 <span class="co">#&gt;             1             2             3             4             5 </span>
-<span class="co">#&gt; DRP000499.PC6 </span>
+<span class="co">#&gt; DRP000987.PC6 </span>
 <span class="co">#&gt;             6</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="fu">metadata</span>(<span class="no">PCAmodel</span>)$<span class="no">size</span>)
-<span class="co">#&gt; [1] 7 7 6 7 2 2</span>
-<span class="fu">metadata</span>(<span class="no">PCAmodel</span>)$<span class="no">k</span>
-<span class="co">#&gt; [1] 12436</span>
-<span class="fu">metadata</span>(<span class="no">PCAmodel</span>)$<span class="no">n</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="fu"><a href="../reference/GenomicSignatures-methods.html">metadata</a></span>(<span class="kw">PCAmodel</span>)<span class="op">$</span><span class="kw">size</span>)
+<span class="co">#&gt; [1]  6 21  4  7  3  3</span>
+<span class="fu"><a href="../reference/GenomicSignatures-methods.html">metadata</a></span>(<span class="kw">PCAmodel</span>)<span class="op">$</span><span class="kw">k</span>
+<span class="co">#&gt; [1] 4764</span>
+<span class="fu"><a href="../reference/GenomicSignatures-methods.html">metadata</a></span>(<span class="kw">PCAmodel</span>)<span class="op">$</span><span class="kw">n</span>
 <span class="co">#&gt; [1] 20</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="fu">metadata</span>(<span class="no">PCAmodel</span>)$<span class="no">MeSH_freq</span>)
+<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="fu"><a href="../reference/GenomicSignatures-methods.html">metadata</a></span>(<span class="kw">PCAmodel</span>)<span class="op">$</span><span class="kw">MeSH_freq</span>)
 <span class="co">#&gt; </span>
 <span class="co">#&gt;                 Humans                RNA-Seq          Transcriptome </span>
 <span class="co">#&gt;                   1163                    591                    576 </span>
 <span class="co">#&gt;                    RNA Whole Exome Sequencing        Sequencing, RNA </span>
 <span class="co">#&gt;                    372                    284                    277</span>
-<span class="fu"><a href="../reference/PCAGenomicSignatures-methods.html">updateNote</a></span>(<span class="no">PCAmodel</span>)
-<span class="co">#&gt; [1] "1,399 refine.bio studies/ no control/ no annotation-based gene subset"</span></pre></body></html></div>
+<span class="fu"><a href="../reference/GenomicSignatures-methods.html">updateNote</a></span>(<span class="kw">PCAmodel</span>)  
+<span class="co">#&gt; [1] "536 refine.bio studies/ top 90% varying genes/ GSEA with MSigDB C2"</span>
+</pre></div>
 </div>
 <div id="studies-in-each-loading" class="section level2">
 <h2 class="hasAnchor">
 <a href="#studies-in-each-loading" class="anchor"></a>Studies in each loading</h2>
-<p>You can find which studies are in each cluster using <code><a href="../reference/PCAGenomicSignatures-methods.html">studies(x)</a></code> method. Output is a list with the length of clusters, where each element is a character vector containing the name of studies in each cluster.</p>
-<div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="fu"><a href="../reference/PCAGenomicSignatures-methods.html">studies</a></span>(<span class="no">PCAmodel</span>))
-<span class="co">#&gt; [1] 12436</span>
-<span class="fu"><a href="../reference/PCAGenomicSignatures-methods.html">studies</a></span>(<span class="no">PCAmodel</span>)[<span class="fl">1</span>:<span class="fl">3</span>]
-<span class="co">#&gt; $Cl12436_01</span>
-<span class="co">#&gt; [1] "DRP000499" "ERP023890" "SRP028336" "SRP047192" "SRP069760" "SRP107366"</span>
-<span class="co">#&gt; [7] "SRP109805"</span>
+<p>You can find which studies are in each cluster using <code>studies</code> method. Output is a list with the length of clusters, where each element is a character vector containing the name of studies in each cluster.</p>
+<div class="sourceCode" id="cb8"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="fu"><a href="../reference/PCAGenomicSignatures-methods.html">studies</a></span>(<span class="kw">PCAmodel</span>))
+<span class="co">#&gt; [1] 4764</span>
+<span class="fu"><a href="../reference/PCAGenomicSignatures-methods.html">studies</a></span>(<span class="kw">PCAmodel</span>)[<span class="fl">1</span><span class="op">:</span><span class="fl">3</span>]
+<span class="co">#&gt; $Cl4764_01</span>
+<span class="co">#&gt; [1] "DRP000987" "SRP059172" "SRP059959" "SRP118741" "SRP144178" "SRP183186"</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; $Cl12436_02</span>
-<span class="co">#&gt; [1] "DRP000499" "ERP109789" "SRP072417" "SRP074544" "SRP100477" "SRP114518"</span>
-<span class="co">#&gt; [7] "SRP136742"</span>
+<span class="co">#&gt; $Cl4764_02</span>
+<span class="co">#&gt;  [1] "DRP000987" "ERP022839" "ERP104463" "ERP106996" "ERP109789" "ERP114435"</span>
+<span class="co">#&gt;  [7] "SRP059039" "SRP059172" "SRP065317" "SRP071547" "SRP073061" "SRP074274"</span>
+<span class="co">#&gt; [13] "SRP075449" "SRP092158" "SRP096736" "SRP107337" "SRP111402" "SRP125008"</span>
+<span class="co">#&gt; [19] "SRP133442" "SRP135684" "SRP155483"</span>
 <span class="co">#&gt; </span>
-<span class="co">#&gt; $Cl12436_03</span>
-<span class="co">#&gt; [1] "DRP000499" "SRP043364" "SRP126289" "SRP126741" "SRP145663" "SRP145862"</span></pre></body></html></div>
+<span class="co">#&gt; $Cl4764_03</span>
+<span class="co">#&gt; [1] "DRP000987" "SRP001540" "SRP056840" "SRP125396"</span>
+</pre></div>
+<p>You can check which PC from different studies are in PCclusters using <code>PCinCluster</code>.</p>
+<div class="sourceCode" id="cb9"><pre class="downlit">
+<span class="fu"><a href="../reference/PCinCluster.html">PCinCluster</a></span>(<span class="kw">PCAmodel</span>, <span class="fl">2</span>)
+<span class="co">#&gt;  [1] "DRP000987.PC2" "ERP022839.PC2" "ERP104463.PC1" "ERP106996.PC2"</span>
+<span class="co">#&gt;  [5] "ERP109789.PC2" "ERP114435.PC1" "SRP059039.PC3" "SRP059172.PC2"</span>
+<span class="co">#&gt;  [9] "SRP065317.PC1" "SRP071547.PC3" "SRP073061.PC2" "SRP074274.PC5"</span>
+<span class="co">#&gt; [13] "SRP075449.PC2" "SRP092158.PC2" "SRP096736.PC2" "SRP107337.PC3"</span>
+<span class="co">#&gt; [17] "SRP111402.PC1" "SRP125008.PC2" "SRP133442.PC1" "SRP135684.PC4"</span>
+<span class="co">#&gt; [21] "SRP155483.PC2"</span>
+</pre></div>
+</div>
+<div id="gsea-on-each-loading" class="section level2">
+<h2 class="hasAnchor">
+<a href="#gsea-on-each-loading" class="anchor"></a>GSEA on each loading</h2>
+<div class="sourceCode" id="cb10"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span>(<span class="fu"><a href="../reference/PCAGenomicSignatures-methods.html">gsea</a></span>(<span class="kw">PCAmodel</span>))
+<span class="co">#&gt; [1] "list"</span>
+<span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span>(<span class="fu"><a href="../reference/PCAGenomicSignatures-methods.html">gsea</a></span>(<span class="kw">PCAmodel</span>)[[<span class="fl">1</span>]])
+<span class="co">#&gt; [1] "data.frame"</span>
+<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="fu"><a href="../reference/PCAGenomicSignatures-methods.html">gsea</a></span>(<span class="kw">PCAmodel</span>))
+<span class="co">#&gt; [1] 4764</span>
+<span class="fu"><a href="../reference/PCAGenomicSignatures-methods.html">gsea</a></span>(<span class="kw">PCAmodel</span>)[<span class="fl">1</span>]
+<span class="co">#&gt; $PCcluster1</span>
+<span class="co">#&gt;                                                                                     Description</span>
+<span class="co">#&gt; HELLEBREKERS_SILENCED_DURING_TUMOR_ANGIOGENESIS HELLEBREKERS_SILENCED_DURING_TUMOR_ANGIOGENESIS</span>
+<span class="co">#&gt; KIM_GLIS2_TARGETS_UP                                                       KIM_GLIS2_TARGETS_UP</span>
+<span class="co">#&gt; NAKAYAMA_SOFT_TISSUE_TUMORS_PCA2_UP                         NAKAYAMA_SOFT_TISSUE_TUMORS_PCA2_UP</span>
+<span class="co">#&gt; PHONG_TNF_TARGETS_UP                                                       PHONG_TNF_TARGETS_UP</span>
+<span class="co">#&gt; RASHI_RESPONSE_TO_IONIZING_RADIATION_2                   RASHI_RESPONSE_TO_IONIZING_RADIATION_2</span>
+<span class="co">#&gt; REACTOME_TRANSLATION                                                       REACTOME_TRANSLATION</span>
+<span class="co">#&gt; ZHU_CMV_ALL_DN                                                                   ZHU_CMV_ALL_DN</span>
+<span class="co">#&gt; GALINDO_IMMUNE_RESPONSE_TO_ENTEROTOXIN                   GALINDO_IMMUNE_RESPONSE_TO_ENTEROTOXIN</span>
+<span class="co">#&gt;                                                       NES       pvalue</span>
+<span class="co">#&gt; HELLEBREKERS_SILENCED_DURING_TUMOR_ANGIOGENESIS -3.851302 1.000000e-10</span>
+<span class="co">#&gt; KIM_GLIS2_TARGETS_UP                            -3.472416 1.000000e-10</span>
+<span class="co">#&gt; NAKAYAMA_SOFT_TISSUE_TUMORS_PCA2_UP             -3.176200 1.000000e-10</span>
+<span class="co">#&gt; PHONG_TNF_TARGETS_UP                            -3.276382 1.000000e-10</span>
+<span class="co">#&gt; RASHI_RESPONSE_TO_IONIZING_RADIATION_2          -4.196536 1.000000e-10</span>
+<span class="co">#&gt; REACTOME_TRANSLATION                             2.300159 1.000000e-10</span>
+<span class="co">#&gt; ZHU_CMV_ALL_DN                                  -3.423609 1.000000e-10</span>
+<span class="co">#&gt; GALINDO_IMMUNE_RESPONSE_TO_ENTEROTOXIN          -3.032082 1.139605e-10</span>
+<span class="co">#&gt;                                                     qvalues</span>
+<span class="co">#&gt; HELLEBREKERS_SILENCED_DURING_TUMOR_ANGIOGENESIS 3.43231e-08</span>
+<span class="co">#&gt; KIM_GLIS2_TARGETS_UP                            3.43231e-08</span>
+<span class="co">#&gt; NAKAYAMA_SOFT_TISSUE_TUMORS_PCA2_UP             3.43231e-08</span>
+<span class="co">#&gt; PHONG_TNF_TARGETS_UP                            3.43231e-08</span>
+<span class="co">#&gt; RASHI_RESPONSE_TO_IONIZING_RADIATION_2          3.43231e-08</span>
+<span class="co">#&gt; REACTOME_TRANSLATION                            3.43231e-08</span>
+<span class="co">#&gt; ZHU_CMV_ALL_DN                                  3.43231e-08</span>
+<span class="co">#&gt; GALINDO_IMMUNE_RESPONSE_TO_ENTEROTOXIN          3.43231e-08</span>
+</pre></div>
 </div>
 <div id="mesh-terms-for-each-study" class="section level2">
 <h2 class="hasAnchor">
 <a href="#mesh-terms-for-each-study" class="anchor"></a>MeSH terms for each study</h2>
 <p>You can find MeSH terms associated with each study using <code><a href="../reference/PCAGenomicSignatures-methods.html">mesh(x)</a></code> method. Output is a list with the length of studies in training dataset, where each element is a data frame containing the assigned MeSH terms and the detail of them. The last column <code>bagOfWords</code> is the frequency of that MeSH term in the whole training dataset.</p>
-<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="fu"><a href="../reference/PCAGenomicSignatures-methods.html">mesh</a></span>(<span class="no">PCAmodel</span>))
-<span class="co">#&gt; [1] 1399</span>
-<span class="fu"><a href="../reference/PCAGenomicSignatures-methods.html">mesh</a></span>(<span class="no">PCAmodel</span>)[<span class="fl">1</span>]
-<span class="co">#&gt; $DRP000499</span>
-<span class="co">#&gt;         score identifier               name</span>
-<span class="co">#&gt; 1604326  4303  DRP000499             Humans</span>
-<span class="co">#&gt; 1522299  2196  DRP000499      Base Sequence</span>
-<span class="co">#&gt; 585485   1779  DRP000499 Chromosome Mapping</span>
-<span class="co">#&gt; 112012   1338  DRP000499      Genome, Human</span>
-<span class="co">#&gt;                                                                                                                                                     explanation</span>
-<span class="co">#&gt; 1604326 Forced Leaf Node Lookup:humans, Genome, Human, CT Treecode Lookup: G05.360.340.350 (Genome, Human), CT Text Lookup: homo sapiens, CT Text Lookup: human</span>
-<span class="co">#&gt; 1522299                                                                                                                              RtM via: genome sequencing</span>
-<span class="co">#&gt; 585485                                                                                                                               RtM via: genome sequencing</span>
-<span class="co">#&gt; 112012                                                                                                                                   RtM via: Genome, Human</span>
+<div class="sourceCode" id="cb11"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="fu"><a href="../reference/PCAGenomicSignatures-methods.html">mesh</a></span>(<span class="kw">PCAmodel</span>))
+<span class="co">#&gt; [1] 536</span>
+<span class="fu"><a href="../reference/PCAGenomicSignatures-methods.html">mesh</a></span>(<span class="kw">PCAmodel</span>)[<span class="fl">1</span>]
+<span class="co">#&gt; $DRP000987</span>
+<span class="co">#&gt;          score identifier                   name</span>
+<span class="co">#&gt; 1468242 162422  DRP000987                Animals</span>
+<span class="co">#&gt; 1596889 162422  DRP000987                 Humans</span>
+<span class="co">#&gt; 1116527 161422  DRP000987  Plasmodium falciparum</span>
+<span class="co">#&gt; 832289   96999  DRP000987    Malaria, Falciparum</span>
+<span class="co">#&gt; 216848   74145  DRP000987              Parasites</span>
+<span class="co">#&gt; 1689323  57176  DRP000987          Transcriptome</span>
+<span class="co">#&gt; 761253   55509  DRP000987                Malaria</span>
+<span class="co">#&gt; 149067   37162  DRP000987              Indonesia</span>
+<span class="co">#&gt; 1627781  36315  DRP000987 Transcriptome Analysis</span>
+<span class="co">#&gt; 716101   22634  DRP000987                RNA-Seq</span>
+<span class="co">#&gt; 1573542  19938  DRP000987                    RNA</span>
+<span class="co">#&gt; 58627    18575  DRP000987               Genotype</span>
+<span class="co">#&gt; 1230230   7197  DRP000987 Innate Immune Response</span>
+<span class="co">#&gt; 35822     1000  DRP000987      Genetic Variation</span>
+<span class="co">#&gt;                                                                                                                                                                                                                                                                                                  explanation</span>
+<span class="co">#&gt; 1468242                                                                                                                                                                                                                                           Parasites, CT Treecode Lookup: B01.050.500.714 (Parasites)</span>
+<span class="co">#&gt; 1596889 Forced Leaf Node Lookup:humans, CT Text Lookup: human, CT Text Lookup: humans, CT Text Lookup: patient, CT Text Lookup: patients, Forced Leaf Node Lookup:humans, CT Text Lookup: human, CT Text Lookup: humans, CT Text Lookup: patient, Parasites, CT Treecode Lookup: B01.050.500.714 (Parasites)</span>
+<span class="co">#&gt; 1116527                                                                                                                                                                                                 RtM via: Plasmodium falciparum, Forced Leaf Node Lookup:plasmodium falciparums, checkForceMH Boosted</span>
+<span class="co">#&gt; 832289                                                                                                                                                                                                                                                              RtM via: Plasmodium falciparum infection</span>
+<span class="co">#&gt; 216848                                                                                                                                                                                                                           RtM via: Parasites, Forced Leaf Node Lookup:parasites, checkForceMH Boosted</span>
+<span class="co">#&gt; 1689323                                                                                                                                                                                                                                       RtM via: Transcriptome, Forced Leaf Node Lookup:transcriptomes</span>
+<span class="co">#&gt; 761253                                                                                                                                                                                                                                                 RtM via: Malaria, Forced Non-Leaf Node Lookup:malaria</span>
+<span class="co">#&gt; 149067                                                                                                                                                                                                                         RtM via: Indonesia, RtM via: Indonesians, Forced Leaf Node Lookup:indonesians</span>
+<span class="co">#&gt; 1627781                                                                                                                                                       Entry Term Replacement for "Gene Expression Profiling", RtM via: Gene Expression Profiling, Forced Non-Leaf Node Lookup:transcriptome analysis</span>
+<span class="co">#&gt; 716101                                                                                                                                                                                                                                                           RtM via: RNA-Seq, Forced New Lookup:rna-seq</span>
+<span class="co">#&gt; 1573542                                                                                                                                                                                                                                                                                         RtM via: RNA</span>
+<span class="co">#&gt; 58627                                                                                                                                                                                                                                                                               Forced Lookup:genotyping</span>
+<span class="co">#&gt; 1230230                                                                                                                                                                        Entry Term Replacement for "Immunity, Innate", RtM via: Immunity, Innate, Forced Non-Leaf Node Lookup:innate immune responses</span>
+<span class="co">#&gt; 35822                                                                                                                                                                                                                                                         Forced Non-Leaf Node Lookup:genetic variations</span>
 <span class="co">#&gt;         bagOfWords</span>
-<span class="co">#&gt; 1604326       1163</span>
-<span class="co">#&gt; 1522299        188</span>
-<span class="co">#&gt; 585485           2</span>
-<span class="co">#&gt; 112012          35</span></pre></body></html></div>
+<span class="co">#&gt; 1468242        209</span>
+<span class="co">#&gt; 1596889       1163</span>
+<span class="co">#&gt; 1116527          5</span>
+<span class="co">#&gt; 832289           4</span>
+<span class="co">#&gt; 216848           7</span>
+<span class="co">#&gt; 1689323        576</span>
+<span class="co">#&gt; 761253           6</span>
+<span class="co">#&gt; 149067           2</span>
+<span class="co">#&gt; 1627781         66</span>
+<span class="co">#&gt; 716101         591</span>
+<span class="co">#&gt; 1573542        372</span>
+<span class="co">#&gt; 58627           20</span>
+<span class="co">#&gt; 1230230          8</span>
+<span class="co">#&gt; 35822           11</span>
+</pre></div>
 </div>
 <div id="pca-summary" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pca-summary" class="anchor"></a>PCA summary</h2>
-<p>You can find the PCA summary of each study using <code><a href="../reference/PCAGenomicSignatures-methods.html">PCAsummary(x)</a></code> method. Output is a list with the length of studies, where each element is a matrix containing PCA summary results with SD/Variance/Cumulative.</p>
-<div class="sourceCode" id="cb11"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="fu"><a href="../reference/PCAGenomicSignatures-methods.html">PCAsummary</a></span>(<span class="no">PCAmodel</span>))
-<span class="co">#&gt; [1] 1399</span>
-<span class="fu"><a href="../reference/PCAGenomicSignatures-methods.html">PCAsummary</a></span>(<span class="no">PCAmodel</span>)[<span class="fl">1</span>]
-<span class="co">#&gt; $DRP000499</span>
-<span class="co">#&gt;            DRP000499.PC1 DRP000499.PC2 DRP000499.PC3 DRP000499.PC4</span>
-<span class="co">#&gt; SD            59.0820395   16.41547959    6.57735211   6.138468877</span>
-<span class="co">#&gt; Variance       0.8294267    0.06402863    0.01027943   0.008953383</span>
-<span class="co">#&gt; Cumulative     0.8294267    0.89345534    0.90373477   0.912688157</span>
-<span class="co">#&gt;            DRP000499.PC5 DRP000499.PC6 DRP000499.PC7 DRP000499.PC8</span>
-<span class="co">#&gt; SD           6.029335660     5.8395765    5.45528370   5.186589571</span>
-<span class="co">#&gt; Variance     0.008637856     0.0081027    0.00707134   0.006391913</span>
-<span class="co">#&gt; Cumulative   0.921326013     0.9294287    0.93650005   0.942891966</span>
-<span class="co">#&gt;            DRP000499.PC9 DRP000499.PC10 DRP000499.PC11 DRP000499.PC12</span>
-<span class="co">#&gt; SD           5.109390133    4.771454262    4.739276238    4.647818869</span>
-<span class="co">#&gt; Variance     0.006203049    0.005409643    0.005336925    0.005132931</span>
-<span class="co">#&gt; Cumulative   0.949095015    0.954504658    0.959841583    0.964974514</span>
-<span class="co">#&gt;            DRP000499.PC13 DRP000499.PC14 DRP000499.PC15 DRP000499.PC16</span>
-<span class="co">#&gt; SD            4.595424773    4.447827854    4.404402705    4.309704712</span>
-<span class="co">#&gt; Variance      0.005017858    0.004700705    0.004609365    0.004413286</span>
-<span class="co">#&gt; Cumulative    0.969992372    0.974693077    0.979302442    0.983715728</span>
-<span class="co">#&gt;            DRP000499.PC17 DRP000499.PC18 DRP000499.PC19 DRP000499.PC20</span>
-<span class="co">#&gt; SD            4.294590080    4.189794081    4.150554112    3.912577804</span>
-<span class="co">#&gt; Variance      0.004382385    0.004171117    0.004093353    0.003637416</span>
-<span class="co">#&gt; Cumulative    0.988098113    0.992269230    0.996362584    1.000000000</span></pre></body></html></div>
+<p>You can find the PCA summary of each study using <code>PCAsummary</code> method. Output is a list with the length of studies, where each element is a matrix containing PCA summary results with SD/Variance/Cumulative.</p>
+<div class="sourceCode" id="cb12"><pre class="downlit">
+<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span>(<span class="fu"><a href="../reference/PCAGenomicSignatures-methods.html">PCAsummary</a></span>(<span class="kw">PCAmodel</span>))
+<span class="co">#&gt; [1] 536</span>
+<span class="fu"><a href="../reference/PCAGenomicSignatures-methods.html">PCAsummary</a></span>(<span class="kw">PCAmodel</span>)[<span class="fl">1</span>]
+<span class="co">#&gt; $DRP000987</span>
+<span class="co">#&gt;            DRP000987.PC1 DRP000987.PC2 DRP000987.PC3 DRP000987.PC4</span>
+<span class="co">#&gt; SD            42.6382804   21.97962707   12.94848367   11.89265640</span>
+<span class="co">#&gt; Variance       0.3580557    0.09514629    0.03302091    0.02785537</span>
+<span class="co">#&gt; Cumulative     0.3580557    0.45320196    0.48622287    0.51407824</span>
+<span class="co">#&gt;            DRP000987.PC5 DRP000987.PC6 DRP000987.PC7 DRP000987.PC8</span>
+<span class="co">#&gt; SD           10.89460616   10.53655583    9.47278967    8.97268098</span>
+<span class="co">#&gt; Variance      0.02337622    0.02186495    0.01767287    0.01585607</span>
+<span class="co">#&gt; Cumulative    0.53745446    0.55931942    0.57699228    0.59284836</span>
+<span class="co">#&gt;            DRP000987.PC9 DRP000987.PC10 DRP000987.PC11 DRP000987.PC12</span>
+<span class="co">#&gt; SD            8.43652010     7.90810771     7.60865968    7.076401846</span>
+<span class="co">#&gt; Variance      0.01401774     0.01231676     0.01140165    0.009862254</span>
+<span class="co">#&gt; Cumulative    0.60686609     0.61918285     0.63058449    0.640446748</span>
+<span class="co">#&gt;            DRP000987.PC13 DRP000987.PC14 DRP000987.PC15 DRP000987.PC16</span>
+<span class="co">#&gt; SD             6.89881271    6.766783788    6.703417100      6.6042884</span>
+<span class="co">#&gt; Variance       0.00937346    0.009018116    0.008850009      0.0085902</span>
+<span class="co">#&gt; Cumulative     0.64982021    0.658838324    0.667688332      0.6762785</span>
+<span class="co">#&gt;            DRP000987.PC17 DRP000987.PC18 DRP000987.PC19 DRP000987.PC20</span>
+<span class="co">#&gt; SD             6.44257163    6.245257583    6.042236748    5.992461574</span>
+<span class="co">#&gt; Variance       0.00817466    0.007681604    0.007190294    0.007072317</span>
+<span class="co">#&gt; Cumulative     0.68445319    0.692134796    0.699325091    0.706397408</span>
+</pre></div>
 </div>
 </div>
   </div>
@@ -277,7 +373,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

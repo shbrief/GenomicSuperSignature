@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>z-score each row of the data — rowNorm • PCAGenomicSignatures</title>
+<title>Search the top enriched pathways for RAV — annotatePCcluster • PCAGenomicSignatures</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="z-score each row of the data — rowNorm" />
-<meta property="og:description" content="z-score each row of the data" />
+<meta property="og:title" content="Search the top enriched pathways for RAV — annotatePCcluster" />
+<meta property="og:description" content="Search the top enriched pathways for RAV" />
 
 
 
@@ -117,29 +117,42 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>z-score each row of the data</h1>
-    <small class="dont-index">Source: <a href='https://github.com/shbrief/PCAGenomicSignatures/blob/master/R/rowNorm.R'><code>R/rowNorm.R</code></a></small>
-    <div class="hidden name"><code>rowNorm.Rd</code></div>
+    <h1>Search the top enriched pathways for RAV</h1>
+    <small class="dont-index">Source: <a href='https://github.com/shbrief/PCAGenomicSignatures/blob/master/R/annotatePCcluster.R'><code>R/annotatePCcluster.R</code></a></small>
+    <div class="hidden name"><code>annotatePCcluster.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>z-score each row of the data</p>
+    <p>Search the top enriched pathways for RAV</p>
     </div>
 
-    <pre class="usage"><span class='fu'>rowNorm</span>(<span class='kw'>x</span>)</pre>
+    <pre class="usage"><span class='fu'>annotatePCcluster</span>(<span class='kw'>PCAmodel</span>, <span class='kw'>ind</span>, n = <span class='fl'>5</span>, abs = <span class='fl'>FALSE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>A gene-expression matrix with genes in rows and samples in columns</p></td>
+      <th>PCAmodel</th>
+      <td><p>PCAGenomicSignatures object.</p></td>
+    </tr>
+    <tr>
+      <th>ind</th>
+      <td><p>An integer for RAV you want to check the enriched pathways.</p></td>
+    </tr>
+    <tr>
+      <th>n</th>
+      <td><p>A number of top enriched pathways to output. Default is 5.</p></td>
+    </tr>
+    <tr>
+      <th>abs</th>
+      <td><p>Default is <code>FALSE</code>. If it's set to <code>TRUE</code>, the enriched
+pathways will be listed based on <code><a href='https://rdrr.io/r/base/MathFun.html'>abs(NES)</a></code>.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><a href='https://github.com/shbrief/PLIER/blob/master/R/Allfuncs.R'>https://github.com/shbrief/PLIER/blob/master/R/Allfuncs.R</a></p>
+    <p>A data frame with <code>n</code> rows and 4 columns; Description, NES, pvalue, and qval</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

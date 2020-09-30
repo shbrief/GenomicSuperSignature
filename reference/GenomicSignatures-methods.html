@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Methods and accesors for <code>GenomicSignatures</code> object — GenomicSignatures-methods • PCAGenomicSignatures</title>
+<title>Methods and accesors for GenomicSignatures object — GenomicSignatures-methods • PCAGenomicSignatures</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="Methods and accesors for <code>GenomicSignatures</code> object — GenomicSignatures-methods" />
+<meta property="og:title" content="Methods and accesors for GenomicSignatures object — GenomicSignatures-methods" />
 <meta property="og:description" content="The default contents of GenomicSignatures object, with
 a set of accessor and setter generic functions, which extract either the assay,
 colData, or metadata slots of a GenomicSignatures-class
@@ -76,7 +76,7 @@ before adding any information in trainingData slot" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">PCAGenomicSignatures</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.5</span>
       </span>
     </div>
 
@@ -122,7 +122,7 @@ before adding any information in trainingData slot" />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Methods and accesors for <code>GenomicSignatures</code> object</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/shbrief/PCAGenomicSignatures/blob/master/R/GenomicSignatures-methods.R'><code>R/GenomicSignatures-methods.R</code></a></small>
     <div class="hidden name"><code>GenomicSignatures-methods.Rd</code></div>
     </div>
 
@@ -135,25 +135,31 @@ before adding any information in <code>trainingData</code> slot</p>
     </div>
 
     <pre class="usage"><span class='co'># S4 method for GenomicSignatures</span>
-<span class='fu'><a href='PCAGenomicSignatures-methods.html'>model</a></span>(<span class='no'>x</span>)
+<span class='fu'>model</span>(<span class='kw'>x</span>)
 
 <span class='co'># S4 method for GenomicSignatures</span>
-<span class='fu'>colData</span>(<span class='no'>x</span>)
+<span class='fu'>colData</span>(<span class='kw'>x</span>)
 
 <span class='co'># S4 method for GenomicSignatures</span>
-<span class='fu'>metadata</span>(<span class='no'>x</span>)
+<span class='fu'>metadata</span>(<span class='kw'>x</span>)
 
 <span class='co'># S4 method for GenomicSignatures</span>
-<span class='fu'><a href='PCAGenomicSignatures-methods.html'>geneSets</a></span>(<span class='no'>x</span>)
+<span class='fu'>geneSets</span>(<span class='kw'>x</span>)
 
 <span class='co'># S4 method for GenomicSignatures</span>
-<span class='fu'><a href='PCAGenomicSignatures-methods.html'>updateNote</a></span>(<span class='no'>x</span>)
+<span class='fu'>updateNote</span>(<span class='kw'>x</span>)
 
 <span class='co'># S4 method for GenomicSignatures</span>
-<span class='fu'><a href='PCAGenomicSignatures-methods.html'>geneSets</a></span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span>
+<span class='fu'>metadata</span>(<span class='kw'>x</span>, <span class='kw'>...</span>) <span class='op'>&lt;-</span> <span class='kw'>value</span>
+
+<span class='co'># S4 method for GenomicSignatures,ANY</span>
+<span class='fu'>colData</span>(<span class='kw'>x</span>, <span class='kw'>...</span>) <span class='op'>&lt;-</span> <span class='kw'>value</span>
 
 <span class='co'># S4 method for GenomicSignatures</span>
-<span class='fu'><a href='PCAGenomicSignatures-methods.html'>updateNote</a></span>(<span class='no'>x</span>) <span class='kw'>&lt;-</span> <span class='no'>value</span></pre>
+<span class='fu'>geneSets</span>(<span class='kw'>x</span>) <span class='op'>&lt;-</span> <span class='kw'>value</span>
+
+<span class='co'># S4 method for GenomicSignatures</span>
+<span class='fu'>updateNote</span>(<span class='kw'>x</span>) <span class='op'>&lt;-</span> <span class='kw'>value</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -161,6 +167,10 @@ before adding any information in <code>trainingData</code> slot</p>
     <tr>
       <th>x</th>
       <td><p>A <code>GenomicSignatures</code> object</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional arguments for supporting functions.</p></td>
     </tr>
     <tr>
       <th>value</th>
@@ -182,6 +192,8 @@ before adding any information in <code>trainingData</code> slot</p>
     
 
 <p>Setter method values (i.e., <code>function(x) &lt;- value</code>):</p><ul>
+<li><p>metadata&lt;- : Assign metadata</p></li>
+<li><p>coldata&lt;- : Assign extra information associated with PCclusters</p></li>
 <li><p>geneSets&lt;- : A character vector containing the name of gene sets used
     to annotate average loadings</p></li>
 <li><p>updateNote&lt;- : A character vetor. Describes the main feature of a model construction</p></li>
@@ -213,7 +225,7 @@ before adding any information in <code>trainingData</code> slot</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

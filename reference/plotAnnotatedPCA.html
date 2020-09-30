@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>z-score each row of the data — rowNorm • PCAGenomicSignatures</title>
+<title>Two-dimentional PCA plot with the PC annotation — plotAnnotatedPCA • PCAGenomicSignatures</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="z-score each row of the data — rowNorm" />
-<meta property="og:description" content="z-score each row of the data" />
+<meta property="og:title" content="Two-dimentional PCA plot with the PC annotation — plotAnnotatedPCA" />
+<meta property="og:description" content="Two-dimentional PCA plot with the PC annotation" />
 
 
 
@@ -117,29 +117,77 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>z-score each row of the data</h1>
-    <small class="dont-index">Source: <a href='https://github.com/shbrief/PCAGenomicSignatures/blob/master/R/rowNorm.R'><code>R/rowNorm.R</code></a></small>
-    <div class="hidden name"><code>rowNorm.Rd</code></div>
+    <h1>Two-dimentional PCA plot with the PC annotation</h1>
+    <small class="dont-index">Source: <a href='https://github.com/shbrief/PCAGenomicSignatures/blob/master/R/plotAnnotedPCA.R'><code>R/plotAnnotedPCA.R</code></a></small>
+    <div class="hidden name"><code>plotAnnotatedPCA.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>z-score each row of the data</p>
+    <p>Two-dimentional PCA plot with the PC annotation</p>
     </div>
 
-    <pre class="usage"><span class='fu'>rowNorm</span>(<span class='kw'>x</span>)</pre>
+    <pre class="usage"><span class='fu'>plotAnnotatedPCA</span>(
+  <span class='kw'>dataset</span>,
+  <span class='kw'>PCAmodel</span>,
+  <span class='kw'>PCs</span>,
+  val_all = <span class='kw'>NULL</span>,
+  scoreCutoff = <span class='fl'>0.5</span>,
+  nesCutoff = <span class='fl'>3</span>,
+  color_by = <span class='kw'>NULL</span>,
+  color_lab = <span class='kw'>NULL</span>,
+  trimed_pathway_len = <span class='fl'>45</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>A gene-expression matrix with genes in rows and samples in columns</p></td>
+      <th>dataset</th>
+      <td><p>An expression matrix with genes (rows) x samples (columns)</p></td>
+    </tr>
+    <tr>
+      <th>PCAmodel</th>
+      <td><p>PCAGenomicSignatures-class object</p></td>
+    </tr>
+    <tr>
+      <th>PCs</th>
+      <td><p>A numeric vector length of 2. It should be between 1 and 8.</p></td>
+    </tr>
+    <tr>
+      <th>val_all</th>
+      <td><p>The output from <code><a href='validate.html'>validate</a></code></p></td>
+    </tr>
+    <tr>
+      <th>scoreCutoff</th>
+      <td><p>A numeric value for the minimum correlation. Default is 0.5.</p></td>
+    </tr>
+    <tr>
+      <th>nesCutoff</th>
+      <td><p>A numeric value for the minimum NES. Default is <code>NULL</code> and
+the suggested value is 3.</p></td>
+    </tr>
+    <tr>
+      <th>color_by</th>
+      <td><p>A named vector with the feature you want to color by. Name should
+be match with the sample names of the dataset.</p></td>
+    </tr>
+    <tr>
+      <th>color_lab</th>
+      <td><p>A name for color legend. If this argument is not provided, the
+color legend will be labeld as "Color By" by default.</p></td>
+    </tr>
+    <tr>
+      <th>trimed_pathway_len</th>
+      <td><p>Positive inter values, which is the display width of
+pathway names. Default is 45.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><a href='https://github.com/shbrief/PLIER/blob/master/R/Allfuncs.R'>https://github.com/shbrief/PLIER/blob/master/R/Allfuncs.R</a></p>
+    <p>Scatter plot and the table with annotation. If enriched pathway didn't
+pass the <code>scoreCutoff</code> the table will be labeled as "No significant pathways".
+If any enriched pathway didn't pass the <code>nesCutoff</code>, it will labeled as NA.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Barplot GSEA output — msigdb_gsea • PCAGenomicSignatures</title>
+<title>MSigDB GSEA results — msigdb_gsea • PCAGenomicSignatures</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Barplot GSEA output — msigdb_gsea" />
-<meta property="og:description" content="Barplot GSEA output" />
+<meta property="og:title" content="MSigDB GSEA results — msigdb_gsea" />
+<meta property="og:description" content="MSigDB GSEA results" />
 
 
 
@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">PCAGenomicSignatures</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.5</span>
       </span>
     </div>
 
@@ -117,16 +117,29 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Barplot GSEA output</h1>
-    
+    <h1>MSigDB GSEA results</h1>
+    <small class="dont-index">Source: <a href='https://github.com/shbrief/PCAGenomicSignatures/blob/master/R/funcForGSEA.R'><code>R/funcForGSEA.R</code></a></small>
     <div class="hidden name"><code>msigdb_gsea.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Barplot GSEA output</p>
+    <p>MSigDB GSEA results</p>
     </div>
 
-    <pre class="usage"><span class='fu'>msigdb_gsea</span>(<span class='no'>ind</span>, <span class='no'>PCAmodel</span>, <span class='kw'>category</span> <span class='kw'>=</span> <span class='st'>"C2"</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>10</span>, <span class='kw'>pvalueCutoff</span> <span class='kw'>=</span> <span class='fl'>0.5</span>)</pre>
+    <pre class="usage"><span class='fu'>msigdb_gsea</span>(
+  <span class='kw'>ind</span>,
+  <span class='kw'>PCAmodel</span>,
+  category = <span class='st'>"C2"</span>,
+  n = <span class='kw'>NULL</span>,
+  pvalueCutoff = <span class='fl'>0.5</span>,
+  minGSSize = <span class='fl'>10</span>,
+  maxGSSize = <span class='fl'>500</span>,
+  pAdjustMethod = <span class='st'>"BH"</span>,
+  verbose = <span class='fl'>FALSE</span>,
+  seed = <span class='fl'>FALSE</span>,
+  by = <span class='st'>"fgsea"</span>,
+  geneSets = <span class='kw'>NULL</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -142,15 +155,47 @@
     <tr>
       <th>category</th>
       <td><p>A character vector representing MSigDB category. Options are
-"H","C1","C2"(default), "C3","C4","C5","C6", and "C7"</p></td>
+"H", "C1", "C2"(default), "C3", "C4", "C5", "C6", and "C7"</p></td>
     </tr>
     <tr>
       <th>n</th>
-      <td><p>An interger. The number of top and bottom enriched pathways to plot. Default is 10.</p></td>
+      <td><p>An interger. The number of top and bottom enriched pathways to plot.
+Default is <code>NULL</code> and print out all the pathways enriched under <code>pvalueCutoff</code>.</p></td>
     </tr>
     <tr>
       <th>pvalueCutoff</th>
       <td><p>Cutoff for both pvalue and p.adjust. Default is 0.5.</p></td>
+    </tr>
+    <tr>
+      <th>minGSSize</th>
+      <td><p>A mininum size of gene set to be analyzed</p></td>
+    </tr>
+    <tr>
+      <th>maxGSSize</th>
+      <td><p>A maximum size of gene set to be analyzed</p></td>
+    </tr>
+    <tr>
+      <th>pAdjustMethod</th>
+      <td><p>p-value adjustment methods, which will be used as an input
+for <code>method</code> argument of <code><a href='https://rdrr.io/r/stats/p.adjust.html'>p.adjust</a></code> function. Available
+options are "holm", "hochberg", "hommel", "bonferroni", "BH"(default), "BY", "fdr", "none".</p></td>
+    </tr>
+    <tr>
+      <th>verbose</th>
+      <td><p>Logical. Default is FALSE.</p></td>
+    </tr>
+    <tr>
+      <th>seed</th>
+      <td><p>Logical. Default is FALSE.</p></td>
+    </tr>
+    <tr>
+      <th>by</th>
+      <td><p>Available options are <code><a href='https://rdrr.io/r/base/c.html'>c("fgsea", "DOSE")</a></code>. Default is "fgsea".</p></td>
+    </tr>
+    <tr>
+      <th>geneSets</th>
+      <td><p>Custom genesets to use with MSigDB genesets. It should be in
+a named list format.</p></td>
     </tr>
     </table>
 
@@ -174,7 +219,7 @@ are plotted and qvalues are denoted by color.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

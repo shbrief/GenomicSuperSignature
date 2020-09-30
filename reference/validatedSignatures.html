@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>z-score each row of the data — rowNorm • PCAGenomicSignatures</title>
+<title>Validation result in data frame — validatedSignatures • PCAGenomicSignatures</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="z-score each row of the data — rowNorm" />
-<meta property="og:description" content="z-score each row of the data" />
+<meta property="og:title" content="Validation result in data frame — validatedSignatures" />
+<meta property="og:description" content="Validation result in data frame" />
 
 
 
@@ -117,29 +117,67 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>z-score each row of the data</h1>
-    <small class="dont-index">Source: <a href='https://github.com/shbrief/PCAGenomicSignatures/blob/master/R/rowNorm.R'><code>R/rowNorm.R</code></a></small>
-    <div class="hidden name"><code>rowNorm.Rd</code></div>
+    <h1>Validation result in data frame</h1>
+    <small class="dont-index">Source: <a href='https://github.com/shbrief/PCAGenomicSignatures/blob/master/R/validatedSignatures.R'><code>R/validatedSignatures.R</code></a></small>
+    <div class="hidden name"><code>validatedSignatures.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>z-score each row of the data</p>
+    <p>Validation result in data frame</p>
     </div>
 
-    <pre class="usage"><span class='fu'>rowNorm</span>(<span class='kw'>x</span>)</pre>
+    <pre class="usage"><span class='fu'>validatedSignatures</span>(
+  <span class='kw'>val_all</span>,
+  num.out = <span class='fl'>5</span>,
+  scoreCutoff = <span class='kw'>NULL</span>,
+  swCutoff = <span class='kw'>NULL</span>,
+  clsizeCutoff = <span class='kw'>NULL</span>,
+  indexOnly = <span class='fl'>FALSE</span>,
+  whichPC = <span class='kw'>NULL</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>A gene-expression matrix with genes in rows and samples in columns</p></td>
+      <th>val_all</th>
+      <td><p>An output matrix from <code><a href='validate.html'>validate</a></code> function.</p></td>
+    </tr>
+    <tr>
+      <th>num.out</th>
+      <td><p>A number of highly validated PCclusters to output. Default is 5.
+If any of the cutoff parameters are provided, <code>num.out</code> or the number of
+filtered PCclusters, whichever smaller, will be chosen.</p></td>
+    </tr>
+    <tr>
+      <th>scoreCutoff</th>
+      <td><p>A numeric value for the minimum correlation.</p></td>
+    </tr>
+    <tr>
+      <th>swCutoff</th>
+      <td><p>A numeric value for the minimum average silhouette width.</p></td>
+    </tr>
+    <tr>
+      <th>clsizeCutoff</th>
+      <td><p>An integer value for the minimum cluster size.</p></td>
+    </tr>
+    <tr>
+      <th>indexOnly</th>
+      <td><p>A logical. Under the default (= FALSE), the detailed information
+on validated PCclusters, such as score, average silhouette width, cluster size, is
+printed. If it is set TRUE, only the PCcluster number will be printed.</p></td>
+    </tr>
+    <tr>
+      <th>whichPC</th>
+      <td><p>An integer value between 1 and 8. PC number of your data to check
+the validated signatures with. Under the default (<code>NULL</code>), it outputs top
+scored signatures with any PC of your data.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><a href='https://github.com/shbrief/PLIER/blob/master/R/Allfuncs.R'>https://github.com/shbrief/PLIER/blob/master/R/Allfuncs.R</a></p>
+    <p>A subset of the input matrix, which meets the given condition.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>z-score each row of the data — rowNorm • PCAGenomicSignatures</title>
+<title>Find the PCclusters with the keyword-containing enriched pathways — findSignature • PCAGenomicSignatures</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,10 @@
 
 
 
-<meta property="og:title" content="z-score each row of the data — rowNorm" />
-<meta property="og:description" content="z-score each row of the data" />
+<meta property="og:title" content="Find the PCclusters with the keyword-containing enriched pathways — findSignature" />
+<meta property="og:description" content="This function finds PCclusters containing the keyword you provide. If you provide
+&quot;the number of keyword-containing pathways per PCcluster&quot; in argument k,
+it will give you the PCcluster number." />
 
 
 
@@ -117,30 +119,54 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>z-score each row of the data</h1>
-    <small class="dont-index">Source: <a href='https://github.com/shbrief/PCAGenomicSignatures/blob/master/R/rowNorm.R'><code>R/rowNorm.R</code></a></small>
-    <div class="hidden name"><code>rowNorm.Rd</code></div>
+    <h1>Find the PCclusters with the keyword-containing enriched pathways</h1>
+    <small class="dont-index">Source: <a href='https://github.com/shbrief/PCAGenomicSignatures/blob/master/R/findSignature.R'><code>R/findSignature.R</code></a></small>
+    <div class="hidden name"><code>findSignature.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>z-score each row of the data</p>
+    <p>This function finds PCclusters containing the keyword you provide. If you provide
+"the number of keyword-containing pathways per PCcluster" in argument <code>k</code>,
+it will give you the PCcluster number.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>rowNorm</span>(<span class='kw'>x</span>)</pre>
+    <pre class="usage"><span class='fu'>findSignature</span>(<span class='kw'>PCAmodel</span>, <span class='kw'>keyword</span>, n = <span class='fl'>5</span>, k = <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>A gene-expression matrix with genes in rows and samples in columns</p></td>
+      <th>PCAmodel</th>
+      <td><p>PCAGenomicSignatures-object</p></td>
+    </tr>
+    <tr>
+      <th>keyword</th>
+      <td><p>A character vector. If you are searching for multiple keywords
+at the same time, use <code><a href='https://rdrr.io/r/base/paste.html'>paste</a></code> with <code>collapse = "|"</code> argument.</p></td>
+    </tr>
+    <tr>
+      <th>n</th>
+      <td><p>The number of top ranked (based on abs(NES)) pathways you want to search your keyword</p></td>
+    </tr>
+    <tr>
+      <th>k</th>
+      <td><p>The number of keyword-containing pathways you want to get the PCcluster
+number. Under default (<code>NULL</code>), the output will be a data frame with two
+columns: '# of keyword-containing pathways' and 'Freq'. If you assign the value
+for this argument, the output will be an integer vector containing the PCcluster
+index.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><a href='https://github.com/shbrief/PLIER/blob/master/R/Allfuncs.R'>https://github.com/shbrief/PLIER/blob/master/R/Allfuncs.R</a></p>
+    <p>A data frame or integer vector depending on the parameter <code>k</code>.</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'># findSignature(PCAmodel, "CD4|T cell")</span>
+<span class='co'># findSignature(PCAmodel, "CD4|T cell", k = 2)</span>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

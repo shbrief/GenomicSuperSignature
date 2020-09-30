@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">PCAGenomicSignatures</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.5</span>
       </span>
     </div>
 
@@ -118,7 +118,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Validation result in heatmap format</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/shbrief/PCAGenomicSignatures/blob/master/R/heatmapTable.R'><code>R/heatmapTable.R</code></a></small>
     <div class="hidden name"><code>heatmapTable.Rd</code></div>
     </div>
 
@@ -127,37 +127,51 @@
     </div>
 
     <pre class="usage"><span class='fu'>heatmapTable</span>(
-  <span class='no'>data</span>,
-  <span class='no'>row_title</span>,
-  <span class='kw'>num.out</span> <span class='kw'>=</span> <span class='fl'>5</span>,
-  <span class='kw'>cutoff</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>breaks</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>0.5</span>, <span class='fl'>1</span>),
-  <span class='kw'>colors</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"white"</span>, <span class='st'>"white smoke"</span>, <span class='st'>"red"</span>),
-  <span class='no'>...</span>
+  <span class='kw'>val_all</span>,
+  ind = <span class='kw'>NULL</span>,
+  num.out = <span class='fl'>5</span>,
+  scoreCutoff = <span class='kw'>NULL</span>,
+  swCutoff = <span class='kw'>NULL</span>,
+  clsizeCutoff = <span class='kw'>NULL</span>,
+  breaks = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>0</span>, <span class='fl'>0.5</span>, <span class='fl'>1</span>),
+  colors = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"white"</span>, <span class='st'>"white smoke"</span>, <span class='st'>"red"</span>),
+  column_title = <span class='kw'>NULL</span>,
+  row_title = <span class='kw'>NULL</span>,
+  whichPC = <span class='kw'>NULL</span>,
+  <span class='kw'>...</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>data</th>
+      <th>val_all</th>
       <td><p>An output matrix from <code><a href='validate.html'>validate</a></code> function. Subset of
 this matrix is plotted as a heatmap using <code><a href='https://rdrr.io/pkg/ComplexHeatmap/man/Heatmap.html'>Heatmap</a></code></p></td>
     </tr>
     <tr>
-      <th>row_title</th>
-      <td><p>A character string. Provide the row title.</p></td>
+      <th>ind</th>
+      <td><p>An integer vector. If this parameter is provided, the other parameters,
+<code>num.out, scoreCutoff, swCutoff, clsizeCutoff</code> will be ignored and the heatmap
+table containing only the provided index will be printed.</p></td>
     </tr>
     <tr>
       <th>num.out</th>
-      <td><p>A number of highly validated PCclusters to subset to. Default is 5.
-If <code>cutoff</code> is provided, this argument is ignored.</p></td>
+      <td><p>A number of highly validated PCclusters to output. Default is 5.
+If any of the cutoff parameters are provided, <code>num.out</code> or the number of
+filtered PCclusters, whichever smaller, will be chosen.</p></td>
     </tr>
     <tr>
-      <th>cutoff</th>
-      <td><p>A numeric value for the minimum correlation. If you don't specify
-this argument, this function will output the number of highly validated PCclusters
-defined through <code>num.out</code>.</p></td>
+      <th>scoreCutoff</th>
+      <td><p>A numeric value for the minimum correlation.</p></td>
+    </tr>
+    <tr>
+      <th>swCutoff</th>
+      <td><p>A numeric value for the minimum average silhouette width.</p></td>
+    </tr>
+    <tr>
+      <th>clsizeCutoff</th>
+      <td><p>A integer value for the minimum cluster size.</p></td>
     </tr>
     <tr>
       <th>breaks</th>
@@ -170,8 +184,22 @@ to three colors. Default is <code><a href='https://rdrr.io/r/base/c.html'>c(0, 0
 to three breaks. Default is <code><a href='https://rdrr.io/r/base/c.html'>c("white", "white smoke", "red")</a></code>.</p></td>
     </tr>
     <tr>
+      <th>column_title</th>
+      <td><p>A character string. Provide the column title.</p></td>
+    </tr>
+    <tr>
+      <th>row_title</th>
+      <td><p>A character string. Provide the row title.</p></td>
+    </tr>
+    <tr>
+      <th>whichPC</th>
+      <td><p>An integer value between 1 and 8. PC number of your data to check
+the validated signatures with. Under the default (<code>NULL</code>), it outputs top
+scored signatures with any PC of your data.</p></td>
+    </tr>
+    <tr>
       <th>...</th>
-      <td><p>any additional argument for <code><a href='https://rdrr.io/pkg/ComplexHeatmap/man/Heatmap.html'>ComplexHeatmap::Heatmap</a></code></p></td>
+      <td><p>any additional argument for <code><a href='https://rdrr.io/pkg/ComplexHeatmap/man/Heatmap.html'>Heatmap</a></code></p></td>
     </tr>
     </table>
 
@@ -194,7 +222,7 @@ to three breaks. Default is <code><a href='https://rdrr.io/r/base/c.html'>c("whi
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

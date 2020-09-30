@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>z-score each row of the data — rowNorm • PCAGenomicSignatures</title>
+<title>Find the rank of your keyword in the PCcluster's GSEA annotation — findKeywordInPCcluster • PCAGenomicSignatures</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,11 @@
 
 
 
-<meta property="og:title" content="z-score each row of the data — rowNorm" />
-<meta property="og:description" content="z-score each row of the data" />
+<meta property="og:title" content="Find the rank of your keyword in the PCcluster's GSEA annotation — findKeywordInPCcluster" />
+<meta property="og:description" content="Once you provide PCAmodel, keyword you're searching for, and the PCcluster number
+to this function, it will give you the abs(NES)-based rank of your keyword in
+the enriched pathways of the target PCcluster. If can be useful to find out how
+uniquely your keyword-containing pathways are represented." />
 
 
 
@@ -117,29 +120,52 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>z-score each row of the data</h1>
-    <small class="dont-index">Source: <a href='https://github.com/shbrief/PCAGenomicSignatures/blob/master/R/rowNorm.R'><code>R/rowNorm.R</code></a></small>
-    <div class="hidden name"><code>rowNorm.Rd</code></div>
+    <h1>Find the rank of your keyword in the PCcluster's GSEA annotation</h1>
+    <small class="dont-index">Source: <a href='https://github.com/shbrief/PCAGenomicSignatures/blob/master/R/findSignature.R'><code>R/findSignature.R</code></a></small>
+    <div class="hidden name"><code>findKeywordInPCcluster.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>z-score each row of the data</p>
+    <p>Once you provide PCAmodel, keyword you're searching for, and the PCcluster number
+to this function, it will give you the abs(NES)-based rank of your keyword in
+the enriched pathways of the target PCcluster. If can be useful to find out how
+uniquely your keyword-containing pathways are represented.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>rowNorm</span>(<span class='kw'>x</span>)</pre>
+    <pre class="usage"><span class='fu'>findKeywordInPCcluster</span>(<span class='kw'>PCAmodel</span>, <span class='kw'>keyword</span>, <span class='kw'>ind</span>, n = <span class='kw'>NULL</span>, includeTotal = <span class='fl'>FALSE</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>x</th>
-      <td><p>A gene-expression matrix with genes in rows and samples in columns</p></td>
+      <th>PCAmodel</th>
+      <td><p>PCAGenomicSignatures-object.</p></td>
+    </tr>
+    <tr>
+      <th>keyword</th>
+      <td><p>A character vector. If you are searching for multiple keywords
+at the same time, use <code><a href='https://rdrr.io/r/base/paste.html'>paste</a></code> with <code>collapse = "|"</code> argument.</p></td>
+    </tr>
+    <tr>
+      <th>ind</th>
+      <td><p>An integer. The PCcluster number you want to check.</p></td>
+    </tr>
+    <tr>
+      <th>n</th>
+      <td><p>An interger. The number of top enriched pathways (based on abs(NES))
+to search. Under default (<code>NULL</code>), all the enriched pathways are used.</p></td>
+    </tr>
+    <tr>
+      <th>includeTotal</th>
+      <td><p>Default is <code>FALSE</code>. If it is set to <code>TRUE</code>, the
+total number of enriched pathways will be also printed out as an output.</p></td>
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><a href='https://github.com/shbrief/PLIER/blob/master/R/Allfuncs.R'>https://github.com/shbrief/PLIER/blob/master/R/Allfuncs.R</a></p>
+    <p>A character containing the rank of keyword-containing pathways (separated
+by |), followed by the total number of enriched pathways in parenthesis.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

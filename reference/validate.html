@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">PCAGenomicSignatures</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.5</span>
       </span>
     </div>
 
@@ -118,7 +118,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Validate new datasets</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/shbrief/PCAGenomicSignatures/blob/master/R/validate.R'><code>R/validate.R</code></a></small>
     <div class="hidden name"><code>validate.Rd</code></div>
     </div>
 
@@ -126,7 +126,14 @@
     <p>Validate new datasets</p>
     </div>
 
-    <pre class="usage"><span class='fu'>validate</span>(<span class='no'>dataset</span>, <span class='no'>PCAmodel</span>, <span class='kw'>method</span> <span class='kw'>=</span> <span class='st'>"pearson"</span>, <span class='kw'>maxFrom</span> <span class='kw'>=</span> <span class='st'>"PC"</span>, <span class='kw'>level</span> <span class='kw'>=</span> <span class='st'>"max"</span>)</pre>
+    <pre class="usage"><span class='fu'>validate</span>(
+  <span class='kw'>dataset</span>,
+  <span class='kw'>PCAmodel</span>,
+  method = <span class='st'>"pearson"</span>,
+  maxFrom = <span class='st'>"PC"</span>,
+  level = <span class='st'>"max"</span>,
+  scale = <span class='fl'>FALSE</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -158,15 +165,25 @@ the avgLoading with the maximum correlation coefficient with each PC will be in 
 Default is "max", which outputs the matrix containing only the maximum coefficient.
 To get the coefficient of all 8 PCs, set this argument as "all".</p></td>
     </tr>
+    <tr>
+      <th>scale</th>
+      <td><p>Default is <code>FALSE</code>. If it is set to <code>TRUE</code>, dataset will
+be row normalized by <a href='rowNorm.html'>rowNorm</a> function.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A matrix containing the maximum pearson correlation coefficient between
-the top 8 PCs of the dataset(s) and pre-calculated average loadings of training
-datasets. Each row represents a new dataset for test, and each column represents
+    <p>A data frame containing the maximum pearson correlation coefficient between
+the top 8 PCs of the dataset and pre-calculated average loadings (in row) of training
+datasets (<code>score</code> column). It also contains other metadata associated with
+each PCcluster: <code>PC</code> for one of the top 8 PCs of the dataset that results
+in the given <code>score</code>, <code>sw</code> for the average silhouette width of the PCcluster,
+<code>cl_size</code> for the size of each PCcluster.
+If the input for <code>dataset</code> argument is a list of different datasets, each row
+of the output represents a new dataset for test, and each column represents
 clusters from training datasets. If <code>level = "all"</code>, a list containing the matrices
-of the pearson correlation coefficient between all top 8 PCs of the dataset(s) and
+of the pearson correlation coefficient between all top 8 PCs of the datasets and
 avgLoading.</p>
 
   </div>
@@ -184,7 +201,7 @@ avgLoading.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>

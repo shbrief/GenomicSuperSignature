@@ -75,7 +75,7 @@ results." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">PCAGenomicSignatures</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.5</span>
       </span>
     </div>
 
@@ -121,7 +121,7 @@ results." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Calculate average loadings of each cluster</h1>
-    
+    <small class="dont-index">Source: <a href='https://github.com/shbrief/PCAGenomicSignatures/blob/master/R/buildAvgLoading.R'><code>R/buildAvgLoading.R</code></a></small>
     <div class="hidden name"><code>buildAvgLoading.Rd</code></div>
     </div>
 
@@ -133,14 +133,14 @@ results.</p>
     </div>
 
     <pre class="usage"><span class='fu'>buildAvgLoading</span>(
-  <span class='no'>dat</span>,
-  <span class='no'>k</span>,
-  <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>20</span>,
-  <span class='kw'>clustering</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>cluster</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>iter.max</span> <span class='kw'>=</span> <span class='fl'>10</span>,
-  <span class='kw'>seed</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>study</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>
+  <span class='kw'>dat</span>,
+  <span class='kw'>k</span>,
+  n = <span class='fl'>20</span>,
+  clustering = <span class='fl'>TRUE</span>,
+  cluster = <span class='kw'>NULL</span>,
+  iter.max = <span class='fl'>10</span>,
+  seed = <span class='kw'>NULL</span>,
+  study = <span class='fl'>TRUE</span>
 )</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -187,7 +187,7 @@ of your data if <code>clustering=FALSE</code>.</p></td>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A named list of 13 elements is returned if <code>clustering=TRUE</code>. It contains:</p><dl'>
+    <p>A named list of 13 elements is returned if <code>clustering=TRUE</code>. It contains:</p><dl>
    <dt><code>kmeans</code> outputs</dt><dd><p>9 outputs from <code>kmeans</code></p></dd>
    <dt><code>avgLoading</code></dt><dd><p>A matrix of average loadings. Columns for clusters and rows for genes</p></dd>
    <dt><code>k</code></dt><dd><p>The number of clusters</p></dd>
@@ -196,7 +196,7 @@ of your data if <code>clustering=FALSE</code>.</p></td>
 
 </dl>
 
-<p>If <code>clustering=FALSE</code>, a named list of 6 elements is returned. It contains:</p><dl'>
+<p>If <code>clustering=FALSE</code>, a named list of 6 elements is returned. It contains:</p><dl>
    <dt><code>cluster</code></dt><dd><p>A numeric vector on cluster membership of PCs</p></dd>
    <dt><code>size</code></dt><dd><p>A integer vector on the size of clusters</p></dd>
    <dt><code>avgLoading</code></dt><dd><p>A matrix of average loadings. Columns for clusters and rows for genes</p></dd>
@@ -222,7 +222,7 @@ of your data if <code>clustering=FALSE</code>.</p></td>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
