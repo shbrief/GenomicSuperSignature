@@ -5,6 +5,7 @@
 #' @param n A number of top enriched pathways to output. Default is 5.
 #' @param abs Default is \code{FALSE}. If it's set to \code{TRUE}, the enriched
 #' pathways will be listed based on \code{abs(NES)}.
+#'
 #' @return A data frame with \code{n} rows and 4 columns; Description, NES, pvalue, and qval
 #'
 #' @export

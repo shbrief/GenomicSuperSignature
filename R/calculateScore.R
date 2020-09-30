@@ -1,7 +1,6 @@
 #' Calculate the validation score for a new dataset
 #'
 #' @import methods
-#' @importFrom stats sd
 #'
 #' @param dataset A gene expression matrix, where genes are in rows and rownames
 #' are in 'symbol' format. It can be SummarizedExperiment, ExpressionSet, or matrix objects.

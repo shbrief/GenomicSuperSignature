@@ -142,8 +142,6 @@ makeGeneList <- function(LoadingMatrix, LoadingVector = NULL, abs = TRUE) {
 #' @description This function is a wrapper of \code{\link[clusterProfiler]{GSEA}} function,
 #' making it applicable to a list of gene lists. Set seed for reproducible result.
 #'
-#' @importFrom clusterProfiler GSEA
-#'
 #' @param geneList A list of genes ordered by rank
 #' @param TERM2GENE User input annotation of TERM TO GENE mapping, a data.frame of 2 column with term and gene
 #' @param TERM2NAME User input of TERM TO NAME mapping, a data.frame of 2 column with term and name. Optional.
@@ -162,13 +160,13 @@ run_gsea <- function(geneList, TERM2GENE, TERM2NAME,
     gsea <- list()
     for (x in names(geneList)) {
         res <- clusterProfiler::GSEA(geneList[[x]],
-                                    TERM2GENE = TERM2GENE,
-                                    TERM2NAME = TERM2NAME,
-                                    minGSSize = minGSSize,
-                                    maxGSSize = maxGSSize,
-                                    verbose = verbose,
-                                    pvalueCutoff = pvalueCutoff,
-                                    ...)
+                                     TERM2GENE = TERM2GENE,
+                                     TERM2NAME = TERM2NAME,
+                                     minGSSize = minGSSize,
+                                     maxGSSize = maxGSSize,
+                                     verbose = verbose,
+                                     pvalueCutoff = pvalueCutoff,
+                                     ...)
 
         # collect GSEA outputs with enrichment result under the assigned pvalueCutoff
         if (nrow(res) != 0) {
@@ -183,7 +181,6 @@ run_gsea <- function(geneList, TERM2GENE, TERM2NAME,
 #'
 #' This function is renamed from \code{topPathways} to \code{subsetPathways}.
 #'
-#' @importFrom enrichplot cnetplot
 #' @import methods
 #'
 #' @param PCAmodel PCAGenomicSignatures object. Also an output from \code{\link[clusterProfiler]{GSEA}} can be used.
@@ -194,7 +191,6 @@ run_gsea <- function(geneList, TERM2GENE, TERM2NAME,
 #' @param both Default is \code{FALSE}, where only the top \code{n} pathways will
 #' be printed. If it is set to \code{TRUE}, the ouput will contain both top and
 #' bottom \code{n} pathways.
-#'
 #'
 #' @return A data frame with top and bottom \code{n} pathways from the enrichment results.
 #'

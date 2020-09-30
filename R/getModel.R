@@ -1,7 +1,5 @@
 #' Download the PCAmodel from GCP
 #'
-#' @importFrom AnVIL gsutil_cp
-#'
 #' @param prior The name of gene sets used to annotate PCAGenomicSignatures. Currently
 #' there are two available options.
 #' \itemize{

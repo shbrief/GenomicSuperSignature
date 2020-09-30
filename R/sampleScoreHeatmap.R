@@ -1,7 +1,6 @@
 #' Plot heatmap of the sample scores
 #'
 #' @import ComplexHeatmap
-#' @importFrom circlize colorRamp2
 #' @importFrom grid gpar
 #'
 #' @param score An output from \code{\link{calculateScore}} function, which is a matrix

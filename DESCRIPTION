@@ -1,35 +1,26 @@
 Package: PCAGenomicSignatures
-Title: PCAGenomicSignatures, connecting new expression data to the existing knowledge database
-Version: 0.0.4
-Date: 2020-8-11
+Title: Interpretation of RNA-seq experiments through robust, efficient comparison to public databases
+Version: 0.0.5
+Date: 2020-9-29
 Authors@R: person("Sehyun", "Oh", email = "Sehyun.Oh@sph.cuny.edu", role = c("aut", "cre"))
-Description: This package provides PCA workflow and PCA-based index for extensive annotation with existing knowledge database. 
-Depends: R (>= 3.5)
+Description: This package contains the index, which is the Replicable and interpretable 
+  Axes of Variation (RAV) extracted from public RNA sequencing datasets by clustering and 
+  averaging top PCs. These indexes are further annotated with MeSH terms and GSEA. Functions 
+  to match PCA of new datasets to RAVs from existing studies, extract interpretable annotations, 
+  and provide intuitive visualization, are implemented in this package. Overall, this
+  package enables researchers to analyze new data in the context of existing databases 
+  with minimal computing resources.
+Depends: 
+  R (>= 3.6.0), 
+  SummarizedExperiment
 Imports:
   ComplexHeatmap,
-  SummarizedExperiment,
   ggplot2,
   methods,
   S4Vectors,
   Biobase,
-  cluster,
-  plotly,
-  RColorBrewer,
-  EnrichmentBrowser,
-  msigdbr,
-  reshape2,
-  stringr,
-  tibble,
-  AnVIL,
-  circlize,
-  clusterProfiler,
-  dplyr,
-  enrichplot,
   ggpubr,
-  igraph,
-  purrr,
-  visNetwork,
-  wordcloud 
+  dplyr
 Suggests:
   knitr,
   rmarkdown,
@@ -38,11 +29,22 @@ Suggests:
   pkgdown,
   usethis,
   BiocStyle,
+  testthat,
   forcats,
   grid,
   stats,
   utils,
-  bcellViper
+  AnVIL,
+  wordcloud,
+  circlize,
+  EnrichmentBrowser,
+  clusterProfiler,
+  msigdbr,
+  cluster,
+  plotly,
+  RColorBrewer,
+  reshape2,
+  tibble
 License: Artistic-2.0
 Encoding: UTF-8
 LazyData: true
@@ -63,7 +65,6 @@ Collate:
     'extractPC.R'
     'findSignature.R'
     'funcForGSEA.R'
-    'funcForGSEA_plot.R'
     'getModel.R'
     'heatmapTable.R'
     'plotAnnotedPCA.R'

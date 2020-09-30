@@ -5,12 +5,12 @@
 #' ranges from −1 to +1, where a high value indicates that the object is well matched
 #' to its own cluster and poorly matched to neighboring clusters.
 #'
-#' @seealso \code{\link[stats]{kmeans}}
-#'
 #' @param dat A matrix with all the top PCs from training data to be clustered.
 #' @param kmeansRes Output from \code{stats::kmeans}.
 #'
 #' @return Silhouette-class object, which is an n x 3 matrix with attributes.
+#'
+#' @seealso \code{\link[stats]{kmeans}}
 #'
 .calculateSilhouetteWidth <- function (dat, kmeansRes) {
     swRes <- cluster::silhouette(x = kmeansRes$cluster, dist = cluster::daisy(dat))

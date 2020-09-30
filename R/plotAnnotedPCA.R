@@ -18,10 +18,8 @@
 #' pass the \code{scoreCutoff} the table will be labeled as "No significant pathways".
 #' If any enriched pathway didn't pass the \code{nesCutoff}, it will labeled as NA.
 #'
-#' @importFrom ggpubr ggtexttable ttheme table_cell_font ggarrange tab_nrow
-#' @importFrom ggplot2 ggplot geom_point
-#' @importFrom stats prcomp
-#' @importFrom utils stack
+#' @import ggpubr
+#' @import ggplot2
 #'
 #' @export
 plotAnnotatedPCA <- function(dataset, PCAmodel, PCs, val_all = NULL,

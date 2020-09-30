@@ -39,8 +39,6 @@
 
 #' Validate new datasets
 #'
-#' @importFrom dplyr tbl_df
-#'
 #' @param dataset Single or a list of SummarizedExperiment (RangedSummarizedExperiment,
 #' ExpressionSet or matrix) object(s). Gene names should be in 'symbol' format.
 #' @param PCAmodel PCAGenomicSignature object. You can also provide signature model matrix directly.

@@ -58,6 +58,11 @@ PCAmodel
 consists of 211 normal and tumor human B-cell phenotypes whose expression was profiled on Affymatrix
 HG-U95Av2 arrays, and it is contained in an ExpressionSet object with 6,249 features x 211 samples.
 
+```{r echo=FALSE}
+if (!"BiocManager" %in% rownames(installed.packages())) {install.packages("BiocManager")}
+if (!"bcellViper" %in% rownames(installed.packages())) {BiocManager::install("bcellViper")}
+```
+
 ```{r message=FALSE, warning=FALSE}
 suppressPackageStartupMessages(library(bcellViper))
 data(bcellViper)

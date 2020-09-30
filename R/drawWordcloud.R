@@ -14,7 +14,7 @@ PCinCluster <- function(PCAmodel, ind) {
 
 #' Build a two-column word/frequency table
 #'
-#' @importFrom dplyr %>% group_by summarise
+#' @import dplyr
 #'
 #' @param PCAmodel A PCAGenomicSignatures object
 #' @param ind An index of PCcluster
@@ -112,8 +112,6 @@ meshTable <- function(PCAmodel, ind, rm.noise = 4, weighted = TRUE) {
 #' @description Plot a word cloud using the remaining MeSH terms in the selected
 #' PCcluster after user-defined filtering.
 #'
-#' @importFrom wordcloud wordcloud
-#'
 #' @param PCAmodel PCAGenomicSignatures object
 #' @param ind An index of the PCcluster you want to draw wordcloud.
 #' @param rm.noise An integer. Under the default condition (\code{rm.noise=NULL}),
@@ -150,7 +148,7 @@ drawWordcloud <- function(PCAmodel, ind, rm.noise = NULL, scale = c(3, 0.5),
 
     # generate the word cloud
     if (is.null(seed)) {set.seed(1234)}
-    wordcloud(words = all$word, freq = all$freq, scale = scale,
-              max.words = Inf, random.order = FALSE, rot.per = 0,
-              colors = RColorBrewer::brewer.pal(8, "Dark2"))
+    wordcloud::wordcloud(words = all$word, freq = all$freq, scale = scale,
+                         max.words = Inf, random.order = FALSE, rot.per = 0,
+                         colors = RColorBrewer::brewer.pal(8, "Dark2"))
 }
