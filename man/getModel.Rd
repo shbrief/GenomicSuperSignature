@@ -2,9 +2,9 @@
 % Please edit documentation in R/getModel.R
 \name{getModel}
 \alias{getModel}
-\title{Download the PCAmodel from GCP}
+\title{Access a PCAGenomicSignature model}
 \usage{
-getModel(prior = c("C2", "PLIERpriors"), dir)
+getModel(prior = c("C2", "PLIERpriors"))
 }
 \arguments{
 \item{prior}{The name of gene sets used to annotate PCAGenomicSignatures. Currently
@@ -13,13 +13,11 @@ there are two available options.
     \item \code{C2} : MSigDB C2 (curated gene sets)
     \item \code{PLIERpriors} : bloodCellMarkersIRISDMAP, svmMarkers, and canonicalPathways
 }}
-
-\item{dir}{A path to the directory where PCAGenomicSginatures object will be downloaded.}
 }
 \value{
 PCAGenomicSignatures object in \code{.rds} format saved in the user
 defined location.
 }
 \description{
-Download the PCAmodel from GCP
+Access a PCAGenomicSignature model
 }

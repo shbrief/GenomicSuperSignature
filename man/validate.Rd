@@ -24,7 +24,7 @@ to be computed. One of "pearson" (default), "kendall", or "spearman": can be abb
 
 \item{maxFrom}{Select whether to display the maximum value from dataset's PCs or avgLoadings.
 Under the default (\code{maxFrom="PC"}), the maximum correlation coefficient from
-top 8 PCs for each avgLoading will be selected as an output.If you choose (\code{maxFrom="avgLoading"}),
+top 8 PCs for each avgLoading will be selected as an output. If you choose (\code{maxFrom="avgLoading"}),
 the avgLoading with the maximum correlation coefficient with each PC will be in the output.}
 
 \item{level}{Defibe how to ouput validation in two different forms, \code{c("max", "all")}.

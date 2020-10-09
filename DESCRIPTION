@@ -44,7 +44,8 @@ Suggests:
   plotly,
   RColorBrewer,
   reshape2,
-  tibble
+  tibble,
+  BiocFileCache
 License: Artistic-2.0
 Encoding: UTF-8
 LazyData: true

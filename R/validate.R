@@ -46,7 +46,7 @@
 #' to be computed. One of "pearson" (default), "kendall", or "spearman": can be abbreviated.
 #' @param maxFrom Select whether to display the maximum value from dataset's PCs or avgLoadings.
 #' Under the default (\code{maxFrom="PC"}), the maximum correlation coefficient from
-#' top 8 PCs for each avgLoading will be selected as an output.If you choose (\code{maxFrom="avgLoading"}),
+#' top 8 PCs for each avgLoading will be selected as an output. If you choose (\code{maxFrom="avgLoading"}),
 #' the avgLoading with the maximum correlation coefficient with each PC will be in the output.
 #' @param level Defibe how to ouput validation in two different forms, \code{c("max", "all")}.
 #' Default is "max", which outputs the matrix containing only the maximum coefficient.
@@ -117,17 +117,17 @@ validate <- function(dataset, PCAmodel, method = "pearson",
                 z <- apply(x, 2, max) %>% as.data.frame # colMax
                 z$avgLoading <- apply(x, 2, which.max)
                 colnames(z)[1] <- "score"
-                return(t(z))
+                return(z)
             } else if (level == "all") {
-                return(t(x))
+                return(x)
             }
         } else {
             x <- lapply(dataset, .loadingCor, avgLoading, method)
             if (level == "max") {
                 z <- sapply(x, function(y) {apply(y, 2, max)})
-                return(t(z))
+                return(z)
             } else if (level == "all") {
-                return(t(x))
+                return(x)
             }
         }
     }

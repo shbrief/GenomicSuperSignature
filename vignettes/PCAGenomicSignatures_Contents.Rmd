@@ -43,16 +43,8 @@ There are two versions of this using different gene sets for GSEA-based annotati
 MSigDB C2 (`C2`) and three priors from PLIER package (`PLIERpriors`). In this 
 vignette, we are using the `C2` annotated model.
 
-```{r load_model, eval=FALSE}
-wd <- getwd()
-fpath <- file.path(wd, "PCAmodel_C2.rds")
-if (!file.exists(fpath)) {getModel("C2", dir = wd)} 
-
-PCAmodel <- readRDS(file.path(wd, "PCAmodel_C2.rds"))
-PCAmodel
-```
-
-```{r echo=FALSE}
+```{r load_model}
+if (!file.exists("PCAmodel_C2.rds")) {getModel("C2")} 
 PCAmodel <- readRDS("PCAmodel_C2.rds")
 PCAmodel
 ```
@@ -125,7 +117,19 @@ You can check which PC from different studies are in PCclusters using `PCinClust
 PCinCluster(PCAmodel, 2)
 ```
 
+## Silhouette Width
+Silhouette width ranges from -1 to 1 for each observation in your data and can be
+interpreted as follows:   
+  - Values close to 1 suggest that the observation is well matched to the assigned cluster   
+  - Values close to 0 suggest that the observation is borderline matched between two clusters   
+  - Values close to -1 suggest that the observations may be assigned to the wrong cluster   
+  
+Can I use silhouette width to assign the level of validity for avgLoadings?
 
+```{r}
+x <- silhouetteWidth(PCAmodel)
+summary(x)
+```
 
 ## GSEA on each loading
 ```{r}

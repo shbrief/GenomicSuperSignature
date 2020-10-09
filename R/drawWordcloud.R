@@ -18,9 +18,10 @@ PCinCluster <- function(PCAmodel, ind) {
 #'
 #' @param PCAmodel A PCAGenomicSignatures object
 #' @param ind An index of PCcluster
-#' @param rm.noise An integer. Any MeSH term found less than the given value here
-#' will be excluded from wordcloud. If \code{rm.noise = 0}, all the MeSH terms
-#' in PCcluster will be used. Default is 4.
+#' @param rm.noise An integer. Under the default condition (\code{rm.noise=NULL}),
+#' if cluster size (= \code{s}) is smaller than 8, \code{rm.noise = floor(s*0.5)}.
+#' For clusters with >= 8 PCs, \code{rm.noise = 4}. If \code{rm.noise = 0}, all
+#' the MeSH terms in PCcluster will be used to draw wordcloud.
 #' @param weighted A logical. If \code{TRUE}, MeSH terms from each study are
 #' weighted based on the variance explained by the principle component of the
 #' study contributing a give PCcluster. Default is \code{TRUE}.
@@ -29,7 +30,14 @@ PCinCluster <- function(PCAmodel, ind) {
 #' the defined PCcluster (by \code{ind} argument) is ordered based on their frequency.
 #'
 #' @export
-meshTable <- function(PCAmodel, ind, rm.noise = 4, weighted = TRUE) {
+meshTable <- function(PCAmodel, ind, rm.noise = NULL, weighted = TRUE) {
+
+    ### Remove noise
+    if (is.null(rm.noise)) {
+        s <- S4Vectors::metadata(PCAmodel)$size[ind]
+        if (s < 8) {rm.noise = floor(s*0.5)}
+        else if (s >= 8) {rm.noise = 4}
+    }
 
     ### Create a 'universe' for bag-of-words model
     bow <- unlist(S4Vectors::metadata(PCAmodel)$MeSH_freq)  # frequency of the `name` in the background

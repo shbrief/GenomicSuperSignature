@@ -43,19 +43,12 @@ There are two versions of this using different gene sets for GSEA-based annotati
 MSigDB C2 (`C2`) and three priors from PLIER package (`PLIERpriors`). In this 
 vignette, we are using the `C2` annotated model.
 
-```{r load_model, eval=FALSE}
-wd <- getwd()
-fpath <- file.path(wd, "PCAmodel_C2.rds")
-if (!file.exists(fpath)) {getModel("C2", dir = wd)} 
-
-PCAmodel <- readRDS(file.path(wd, "PCAmodel_C2.rds"))
-PCAmodel
-```
-
-```{r echo=FALSE}
+```{r load_model}
+if (!file.exists("PCAmodel_C2.rds")) {getModel("C2")} 
 PCAmodel <- readRDS("PCAmodel_C2.rds")
 PCAmodel
 ```
+
 
 
 ## Example dataset
@@ -114,6 +107,7 @@ plotValidate(val_all, interactive = TRUE, minClusterSize = 4)
 <br>
 
 You can hover each data point for more information:    
+
 - **sw** : the average silhouette width of the clutser   
 - **score** : the top validation score between 8 PCs of the dataset and the cluster   
 - **cl_size** : the size of the cluster, represented by the dot size   
@@ -127,7 +121,7 @@ mode where you can add an additional group of data point by single-click.
 
 # MeSH terms in wordcloud
 You can draw a wordcloud with the enriched MeSH term of PCclusters that validate
-your dataset. Besed on the heatmap table above, 1st-3rd PCclusters (2538, 1139, 884) 
+your dataset. Besed on the heatmap table above, 1st-3rd PCclusters (2538, 1139, and 884) 
 show high validation scores with positive average silhouette widths, so we draw 
 wordclouds of those PCclusters using `drawWordcloud` function. You need to provide 
 PCAmodel and the index of the PCcluster you are interested in.
@@ -155,11 +149,8 @@ Because the test dataset is human B-cell expression data, we tried the model ann
 with blood-associated gene sets. 
 
 ```{r message=FALSE, warning=FALSE}
-wd <- getwd()
-fpath <- file.path(wd, "PCAmodel_PLIERpriors.rds")
-if (!file.exists(fpath)) {getModel("PLIERpriors", dir = wd)} 
-
-PCAmodel <- readRDS(file.path(wd, "PCAmodel_PLIERpriors.rds"))
+if (!file.exists("PCAmodel_PLIERpriors.rds")) {getModel("PLIERpriors")} 
+PCAmodel <- readRDS("PCAmodel_PLIERpriors.rds")
 PCAmodel
 ```
 

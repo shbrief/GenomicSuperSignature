@@ -23,7 +23,7 @@
 #'
 #' @export
 plotAnnotatedPCA <- function(dataset, PCAmodel, PCs, val_all = NULL,
-                             scoreCutoff = 0.5, nesCutoff = 3,
+                             scoreCutoff = 0.5, nesCutoff = NULL,
                              color_by = NULL, color_lab = NULL,
                              trimed_pathway_len = 45) {
 
@@ -59,7 +59,8 @@ plotAnnotatedPCA <- function(dataset, PCAmodel, PCs, val_all = NULL,
   # PC annotation table
   myTable <- ggpubr::ggtexttable(annotatedPC,
                                  rows = NULL, theme = ggpubr::ttheme("mOrange"))
-  myTable <- ggpubr::table_cell_font(row = 2:ggpubr::tab_nrow(myTable), column = 1:2, size = 9)
+  myTable <- ggpubr::table_cell_font(myTable, row = 2:ggpubr::tab_nrow(myTable),
+                                     column = 1:2, size = 9)
 
   res <- ggpubr::ggarrange(myPlot, myTable, ncol = 1, nrow = 2, heights = c(1, 0.5))
   print(res)

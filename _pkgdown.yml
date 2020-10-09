@@ -1,8 +1,5 @@
-title: PCAGenomicSignatures
-
-template:
-  params:
-    bootswatch: flatly
+title: "PCAGenomicSignatures"
+type: inverse
 
 reference:
   - title: Classes
@@ -67,7 +64,7 @@ navbar:
       menu:
       - text: Quick Start Guide
         href: articles/Quickstart.html
-      - text: Overview Contents
+      - text: Model Contents
         href: articles/PCAGenomicSignatures_Contents.html
   right:
   - icon: fa-github fa-lg

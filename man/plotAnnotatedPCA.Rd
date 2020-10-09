@@ -10,7 +10,7 @@ plotAnnotatedPCA(
   PCs,
   val_all = NULL,
   scoreCutoff = 0.5,
-  nesCutoff = 3,
+  nesCutoff = NULL,
   color_by = NULL,
   color_lab = NULL,
   trimed_pathway_len = 45

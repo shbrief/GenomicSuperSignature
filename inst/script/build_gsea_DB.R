@@ -1,4 +1,19 @@
-##### PCAmodel from 1,399 studies ##############################################
+#' Choose the correct GSEA script based on the PCAmodel and the annotation database
+#' you are interested in. Unless specified, PCAmodels are built with top 90% varying
+#' common genes. Here is the current list:
+#'
+#' 1. 1399 studies + MSigDB C2
+#' 2. 536 studies + PLIER priors
+#' 3. 536 studies + all genes + PLIER priors
+#' 4. 536 studies + MSigDB C2 CP
+#' 5. 536 studies + MSigDB C2 all
+
+
+
+
+
+
+# ##### 1. PCAmodel from 1,399 studies #########################################
 # dat_dir <- "~/data2/PCAGenomicSignatureLibrary/refinebioRseq"
 # PCAmodel <- readRDS(file.path(dat_dir, "PCAmodel_1399/refinebioRseq_PCAmodel_hclust.rds"))
 # out_dir <- file.path(dat_dir, "PCAmodel_1399/gsea")
@@ -15,10 +30,10 @@
 
 
 
-##### PCAmodel from 536 studies ################################################
+# ##### 2. PCAmodel from 536 studies ###########################################
 # dat_dir <- "~/data2/PCAGenomicSignatureLibrary/refinebioRseq"
 # PCAmodel <- readRDS(file.path(dat_dir, "PCAmodel_536/refinebioRseq_PCAmodel.rds"))
-# out_dir <- file.path(dat_dir, "PCAmodel_536/gsea")
+# out_dir <- file.path(dat_dir, "PCAmodel_536/gsea_PLIERpriors")
 #
 # library(PCAGenomicSignatures)
 # library(PLIER)
@@ -44,10 +59,10 @@
 
 
 
-# ##### PCAmodel from 536 studies with allGenes ##################################
+# ##### 3. PCAmodel from 536 studies PLIERpriors with allGenes #################
 # dat_dir <- "~/data2/PCAGenomicSignatureLibrary/refinebioRseq"
 # PCAmodel <- readRDS(file.path(dat_dir, "PCAmodel_536_allGenes/refinebioRseq_PCAmodel.rds"))
-# out_dir <- file.path(dat_dir, "PCAmodel_536_allGenes/gsea")
+# out_dir <- file.path(dat_dir, "PCAmodel_536_allGenes/gsea_PLIERpriors")
 #
 # library(PCAGenomicSignatures)
 # library(PLIER)
@@ -73,10 +88,10 @@
 
 
 
-# ##### PCAmodel from 536 studies C2.CP ##########################################
+# ##### 4. PCAmodel from 536 studies C2.CP #####################################
 # dat_dir <- "~/data2/PCAGenomicSignatureLibrary/refinebioRseq"
 # PCAmodel <- readRDS(file.path(dat_dir, "PCAmodel_536/refinebioRseq_PCAmodel.rds"))
-# out_dir <- file.path(dat_dir, "PCAmodel_536/gsea_c2cp")
+# out_dir <- file.path(dat_dir, "PCAmodel_536/gsea_C2CP")
 #
 # if (!dir.exists(out_dir)) {dir.create(out_dir)}
 #
@@ -99,7 +114,7 @@
 
 
 
-##### PCAmodel from 536 studies C2 #############################################
+#### 5. PCAmodel from 536 studies C2 ###########################################
 dat_dir <- "~/data2/PCAGenomicSignatureLibrary/refinebioRseq"
 PCAmodel <- readRDS(file.path(dat_dir, "PCAmodel_536/refinebioRseq_PCAmodel.rds"))
 out_dir <- file.path(dat_dir, "PCAmodel_536/gsea_c2")
