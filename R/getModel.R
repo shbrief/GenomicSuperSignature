@@ -1,4 +1,33 @@
-#' Download the PCAmodel from GCP
+s2p_get_cache <- function(cache = rappdirs::user_cache_dir(appname='pca_genomic_signatures')) {
+  BiocFileCache::BiocFileCache(cache=cache)
+}
+
+#' @importFrom BiocFileCache bfcneedsupdate bfcdownload bfcadd bfcquery bfcrpath
+#' 
+s2p_cached_url <- function(url, rname = url, ask_on_update=FALSE,
+                           max_cache_age=getOption('sars2pack.max_cache_age', '2 days'),
+                           ...) {
+  bfc = s2p_get_cache()
+  bfcres = bfcquery(bfc,rname,'rname')
+  
+  rid = bfcres$rid
+  # Not found
+  fileage = 0
+  if(!length(rid)) {
+    rid = names(bfcadd(bfc, rname, url))
+  }
+  # if needs update, do the download
+  if(bfcneedsupdate(bfc, rid)) {
+    bfcdownload(bfc, rid, ask=FALSE, ...)
+    print("downloading")
+  } 
+  bfcrpath(bfc, rids = rid)
+}
+
+
+
+
+#' Access a PCAGenomicSignature model
 #'
 #' @param prior The name of gene sets used to annotate PCAGenomicSignatures. Currently
 #' there are two available options.
@@ -6,26 +35,23 @@
 #'     \item \code{C2} : MSigDB C2 (curated gene sets)
 #'     \item \code{PLIERpriors} : bloodCellMarkersIRISDMAP, svmMarkers, and canonicalPathways
 #' }
-#' @param dir A path to the directory where PCAGenomicSginatures object will be downloaded.
 #' @return PCAGenomicSignatures object in \code{.rds} format saved in the user
 #' defined location.
 #'
 #' @export
-getModel <- function(prior = c("C2", "PLIERpriors"), dir) {
+getModel <- function(prior = c("C2", "PLIERpriors")) {
 
   if (!prior %in% c("C2", "PLIERpriors")) {
     stop("Prior you entered isn't available yet.")
   }
 
-  bucket <- "gs://pca_genomic_signatures"
+  bucket_name <- "pca_genomic_signatures"
   fname <- paste0("PCAmodel_", prior, ".rds")
-  fpath <- file.path(bucket, fname)
+  fpath <- file.path('https://storage.googleapis.com',bucket_name, fname)
 
-  if (!dir.exists(dir)) {
-    stop("Directory you entered doesn't exist.")
-  } else {
-    AnVIL::gsutil_cp(fpath, dir)
-  }
+  fpath = s2p_cached_url(fpath)
+  
+  return(fpath)
 }
 
 
