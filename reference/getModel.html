@@ -6,14 +6,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Download the PCAmodel from GCP — getModel • PCAGenomicSignatures</title>
+<title>Access a PCAGenomicSignature model — getModel • PCAGenomicSignatures</title>
 
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/3.4.0/flatly/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous" />
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script>
 
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Download the PCAmodel from GCP — getModel" />
-<meta property="og:description" content="Download the PCAmodel from GCP" />
+<meta property="og:title" content="Access a PCAGenomicSignature model — getModel" />
+<meta property="og:description" content="Access a PCAGenomicSignature model" />
 
 
 
@@ -92,7 +92,7 @@
       <a href="../articles/Quickstart.html">Quick Start Guide</a>
     </li>
     <li>
-      <a href="../articles/PCAGenomicSignatures_Contents.html">Overview Contents</a>
+      <a href="../articles/PCAGenomicSignatures_Contents.html">Model Contents</a>
     </li>
   </ul>
 </li>
@@ -117,16 +117,16 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Download the PCAmodel from GCP</h1>
+    <h1>Access a PCAGenomicSignature model</h1>
     <small class="dont-index">Source: <a href='https://github.com/shbrief/PCAGenomicSignatures/blob/master/R/getModel.R'><code>R/getModel.R</code></a></small>
     <div class="hidden name"><code>getModel.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Download the PCAmodel from GCP</p>
+    <p>Access a PCAGenomicSignature model</p>
     </div>
 
-    <pre class="usage"><span class='fu'>getModel</span>(prior = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"C2"</span>, <span class='st'>"PLIERpriors"</span>), <span class='kw'>dir</span>)</pre>
+    <pre class="usage"><span class='fu'>getModel</span>(prior = <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"C2"</span>, <span class='st'>"PLIERpriors"</span>))</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -138,10 +138,6 @@ there are two available options.</p><ul>
 <li><p><code>C2</code> : MSigDB C2 (curated gene sets)</p></li>
 <li><p><code>PLIERpriors</code> : bloodCellMarkersIRISDMAP, svmMarkers, and canonicalPathways</p></li>
 </ul></td>
-    </tr>
-    <tr>
-      <th>dir</th>
-      <td><p>A path to the directory where PCAGenomicSginatures object will be downloaded.</p></td>
     </tr>
     </table>
 
