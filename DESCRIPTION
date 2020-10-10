@@ -35,7 +35,6 @@ Suggests:
   grid,
   stats,
   utils,
-  AnVIL,
   wordcloud,
   circlize,
   EnrichmentBrowser,

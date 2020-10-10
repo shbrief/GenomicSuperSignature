@@ -2,7 +2,7 @@
 % Please edit documentation in R/getModel.R
 \name{getModel}
 \alias{getModel}
-\title{Access a PCAGenomicSignature model}
+\title{Download a PCAGenomicSignatures model}
 \usage{
 getModel(prior = c("C2", "PLIERpriors"))
 }
@@ -15,9 +15,8 @@ there are two available options.
 }}
 }
 \value{
-PCAGenomicSignatures object in \code{.rds} format saved in the user
-defined location.
+PCAGenomicSignatures object in \code{.rds} format saved in the current location.
 }
 \description{
-Access a PCAGenomicSignature model
+Download a PCAGenomicSignatures model
 }

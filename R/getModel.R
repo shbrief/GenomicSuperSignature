@@ -3,13 +3,13 @@ s2p_get_cache <- function(cache = rappdirs::user_cache_dir(appname='pca_genomic_
 }
 
 #' @importFrom BiocFileCache bfcneedsupdate bfcdownload bfcadd bfcquery bfcrpath
-#' 
+#'
 s2p_cached_url <- function(url, rname = url, ask_on_update=FALSE,
                            max_cache_age=getOption('sars2pack.max_cache_age', '2 days'),
                            ...) {
   bfc = s2p_get_cache()
   bfcres = bfcquery(bfc,rname,'rname')
-  
+
   rid = bfcres$rid
   # Not found
   fileage = 0
@@ -20,14 +20,14 @@ s2p_cached_url <- function(url, rname = url, ask_on_update=FALSE,
   if(bfcneedsupdate(bfc, rid)) {
     bfcdownload(bfc, rid, ask=FALSE, ...)
     print("downloading")
-  } 
+  }
   bfcrpath(bfc, rids = rid)
 }
 
 
 
 
-#' Access a PCAGenomicSignature model
+#' Download a PCAGenomicSignatures model
 #'
 #' @param prior The name of gene sets used to annotate PCAGenomicSignatures. Currently
 #' there are two available options.
@@ -35,8 +35,7 @@ s2p_cached_url <- function(url, rname = url, ask_on_update=FALSE,
 #'     \item \code{C2} : MSigDB C2 (curated gene sets)
 #'     \item \code{PLIERpriors} : bloodCellMarkersIRISDMAP, svmMarkers, and canonicalPathways
 #' }
-#' @return PCAGenomicSignatures object in \code{.rds} format saved in the user
-#' defined location.
+#' @return PCAGenomicSignatures object in \code{.rds} format saved in the current location.
 #'
 #' @export
 getModel <- function(prior = c("C2", "PLIERpriors")) {
@@ -50,7 +49,7 @@ getModel <- function(prior = c("C2", "PLIERpriors")) {
   fpath <- file.path('https://storage.googleapis.com',bucket_name, fname)
 
   fpath = s2p_cached_url(fpath)
-  
+
   return(fpath)
 }
 
