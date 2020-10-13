@@ -17,12 +17,11 @@ reference:
       - GenomicSignatures-methods
       - PCAGenomicSignatures-methods
   - title: Model Building
-    desc: Functions for PCAGenomicSignatures model buildling
+    desc: Functions for PCAGenomicSignatures model building
     contents:
       - .calculateSilhouetteWidth
       - .PCclusterName
       - buildAvgLoading
-      - commonGene
       - findStudiesInCluster
       - PCinCluster
       - rmNaInf
@@ -34,25 +33,23 @@ reference:
       - calculateScore
       - getModel
       - validate
-  - title: Visualization and Extract Output
+  - title: Extract Output and Metadata
     contents:
       - annotatePC
       - annotatePCcluster
-      - drawWordcloud
       - extractPC
       - findKeywordInPCcluster
       - findSignature
-      - heatmapTable
-      - makeGeneList
       - meshTable
-      - plotAnnotatedPCA
-      - plotValidate
-      - run_gsea
-      - sampleScoreHeatmap
-      - subsetGSEA
       - subsetPathways
       - validatedSignatures
-      - msigdb_gsea
+  - title: Visualization
+    contents:
+      - drawWordcloud
+      - heatmapTable
+      - plotAnnotatedPCA
+      - plotValidate
+      - sampleScoreHeatmap
 
 navbar:
   title: ~

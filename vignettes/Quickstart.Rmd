@@ -43,12 +43,16 @@ There are two versions of this using different gene sets for GSEA-based annotati
 MSigDB C2 (`C2`) and three priors from PLIER package (`PLIERpriors`). In this 
 vignette, we are using the `C2` annotated model.
 
-```{r load_model}
+```{r load_model, eval=FALSE}
 if (!file.exists("PCAmodel_C2.rds")) {getModel("C2")} 
 PCAmodel <- readRDS("PCAmodel_C2.rds")
 PCAmodel
 ```
 
+```{r echo=FALSE}
+PCAmodel <- readRDS("PCAmodel_C2.rds")
+PCAmodel
+```
 
 
 ## Example dataset
@@ -131,9 +135,8 @@ function, which outputs the validated index based on `num.out`, PC from dataset
 (`whichPC`) or any `*Cutoff` arguments in a same way as `heatmapTable`. 
 
 ```{r fig.height=8, fig.width=8}
-validatedSig <- validatedSignatures(val_all, num.out = 3, swCutoff = 0)
-validated_ind <- validatedSig[,"cl_num"]
-
+validated_ind <- validatedSignatures(val_all, num.out = 3, 
+                                     swCutoff = 0, indexOnly = TRUE)
 set.seed(1)
 drawWordcloud(PCAmodel, validated_ind[1])
 drawWordcloud(PCAmodel, validated_ind[2])
