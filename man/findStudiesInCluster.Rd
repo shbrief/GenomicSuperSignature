@@ -25,3 +25,6 @@ of the list will be same as the number of PCclusters (= \code{metadata(x)$k}).
 \description{
 Find the studies contributing each PCcluster
 }
+\note{
+Mainly used for modeling building, within \link{buildAvgLoading}.
+}

@@ -10,8 +10,15 @@
 #' post assignment, so avgerage loadings have the same standard deviation in different
 #' studies. If it is \code{FALSE}, the rescaling of column (= dividing by \code{sqrt(sum(x^2})
 #' is done before score assignment. Default is \code{TRUE}.
+#'
 #' @return A list containing the score matrices for input datasets. Scores are
 #' assigned to each sample (row) for each cluster (column).
+#'
+#' @examples
+#' data(miniPCAmodel)
+#' library(bcellViper)
+#' data(bcellViper)
+#' score <- calculateScore(dset, miniPCAmodel)
 #'
 #' @export
 calculateScore <- function(dataset, PCAmodel, rescale.after = TRUE) {

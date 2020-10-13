@@ -47,3 +47,10 @@ If any enriched pathway didn't pass the \code{nesCutoff}, it will labeled as NA.
 \description{
 Two-dimentional PCA plot with the PC annotation
 }
+\examples{
+data(miniPCAmodel)
+library(bcellViper)
+data(bcellViper)
+plotAnnotatedPCA(exprs(dset), miniPCAmodel, PCs = c(1,2))
+
+}

@@ -30,3 +30,9 @@ to this function, it will give you the abs(NES)-based rank of your keyword in
 the enriched pathways of the target PCcluster. If can be useful to find out how
 uniquely your keyword-containing pathways are represented.
 }
+\examples{
+data(miniPCAmodel)
+findKeywordInPCcluster(miniPCAmodel, "Bcell", ind = 695)
+# [1] "1|2|3|4|5|6|9"
+
+}

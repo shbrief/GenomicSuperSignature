@@ -5,7 +5,7 @@
 \title{Plot validation results in an interactive graph}
 \usage{
 plotValidate(
-  res,
+  val_all,
   minClusterSize = 2,
   swFilter = FALSE,
   minSilhouetteWidth = 0,
@@ -16,7 +16,7 @@ plotValidate(
 )
 }
 \arguments{
-\item{res}{Output from \link{validate} function.}
+\item{val_all}{Output from \link{validate} function.}
 
 \item{minClusterSize}{The minimum size of clusters to be included in the plotting.
 Default value is 2, so any single-element clusters are excluded.}
@@ -47,4 +47,12 @@ There are three main information on the graph:
     \item color : Test dataset's PC number that validate each PCcluster. Because we
     used top 8 PCs of the test dataset, there are 8 categories.
 }
+}
+\examples{
+data(miniPCAmodel)
+library(bcellViper)
+data(bcellViper)
+val_all <- validate(dset, miniPCAmodel)
+plotValidate(val_all)
+
 }

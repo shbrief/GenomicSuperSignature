@@ -48,3 +48,11 @@ output detail above.
 This function finds the PCcluster scored highest with the top PCs of the dataset,
 including PCclusters with the negative average silhouette.
 }
+\examples{
+data(miniPCAmodel)
+library(bcellViper)
+data(bcellViper)
+val_all <- validate(dset, miniPCAmodel)
+annotatePC(2, val_all, miniPCAmodel) # No significant pathways for this example
+
+}

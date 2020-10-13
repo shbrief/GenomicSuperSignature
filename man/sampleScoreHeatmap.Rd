@@ -47,3 +47,11 @@ represent PCclusters.
 \description{
 Plot heatmap of the sample scores
 }
+\examples{
+data(miniPCAmodel)
+library(bcellViper)
+data(bcellViper)
+score <- calculateScore(dset, miniPCAmodel)
+sampleScoreHeatmap(score, dataName = "bcellViper", modelName = "miniPCAmodel")
+
+}

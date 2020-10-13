@@ -45,7 +45,9 @@ Suggests:
   RColorBrewer,
   reshape2,
   tibble,
-  BiocManager
+  BiocManager,
+  bcellViper, 
+  readr
 License: Artistic-2.0
 Encoding: UTF-8
 LazyData: true
@@ -62,6 +64,7 @@ Collate:
     'buildAvgLoading.R'
     'calculateScore.R'
     'commonGene.R'
+    'data.R'
     'drawWordcloud.R'
     'extractPC.R'
     'findSignature.R'

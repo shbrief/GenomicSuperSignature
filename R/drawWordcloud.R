@@ -34,7 +34,7 @@ meshTable <- function(PCAmodel, ind, rm.noise = NULL, weighted = TRUE) {
 
     ### Remove noise
     if (is.null(rm.noise)) {
-        s <- S4Vectors::metadata(PCAmodel)$size[ind]
+        s <- S4Vectors::metadata(PCAmodel)$size[paste0("PCcluster", ind)]
         if (s < 8) {rm.noise = floor(s*0.5)}
         else if (s >= 8) {rm.noise = 4}
     }
@@ -132,14 +132,18 @@ meshTable <- function(PCAmodel, ind, rm.noise = NULL, weighted = TRUE) {
 #' study contributing a give PCcluster.
 #' @param seed Random seed. If it is not specified, \code{set.seed(1234)} will be used.
 #'
-#' @return A word cloud
+#' @return A word cloud with the MeSH terms associated with the given cluster.
+#'
+#' @examples
+#' data(miniPCAmodel)
+#' drawWordcloud(miniPCAmodel, 1139)
 #'
 #' @export
 drawWordcloud <- function(PCAmodel, ind, rm.noise = NULL, scale = c(3, 0.5),
                          weighted = TRUE, seed = NULL) {
 
     if (is.null(rm.noise)) {
-        s <- S4Vectors::metadata(PCAmodel)$size[ind]
+        s <- S4Vectors::metadata(PCAmodel)$size[paste0("PCcluster", ind)]
         if (s < 8) {rm.noise = floor(s*0.5)}
         else if (s >= 8) {rm.noise = 4}
 

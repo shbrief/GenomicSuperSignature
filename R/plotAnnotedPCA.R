@@ -1,5 +1,8 @@
 #' Two-dimentional PCA plot with the PC annotation
 #'
+#' @import ggpubr
+#' @import ggplot2
+#'
 #' @param dataset An expression matrix with genes (rows) x samples (columns)
 #' @param PCAmodel PCAGenomicSignatures-class object
 #' @param PCs A numeric vector length of 2. It should be between 1 and 8.
@@ -18,8 +21,11 @@
 #' pass the \code{scoreCutoff} the table will be labeled as "No significant pathways".
 #' If any enriched pathway didn't pass the \code{nesCutoff}, it will labeled as NA.
 #'
-#' @import ggpubr
-#' @import ggplot2
+#' @examples
+#' data(miniPCAmodel)
+#' library(bcellViper)
+#' data(bcellViper)
+#' plotAnnotatedPCA(exprs(dset), miniPCAmodel, PCs = c(1,2))
 #'
 #' @export
 plotAnnotatedPCA <- function(dataset, PCAmodel, PCs, val_all = NULL,

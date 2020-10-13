@@ -32,6 +32,7 @@
 #' all the PCclusters will be checked for their contributing studies and the length
 #' of the list will be same as the number of PCclusters (= \code{metadata(x)$k}).
 #'
+#' @note Mainly used for modeling building, within \link{buildAvgLoading}.
 #' @export
 findStudiesInCluster <- function(PCAmodel, ind = NULL, clustering = TRUE) {
 

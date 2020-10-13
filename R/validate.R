@@ -66,6 +66,13 @@
 #' of the pearson correlation coefficient between all top 8 PCs of the datasets and
 #' avgLoading.
 #'
+#' @examples
+#' data(miniPCAmodel)
+#' library(bcellViper)
+#' data(bcellViper)
+#' validate(dset, miniPCAmodel)
+#' validate(dset, miniPCAmodel, maxFrom = "avgLoading")
+#'
 #' @export
 validate <- function(dataset, PCAmodel, method = "pearson",
                      maxFrom = "PC", level = "max", scale = FALSE)
@@ -88,7 +95,7 @@ validate <- function(dataset, PCAmodel, method = "pearson",
                 colnames(z)[1] <- "score"
                 z$sw <- sw   # Silhouette width
                 z$cl_size <- cl_size   # Cluster size
-                z$cl_num <- 1:nrow(z)   # Cluster number
+                z$cl_num <- readr::parse_number(rownames(z))   # Cluster number
                 res <- z
             } else if (level == "all") {
                 res <- x

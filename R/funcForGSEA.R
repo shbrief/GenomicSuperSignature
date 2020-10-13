@@ -21,7 +21,6 @@
 #' @return Barplot of GSEA output. Top and bottom \code{n} genesets based on NES
 #' are plotted and qvalues are denoted by color.
 #'
-#' @export
 msigdb_gsea <- function(ind, PCAmodel, category = "C2", n = NULL, pvalueCutoff = 0.5,
                         minGSSize = 10, maxGSSize = 500, pAdjustMethod = "BH",
                         verbose = FALSE, seed = FALSE, by = "fgsea", geneSets = NULL) {
@@ -110,7 +109,6 @@ subsetGSEA <- function(gseaRes, n = 20) {
 #' @return A list of loadings selected by \code{LoadingVector}, where all the
 #' genes in each loading are listed in descending order.
 #'
-#' @export
 makeGeneList <- function(LoadingMatrix, LoadingVector = NULL, abs = TRUE) {
 
     if (is.null(LoadingVector)) {
@@ -153,7 +151,6 @@ makeGeneList <- function(LoadingMatrix, LoadingVector = NULL, abs = TRUE) {
 #'
 #' @return A list of \code{gseaResult} objects. \code{NA} if there is no enrichment result.
 #'
-#' @export
 run_gsea <- function(geneList, TERM2GENE, TERM2NAME,
                      minGSSize = 10, maxGSSize = 500,
                      pvalueCutoff = 0.05, verbose = FALSE, ...) {

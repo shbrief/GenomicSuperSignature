@@ -21,3 +21,6 @@ A character vector with the common genes of the datasets.
 \description{
 Common genes from datasets
 }
+\note{
+This function is for CRC datasets.
+}

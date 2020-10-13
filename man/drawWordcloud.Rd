@@ -32,9 +32,14 @@ study contributing a give PCcluster.}
 \item{seed}{Random seed. If it is not specified, \code{set.seed(1234)} will be used.}
 }
 \value{
-A word cloud
+A word cloud with the MeSH terms associated with the given cluster.
 }
 \description{
 Plot a word cloud using the remaining MeSH terms in the selected
 PCcluster after user-defined filtering.
+}
+\examples{
+data(miniPCAmodel)
+drawWordcloud(miniPCAmodel, 1139)
+
 }

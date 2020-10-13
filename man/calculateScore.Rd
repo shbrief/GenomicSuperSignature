@@ -25,3 +25,10 @@ assigned to each sample (row) for each cluster (column).
 \description{
 Calculate the validation score for a new dataset
 }
+\examples{
+data(miniPCAmodel)
+library(bcellViper)
+data(bcellViper)
+score <- calculateScore(dset, miniPCAmodel)
+
+}

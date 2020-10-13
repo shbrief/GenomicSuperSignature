@@ -59,3 +59,11 @@ A heatmap with the validation result subset through the given conditions.
 \description{
 Validation result in heatmap format
 }
+\examples{
+data(miniPCAmodel)
+library(bcellViper)
+data(bcellViper)
+val_all <- validate(dset, miniPCAmodel)
+heatmapTable(val_all, swCutoff = 0)
+
+}

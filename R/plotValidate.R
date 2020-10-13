@@ -12,7 +12,7 @@
 #'
 #' @import ggplot2
 #'
-#' @param res Output from \link{validate} function.
+#' @param val_all Output from \link{validate} function.
 #' @param swFilter If \code{swFilter=TRUE}, only PCcluster above the cutoff, defined
 #' through \code{minSilhouetteWidth} argument will be plotted. Default is \code{swFilter=FALSE}
 #' @param minClusterSize The minimum size of clusters to be included in the plotting.
@@ -26,17 +26,24 @@
 #' @param colorPalette Default is \code{Dark2}. For other color options, please
 #' check \code{\link[ggplot2]{scale_color_brewer}}
 #'
+#' @examples
+#' data(miniPCAmodel)
+#' library(bcellViper)
+#' data(bcellViper)
+#' val_all <- validate(dset, miniPCAmodel)
+#' plotValidate(val_all)
+#'
 #' @export
-plotValidate <- function(res, minClusterSize = 2, swFilter = FALSE,
+plotValidate <- function(val_all, minClusterSize = 2, swFilter = FALSE,
                          minSilhouetteWidth = 0, interactive = FALSE,
                          minClSize = NULL, maxClSize = NULL,
                          colorPalette = "Dark2") {
 
-    ## Binding the variables from res locally to the function
+    ## Binding the variables from val_all locally to the function
     cl_size <- sw <- score <- cl_num <- PC <- NULL
 
-    res <-  as.data.frame(res)
-    clSizeFiltered <- dplyr::filter(res, cl_size >= minClusterSize)
+    val_all <-  as.data.frame(val_all)
+    clSizeFiltered <- dplyr::filter(val_all, cl_size >= minClusterSize)
 
     if (isTRUE(swFilter)) {
         # filtered <- clSizeFiltered %>% filter(sw > minSilhouetteWidth)

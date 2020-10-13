@@ -19,6 +19,13 @@
 #' @return A heatmap of the sample score. Rows represent samples and columns
 #' represent PCclusters.
 #'
+#' @examples
+#' data(miniPCAmodel)
+#' library(bcellViper)
+#' data(bcellViper)
+#' score <- calculateScore(dset, miniPCAmodel)
+#' sampleScoreHeatmap(score, dataName = "bcellViper", modelName = "miniPCAmodel")
+#'
 #' @export
 sampleScoreHeatmap <- function(score, dataName, modelName,
                                cluster_rows = TRUE,

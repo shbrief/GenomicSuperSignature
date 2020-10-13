@@ -23,6 +23,13 @@
 #' @return A data frame of a list based on the \code{simplify} argument. Check the
 #' output detail above.
 #'
+#' @examples
+#' data(miniPCAmodel)
+#' library(bcellViper)
+#' data(bcellViper)
+#' val_all <- validate(dset, miniPCAmodel)
+#' annotatePC(2, val_all, miniPCAmodel) # No significant pathways for this example
+#'
 #' @export
 annotatePC <- function(PCnum, val_all, PCAmodel, n = 5,
                        scoreCutoff = 0.5, nesCutoff = NULL,

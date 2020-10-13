@@ -8,7 +8,8 @@
 #' of gene in the argument \code{dat}.
 #'
 #' @return A character vector with the common genes of the datasets.
-#' @export
+#' @note This function is for CRC datasets.
+#'
 commonGene <- function(dat, loaded = TRUE) {
     if (isTRUE(loaded)) {
         lapply(dat, function(x) {

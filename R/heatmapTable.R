@@ -24,6 +24,13 @@
 #'
 #' @return A heatmap with the validation result subset through the given conditions.
 #'
+#' @examples
+#' data(miniPCAmodel)
+#' library(bcellViper)
+#' data(bcellViper)
+#' val_all <- validate(dset, miniPCAmodel)
+#' heatmapTable(val_all, swCutoff = 0)
+#'
 #' @export
 heatmapTable <- function(val_all, ind = NULL, num.out = 5,
                          scoreCutoff = NULL, swCutoff = NULL, clsizeCutoff = NULL,

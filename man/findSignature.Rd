@@ -29,7 +29,14 @@ This function finds PCclusters containing the keyword you provide. If you provid
 it will give you the PCcluster number.
 }
 \examples{
-# findSignature(PCAmodel, "CD4|T cell")
-# findSignature(PCAmodel, "CD4|T cell", k = 2)
+data(miniPCAmodel)
+library(bcellViper)
+data(bcellViper)
+findSignature(miniPCAmodel, "Bcell")
+#   # of keyword-containing pathways Freq
+# 1                                0   15
+# 2                                5    2
+findSignature(miniPCAmodel, "Bcell", k = 5)
+# [1] 16 17
 
 }

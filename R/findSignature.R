@@ -17,8 +17,15 @@
 #' @return A data frame or integer vector depending on the parameter \code{k}.
 #'
 #' @examples
-#' # findSignature(PCAmodel, "CD4|T cell")
-#' # findSignature(PCAmodel, "CD4|T cell", k = 2)
+#' data(miniPCAmodel)
+#' library(bcellViper)
+#' data(bcellViper)
+#' findSignature(miniPCAmodel, "Bcell")
+#' #   # of keyword-containing pathways Freq
+#' # 1                                0   15
+#' # 2                                5    2
+#' findSignature(miniPCAmodel, "Bcell", k = 5)
+#' # [1] 16 17
 #'
 #' @export
 findSignature <- function(PCAmodel, keyword, n = 5, k = NULL) {
@@ -37,7 +44,8 @@ findSignature <- function(PCAmodel, keyword, n = 5, k = NULL) {
   if (is.null(k)) {
     return(res)
   } else {
-    which(nTopPathways == k)
+    res <- which(nTopPathways == k) %>% as.numeric
+    return(res)
   }
 }
 
@@ -62,8 +70,16 @@ findSignature <- function(PCAmodel, keyword, n = 5, k = NULL) {
 #' @return A character containing the rank of keyword-containing pathways (separated
 #' by |), followed by the total number of enriched pathways in parenthesis.
 #'
-findKeywordInPCcluster <- function(PCAmodel, keyword, ind, n = NULL, includeTotal = FALSE) {
-  gsea <- gsea(PCAmodel)[[ind]]
+#' @examples
+#' data(miniPCAmodel)
+#' findKeywordInPCcluster(miniPCAmodel, "Bcell", ind = 695)
+#' # [1] "1|2|3|4|5|6|9"
+#'
+#' @export
+findKeywordInPCcluster <- function(PCAmodel, keyword, ind,
+                                   n = NULL, includeTotal = FALSE) {
+  name <- paste0("PCcluster", ind)
+  gsea <- gsea(PCAmodel)[[name]]
   total <- nrow(gsea)
 
   if (is.null(n)) {
@@ -80,8 +96,3 @@ findKeywordInPCcluster <- function(PCAmodel, keyword, ind, n = NULL, includeTota
   }
   return(res)
 }
-
-
-
-
-

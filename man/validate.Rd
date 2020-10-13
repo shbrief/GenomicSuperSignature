@@ -50,3 +50,11 @@ avgLoading.
 \description{
 Validate new datasets
 }
+\examples{
+data(miniPCAmodel)
+library(bcellViper)
+data(bcellViper)
+validate(dset, miniPCAmodel)
+validate(dset, miniPCAmodel, maxFrom = "avgLoading")
+
+}

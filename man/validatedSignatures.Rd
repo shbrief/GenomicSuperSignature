@@ -41,3 +41,15 @@ A subset of the input matrix, which meets the given condition.
 \description{
 Validation result in data frame
 }
+\examples{
+data(miniPCAmodel)
+library(bcellViper)
+data(bcellViper)
+val_all <- validate(dset, miniPCAmodel)
+validatedSignatures(val_all, num.out = 3, scoreCutoff = 0)
+#                   score PC          sw cl_size cl_num
+# PCcluster1076 0.5950767  2 -0.04447124      10      1
+# PCcluster2538 0.5838616  2  0.06996166       4      2
+# PCcluster338  0.5709072  2 -0.04683319      21      3
+
+}
