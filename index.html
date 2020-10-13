@@ -86,9 +86,24 @@
 <div id="pcagenomicsignatures" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#pcagenomicsignatures" class="anchor"></a>PCAGenomicSignatures</h1></div>
-<div id="software-connecting-new-dataset-to-the-public-expression-database" class="section level2">
+<div id="interpretation-of-rna-seq-experiments-through-robust-efficient-comparison-to-public-databases" class="section level2">
 <h2 class="hasAnchor">
-<a href="#software-connecting-new-dataset-to-the-public-expression-database" class="anchor"></a>Software connecting new dataset to the public expression database</h2>
+<a href="#interpretation-of-rna-seq-experiments-through-robust-efficient-comparison-to-public-databases" class="anchor"></a>Interpretation of RNA-seq experiments through robust, efficient comparison to public databases</h2>
+<div id="purpose" class="section level3">
+<h3 class="hasAnchor">
+<a href="#purpose" class="anchor"></a>PURPOSE</h3>
+<p>Thousands of RNA sequencing profiles have been deposited in public archives, yet remain unused for the interpretation of most newly performed experiments. Methods for leveraging these public resources have focused on the interpretation of existing data, or analysis of new datasets independently, but do not facilitate direct comparison of new to existing experiments. The interpretability of common unsupervised analysis methods such as Principal Component Analysis would be enhanced by efficient comparison of the results to previously published datasets.</p>
+</div>
+<div id="methods" class="section level3">
+<h3 class="hasAnchor">
+<a href="#methods" class="anchor"></a>METHODS</h3>
+<p>To help identify replicable and interpretable axes of variation in any given gene expression dataset, we performed principal component analysis (PCA) on 536 studies comprising 44,890 RNA sequencing profiles. Sufficiently similar loading vectors, when compared across studies, were combined through simple averaging. We annotated the collection of resulting average loading vectors, which we call Replicable Axes of Variation (RAV), with details from the originating studies and gene set enrichment analysis. Functions to match PCA of new datasets to RAVs from existing studies, extract interpretable annotations, and provide intuitive visualization, are implemented as the PCAGenomicSignatures R package, to be submitted to Bioconductor.</p>
+</div>
+<div id="results" class="section level3">
+<h3 class="hasAnchor">
+<a href="#results" class="anchor"></a>Results</h3>
+<p>Usecases and benchmarking examples are further documented at <a href="https://shbrief.github.io/PCAGenomicSignaturesPaper/">PCAGenomicSignaturesPaper</a> page.</p>
+</div>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">

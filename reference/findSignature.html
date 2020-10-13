@@ -163,8 +163,17 @@ index.</p></td>
     <p>A data frame or integer vector depending on the parameter <code>k</code>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='co'># findSignature(PCAmodel, "CD4|T cell")</span>
-<span class='co'># findSignature(PCAmodel, "CD4|T cell", k = 2)</span>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>miniPCAmodel</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'>bcellViper</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>bcellViper</span>)
+<span class='fu'>findSignature</span>(<span class='kw'>miniPCAmodel</span>, <span class='st'>"Bcell"</span>)
+</div><div class='output co'>#&gt;   # of keyword-containing pathways Freq
+#&gt; 1                                0   15
+#&gt; 2                                5    2</div><div class='input'><span class='co'>#   # of keyword-containing pathways Freq</span>
+<span class='co'># 1                                0   15</span>
+<span class='co'># 2                                5    2</span>
+<span class='fu'>findSignature</span>(<span class='kw'>miniPCAmodel</span>, <span class='st'>"Bcell"</span>, k = <span class='fl'>5</span>)
+</div><div class='output co'>#&gt; [1] 16 17</div><div class='input'><span class='co'># [1] 16 17</span>
 
 </div></pre>
   </div>

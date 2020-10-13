@@ -186,6 +186,39 @@ clusters from training datasets. If <code>level = "all"</code>, a list containin
 of the pearson correlation coefficient between all top 8 PCs of the datasets and
 avgLoading.</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>miniPCAmodel</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'>bcellViper</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>bcellViper</span>)
+<span class='fu'>validate</span>(<span class='kw'>dset</span>, <span class='kw'>miniPCAmodel</span>)
+</div><div class='output co'>#&gt;                   score PC           sw cl_size cl_num
+#&gt; PCcluster1076 0.5950767  2 -0.044471242      10   1076
+#&gt; PCcluster2538 0.5838616  2  0.069961659       4   2538
+#&gt; PCcluster338  0.5709072  2 -0.046833188      21    338
+#&gt; PCcluster1467 0.5695904  2 -0.047094024       6   1467
+#&gt; PCcluster1139 0.5622719  2  0.085369376       4   1139
+#&gt; PCcluster884  0.5451752  2  0.153286975       6    884
+#&gt; PCcluster1614 0.5308258  2 -0.075672871      13   1614
+#&gt; PCcluster294  0.5130476  2 -0.022418144       6    294
+#&gt; PCcluster3071 0.5100487  2 -0.009615286       6   3071
+#&gt; PCcluster1694 0.5090028  2 -0.055182792      20   1694
+#&gt; PCcluster438  0.5088604  2  0.035822199       6    438
+#&gt; PCcluster725  0.4993058  2  0.094127339      20    725
+#&gt; PCcluster1497 0.4980072  2  0.130408751      12   1497
+#&gt; PCcluster501  0.4897364  2  0.064985019       7    501
+#&gt; PCcluster941  0.4872848  2 -0.020971183       3    941
+#&gt; PCcluster695  0.2415454  3  0.105812565       2    695
+#&gt; PCcluster1994 0.1729988  3 -0.034939005       3   1994</div><div class='input'><span class='fu'>validate</span>(<span class='kw'>dset</span>, <span class='kw'>miniPCAmodel</span>, maxFrom = <span class='st'>"avgLoading"</span>)
+</div><div class='output co'>#&gt;         score avgLoading
+#&gt; PC1 0.2285693          5
+#&gt; PC2 0.5950767          1
+#&gt; PC3 0.2415454         16
+#&gt; PC4 0.2282201          3
+#&gt; PC5 0.2129687          5
+#&gt; PC6 0.2126171          3
+#&gt; PC7 0.1150177          5
+#&gt; PC8 0.1192014         13</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -191,6 +191,14 @@ will be converted to a one-column matrix.</p></td>
     <p>A heatmap of the sample score. Rows represent samples and columns
 represent PCclusters.</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>miniPCAmodel</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'>bcellViper</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>bcellViper</span>)
+<span class='kw'>score</span> <span class='op'>&lt;-</span> <span class='fu'><a href='calculateScore.html'>calculateScore</a></span>(<span class='kw'>dset</span>, <span class='kw'>miniPCAmodel</span>)
+<span class='fu'>sampleScoreHeatmap</span>(<span class='kw'>score</span>, dataName = <span class='st'>"bcellViper"</span>, modelName = <span class='st'>"miniPCAmodel"</span>)
+</div><div class='img'><img src='sampleScoreHeatmap-1.png' alt='' width='700' height='433' /></div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

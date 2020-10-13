@@ -154,6 +154,24 @@ pathways will be listed based on <code><a href='https://rdrr.io/r/base/MathFun.h
 
     <p>A data frame with <code>n</code> rows and 4 columns; Description, NES, pvalue, and qval</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>miniPCAmodel</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'>bcellViper</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>bcellViper</span>)
+<span class='fu'>annotatePCcluster</span>(<span class='kw'>miniPCAmodel</span>, ind = <span class='fl'>695</span>)
+</div><div class='output co'>#&gt;                 Description      NES pvalue      qvalues
+#&gt; 1 IRIS_Bcell-Memory_IgG_IgA 2.763472  1e-10 5.824561e-09
+#&gt; 2              DMAP_BCELLA3 2.726775  1e-10 5.824561e-09
+#&gt; 3     IRIS_Bcell-Memory_IgM 2.701570  1e-10 5.824561e-09
+#&gt; 4          IRIS_Bcell-naive 2.699145  1e-10 5.824561e-09
+#&gt; 5              DMAP_BCELLA4 2.698821  1e-10 5.824561e-09</div><div class='input'><span class='co'>#                 Description      NES pvalue      qvalues</span>
+<span class='co'># 1 IRIS_Bcell-Memory_IgG_IgA 2.763472  1e-10 5.824561e-09</span>
+<span class='co'># 2              DMAP_BCELLA3 2.726775  1e-10 5.824561e-09</span>
+<span class='co'># 3     IRIS_Bcell-Memory_IgM 2.701570  1e-10 5.824561e-09</span>
+<span class='co'># 4          IRIS_Bcell-naive 2.699145  1e-10 5.824561e-09</span>
+<span class='co'># 5              DMAP_BCELLA4 2.698821  1e-10 5.824561e-09</span>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

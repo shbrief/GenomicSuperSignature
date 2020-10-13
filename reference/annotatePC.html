@@ -189,6 +189,19 @@ pathways will be listed based on <code><a href='https://rdrr.io/r/base/MathFun.h
     <p>A data frame of a list based on the <code>simplify</code> argument. Check the
 output detail above.</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>miniPCAmodel</span>)
+<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'>bcellViper</span>)
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>bcellViper</span>)
+<span class='kw'>val_all</span> <span class='op'>&lt;-</span> <span class='fu'><a href='validate.html'>validate</a></span>(<span class='kw'>dset</span>, <span class='kw'>miniPCAmodel</span>)
+<span class='fu'>annotatePC</span>(<span class='fl'>2</span>, <span class='kw'>val_all</span>, <span class='kw'>miniPCAmodel</span>) <span class='co'># No significant pathways for this example</span>
+</div><div class='output co'>#&gt;                                  PC2-PCcluster1076
+#&gt; 1                  REACTOME_METABOLISM_OF_PROTEINS
+#&gt; 2                                 KEGG_SPLICEOSOME
+#&gt; 3 REACTOME_ASSEMBLY_OF_THE_PRE_REPLICATIVE_COMPLEX
+#&gt; 4            REACTOME_LATE_PHASE_OF_HIV_LIFE_CYCLE
+#&gt; 5         MIPS_39S_RIBOSOMAL_SUBUNIT_MITOCHONDRIAL</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
