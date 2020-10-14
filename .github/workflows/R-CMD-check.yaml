@@ -16,7 +16,7 @@ jobs:
       - uses: r-lib/actions/setup-r@v1
       - name: Install dependencies
         run: |
-          pkgs = c("clusterProfiler", "EnrichmentBrowser", "BiocStyle", "BiocFileCache", "Biobase", "S4Vectors", "SummarizedExperiment")
+          pkgs = c("clusterProfiler", "EnrichmentBrowser", "BiocStyle", "BiocFileCache", "Biobase", "S4Vectors", "SummarizedExperiment", "bcellViper")
           install.packages(c("remotes", "rcmdcheck", "BiocManager"))
           BiocManager::install(pkgs)
           remotes::install_deps(dependencies = TRUE)
