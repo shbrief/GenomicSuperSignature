@@ -28,7 +28,7 @@
 #' library(bcellViper)
 #' data(bcellViper)
 #' val_all <- validate(dset, miniPCAmodel)
-#' annotatePC(2, val_all, miniPCAmodel) # No significant pathways for this example
+#' annotatePC(2, val_all, miniPCAmodel)
 #'
 #' @export
 annotatePC <- function(PCnum, val_all, PCAmodel, n = 5,

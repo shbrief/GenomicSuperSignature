@@ -1,5 +1,5 @@
-[![Travis-CI Build Status](https://travis-ci.org/waldronlab/ProjectAsPackage.svg?branch=master)](https://travis-ci.org/waldronlab/ProjectAsPackage)
-[![Coverage Status](https://codecov.io/github/waldronlab/ProjectAsPackage/coverage.svg?branch=master)](https://codecov.io/github/waldronlab/ProjectAsPackage?branch=master)
+[![Travis-CI Build Status](https://travis-ci.com/shbrief/PCAGenomicSignatures.svg?branch=master)](https://travis-ci.org/shbrief/PCAGenomicSignatures)
+[![Coverage Status](https://codecov.io/github/shbrief/PCAGenomicSignatures/coverage.svg?branch=master)](https://codecov.io/github/shbrief/PCAGenomicSignatures?branch=master)
 [![R build status](https://github.com/shbrief/PCAGenomicSignatures/workflows/R-CMD-check/badge.svg)](https://github.com/shbrief/PCAGenomicSignatures/actions)
 
 
