@@ -19,6 +19,18 @@
   return(dat)
 }
 
+.validatedSignaturesForMulipleStudies <- function(data, num.out = num.out, scoreCutoff = NULL) {
+  studies <- rownames(data)
+  ind <- grep("_PC", studies)
+  data <- data[-ind,]
+
+  if (!is.null(scoreCutoff)) {scoreCutoff <- scoreCutoff}
+  else {scoreCutoff <- 0.7}   # default cutoff for multiple-studies case
+
+  above_cutoff <- apply(data, 2, function(x) {any(x > scoreCutoff)})
+  data <- data[, above_cutoff]
+  return(data)
+}
 
 
 #' Validation result in data frame
@@ -57,10 +69,17 @@ validatedSignatures <- function(val_all, num.out = 5, scoreCutoff = NULL, swCuto
   ind <- which(rownames(data) == "score")
   pc_ind <- which(rownames(data) == "PC")
 
+  # If the validation result is from the list of datsets
+  if (length(ind) == 0) {
+    res <- .validatedSignaturesForMulipleStudies(data, scoreCutoff = scoreCutoff)
+    return(res)
+    stop
+  }
+
   if (!is.null(whichPC)) {
     if (!whichPC %in% c(1:8)) {stop("whichPC should be an integer between 1 and 8.")}
     subset_ind <- which(data[pc_ind,] == whichPC)
-    data <- data[,subset_ind]
+    data <- data[,subset_ind, drop = FALSE]
   }
 
   if (!is.null(scoreCutoff)) {score_subset <- .filterByScore(data, scoreCutoff)} else {score_subset <- data}

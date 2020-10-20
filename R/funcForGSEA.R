@@ -174,9 +174,10 @@ run_gsea <- function(geneList, TERM2GENE, TERM2NAME,
 }
 
 
-#' Subset enriched pathways of loading vectors
+#' Subset enriched pathways of RAV
 #'
-#' This function is renamed from \code{topPathways} to \code{subsetPathways}.
+#' This function finds the top enriched pathways of a given RAV. This function is
+#' renamed from \code{subsetPathways} to \code{subsetEnrichedPathways}.
 #'
 #' @import methods
 #'
@@ -192,7 +193,7 @@ run_gsea <- function(geneList, TERM2GENE, TERM2NAME,
 #' @return A data frame with top and bottom \code{n} pathways from the enrichment results.
 #'
 #' @export
-subsetPathways <- function(PCAmodel, ind = NULL, n = 10, both = FALSE) {
+subsetEnrichedPathways <- function(PCAmodel, ind = NULL, n = 10, both = FALSE) {
 
     if (is(PCAmodel, "PCAGenomicSignatures")) {
         gsea_loading <- gsea(PCAmodel)

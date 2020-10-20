@@ -41,6 +41,7 @@
 #'
 #' @param dataset Single or a list of SummarizedExperiment (RangedSummarizedExperiment,
 #' ExpressionSet or matrix) object(s). Gene names should be in 'symbol' format.
+#' Currently, each dataset should have at least 8 samples.
 #' @param PCAmodel PCAGenomicSignature object. You can also provide signature model matrix directly.
 #' @param method A character string indicating which correlation coefficient is
 #' to be computed. One of "pearson" (default), "kendall", or "spearman": can be abbreviated.
@@ -48,9 +49,10 @@
 #' Under the default (\code{maxFrom="PC"}), the maximum correlation coefficient from
 #' top 8 PCs for each avgLoading will be selected as an output. If you choose (\code{maxFrom="avgLoading"}),
 #' the avgLoading with the maximum correlation coefficient with each PC will be in the output.
-#' @param level Defibe how to ouput validation in two different forms, \code{c("max", "all")}.
+#' @param level Output format of validated result. Two options are available: \code{c("max", "all")}.
 #' Default is "max", which outputs the matrix containing only the maximum coefficient.
-#' To get the coefficient of all 8 PCs, set this argument as "all".
+#' To get the coefficient of all 8 PCs, set this argument as "all". \code{level = "all"}
+#' can be used only for one dataset.
 #' @param scale Default is \code{FALSE}. If it is set to \code{TRUE}, dataset will
 #' be row normalized by \link{rowNorm} function.
 #'
@@ -75,8 +77,12 @@
 #'
 #' @export
 validate <- function(dataset, PCAmodel, method = "pearson",
-                     maxFrom = "PC", level = "max", scale = FALSE)
-    {
+                     maxFrom = "PC", level = "max", scale = FALSE) {
+
+    if (ncol(dataset) < 8) {stop("Provide a study with at least 8 samples.")}
+    if (is.list(dataset) & level == "all") {
+        stop("'level = \"all\"' is not available for a list of datasets.")
+    }
     sw <- silhouetteWidth(PCAmodel)
     cl_size <- S4Vectors::metadata(PCAmodel)$size
 

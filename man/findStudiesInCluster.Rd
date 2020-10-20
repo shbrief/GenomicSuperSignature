@@ -4,7 +4,7 @@
 \alias{findStudiesInCluster}
 \title{Find the studies contributing each PCcluster}
 \usage{
-findStudiesInCluster(PCAmodel, ind = NULL, clustering = TRUE)
+findStudiesInCluster(PCAmodel, ind = NULL, studyTitle = FALSE)
 }
 \arguments{
 \item{PCAmodel}{PCAGenomicSignatures object.}
@@ -12,10 +12,9 @@ findStudiesInCluster(PCAmodel, ind = NULL, clustering = TRUE)
 \item{ind}{A numeric vector containing the index of PCclusters you want to
 find the related studies. Default is \code{NULL}.}
 
-\item{clustering}{Under the default condition (\code{TRUE}), Kmeans clustering
-will be done and you should provide \code{k}. If \code{FALSE}, you don't need
-to provide \code{k}, but should provide pre-defined cluster membership of your
-data through \code{cluster} argument.}
+\item{studyTitle}{Default is \code{FALSE}. This parameter is effective only when
+the \code{index} value is specificed. If it's \code{TRUE}, the output will be
+a data frame with the study}
 }
 \value{
 A list of character vector. Under the default conditoin (\code{ind = NULL}),

@@ -20,8 +20,9 @@ heatmapTable(
 )
 }
 \arguments{
-\item{val_all}{An output matrix from \code{\link{validate}} function. Subset of
-this matrix is plotted as a heatmap using \code{\link[ComplexHeatmap]{Heatmap}}}
+\item{val_all}{An output matrix from \code{\link{validate}} function with the
+parameter \code{level = "max"}. Subset of this matrix is plotted as a heatmap
+using \code{\link[ComplexHeatmap]{Heatmap}}}
 
 \item{ind}{An integer vector. If this parameter is provided, the other parameters,
 \code{num.out, scoreCutoff, swCutoff, clsizeCutoff} will be ignored and the heatmap
@@ -31,7 +32,9 @@ table containing only the provided index will be printed.}
 If any of the cutoff parameters are provided, \code{num.out} or the number of
 filtered PCclusters, whichever smaller, will be chosen.}
 
-\item{scoreCutoff}{A numeric value for the minimum correlation.}
+\item{scoreCutoff}{A numeric value for the minimum correlation. If \code{val_all}
+input is from multiple studies, this is the only cutoff criteria considred:
+\code{swCutoff} and \code{clsizeCutoff} will be ignored.}
 
 \item{swCutoff}{A numeric value for the minimum average silhouette width.}
 
@@ -54,10 +57,16 @@ scored signatures with any PC of your data.}
 \item{...}{any additional argument for \code{\link[ComplexHeatmap]{Heatmap}}}
 }
 \value{
-A heatmap with the validation result subset through the given conditions.
+A heatmap displaying the subset of the validation result that met the
+given cutoff criteria. If \code{val_all} input is from a single dataset, the
+output heatmap will contain both score and average silhouette width for each
+cluster. If \code{val_all} input is from multiple studies, the output heatmap's
+rows will represent each study and the columns are PCclusters that meet
+\code{scoreCutoff} will any of the input study.
 }
 \description{
-Validation result in heatmap format
+This function subsets \code{\link{validate}} outputs with different criteria
+and visualize it in a heatmap-like table.
 }
 \examples{
 data(miniPCAmodel)

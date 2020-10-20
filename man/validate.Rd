@@ -27,9 +27,10 @@ Under the default (\code{maxFrom="PC"}), the maximum correlation coefficient fro
 top 8 PCs for each avgLoading will be selected as an output. If you choose (\code{maxFrom="avgLoading"}),
 the avgLoading with the maximum correlation coefficient with each PC will be in the output.}
 
-\item{level}{Defibe how to ouput validation in two different forms, \code{c("max", "all")}.
+\item{level}{Output format of validated result. Two options are available: \code{c("max", "all")}.
 Default is "max", which outputs the matrix containing only the maximum coefficient.
-To get the coefficient of all 8 PCs, set this argument as "all".}
+To get the coefficient of all 8 PCs, set this argument as "all". \code{level = "all"}
+can be used only for one dataset.}
 
 \item{scale}{Default is \code{FALSE}. If it is set to \code{TRUE}, dataset will
 be row normalized by \link{rowNorm} function.}

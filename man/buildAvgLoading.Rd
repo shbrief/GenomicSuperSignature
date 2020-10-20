@@ -4,50 +4,22 @@
 \alias{buildAvgLoading}
 \title{Calculate average loadings of each cluster}
 \usage{
-buildAvgLoading(
-  dat,
-  k,
-  n = 20,
-  clustering = TRUE,
-  cluster = NULL,
-  iter.max = 10,
-  seed = NULL,
-  study = TRUE
-)
+buildAvgLoading(dat, k, n = 20, cluster = NULL, study = TRUE)
 }
 \arguments{
 \item{dat}{A data frame. Each row represents principle components from different
 training datasets. Each column represents genes used for PCA analysis.}
 
-\item{k}{The number of clusters used for k-means clustering}
+\item{k}{The number of clusters used for hierarchical clustering}
 
 \item{n}{The number of top principle components from each datasets used for model buildling. Default is 20.}
 
-\item{clustering}{Under the default condition (\code{TRUE}), Kmeans clustering
-will be done and you should provide \code{k}. If \code{FALSE}, you don't need
-to provide \code{k}, but should provide pre-defined cluster membership of your
-data through \code{cluster} argument.}
-
-\item{cluster}{Default is \code{NULL}. Provide pre-defined cluster membership
-of your data if \code{clustering=FALSE}.}
-
-\item{iter.max}{The maximum number of iterations allowed for \code{kmeans}}
-
-\item{seed}{A random seed}
+\item{cluster}{Provide pre-defined cluster membership of your data.}
 
 \item{study}{Under default (\code{TRUE}), studies involved in each cluster will be added in the output.}
 }
 \value{
-A named list of 13 elements is returned if \code{clustering=TRUE}. It contains:
-\describe{
-   \item{\code{kmeans} outputs}{9 outputs from \code{kmeans}}
-   \item{\code{avgLoading}}{A matrix of average loadings. Columns for clusters and rows for genes}
-   \item{\code{k}}{The number of clusters}
-   \item{\code{n}}{The number of top PCs used for clustering}
-   \item{\code{studies}}{A list of character vector containing studies in each cluster}
-}
-
-If \code{clustering=FALSE}, a named list of 6 elements is returned. It contains:
+A named list of 6 elements is returned. It contains:
 \describe{
    \item{\code{cluster}}{A numeric vector on cluster membership of PCs}
    \item{\code{size}}{A integer vector on the size of clusters}
@@ -58,8 +30,5 @@ If \code{clustering=FALSE}, a named list of 6 elements is returned. It contains:
 }
 }
 \description{
-Name of the input vector is principle component (pc) from different datasets (ds)
-and the integer is the cluster number assigned to each ds.pc. This function includes
-kmenas clustering, so \code{set.seed} before using this function for reproducible
-results.
+Calculate average loadings of each cluster
 }

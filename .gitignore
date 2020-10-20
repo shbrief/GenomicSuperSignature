@@ -31,3 +31,6 @@ rsconnect/
 .Rproj.user
 inst/doc
 docs
+
+inst/extdata/test_gsea_C2/
+inst/extdata/test_model_building/

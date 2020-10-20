@@ -39,6 +39,18 @@ plotValidate <- function(val_all, minClusterSize = 2, swFilter = FALSE,
                          minClSize = NULL, maxClSize = NULL,
                          colorPalette = "Dark2") {
 
+    # If the validation result contains all PCs (`validate` with `level = "all"`)
+    if (identical(colnames(val_all), paste0("PC", 1:8))) {
+        stop("'val_all' input should be created by `validate` function with
+         `level = \"max\"`, not `level = \"all\"`.")
+    }
+
+    # If the validation result is from the list of datsets
+    score_ind <- which(colnames(val_all) == "score")
+    if (length(score_ind) == 0) {
+        stop("'val_all' input should be from one dataset, not from multiple datasets")
+    }
+
     ## Binding the variables from val_all locally to the function
     cl_size <- sw <- score <- cl_num <- PC <- NULL
 
