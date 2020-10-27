@@ -15,7 +15,8 @@ validate(
 }
 \arguments{
 \item{dataset}{Single or a list of SummarizedExperiment (RangedSummarizedExperiment,
-ExpressionSet or matrix) object(s). Gene names should be in 'symbol' format.}
+ExpressionSet or matrix) object(s). Gene names should be in 'symbol' format.
+Currently, each dataset should have at least 8 samples.}
 
 \item{PCAmodel}{PCAGenomicSignature object. You can also provide signature model matrix directly.}
 

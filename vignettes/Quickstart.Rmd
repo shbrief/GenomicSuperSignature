@@ -179,11 +179,10 @@ Enriched pathways of the given PCAmodel, ordered by NES. If `both=TRUE`, both th
 top and bottom enriched pathways will be printed.
 
 ```{r}
-subsetPathways(PCAmodel, ind = PCNum, n = 3, both = TRUE)
-subsetPathways(PCAmodel, ind = 695, n = 3, both = TRUE)
-subsetPathways(PCAmodel, ind = 1994, n = 3, both = TRUE)
+subsetEnrichedPathways(PCAmodel, ind = PCNum, n = 3, both = TRUE)
+subsetEnrichedPathways(PCAmodel, ind = 695, n = 3, both = TRUE)
+subsetEnrichedPathways(PCAmodel, ind = 1994, n = 3, both = TRUE)
 ```
-
 
 ```{r}
 annotatePCcluster(PCAmodel, ind = PCNum, n = 3, abs = FALSE)
@@ -191,6 +190,9 @@ annotatePCcluster(PCAmodel, ind = 695, n = 3, abs = FALSE)
 annotatePCcluster(PCAmodel, ind = 1994, n = 3, abs = FALSE)
 ```
 
+```{r}
+sessionInfo()
+```
 
 
 

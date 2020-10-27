@@ -28,14 +28,16 @@
   else {scoreCutoff <- 0.7}   # default cutoff for multiple-studies case
 
   above_cutoff <- apply(data, 2, function(x) {any(x > scoreCutoff)})
-  data <- data[, above_cutoff]
+  data <- data[, above_cutoff, drop=FALSE]
   return(data)
 }
 
 
 #' Validation result in data frame
 #'
-#' @param val_all An output matrix from \code{\link{validate}} function.
+#' @param val_all An output matrix from \code{\link{validate}} function. If this
+#' input is from multiple datasets, only \code{scoreCutoff} argument will be considered
+#' and other inputs will be ignored.
 #' @param num.out A number of highly validated PCclusters to output. Default is 5.
 #' If any of the cutoff parameters are provided, \code{num.out} or the number of
 #' filtered PCclusters, whichever smaller, will be chosen.

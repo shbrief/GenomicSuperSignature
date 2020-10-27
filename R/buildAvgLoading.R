@@ -69,7 +69,7 @@ findStudiesInCluster <- function(PCAmodel, ind = NULL, studyTitle = FALSE) {
 
         if (isTRUE(studyTitle)) {
             dir <- system.file("extdata", package = "PCAGenomicSignatures")
-            studyMeta <- read.table(file.path(dir, "studyMeta.tsv"))
+            studyMeta <- utils::read.table(file.path(dir, "studyMeta.tsv"))
             studyMeta <- studyMeta[,c("studyName", "title")]
             res <- studyMeta[which(studyMeta$studyName %in% studies),]
         }

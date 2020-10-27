@@ -165,3 +165,8 @@ summary results with SD/Variance/Cumulative.
 length(PCAsummary(PCAmodel))
 PCAsummary(PCAmodel)[1]
 ```
+
+```{r}
+sessionInfo()
+```
+

@@ -15,7 +15,9 @@ validatedSignatures(
 )
 }
 \arguments{
-\item{val_all}{An output matrix from \code{\link{validate}} function.}
+\item{val_all}{An output matrix from \code{\link{validate}} function. If this
+input is from multiple datasets, only \code{scoreCutoff} argument will be considered
+and other inputs will be ignored.}
 
 \item{num.out}{A number of highly validated PCclusters to output. Default is 5.
 If any of the cutoff parameters are provided, \code{num.out} or the number of
