@@ -59,6 +59,7 @@ findStudiesInCluster <- function(PCAmodel, ind = NULL, studyTitle = FALSE) {
             studies[[i]] <- lapply(studies[[i]], function(x) {unlist(strsplit(x, "\\."))[1]})
             studies[[i]] <- unique(unlist(studies[[i]]))
             names(studies)[i] <- colnames(z)[i]
+            res <- studies
         }
     } else {
         for (i in ind) {

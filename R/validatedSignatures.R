@@ -41,7 +41,8 @@
 #' @param num.out A number of highly validated PCclusters to output. Default is 5.
 #' If any of the cutoff parameters are provided, \code{num.out} or the number of
 #' filtered PCclusters, whichever smaller, will be chosen.
-#' @param scoreCutoff A numeric value for the minimum correlation.
+#' @param scoreCutoff A numeric value for the minimum correlation. For multi-studies
+#' case, the default is 0.7.
 #' @param swCutoff A numeric value for the minimum average silhouette width.
 #' @param clsizeCutoff An integer value for the minimum cluster size.
 #' @param indexOnly A logical. Under the default (= FALSE), the detailed information
@@ -71,10 +72,17 @@ validatedSignatures <- function(val_all, num.out = 5, scoreCutoff = NULL, swCuto
   ind <- which(rownames(data) == "score")
   pc_ind <- which(rownames(data) == "PC")
 
-  # If the validation result is from the list of datsets
+  # If the validation result is from the list of datasets
   if (length(ind) == 0) {
     res <- .validatedSignaturesForMulipleStudies(data, scoreCutoff = scoreCutoff)
-    return(res)
+
+    if (isFALSE(indexOnly)) {
+      return(res)
+    } else {
+      res_ind <- gsub("PCcluster", "", colnames(res))
+      res_ind <- as.numeric(res_ind)
+      return(res_ind)
+    }
     stop
   }
 

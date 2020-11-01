@@ -61,8 +61,8 @@
 #' If any of the cutoff parameters are provided, \code{num.out} or the number of
 #' filtered PCclusters, whichever smaller, will be chosen.
 #' @param scoreCutoff A numeric value for the minimum correlation. If \code{val_all}
-#' input is from multiple studies, this is the only cutoff criteria considred:
-#' \code{swCutoff} and \code{clsizeCutoff} will be ignored.
+#' input is from multiple studies, the default is 0.7 and this is the only cutoff
+#' criteria considred: \code{swCutoff} and \code{clsizeCutoff} will be ignored.
 #' @param swCutoff A numeric value for the minimum average silhouette width.
 #' @param clsizeCutoff A integer value for the minimum cluster size.
 #' @param breaks A numeric vector of length 3. Number represents the values assigned

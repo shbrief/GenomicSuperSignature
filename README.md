@@ -3,8 +3,8 @@
 [![R build status](https://github.com/shbrief/PCAGenomicSignatures/workflows/R-CMD-check/badge.svg)](https://github.com/shbrief/PCAGenomicSignatures/actions)
 
 
-# PCAGenomicSignatures
-## Interpretation of RNA-seq experiments through robust, efficient comparison to public databases
+## PCAGenomicSignatures
+**Interpretation of RNA-seq experiments through robust, efficient comparison to public databases**
 
 ### PURPOSE
 Thousands of RNA sequencing profiles have been deposited in public archives, yet 

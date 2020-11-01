@@ -23,7 +23,8 @@ and other inputs will be ignored.}
 If any of the cutoff parameters are provided, \code{num.out} or the number of
 filtered PCclusters, whichever smaller, will be chosen.}
 
-\item{scoreCutoff}{A numeric value for the minimum correlation.}
+\item{scoreCutoff}{A numeric value for the minimum correlation. For multi-studies
+case, the default is 0.7.}
 
 \item{swCutoff}{A numeric value for the minimum average silhouette width.}
 

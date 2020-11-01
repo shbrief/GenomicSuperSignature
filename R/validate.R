@@ -79,10 +79,14 @@
 validate <- function(dataset, PCAmodel, method = "pearson",
                      maxFrom = "PC", level = "max", scale = FALSE) {
 
-    if (ncol(dataset) < 8) {stop("Provide a study with at least 8 samples.")}
-    if (is.list(dataset) & level == "all") {
-        stop("'level = \"all\"' is not available for a list of datasets.")
+    if (!is.list(dataset)) {
+        if (ncol(dataset) < 8) {stop("Provide a study with at least 8 samples.")}
     }
+    if (is.list(dataset)) {
+        if (any(lapply(dataset, ncol) < 8)) {stop("Provide a study with at least 8 samples.")}
+        if (level == "all") {stop("'level = \"all\"' is not available for a list of datasets.")}
+    }
+
     sw <- silhouetteWidth(PCAmodel)
     cl_size <- S4Vectors::metadata(PCAmodel)$size
 

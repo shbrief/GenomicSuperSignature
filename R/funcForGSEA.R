@@ -204,9 +204,13 @@ subsetEnrichedPathways <- function(PCAmodel, ind = NULL, n = 10, both = FALSE) {
     res <- list()
     for (name in names(gsea_loading)) {
         x <- gsea_loading[[name]]
-        up <- x$Description[order(x$NES, decreasing=TRUE)][1:n]
-        down <- x$Description[order(x$NES, decreasing=FALSE)][1:n]
-        res[[name]] <- c(up, down)
+        if (is.null(dim(x))) {
+            res[[name]] <- "There is no enriched pathway"
+        } else {
+            up <- x$Description[order(x$NES, decreasing=TRUE)][1:n]
+            down <- x$Description[order(x$NES, decreasing=FALSE)][1:n]
+            res[[name]] <- c(up, down)
+        }
 
         ### Adding NES and qvalues?
         # y <- x[,c("Description", "NES", "qvalues")]
