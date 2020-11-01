@@ -1,6 +1,6 @@
 #' Barplot GSEA output
 #'
-#' @param ind An interger. Index of avgLoading/PCcluster to apply GSEA.
+#' @param ind An interger. Index of RAV to apply GSEA.
 #' @param PCAmodel PCAGenomicSignature object.
 #' @param category A character vector representing MSigDB category. Options are
 #' "H", "C1", "C2"(default), "C3", "C4", "C5", "C6", and "C7"
@@ -79,7 +79,7 @@ gseaBarplot <- function(ind, PCAmodel, category = "C2", n = 10, pvalueCutoff = 0
 
 #' Plot the network of enriched pathways
 #'
-#' @param ind An interger. Index of avgLoading/PCcluster to apply GSEA.
+#' @param ind An interger. Index of RAV to apply GSEA.
 #' @param PCAmodel PCAGenomicSignature object.
 #' @param category A character vector representing MSigDB category. Options are
 #' "H", "C1", "C2"(default), "C3", "C4", "C5", "C6", and "C7"
