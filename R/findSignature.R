@@ -1,17 +1,17 @@
-#' Find the PCclusters with the keyword-containing enriched pathways
+#' Find the RAVs with the keyword-containing enriched pathways
 #'
-#' This function finds PCclusters containing the keyword you provide. If you provide
-#' "the number of keyword-containing pathways per PCcluster" in argument \code{k},
-#' it will give you the PCcluster number.
+#' This function finds RAVs containing the keyword you provide. If you provide
+#' "the number of keyword-containing pathways per RAV" in argument \code{k},
+#' it will give you the RAV number.
 #'
 #' @param PCAmodel PCAGenomicSignatures-object
 #' @param keyword A character vector. If you are searching for multiple keywords
 #' at the same time, use \code{\link{paste}} with \code{collapse = "|"} argument.
 #' @param n The number of top ranked (based on abs(NES)) pathways you want to search your keyword
-#' @param k The number of keyword-containing pathways you want to get the PCcluster
+#' @param k The number of keyword-containing pathways you want to get the RAV
 #' number. Under default (\code{NULL}), the output will be a data frame with two
 #' columns: '# of keyword-containing pathways' and 'Freq'. If you assign the value
-#' for this argument, the output will be an integer vector containing the PCcluster
+#' for this argument, the output will be an integer vector containing the RAV
 #' index.
 #'
 #' @return A data frame or integer vector depending on the parameter \code{k}.
@@ -51,17 +51,17 @@ findSignature <- function(PCAmodel, keyword, n = 5, k = NULL) {
 
 
 
-#' Find the rank of your keyword in the PCcluster's GSEA annotation
+#' Find the rank of your keyword in the RAV's GSEA annotation
 #'
-#' Once you provide PCAmodel, keyword you're searching for, and the PCcluster number
+#' Once you provide PCAmodel, keyword you're searching for, and the RAV number
 #' to this function, it will give you the abs(NES)-based rank of your keyword in
-#' the enriched pathways of the target PCcluster. If can be useful to find out how
+#' the enriched pathways of the target RAV. If can be useful to find out how
 #' uniquely your keyword-containing pathways are represented.
 #'
 #' @param PCAmodel PCAGenomicSignatures-object.
 #' @param keyword A character vector. If you are searching for multiple keywords
 #' at the same time, use \code{\link{paste}} with \code{collapse = "|"} argument.
-#' @param ind An integer. The PCcluster number you want to check.
+#' @param ind An integer. The RAV number you want to check.
 #' @param n An interger. The number of top enriched pathways (based on abs(NES))
 #' to search. Under default (\code{NULL}), all the enriched pathways are used.
 #' @param includeTotal Default is \code{FALSE}. If it is set to \code{TRUE}, the
@@ -72,13 +72,13 @@ findSignature <- function(PCAmodel, keyword, n = 5, k = NULL) {
 #'
 #' @examples
 #' data(miniPCAmodel)
-#' findKeywordInPCcluster(miniPCAmodel, "Bcell", ind = 695)
+#' findKeywordInRAV(miniPCAmodel, "Bcell", ind = 695)
 #' # [1] "1|2|3|4|5|6|9"
 #'
 #' @export
-findKeywordInPCcluster <- function(PCAmodel, keyword, ind,
+findKeywordInRAV <- function(PCAmodel, keyword, ind,
                                    n = NULL, includeTotal = FALSE) {
-  name <- paste0("PCcluster", ind)
+  name <- paste0("RAV", ind)
   gsea <- gsea(PCAmodel)[[name]]
   total <- nrow(gsea)
 

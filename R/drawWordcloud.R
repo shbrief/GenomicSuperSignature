@@ -1,7 +1,7 @@
 #' Extract the list of PCs in a cluster
 #'
 #' @param PCAmodel A PCAGenomicSignatures object
-#' @param ind An index of PCcluster
+#' @param ind An index of RAV
 #'
 #' @export
 PCinCluster <- function(PCAmodel, ind) {
@@ -17,24 +17,24 @@ PCinCluster <- function(PCAmodel, ind) {
 #' @import dplyr
 #'
 #' @param PCAmodel A PCAGenomicSignatures object
-#' @param ind An index of PCcluster
+#' @param ind An index of RAV
 #' @param rm.noise An integer. Under the default condition (\code{rm.noise=NULL}),
 #' if cluster size (= \code{s}) is smaller than 8, \code{rm.noise = floor(s*0.5)}.
 #' For clusters with >= 8 PCs, \code{rm.noise = 4}. If \code{rm.noise = 0}, all
-#' the MeSH terms in PCcluster will be used to draw wordcloud.
+#' the MeSH terms in RAV will be used to draw wordcloud.
 #' @param weighted A logical. If \code{TRUE}, MeSH terms from each study are
 #' weighted based on the variance explained by the principle component of the
-#' study contributing a give PCcluster. Default is \code{TRUE}.
+#' study contributing a give RAV. Default is \code{TRUE}.
 #'
 #' @return A table with two columns, \code{word} and \code{freq}. MeSH terms in
-#' the defined PCcluster (by \code{ind} argument) is ordered based on their frequency.
+#' the defined RAV (by \code{ind} argument) is ordered based on their frequency.
 #'
 #' @export
 meshTable <- function(PCAmodel, ind, rm.noise = NULL, weighted = TRUE) {
 
     ### Remove noise
     if (is.null(rm.noise)) {
-        s <- S4Vectors::metadata(PCAmodel)$size[paste0("PCcluster", ind)]
+        s <- S4Vectors::metadata(PCAmodel)$size[paste0("RAV", ind)]
         if (s < 8) {rm.noise = floor(s*0.5)}
         else if (s >= 8) {rm.noise = 4}
     }
@@ -45,7 +45,7 @@ meshTable <- function(PCAmodel, ind, rm.noise = NULL, weighted = TRUE) {
 
     ### Variance explained by PC
     if (weighted == FALSE) {
-        study_id <- studies(PCAmodel)[[ind]]   # a list of studies in PCcluster
+        study_id <- studies(PCAmodel)[[ind]]   # a list of studies in RAV
         all_MeSH <- mesh(PCAmodel)   # all the MeSH data
 
         # remove SRP069088 (no MeSH term)
@@ -116,20 +116,20 @@ meshTable <- function(PCAmodel, ind, rm.noise = NULL, weighted = TRUE) {
 }
 
 
-#' @title Draw wordcloud using the collection of PCclusters' MeSH terms
+#' @title Draw wordcloud using the collection of RAVs' MeSH terms
 #' @description Plot a word cloud using the remaining MeSH terms in the selected
-#' PCcluster after user-defined filtering.
+#' RAV after user-defined filtering.
 #'
 #' @param PCAmodel PCAGenomicSignatures object
-#' @param ind An index of the PCcluster you want to draw wordcloud.
+#' @param ind An index of the RAV you want to draw wordcloud.
 #' @param rm.noise An integer. Under the default condition (\code{rm.noise=NULL}),
 #' if cluster size (= \code{s}) is smaller than 8, \code{rm.noise = floor(s*0.5)}.
 #' For clusters with >= 8 PCs, \code{rm.noise = 4}. If \code{rm.noise = 0}, all
-#' the MeSH terms in PCcluster will be used to draw wordcloud.
+#' the MeSH terms in RAV will be used to draw wordcloud.
 #' @param scale A \code{scale} argument for \code{\link[wordcloud]{wordcloud}} function
 #' @param weighted A logical. If \code{TRUE} (default), MeSH terms from each study are
 #' weighted based on the variance explained by the principle component of the
-#' study contributing a give PCcluster.
+#' study contributing to a given RAV.
 #' @param seed Random seed. If it is not specified, \code{set.seed(1234)} will be used.
 #'
 #' @return A word cloud with the MeSH terms associated with the given cluster.
@@ -143,7 +143,7 @@ drawWordcloud <- function(PCAmodel, ind, rm.noise = NULL, scale = c(3, 0.5),
                          weighted = TRUE, seed = NULL) {
 
     if (is.null(rm.noise)) {
-        s <- S4Vectors::metadata(PCAmodel)$size[paste0("PCcluster", ind)]
+        s <- S4Vectors::metadata(PCAmodel)$size[paste0("RAV", ind)]
         if (s < 8) {rm.noise = floor(s*0.5)}
         else if (s >= 8) {rm.noise = 4}
 

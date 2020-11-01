@@ -17,7 +17,7 @@
 #' @param ... Any additional argument for \code{\link[ComplexHeatmap]{Heatmap}}
 #'
 #' @return A heatmap of the sample score. Rows represent samples and columns
-#' represent PCclusters.
+#' represent RAVs.
 #'
 #' @examples
 #' data(miniPCAmodel)

@@ -38,16 +38,16 @@
 #' @param val_all An output matrix from \code{\link{validate}} function. If this
 #' input is from multiple datasets, only \code{scoreCutoff} argument will be considered
 #' and other inputs will be ignored.
-#' @param num.out A number of highly validated PCclusters to output. Default is 5.
+#' @param num.out A number of highly validated RAVs to output. Default is 5.
 #' If any of the cutoff parameters are provided, \code{num.out} or the number of
-#' filtered PCclusters, whichever smaller, will be chosen.
+#' filtered RAVs, whichever smaller, will be chosen.
 #' @param scoreCutoff A numeric value for the minimum correlation. For multi-studies
 #' case, the default is 0.7.
 #' @param swCutoff A numeric value for the minimum average silhouette width.
 #' @param clsizeCutoff An integer value for the minimum cluster size.
 #' @param indexOnly A logical. Under the default (= FALSE), the detailed information
-#' on validated PCclusters, such as score, average silhouette width, cluster size, is
-#' printed. If it is set TRUE, only the PCcluster number will be printed.
+#' on validated RAVs, such as score, average silhouette width, cluster size, is
+#' printed. If it is set TRUE, only the RAV number will be printed.
 #' @param whichPC An integer value between 1 and 8. PC number of your data to check
 #' the validated signatures with. Under the default (\code{NULL}), it outputs top
 #' scored signatures with any PC of your data.
@@ -60,10 +60,10 @@
 #' data(bcellViper)
 #' val_all <- validate(dset, miniPCAmodel)
 #' validatedSignatures(val_all, num.out = 3, scoreCutoff = 0)
-#' #                   score PC          sw cl_size cl_num
-#' # PCcluster1076 0.5950767  2 -0.04447124      10      1
-#' # PCcluster2538 0.5838616  2  0.06996166       4      2
-#' # PCcluster338  0.5709072  2 -0.04683319      21      3
+#' #             score PC          sw cl_size cl_num
+#' # RAV1076 0.5950767  2 -0.04447124      10      1
+#' # RAV2538 0.5838616  2  0.06996166       4      2
+#' # RAV338  0.5709072  2 -0.04683319      21      3
 #'
 #' @export
 validatedSignatures <- function(val_all, num.out = 5, scoreCutoff = NULL, swCutoff = NULL,
@@ -79,7 +79,7 @@ validatedSignatures <- function(val_all, num.out = 5, scoreCutoff = NULL, swCuto
     if (isFALSE(indexOnly)) {
       return(res)
     } else {
-      res_ind <- gsub("PCcluster", "", colnames(res))
+      res_ind <- gsub("RAV", "", colnames(res))
       res_ind <- as.numeric(res_ind)
       return(res_ind)
     }

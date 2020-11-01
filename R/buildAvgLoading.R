@@ -1,4 +1,4 @@
-#' Calculate Silhouette Information of PCclusters
+#' Calculate Silhouette Information of RAVs
 #'
 #' @description The silhouette value is a measure of how similar an object is to
 #' its own cluster (cohesion) compared to other clusters (separation). The silhouette
@@ -18,18 +18,18 @@
     return(SW)
 }
 
-#' Find the studies contributing each PCcluster
+#' Find the studies contributing each RAV
 #'
 #' @param PCAmodel PCAGenomicSignatures object.
-#' @param ind A numeric vector containing the index of PCclusters you want to
+#' @param ind A numeric vector containing the index of RAVs you want to
 #' find the related studies. Default is \code{NULL}.
 #' @param studyTitle Default is \code{FALSE}. This parameter is effective only when
 #' the \code{index} value is specificed. If it's \code{TRUE}, the output will be
 #' a data frame with the study
 #'
 #' @return A list of character vector. Under the default conditoin (\code{ind = NULL}),
-#' all the PCclusters will be checked for their contributing studies and the length
-#' of the list will be same as the number of PCclusters (= \code{metadata(x)$k}).
+#' all the RAVs will be checked for their contributing studies and the length
+#' of the list will be same as the number of RAVs (= \code{metadata(x)$k}).
 #'
 #' @note Mainly used for modeling building, within \link{buildAvgLoading}.
 #' @export

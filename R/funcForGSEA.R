@@ -1,6 +1,6 @@
 #' MSigDB GSEA results
 #'
-#' @param ind An interger. Index of avgLoading/PCcluster to apply GSEA.
+#' @param ind An interger. Index of RAV to apply GSEA.
 #' @param PCAmodel PCAGenomicSignature object.
 #' @param category A character vector representing MSigDB category. Options are
 #' "H", "C1", "C2"(default), "C3", "C4", "C5", "C6", and "C7"
@@ -95,8 +95,8 @@ subsetGSEA <- function(gseaRes, n = 20) {
 
 
 #' @title Order genes in loading vectors
-#' @description This function takes Z matrix (= average loadings) and orders the
-#' genes in each loading vector (= PCcluster) in a descending manner.
+#' @description This function takes Z matrix (= averaged loadings) and orders the
+#' genes in each loading vector (= RAV) in a descending manner.
 #'
 #' @param LoadingMatrix An avgloading matrix. Rows represent genes and columns
 #' represent clusters of principle components
@@ -182,8 +182,8 @@ run_gsea <- function(geneList, TERM2GENE, TERM2NAME,
 #' @import methods
 #'
 #' @param PCAmodel PCAGenomicSignatures object. Also an output from \code{\link[clusterProfiler]{GSEA}} can be used.
-#' @param ind A numeric vector containing the PCcluster number you want to check
-#' enriched pathways. If not specified, this function returns results from all the PCclusters.
+#' @param ind A numeric vector containing the RAV number you want to check
+#' enriched pathways. If not specified, this function returns results from all the RAVs.
 #' @param n The number of top and bottom pathways to be selected based on normalized
 #' enrichment score (NES).
 #' @param both Default is \code{FALSE}, where only the top \code{n} pathways will
@@ -229,7 +229,7 @@ subsetEnrichedPathways <- function(PCAmodel, ind = NULL, n = 10, both = FALSE) {
         res <- S4Vectors::DataFrame(res)
         return(res)
     } else {
-        col_num <- which(colnames(res) %in% c(paste0("PCcluster", ind)))
+        col_num <- which(colnames(res) %in% c(paste0("RAV", ind)))
         res <- res[, col_num, drop = FALSE]
         res <- S4Vectors::DataFrame(res)
         return(res)

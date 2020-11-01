@@ -116,8 +116,10 @@
 
 #### 5. PCAmodel from 536 studies C2 ###########################################
 dat_dir <- "~/data2/PCAGenomicSignatureLibrary/refinebioRseq"
-PCAmodel <- readRDS(file.path(dat_dir, "PCAmodel_536/refinebioRseq_PCAmodel.rds"))
-out_dir <- file.path(dat_dir, "PCAmodel_536/gsea_c2")
+# PCAmodel <- readRDS(file.path(dat_dir, "PCAmodel_536/refinebioRseq_PCAmodel.rds"))
+# out_dir <- file.path(dat_dir, "PCAmodel_536/gsea_c2")
+PCAmodel <- readRDS(file.path(dat_dir, "PCAmodel_536_clNum4/refinebioRseq_PCAmodel.rds"))
+out_dir <- file.path(dat_dir, "PCAmodel_536_clNum4/gsea_c2")
 
 if (!dir.exists(out_dir)) {dir.create(out_dir)}
 

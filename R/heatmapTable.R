@@ -57,9 +57,9 @@
 #' @param ind An integer vector. If this parameter is provided, the other parameters,
 #' \code{num.out, scoreCutoff, swCutoff, clsizeCutoff} will be ignored and the heatmap
 #' table containing only the provided index will be printed.
-#' @param num.out A number of highly validated PCclusters to output. Default is 5.
+#' @param num.out A number of highly validated RAVs to output. Default is 5.
 #' If any of the cutoff parameters are provided, \code{num.out} or the number of
-#' filtered PCclusters, whichever smaller, will be chosen.
+#' filtered RAVs, whichever smaller, will be chosen.
 #' @param scoreCutoff A numeric value for the minimum correlation. If \code{val_all}
 #' input is from multiple studies, the default is 0.7 and this is the only cutoff
 #' criteria considred: \code{swCutoff} and \code{clsizeCutoff} will be ignored.
@@ -80,7 +80,7 @@
 #' given cutoff criteria. If \code{val_all} input is from a single dataset, the
 #' output heatmap will contain both score and average silhouette width for each
 #' cluster. If \code{val_all} input is from multiple studies, the output heatmap's
-#' rows will represent each study and the columns are PCclusters that meet
+#' rows will represent each study and the columns are RAVs that meet
 #' \code{scoreCutoff} will any of the input study.
 #'
 #' @examples
@@ -122,7 +122,7 @@ heatmapTable <- function(val_all, ind = NULL, num.out = 5,
     dat <- val[,score_ind,drop=FALSE] %>% t
     sw <- val[,sw_ind,drop=FALSE] %>% as.numeric
   } else {
-    row_ind <- which(rownames(val_all) %in% paste0("PCcluster", ind))
+    row_ind <- which(rownames(val_all) %in% paste0("RAV", ind))
     val <- val_all[row_ind,]
     dat <- val[,score_ind,drop=FALSE] %>% t
     sw <- val[,sw_ind,drop=FALSE] %>% unlist %>% as.numeric
@@ -145,7 +145,7 @@ heatmapTable <- function(val_all, ind = NULL, num.out = 5,
     hmWidth <- ncol(dat) + 3
   }
 
-  # Heatmap annotation representing Silhouette width of selected PCclusters
+  # Heatmap annotation representing Silhouette width of selected RAVs
   ha <- ComplexHeatmap::HeatmapAnnotation(avg.sw = ComplexHeatmap::anno_barplot(sw, baseline = 0,
                                                                                 gp = grid::gpar(fill = ifelse(sw > 0, "red", "blue"), alpha = 0.5)),
                                           annotation_name_side = "left",

@@ -3,14 +3,14 @@
 #' @param dataset A expression dataset to validate. Genes in rows and samples in
 #' columns. Gene names should be in 'symbol' format. It can be ExpressionSet,
 #' SummarizedExperiment, RangedSummarizedExperiment, or matrix.
-#' @param avgLoading A matrix with genes by PCclusters.
+#' @param avgLoading A matrix with genes by RAVs.
 #' @param method A character string indicating which correlation coefficient is
 #' to be computed. One of "pearson" (default), "kendall", or "spearman": can be abbreviated.
 #' @param scale Default is \code{FALSE}. If it is set to \code{TRUE}, dataset will
 #' be row normalized by \link{rowNorm} function.
 #'
 #' @return A matrix of Pearson correlation coefficient (default, defined through \code{method}
-#' argument) between PCclusters (row) and the top 8 PCs from the datasets (column)
+#' argument) between RAVs (row) and the top 8 PCs from the datasets (column)
 #'
 .loadingCor <- function(dataset, avgLoading, method = "pearson", scale = FALSE) {
 
@@ -59,9 +59,9 @@
 #' @return A data frame containing the maximum pearson correlation coefficient between
 #' the top 8 PCs of the dataset and pre-calculated average loadings (in row) of training
 #' datasets (\code{score} column). It also contains other metadata associated with
-#' each PCcluster: \code{PC} for one of the top 8 PCs of the dataset that results
-#' in the given \code{score}, \code{sw} for the average silhouette width of the PCcluster,
-#' \code{cl_size} for the size of each PCcluster.
+#' each RAV: \code{PC} for one of the top 8 PCs of the dataset that results
+#' in the given \code{score}, \code{sw} for the average silhouette width of the RAV,
+#' \code{cl_size} for the size of each RAV.
 #' If the input for \code{dataset} argument is a list of different datasets, each row
 #' of the output represents a new dataset for test, and each column represents
 #' clusters from training datasets. If \code{level = "all"}, a list containing the matrices

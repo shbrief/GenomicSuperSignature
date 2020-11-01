@@ -1,4 +1,4 @@
-## The following is the code used to create this mini PCAmodel from the full
+## The following is the code used to create this miniPCAmodel from the full
 ## PCAmodel_PLIERpriors.The full PCAmodel_PLIERpriors was created by the pipeline
 ## at https://github.com/shbrief/model_building.
 \dontrun{

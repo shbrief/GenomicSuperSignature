@@ -1,8 +1,8 @@
 #' @include GenomicSignatures-class.R
 
 
-#' @name PCclusterName
-#' @title Formatting PCcluster name
+#' @name RAVName
+#' @title Formatting RAV name
 #'
 #' @description Keep the name with 'k + cluster number + number of PCs + number of unique studies'
 #' info during the model construction to make it easy to keep track of them, but at the
@@ -11,9 +11,9 @@
 #'
 #' @param x PCAGenomicSignature-object
 #' @param ... Additional arguments for supporting functions.
-.PCclusterName <- function(x, ...) {
-    x@colData$PCcluster <- rownames(x@colData)
-    rownames(x@colData) <- paste0("PCcluster", 1:ncol(x))
+.RAVName <- function(x, ...) {
+    x@colData$RAV <- rownames(x@colData)
+    rownames(x@colData) <- paste0("RAV", 1:ncol(x))
     return(x)
 }
 
@@ -32,12 +32,12 @@
 #'
 #' @details
 #' \itemize{
-#'     \item model(x) : PCAmodel (= avgLoading) containing genes x PCclusters
+#'     \item model(x) : PCAmodel (= avgLoading) containing genes x RAVs
 #'     \item metadata(x)$cluster : A vector of integers (from 1:k) indicating the
 #'     cluster to which each point is allocated. Check \code{stats::kmeans} function.
 #'     \item metadata(x)$size : The number of points in each cluster. Check \code{stats::kmeans} function.
 #'     \item metadata(x)$iter : The number of (outer) iterations. Check \code{stats::kmeans} function.
-#'     \item metadata(x)$k : The number of PCclusters.
+#'     \item metadata(x)$k : The number of RAVs.
 #'     \item metadata(x)$n : The number of top PCs from each dataset.
 #'     \item metadata(x)$geneSets : Name of the prior gene sets used to annotate average loadings.
 #'     \item colData(x)$studies : A list of character vectors containing studies contributing to each PC cluster.
@@ -81,7 +81,7 @@ PCAGenomicSignatures <- function(...)
 {
     se <- SummarizedExperiment::SummarizedExperiment(...)
     gs <- .PCAGenomicSignatures(se)
-    .PCclusterName(gs)
+    .RAVName(gs)
 }
 
 
@@ -96,12 +96,12 @@ PCAGenomicSignatures <- function(...)
 #'
 #' @details
 #' \itemize{
-#'     \item assay(x) : PCAmodel (= avgLoading) containing genes x PCclusters
+#'     \item assay(x) : PCAmodel (= avgLoading) containing genes x RAVs
 #'     \item metadata(x)$cluster : A vector of integers (from 1:k) indicating the
 #'     cluster to which each point is allocated. Check \code{stats::kmeans} function.
 #'     \item metadata(x)$size : The number of points in each cluster. Check \code{stats::kmeans} function.
 #'     \item metadata(x)$iter : The number of (outer) iterations. Check \code{stats::kmeans} function.
-#'     \item metadata(x)$k : The number of PCclusters.
+#'     \item metadata(x)$k : The number of RAVs.
 #'     \item metadata(x)$n : The number of top PCs from each dataset.
 #'     \item metadata(x)$geneSets : Name of the prior gene sets used to annotate average loadings.
 #'     \item colData(x)$studies : A list of character vectors containing studies contributing to each PC cluster.

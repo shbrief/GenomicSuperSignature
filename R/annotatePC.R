@@ -1,7 +1,7 @@
 #' Annotate top PCs from the dataset
 #'
-#' This function finds the PCcluster scored highest with the top PCs of the dataset,
-#' including PCclusters with the negative average silhouette.
+#' This function finds the RAV scored highest with the top PCs of the dataset,
+#' including RAVs with the negative average silhouette.
 #'
 #' @param PCnum PC number of your dataset you want to get the annotation results. It
 #' should be an integer value between 1 and 8.
@@ -38,7 +38,7 @@ annotatePC <- function(PCnum, val_all, PCAmodel, n = 5,
 
   for (i in seq_along(PCnum)) {
     annotPC <- validatedSignatures(val_all, num.out = 1, scoreCutoff = scoreCutoff, whichPC = PCnum[i])
-    cl_name <- paste0("PCcluster", annotPC[,"cl_num"])
+    cl_name <- paste0("RAV", annotPC[,"cl_num"])
     annotatedCluster <- gsea(PCAmodel)[[cl_name]]
 
     if (is.null(annotatedCluster)) {
@@ -82,7 +82,7 @@ annotatePC <- function(PCnum, val_all, PCAmodel, n = 5,
 #
 #   for (i in seq_along(PCnum)) {
 #     annotPC <- validatedSignatures(dat, num.out = 1, whichPC = PCnum[i])
-#     cl_name <- paste0("PCcluster_", annotPC[,"cl_num"])
+#     cl_name <- paste0("RAV_", annotPC[,"cl_num"])
 #     annotatedCluster <- a[[cl_name]]
 #     topAnnotation <- annotatedCluster[order(abs(annotatedCluster$NES), decreasing = TRUE),][1:n,]
 #     rownames(topAnnotation) <- NULL
