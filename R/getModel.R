@@ -1,4 +1,4 @@
-s2p_get_cache <- function(cache = rappdirs::user_cache_dir(appname='pca_genomic_signatures')) {
+s2p_get_cache <- function(cache = rappdirs::user_cache_dir(appname='genomic_super_signature')) {
   BiocFileCache::BiocFileCache(cache=cache)
 }
 
@@ -44,7 +44,7 @@ getModel <- function(prior = c("C2", "PLIERpriors")) {
     stop("Prior you entered isn't available yet.")
   }
 
-  bucket_name <- "pca_genomic_signatures"
+  bucket_name <- "genomic_super_signature"
   fname <- paste0("PCAmodel_", prior, ".rds")
   fpath <- file.path('https://storage.googleapis.com',bucket_name, fname)
 
