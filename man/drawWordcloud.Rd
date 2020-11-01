@@ -2,7 +2,7 @@
 % Please edit documentation in R/drawWordcloud.R
 \name{drawWordcloud}
 \alias{drawWordcloud}
-\title{Draw wordcloud using the collection of PCclusters' MeSH terms}
+\title{Draw wordcloud using the collection of RAVs' MeSH terms}
 \usage{
 drawWordcloud(
   PCAmodel,
@@ -16,18 +16,18 @@ drawWordcloud(
 \arguments{
 \item{PCAmodel}{PCAGenomicSignatures object}
 
-\item{ind}{An index of the PCcluster you want to draw wordcloud.}
+\item{ind}{An index of the RAV you want to draw wordcloud.}
 
 \item{rm.noise}{An integer. Under the default condition (\code{rm.noise=NULL}),
 if cluster size (= \code{s}) is smaller than 8, \code{rm.noise = floor(s*0.5)}.
 For clusters with >= 8 PCs, \code{rm.noise = 4}. If \code{rm.noise = 0}, all
-the MeSH terms in PCcluster will be used to draw wordcloud.}
+the MeSH terms in RAV will be used to draw wordcloud.}
 
 \item{scale}{A \code{scale} argument for \code{\link[wordcloud]{wordcloud}} function}
 
 \item{weighted}{A logical. If \code{TRUE} (default), MeSH terms from each study are
 weighted based on the variance explained by the principle component of the
-study contributing a give PCcluster.}
+study contributing to a given RAV.}
 
 \item{seed}{Random seed. If it is not specified, \code{set.seed(1234)} will be used.}
 }
@@ -36,7 +36,7 @@ A word cloud with the MeSH terms associated with the given cluster.
 }
 \description{
 Plot a word cloud using the remaining MeSH terms in the selected
-PCcluster after user-defined filtering.
+RAV after user-defined filtering.
 }
 \examples{
 data(miniPCAmodel)

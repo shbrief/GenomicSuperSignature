@@ -45,8 +45,8 @@ A data frame of a list based on the \code{simplify} argument. Check the
 output detail above.
 }
 \description{
-This function finds the PCcluster scored highest with the top PCs of the dataset,
-including PCclusters with the negative average silhouette.
+This function finds the RAV scored highest with the top PCs of the dataset,
+including RAVs with the negative average silhouette.
 }
 \examples{
 data(miniPCAmodel)

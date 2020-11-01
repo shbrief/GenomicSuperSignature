@@ -11,11 +11,11 @@ An object of class \code{PCAGenomicSignatures} with 13934 rows and 17 columns.
 miniPCAmodel
 }
 \description{
-A object providing a reduced version of PCAmodel_C2 (PCAGenomicSignatures
+A object providing a miniature version of PCAmodel_C2 (PCAGenomicSignatures
 object constructed from 536 studies and annotated with MSigDB C2).
 }
 \examples{
-## The following is the code used to create this mini PCAmodel from the full
+## The following is the code used to create this miniPCAmodel from the full
 ## PCAmodel_PLIERpriors.The full PCAmodel_PLIERpriors was created by the pipeline
 ## at https://github.com/shbrief/model_building.
 \dontrun{

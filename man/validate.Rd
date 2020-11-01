@@ -40,9 +40,9 @@ be row normalized by \link{rowNorm} function.}
 A data frame containing the maximum pearson correlation coefficient between
 the top 8 PCs of the dataset and pre-calculated average loadings (in row) of training
 datasets (\code{score} column). It also contains other metadata associated with
-each PCcluster: \code{PC} for one of the top 8 PCs of the dataset that results
-in the given \code{score}, \code{sw} for the average silhouette width of the PCcluster,
-\code{cl_size} for the size of each PCcluster.
+each RAV: \code{PC} for one of the top 8 PCs of the dataset that results
+in the given \code{score}, \code{sw} for the average silhouette width of the RAV,
+\code{cl_size} for the size of each RAV.
 If the input for \code{dataset} argument is a list of different datasets, each row
 of the output represents a new dataset for test, and each column represents
 clusters from training datasets. If \code{level = "all"}, a list containing the matrices

@@ -21,7 +21,7 @@ plotValidate(
 \item{minClusterSize}{The minimum size of clusters to be included in the plotting.
 Default value is 2, so any single-element clusters are excluded.}
 
-\item{swFilter}{If \code{swFilter=TRUE}, only PCcluster above the cutoff, defined
+\item{swFilter}{If \code{swFilter=TRUE}, only RAV above the cutoff, defined
 through \code{minSilhouetteWidth} argument will be plotted. Default is \code{swFilter=FALSE}}
 
 \item{minSilhouetteWidth}{A minimum average silhouette width to be plotted. Only
@@ -41,10 +41,10 @@ check \code{\link[ggplot2]{scale_color_brewer}}}
 There are three main information on the graph:
 \itemize{
     \item x-axis : Pearson correlation coefficient. Higher value means that
-    test dataset and PCcluster is more tightly associated with.
-    \item y-axis : Silhouette width representing the quality of PCclusters.
-    \item size : The number of studies in each PCcluster. (= cluster size)
-    \item color : Test dataset's PC number that validate each PCcluster. Because we
+    test dataset and RAV is more tightly associated with.
+    \item y-axis : Silhouette width representing the quality of RAVs.
+    \item size : The number of studies in each RAV. (= cluster size)
+    \item color : Test dataset's PC number that validate each RAV. Because we
     used top 8 PCs of the test dataset, there are 8 categories.
 }
 }

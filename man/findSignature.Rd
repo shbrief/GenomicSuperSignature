@@ -2,7 +2,7 @@
 % Please edit documentation in R/findSignature.R
 \name{findSignature}
 \alias{findSignature}
-\title{Find the PCclusters with the keyword-containing enriched pathways}
+\title{Find the RAVs with the keyword-containing enriched pathways}
 \usage{
 findSignature(PCAmodel, keyword, n = 5, k = NULL)
 }
@@ -14,19 +14,19 @@ at the same time, use \code{\link{paste}} with \code{collapse = "|"} argument.}
 
 \item{n}{The number of top ranked (based on abs(NES)) pathways you want to search your keyword}
 
-\item{k}{The number of keyword-containing pathways you want to get the PCcluster
+\item{k}{The number of keyword-containing pathways you want to get the RAV
 number. Under default (\code{NULL}), the output will be a data frame with two
 columns: '# of keyword-containing pathways' and 'Freq'. If you assign the value
-for this argument, the output will be an integer vector containing the PCcluster
+for this argument, the output will be an integer vector containing the RAV
 index.}
 }
 \value{
 A data frame or integer vector depending on the parameter \code{k}.
 }
 \description{
-This function finds PCclusters containing the keyword you provide. If you provide
-"the number of keyword-containing pathways per PCcluster" in argument \code{k},
-it will give you the PCcluster number.
+This function finds RAVs containing the keyword you provide. If you provide
+"the number of keyword-containing pathways per RAV" in argument \code{k},
+it will give you the RAV number.
 }
 \examples{
 data(miniPCAmodel)

@@ -4,7 +4,7 @@
 #' @param ind An index of RAV
 #'
 #' @export
-PCinCluster <- function(PCAmodel, ind) {
+PCinRAV <- function(PCAmodel, ind) {
     cluster <- S4Vectors::metadata(PCAmodel)$cluster
     k <- which(cluster == ind)
     out <- names(k)
@@ -71,7 +71,7 @@ meshTable <- function(PCAmodel, ind, rm.noise = NULL, weighted = TRUE) {
 
     ### Weighted, counting on variance explained by
     } else {
-        PCs <- PCinCluster(PCAmodel, ind)
+        PCs <- PCinRAV(PCAmodel, ind)
         varAll <- Reduce(cbind, PCAsummary(PCAmodel))
         var <- varAll[,PCs,drop=FALSE]
         study_id <- gsub("\\.PC.*$", "", PCs)

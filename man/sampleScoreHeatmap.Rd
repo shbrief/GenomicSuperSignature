@@ -42,7 +42,7 @@ will be converted to a one-column matrix.}
 }
 \value{
 A heatmap of the sample score. Rows represent samples and columns
-represent PCclusters.
+represent RAVs.
 }
 \description{
 Plot heatmap of the sample scores

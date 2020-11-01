@@ -20,7 +20,7 @@ msigdb_gsea(
 )
 }
 \arguments{
-\item{ind}{An interger. Index of avgLoading/PCcluster to apply GSEA.}
+\item{ind}{An interger. Index of RAV to apply GSEA.}
 
 \item{PCAmodel}{PCAGenomicSignature object.}
 

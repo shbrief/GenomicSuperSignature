@@ -22,6 +22,6 @@ A list of loadings selected by \code{LoadingVector}, where all the
 genes in each loading are listed in descending order.
 }
 \description{
-This function takes Z matrix (= average loadings) and orders the
-genes in each loading vector (= PCcluster) in a descending manner.
+This function takes Z matrix (= averaged loadings) and orders the
+genes in each loading vector (= RAV) in a descending manner.
 }

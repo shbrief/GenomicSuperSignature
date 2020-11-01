@@ -2,7 +2,7 @@
 % Please edit documentation in R/buildAvgLoading.R
 \name{.calculateSilhouetteWidth}
 \alias{.calculateSilhouetteWidth}
-\title{Calculate Silhouette Information of PCclusters}
+\title{Calculate Silhouette Information of RAVs}
 \usage{
 .calculateSilhouetteWidth(dat, kmeansRes)
 }

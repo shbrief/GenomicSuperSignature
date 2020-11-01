@@ -2,14 +2,14 @@
 % Please edit documentation in R/buildAvgLoading.R
 \name{findStudiesInCluster}
 \alias{findStudiesInCluster}
-\title{Find the studies contributing each PCcluster}
+\title{Find the studies contributing each RAV}
 \usage{
 findStudiesInCluster(PCAmodel, ind = NULL, studyTitle = FALSE)
 }
 \arguments{
 \item{PCAmodel}{PCAGenomicSignatures object.}
 
-\item{ind}{A numeric vector containing the index of PCclusters you want to
+\item{ind}{A numeric vector containing the index of RAVs you want to
 find the related studies. Default is \code{NULL}.}
 
 \item{studyTitle}{Default is \code{FALSE}. This parameter is effective only when
@@ -18,11 +18,11 @@ a data frame with the study}
 }
 \value{
 A list of character vector. Under the default conditoin (\code{ind = NULL}),
-all the PCclusters will be checked for their contributing studies and the length
-of the list will be same as the number of PCclusters (= \code{metadata(x)$k}).
+all the RAVs will be checked for their contributing studies and the length
+of the list will be same as the number of RAVs (= \code{metadata(x)$k}).
 }
 \description{
-Find the studies contributing each PCcluster
+Find the studies contributing each RAV
 }
 \note{
 Mainly used for modeling building, within \link{buildAvgLoading}.

@@ -9,20 +9,20 @@ meshTable(PCAmodel, ind, rm.noise = NULL, weighted = TRUE)
 \arguments{
 \item{PCAmodel}{A PCAGenomicSignatures object}
 
-\item{ind}{An index of PCcluster}
+\item{ind}{An index of RAV}
 
 \item{rm.noise}{An integer. Under the default condition (\code{rm.noise=NULL}),
 if cluster size (= \code{s}) is smaller than 8, \code{rm.noise = floor(s*0.5)}.
 For clusters with >= 8 PCs, \code{rm.noise = 4}. If \code{rm.noise = 0}, all
-the MeSH terms in PCcluster will be used to draw wordcloud.}
+the MeSH terms in RAV will be used to draw wordcloud.}
 
 \item{weighted}{A logical. If \code{TRUE}, MeSH terms from each study are
 weighted based on the variance explained by the principle component of the
-study contributing a give PCcluster. Default is \code{TRUE}.}
+study contributing a give RAV. Default is \code{TRUE}.}
 }
 \value{
 A table with two columns, \code{word} and \code{freq}. MeSH terms in
-the defined PCcluster (by \code{ind} argument) is ordered based on their frequency.
+the defined RAV (by \code{ind} argument) is ordered based on their frequency.
 }
 \description{
 Build a two-column word/frequency table

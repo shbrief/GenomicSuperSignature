@@ -9,8 +9,8 @@ subsetEnrichedPathways(PCAmodel, ind = NULL, n = 10, both = FALSE)
 \arguments{
 \item{PCAmodel}{PCAGenomicSignatures object. Also an output from \code{\link[clusterProfiler]{GSEA}} can be used.}
 
-\item{ind}{A numeric vector containing the PCcluster number you want to check
-enriched pathways. If not specified, this function returns results from all the PCclusters.}
+\item{ind}{A numeric vector containing the RAV number you want to check
+enriched pathways. If not specified, this function returns results from all the RAVs.}
 
 \item{n}{The number of top and bottom pathways to be selected based on normalized
 enrichment score (NES).}

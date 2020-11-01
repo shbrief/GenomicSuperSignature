@@ -54,9 +54,9 @@ before adding any information in \code{trainingData} slot
 }
 \details{
 \itemize{
-    \item assay(x) : PCAmodel (= avgLoading) containing genes x PCclusters
+    \item assay(x) : PCAmodel (= avgLoading) containing genes x RAVs
     \item metadata(x) : Metadata associated with the PCAmodel buildling process
-    \item colData(x) : Information on PCclusters
+    \item colData(x) : Information on RAVs
 }
 }
 \section{Setters}{
@@ -64,7 +64,7 @@ before adding any information in \code{trainingData} slot
 Setter method values (i.e., \code{function(x) <- value}):
 \itemize{
     \item metadata<- : Assign metadata
-    \item coldata<- : Assign extra information associated with PCclusters
+    \item coldata<- : Assign extra information associated with RAVs
     \item geneSets<- : A character vector containing the name of gene sets used
     to annotate average loadings
     \item updateNote<- : A character vetor. Describes the main feature of a model construction

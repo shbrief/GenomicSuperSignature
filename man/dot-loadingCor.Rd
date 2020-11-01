@@ -11,7 +11,7 @@
 columns. Gene names should be in 'symbol' format. It can be ExpressionSet,
 SummarizedExperiment, RangedSummarizedExperiment, or matrix.}
 
-\item{avgLoading}{A matrix with genes by PCclusters.}
+\item{avgLoading}{A matrix with genes by RAVs.}
 
 \item{method}{A character string indicating which correlation coefficient is
 to be computed. One of "pearson" (default), "kendall", or "spearman": can be abbreviated.}
@@ -21,7 +21,7 @@ be row normalized by \link{rowNorm} function.}
 }
 \value{
 A matrix of Pearson correlation coefficient (default, defined through \code{method}
-argument) between PCclusters (row) and the top 8 PCs from the datasets (column)
+argument) between RAVs (row) and the top 8 PCs from the datasets (column)
 }
 \description{
 Validating new dataset

@@ -12,7 +12,7 @@
 #' data(miniPCAmodel)
 #' library(bcellViper)
 #' data(bcellViper)
-#' annotatePCcluster(miniPCAmodel, ind = 695)
+#' annotateRAV(miniPCAmodel, ind = 695)
 #' #                 Description      NES pvalue      qvalues
 #' # 1 IRIS_Bcell-Memory_IgG_IgA 2.763472  1e-10 5.824561e-09
 #' # 2              DMAP_BCELLA3 2.726775  1e-10 5.824561e-09
@@ -21,8 +21,8 @@
 #' # 5              DMAP_BCELLA4 2.698821  1e-10 5.824561e-09
 #'
 #' @export
-annotatePCcluster <- function(PCAmodel, ind, n = 5, abs = FALSE) {
-  cl_name <- paste0("PCcluster", ind)
+annotateRAV <- function(PCAmodel, ind, n = 5, abs = FALSE) {
+  cl_name <- paste0("RAV", ind)
   annotatedCluster <- gsea(PCAmodel)[[cl_name]]
   if (isTRUE(abs)) {
     topAnnotation <- annotatedCluster[order(abs(annotatedCluster$NES), decreasing = TRUE),,drop = FALSE][1:n,]

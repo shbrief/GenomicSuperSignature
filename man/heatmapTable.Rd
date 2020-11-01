@@ -28,9 +28,9 @@ using \code{\link[ComplexHeatmap]{Heatmap}}}
 \code{num.out, scoreCutoff, swCutoff, clsizeCutoff} will be ignored and the heatmap
 table containing only the provided index will be printed.}
 
-\item{num.out}{A number of highly validated PCclusters to output. Default is 5.
+\item{num.out}{A number of highly validated RAVs to output. Default is 5.
 If any of the cutoff parameters are provided, \code{num.out} or the number of
-filtered PCclusters, whichever smaller, will be chosen.}
+filtered RAVs, whichever smaller, will be chosen.}
 
 \item{scoreCutoff}{A numeric value for the minimum correlation. If \code{val_all}
 input is from multiple studies, the default is 0.7 and this is the only cutoff
@@ -61,7 +61,7 @@ A heatmap displaying the subset of the validation result that met the
 given cutoff criteria. If \code{val_all} input is from a single dataset, the
 output heatmap will contain both score and average silhouette width for each
 cluster. If \code{val_all} input is from multiple studies, the output heatmap's
-rows will represent each study and the columns are PCclusters that meet
+rows will represent each study and the columns are RAVs that meet
 \code{scoreCutoff} will any of the input study.
 }
 \description{

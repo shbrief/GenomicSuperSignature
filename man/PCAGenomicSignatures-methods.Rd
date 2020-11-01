@@ -72,12 +72,12 @@ before adding any information in \code{trainingData} slot
 }
 \details{
 \itemize{
-    \item assay(x) : PCAmodel (= avgLoading) containing genes x PCclusters
+    \item assay(x) : PCAmodel (= avgLoading) containing genes x RAVs
     \item metadata(x)$cluster : A vector of integers (from 1:k) indicating the
     cluster to which each point is allocated. Check \code{stats::kmeans} function.
     \item metadata(x)$size : The number of points in each cluster. Check \code{stats::kmeans} function.
     \item metadata(x)$iter : The number of (outer) iterations. Check \code{stats::kmeans} function.
-    \item metadata(x)$k : The number of PCclusters.
+    \item metadata(x)$k : The number of RAVs.
     \item metadata(x)$n : The number of top PCs from each dataset.
     \item metadata(x)$geneSets : Name of the prior gene sets used to annotate average loadings.
     \item colData(x)$studies : A list of character vectors containing studies contributing to each PC cluster.
