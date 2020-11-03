@@ -19,26 +19,23 @@ reference:
   - title: Model Building
     desc: Functions for PCAGenomicSignatures model building
     contents:
-      - .calculateSilhouetteWidth
-      - .PCclusterName
       - buildAvgLoading
       - findStudiesInCluster
-      - PCinCluster
+      - PCinRAV
       - rmNaInf
       - rowNorm
   - title: Model Application
     desc: Functions for applying PCAGenomicSignatures model to a new data
     contents:
-      - .loadingCor
       - calculateScore
       - getModel
       - validate
   - title: Extract Output and Metadata
     contents:
       - annotatePC
-      - annotatePCcluster
+      - annotateRAV
       - extractPC
-      - findKeywordInPCcluster
+      - findKeywordInRAV
       - findSignature
       - meshTable
       - subsetPathways
@@ -62,7 +59,7 @@ navbar:
       - text: Quick Start Guide
         href: articles/Quickstart.html
       - text: Model Contents
-        href: articles/PCAGenomicSignatures_Contents.html
+        href: articles/Contents.html
   right:
   - icon: fa-github fa-lg
     href: https://github.com/shbrief/PCAGenomicSignatures
