@@ -92,7 +92,7 @@
       <a href="../articles/Quickstart.html">Quick Start Guide</a>
     </li>
     <li>
-      <a href="../articles/PCAGenomicSignatures_Contents.html">Model Contents</a>
+      <a href="../articles/Contents.html">Model Contents</a>
     </li>
   </ul>
 </li>
@@ -126,32 +126,35 @@
     <p>Validation result in data frame</p>
     </div>
 
-    <pre class="usage"><span class='fu'>validatedSignatures</span>(
-  <span class='kw'>val_all</span>,
-  num.out = <span class='fl'>5</span>,
-  scoreCutoff = <span class='kw'>NULL</span>,
-  swCutoff = <span class='kw'>NULL</span>,
-  clsizeCutoff = <span class='kw'>NULL</span>,
-  indexOnly = <span class='fl'>FALSE</span>,
-  whichPC = <span class='kw'>NULL</span>
-)</pre>
+    <pre class="usage"><span class='fu'>validatedSignatures</span><span class='op'>(</span>
+  <span class='va'>val_all</span>,
+  num.out <span class='op'>=</span> <span class='fl'>5</span>,
+  scoreCutoff <span class='op'>=</span> <span class='cn'>NULL</span>,
+  swCutoff <span class='op'>=</span> <span class='cn'>NULL</span>,
+  clsizeCutoff <span class='op'>=</span> <span class='cn'>NULL</span>,
+  indexOnly <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  whichPC <span class='op'>=</span> <span class='cn'>NULL</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>val_all</th>
-      <td><p>An output matrix from <code><a href='validate.html'>validate</a></code> function.</p></td>
+      <td><p>An output matrix from <code><a href='validate.html'>validate</a></code> function. If this
+input is from multiple datasets, only <code>scoreCutoff</code> argument will be considered
+and other inputs will be ignored.</p></td>
     </tr>
     <tr>
       <th>num.out</th>
-      <td><p>A number of highly validated PCclusters to output. Default is 5.
+      <td><p>A number of highly validated RAVs to output. Default is 5.
 If any of the cutoff parameters are provided, <code>num.out</code> or the number of
-filtered PCclusters, whichever smaller, will be chosen.</p></td>
+filtered RAVs, whichever smaller, will be chosen.</p></td>
     </tr>
     <tr>
       <th>scoreCutoff</th>
-      <td><p>A numeric value for the minimum correlation.</p></td>
+      <td><p>A numeric value for the minimum correlation. For multi-studies
+case, the default is 0.7.</p></td>
     </tr>
     <tr>
       <th>swCutoff</th>
@@ -164,8 +167,8 @@ filtered PCclusters, whichever smaller, will be chosen.</p></td>
     <tr>
       <th>indexOnly</th>
       <td><p>A logical. Under the default (= FALSE), the detailed information
-on validated PCclusters, such as score, average silhouette width, cluster size, is
-printed. If it is set TRUE, only the PCcluster number will be printed.</p></td>
+on validated RAVs, such as score, average silhouette width, cluster size, is
+printed. If it is set TRUE, only the RAV number will be printed.</p></td>
     </tr>
     <tr>
       <th>whichPC</th>
@@ -180,18 +183,18 @@ scored signatures with any PC of your data.</p></td>
     <p>A subset of the input matrix, which meets the given condition.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>miniPCAmodel</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='kw'>bcellViper</span>)
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span>(<span class='kw'>bcellViper</span>)
-<span class='kw'>val_all</span> <span class='op'>&lt;-</span> <span class='fu'><a href='validate.html'>validate</a></span>(<span class='kw'>dset</span>, <span class='kw'>miniPCAmodel</span>)
-<span class='fu'>validatedSignatures</span>(<span class='kw'>val_all</span>, num.out = <span class='fl'>3</span>, scoreCutoff = <span class='fl'>0</span>)
-</div><div class='output co'>#&gt;                   score PC          sw cl_size cl_num
-#&gt; PCcluster1076 0.5950767  2 -0.04447124      10   1076
-#&gt; PCcluster2538 0.5838616  2  0.06996166       4   2538
-#&gt; PCcluster338  0.5709072  2 -0.04683319      21    338</div><div class='input'><span class='co'>#                   score PC          sw cl_size cl_num</span>
-<span class='co'># PCcluster1076 0.5950767  2 -0.04447124      10      1</span>
-<span class='co'># PCcluster2538 0.5838616  2  0.06996166       4      2</span>
-<span class='co'># PCcluster338  0.5709072  2 -0.04683319      21      3</span>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>miniPCAmodel</span><span class='op'>)</span>
+<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>bcellViper</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>bcellViper</span><span class='op'>)</span>
+<span class='va'>val_all</span> <span class='op'>&lt;-</span> <span class='fu'><a href='validate.html'>validate</a></span><span class='op'>(</span><span class='va'>dset</span>, <span class='va'>miniPCAmodel</span><span class='op'>)</span>
+<span class='fu'>validatedSignatures</span><span class='op'>(</span><span class='va'>val_all</span>, num.out <span class='op'>=</span> <span class='fl'>3</span>, scoreCutoff <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;             score PC          sw cl_size cl_num
+#&gt; RAV1076 0.5950767  2 -0.04447124      10   1076
+#&gt; RAV2538 0.5838616  2  0.06996166       4   2538
+#&gt; RAV338  0.5709072  2 -0.04683319      21    338</div><div class='input'><span class='co'>#             score PC          sw cl_size cl_num</span>
+<span class='co'># RAV1076 0.5950767  2 -0.04447124      10      1</span>
+<span class='co'># RAV2538 0.5838616  2  0.06996166       4      2</span>
+<span class='co'># RAV338  0.5709072  2 -0.04683319      21      3</span>
 
 </div></pre>
   </div>

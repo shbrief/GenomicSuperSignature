@@ -92,7 +92,7 @@
       <a href="../articles/Quickstart.html">Quick Start Guide</a>
     </li>
     <li>
-      <a href="../articles/PCAGenomicSignatures_Contents.html">Model Contents</a>
+      <a href="../articles/Contents.html">Model Contents</a>
     </li>
   </ul>
 </li>
@@ -126,7 +126,7 @@
     <p>Build a two-column word/frequency table</p>
     </div>
 
-    <pre class="usage"><span class='fu'>meshTable</span>(<span class='kw'>PCAmodel</span>, <span class='kw'>ind</span>, rm.noise = <span class='kw'>NULL</span>, weighted = <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>meshTable</span><span class='op'>(</span><span class='va'>PCAmodel</span>, <span class='va'>ind</span>, rm.noise <span class='op'>=</span> <span class='cn'>NULL</span>, weighted <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -137,27 +137,27 @@
     </tr>
     <tr>
       <th>ind</th>
-      <td><p>An index of PCcluster</p></td>
+      <td><p>An index of RAV</p></td>
     </tr>
     <tr>
       <th>rm.noise</th>
       <td><p>An integer. Under the default condition (<code>rm.noise=NULL</code>),
 if cluster size (= <code>s</code>) is smaller than 8, <code>rm.noise = floor(s*0.5)</code>.
 For clusters with &gt;= 8 PCs, <code>rm.noise = 4</code>. If <code>rm.noise = 0</code>, all
-the MeSH terms in PCcluster will be used to draw wordcloud.</p></td>
+the MeSH terms in RAV will be used to draw wordcloud.</p></td>
     </tr>
     <tr>
       <th>weighted</th>
       <td><p>A logical. If <code>TRUE</code>, MeSH terms from each study are
 weighted based on the variance explained by the principle component of the
-study contributing a give PCcluster. Default is <code>TRUE</code>.</p></td>
+study contributing a give RAV. Default is <code>TRUE</code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A table with two columns, <code>word</code> and <code>freq</code>. MeSH terms in
-the defined PCcluster (by <code>ind</code> argument) is ordered based on their frequency.</p>
+the defined RAV (by <code>ind</code> argument) is ordered based on their frequency.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

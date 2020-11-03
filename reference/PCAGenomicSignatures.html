@@ -96,7 +96,7 @@ before adding any information in trainingData slot" />
       <a href="../articles/Quickstart.html">Quick Start Guide</a>
     </li>
     <li>
-      <a href="../articles/PCAGenomicSignatures_Contents.html">Model Contents</a>
+      <a href="../articles/Contents.html">Model Contents</a>
     </li>
   </ul>
 </li>
@@ -134,7 +134,7 @@ object. When you create this object, <code>colData$studies</code> should be popu
 before adding any information in <code>trainingData</code> slot</p>
     </div>
 
-    <pre class="usage"><span class='fu'>PCAGenomicSignatures</span>(<span class='kw'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>PCAGenomicSignatures</span><span class='op'>(</span><span class='va'>...</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -152,12 +152,12 @@ before adding any information in <code>trainingData</code> slot</p>
 
     
 <ul>
-<li><p>model(x) : PCAmodel (= avgLoading) containing genes x PCclusters</p></li>
+<li><p>model(x) : PCAmodel (= avgLoading) containing genes x RAVs</p></li>
 <li><p>metadata(x)$cluster : A vector of integers (from 1:k) indicating the
     cluster to which each point is allocated. Check <code><a href='https://rdrr.io/r/stats/kmeans.html'>stats::kmeans</a></code> function.</p></li>
 <li><p>metadata(x)$size : The number of points in each cluster. Check <code><a href='https://rdrr.io/r/stats/kmeans.html'>stats::kmeans</a></code> function.</p></li>
 <li><p>metadata(x)$iter : The number of (outer) iterations. Check <code><a href='https://rdrr.io/r/stats/kmeans.html'>stats::kmeans</a></code> function.</p></li>
-<li><p>metadata(x)$k : The number of PCclusters.</p></li>
+<li><p>metadata(x)$k : The number of RAVs.</p></li>
 <li><p>metadata(x)$n : The number of top PCs from each dataset.</p></li>
 <li><p>metadata(x)$geneSets : Name of the prior gene sets used to annotate average loadings.</p></li>
 <li><p>colData(x)$studies : A list of character vectors containing studies contributing to each PC cluster.</p></li>

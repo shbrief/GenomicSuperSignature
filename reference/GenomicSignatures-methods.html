@@ -96,7 +96,7 @@ before adding any information in trainingData slot" />
       <a href="../articles/Quickstart.html">Quick Start Guide</a>
     </li>
     <li>
-      <a href="../articles/PCAGenomicSignatures_Contents.html">Model Contents</a>
+      <a href="../articles/Contents.html">Model Contents</a>
     </li>
   </ul>
 </li>
@@ -135,31 +135,31 @@ before adding any information in <code>trainingData</code> slot</p>
     </div>
 
     <pre class="usage"><span class='co'># S4 method for GenomicSignatures</span>
-<span class='fu'>model</span>(<span class='kw'>x</span>)
+<span class='fu'>model</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
 
 <span class='co'># S4 method for GenomicSignatures</span>
-<span class='fu'>colData</span>(<span class='kw'>x</span>)
+<span class='fu'>colData</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
 
 <span class='co'># S4 method for GenomicSignatures</span>
-<span class='fu'>metadata</span>(<span class='kw'>x</span>)
+<span class='fu'>metadata</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
 
 <span class='co'># S4 method for GenomicSignatures</span>
-<span class='fu'>geneSets</span>(<span class='kw'>x</span>)
+<span class='fu'>geneSets</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
 
 <span class='co'># S4 method for GenomicSignatures</span>
-<span class='fu'>updateNote</span>(<span class='kw'>x</span>)
+<span class='fu'>updateNote</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
 
 <span class='co'># S4 method for GenomicSignatures</span>
-<span class='fu'>metadata</span>(<span class='kw'>x</span>, <span class='kw'>...</span>) <span class='op'>&lt;-</span> <span class='kw'>value</span>
+<span class='fu'>metadata</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>value</span>
 
 <span class='co'># S4 method for GenomicSignatures,ANY</span>
-<span class='fu'>colData</span>(<span class='kw'>x</span>, <span class='kw'>...</span>) <span class='op'>&lt;-</span> <span class='kw'>value</span>
+<span class='fu'>colData</span><span class='op'>(</span><span class='va'>x</span>, <span class='va'>...</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>value</span>
 
 <span class='co'># S4 method for GenomicSignatures</span>
-<span class='fu'>geneSets</span>(<span class='kw'>x</span>) <span class='op'>&lt;-</span> <span class='kw'>value</span>
+<span class='fu'>geneSets</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>value</span>
 
 <span class='co'># S4 method for GenomicSignatures</span>
-<span class='fu'>updateNote</span>(<span class='kw'>x</span>) <span class='op'>&lt;-</span> <span class='kw'>value</span></pre>
+<span class='fu'>updateNote</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>value</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -182,9 +182,9 @@ before adding any information in <code>trainingData</code> slot</p>
 
     
 <ul>
-<li><p>assay(x) : PCAmodel (= avgLoading) containing genes x PCclusters</p></li>
+<li><p>assay(x) : PCAmodel (= avgLoading) containing genes x RAVs</p></li>
 <li><p>metadata(x) : Metadata associated with the PCAmodel buildling process</p></li>
-<li><p>colData(x) : Information on PCclusters</p></li>
+<li><p>colData(x) : Information on RAVs</p></li>
 </ul>
 
     <h2 class="hasAnchor" id="setters"><a class="anchor" href="#setters"></a>Setters</h2>
@@ -193,7 +193,7 @@ before adding any information in <code>trainingData</code> slot</p>
 
 <p>Setter method values (i.e., <code>function(x) &lt;- value</code>):</p><ul>
 <li><p>metadata&lt;- : Assign metadata</p></li>
-<li><p>coldata&lt;- : Assign extra information associated with PCclusters</p></li>
+<li><p>coldata&lt;- : Assign extra information associated with RAVs</p></li>
 <li><p>geneSets&lt;- : A character vector containing the name of gene sets used
     to annotate average loadings</p></li>
 <li><p>updateNote&lt;- : A character vetor. Describes the main feature of a model construction</p></li>

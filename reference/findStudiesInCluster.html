@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Find the studies contributing each PCcluster — findStudiesInCluster • PCAGenomicSignatures</title>
+<title>Find the studies contributing each RAV — findStudiesInCluster • PCAGenomicSignatures</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Find the studies contributing each PCcluster — findStudiesInCluster" />
-<meta property="og:description" content="Find the studies contributing each PCcluster" />
+<meta property="og:title" content="Find the studies contributing each RAV — findStudiesInCluster" />
+<meta property="og:description" content="Find the studies contributing each RAV" />
 
 
 
@@ -92,7 +92,7 @@
       <a href="../articles/Quickstart.html">Quick Start Guide</a>
     </li>
     <li>
-      <a href="../articles/PCAGenomicSignatures_Contents.html">Model Contents</a>
+      <a href="../articles/Contents.html">Model Contents</a>
     </li>
   </ul>
 </li>
@@ -117,16 +117,16 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Find the studies contributing each PCcluster</h1>
+    <h1>Find the studies contributing each RAV</h1>
     <small class="dont-index">Source: <a href='https://github.com/shbrief/PCAGenomicSignatures/blob/master/R/buildAvgLoading.R'><code>R/buildAvgLoading.R</code></a></small>
     <div class="hidden name"><code>findStudiesInCluster.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Find the studies contributing each PCcluster</p>
+    <p>Find the studies contributing each RAV</p>
     </div>
 
-    <pre class="usage"><span class='fu'>findStudiesInCluster</span>(<span class='kw'>PCAmodel</span>, ind = <span class='kw'>NULL</span>, clustering = <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>findStudiesInCluster</span><span class='op'>(</span><span class='va'>PCAmodel</span>, ind <span class='op'>=</span> <span class='cn'>NULL</span>, studyTitle <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -137,23 +137,22 @@
     </tr>
     <tr>
       <th>ind</th>
-      <td><p>A numeric vector containing the index of PCclusters you want to
+      <td><p>A numeric vector containing the index of RAVs you want to
 find the related studies. Default is <code>NULL</code>.</p></td>
     </tr>
     <tr>
-      <th>clustering</th>
-      <td><p>Under the default condition (<code>TRUE</code>), Kmeans clustering
-will be done and you should provide <code>k</code>. If <code>FALSE</code>, you don't need
-to provide <code>k</code>, but should provide pre-defined cluster membership of your
-data through <code>cluster</code> argument.</p></td>
+      <th>studyTitle</th>
+      <td><p>Default is <code>FALSE</code>. This parameter is effective only when
+the <code>index</code> value is specificed. If it's <code>TRUE</code>, the output will be
+a data frame with the study</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A list of character vector. Under the default conditoin (<code>ind = NULL</code>),
-all the PCclusters will be checked for their contributing studies and the length
-of the list will be same as the number of PCclusters (= <code>metadata(x)$k</code>).</p>
+all the RAVs will be checked for their contributing studies and the length
+of the list will be same as the number of RAVs (= <code>metadata(x)$k</code>).</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>Mainly used for modeling building, within <a href='buildAvgLoading.html'>buildAvgLoading</a>.</p>
