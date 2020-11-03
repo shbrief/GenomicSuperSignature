@@ -38,7 +38,7 @@ reference:
       - findKeywordInRAV
       - findSignature
       - meshTable
-      - subsetPathways
+      - subsetEnrichedPathways
       - validatedSignatures
   - title: Visualization
     contents:
