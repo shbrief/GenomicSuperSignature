@@ -60,9 +60,11 @@ scored signatures with any PC of your data.}
 A heatmap displaying the subset of the validation result that met the
 given cutoff criteria. If \code{val_all} input is from a single dataset, the
 output heatmap will contain both score and average silhouette width for each
-cluster. If \code{val_all} input is from multiple studies, the output heatmap's
-rows will represent each study and the columns are RAVs that meet
-\code{scoreCutoff} will any of the input study.
+cluster.
+
+If \code{val_all} input is from multiple studies, the output heatmap's rows will
+represent each study and the columns will be RAVs, which meet \code{scoreCutoff}
+for any of the input studies.
 }
 \description{
 This function subsets \code{\link{validate}} outputs with different criteria
