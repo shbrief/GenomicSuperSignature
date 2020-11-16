@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Validate new datasets — validate • PCAGenomicSignatures</title>
+<title>Validate new datasets — validate • GenomicSuperignature</title>
 
 
 <!-- jquery -->
@@ -71,8 +71,8 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">PCAGenomicSignatures</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.5</span>
+        <a class="navbar-link" href="../index.html">GenomicSuperignature</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.6</span>
       </span>
     </div>
 
@@ -99,7 +99,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="https://github.com/shbrief/PCAGenomicSignatures">
+  <a href="https://github.com/shbrief/GenomicSuperSignature">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -140,9 +140,9 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>dataset</th>
-      <td><p>Single or a list of SummarizedExperiment (RangedSummarizedExperiment,
-ExpressionSet or matrix) object(s). Gene names should be in 'symbol' format.
-Currently, each dataset should have at least 8 samples.</p></td>
+      <td><p>Single or a named list of SummarizedExperiment (RangedSummarizedExperiment,
+ExpressionSet or matrix) object(s). Gene names should be in 'symbol' format. Currently,
+each dataset should have at least 8 samples.</p></td>
     </tr>
     <tr>
       <th>PCAmodel</th>
@@ -181,8 +181,8 @@ the top 8 PCs of the dataset and pre-calculated average loadings (in row) of tra
 datasets (<code>score</code> column). It also contains other metadata associated with
 each RAV: <code>PC</code> for one of the top 8 PCs of the dataset that results
 in the given <code>score</code>, <code>sw</code> for the average silhouette width of the RAV,
-<code>cl_size</code> for the size of each RAV.
-If the input for <code>dataset</code> argument is a list of different datasets, each row
+<code>cl_size</code> for the size of each RAV.</p>
+<p>If the input for <code>dataset</code> argument is a list of different datasets, each row
 of the output represents a new dataset for test, and each column represents
 clusters from training datasets. If <code>level = "all"</code>, a list containing the matrices
 of the pearson correlation coefficient between all top 8 PCs of the datasets and
@@ -193,33 +193,8 @@ avgLoading.</p>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>bcellViper</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>bcellViper</span><span class='op'>)</span>
 <span class='fu'>validate</span><span class='op'>(</span><span class='va'>dset</span>, <span class='va'>miniPCAmodel</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;             score PC           sw cl_size cl_num
-#&gt; RAV1076 0.5950767  2 -0.044471242      10   1076
-#&gt; RAV2538 0.5838616  2  0.069961659       4   2538
-#&gt; RAV338  0.5709072  2 -0.046833188      21    338
-#&gt; RAV1467 0.5695904  2 -0.047094024       6   1467
-#&gt; RAV1139 0.5622719  2  0.085369376       4   1139
-#&gt; RAV884  0.5451752  2  0.153286975       6    884
-#&gt; RAV1614 0.5308258  2 -0.075672871      13   1614
-#&gt; RAV294  0.5130476  2 -0.022418144       6    294
-#&gt; RAV3071 0.5100487  2 -0.009615286       6   3071
-#&gt; RAV1694 0.5090028  2 -0.055182792      20   1694
-#&gt; RAV438  0.5088604  2  0.035822199       6    438
-#&gt; RAV725  0.4993058  2  0.094127339      20    725
-#&gt; RAV1497 0.4980072  2  0.130408751      12   1497
-#&gt; RAV501  0.4897364  2  0.064985019       7    501
-#&gt; RAV941  0.4872848  2 -0.020971183       3    941
-#&gt; RAV695  0.2415454  3  0.105812565       2    695
-#&gt; RAV1994 0.1729988  3 -0.034939005       3   1994</div><div class='input'><span class='fu'>validate</span><span class='op'>(</span><span class='va'>dset</span>, <span class='va'>miniPCAmodel</span>, maxFrom <span class='op'>=</span> <span class='st'>"avgLoading"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;         score avgLoading
-#&gt; PC1 0.2285693          5
-#&gt; PC2 0.5950767          1
-#&gt; PC3 0.2415454         16
-#&gt; PC4 0.2282201          3
-#&gt; PC5 0.2129687          5
-#&gt; PC6 0.2126171          3
-#&gt; PC7 0.1150177          5
-#&gt; PC8 0.1192014         13</div><div class='input'>
+</div><div class='output co'>#&gt; <span class='message'>Loading required package: PCAGenomicSignatures</span></div><div class='output co'>#&gt; <span class='warning'>Warning: there is no package called ‘PCAGenomicSignatures’</span></div><div class='output co'>#&gt; <span class='error'>Error in .requirePackage(package): unable to find required package ‘PCAGenomicSignatures’</span></div><div class='input'><span class='fu'>validate</span><span class='op'>(</span><span class='va'>dset</span>, <span class='va'>miniPCAmodel</span>, maxFrom <span class='op'>=</span> <span class='st'>"avgLoading"</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; <span class='message'>Loading required package: PCAGenomicSignatures</span></div><div class='output co'>#&gt; <span class='warning'>Warning: there is no package called ‘PCAGenomicSignatures’</span></div><div class='output co'>#&gt; <span class='error'>Error in .requirePackage(package): unable to find required package ‘PCAGenomicSignatures’</span></div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
