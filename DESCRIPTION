@@ -1,4 +1,4 @@
-Package: PCAGenomicSignatures
+Package: GenomicSuperSignature
 Title: Interpretation of RNA-seq experiments through robust, efficient comparison to public databases
 Version: 0.0.5
 Date: 2020-9-29

@@ -39,9 +39,9 @@
 
 #' Validate new datasets
 #'
-#' @param dataset Single or a list of SummarizedExperiment (RangedSummarizedExperiment,
-#' ExpressionSet or matrix) object(s). Gene names should be in 'symbol' format.
-#' Currently, each dataset should have at least 8 samples.
+#' @param dataset Single or a named list of SummarizedExperiment (RangedSummarizedExperiment,
+#' ExpressionSet or matrix) object(s). Gene names should be in 'symbol' format. Currently,
+#' each dataset should have at least 8 samples.
 #' @param PCAmodel PCAGenomicSignature object. You can also provide signature model matrix directly.
 #' @param method A character string indicating which correlation coefficient is
 #' to be computed. One of "pearson" (default), "kendall", or "spearman": can be abbreviated.
@@ -62,6 +62,7 @@
 #' each RAV: \code{PC} for one of the top 8 PCs of the dataset that results
 #' in the given \code{score}, \code{sw} for the average silhouette width of the RAV,
 #' \code{cl_size} for the size of each RAV.
+#'
 #' If the input for \code{dataset} argument is a list of different datasets, each row
 #' of the output represents a new dataset for test, and each column represents
 #' clusters from training datasets. If \code{level = "all"}, a list containing the matrices

@@ -1,10 +1,10 @@
 ---
-title: "PCAGenomicSignatures - Contents"
+title: "GenomicSuperSignature - Contents"
 author: "Sehyun Oh"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{Information in PCAGenomicSignatures}
+  %\VignetteIndexEntry{Information in GenomicSuperSignature}
   %\VignetteEncoding{UTF-8}
 output:
   BiocStyle::html_document:
@@ -26,17 +26,17 @@ knitr::opts_chunk$set(
 if (!require("devtools")) {
   install.packages("devtools")
 }
-devtools::install_github("shbrief/PCAGenomicSignatures")
+devtools::install_github("shbrief/GenomicSuperSignature")
 ```
 
 ```{r results="hide", message=FALSE, warning=FALSE}
-library(PCAGenomicSignatures)
+library(GenomicSuperSignature)
 ```
 
 
 ## Download PCAmodel
-Currently, you can download PCAGenomicSignatures from Google Cloud bucket using 
-`PCAGenomicSignatures::getModel` function. This model is built from top 20 PCs of 
+Currently, you can download GenomicSuperSignature from Google Cloud bucket using 
+`GenomicSuperSignature::getModel` function. This model is built from top 20 PCs of 
 536 studies (containing 44,890 samples) containing 13,934 common genes from each 
 of 536 study's top 90% varying genes based on thier study-level standard deviation.
 There are two versions of this using different gene sets for GSEA-based annotation;
@@ -67,7 +67,7 @@ PCAmodel
 ## RAVs
 Averaged loadings (= RAVs) is the main part of GenomicSignatures, 
 serving as an index connecting new datasets and the existing database. You can access 
-it through `PCAGenomicSignatures::model` (equivalent of `SummarizedExperiment::assay`). 
+it through `GenomicSuperSignature::model` (equivalent of `SummarizedExperiment::assay`). 
 Rows are genes and columns are avgLoading vectors.
 
 Here, PCAmodel consists of 13,934 genes and 4,764 RAVs.
@@ -166,6 +166,8 @@ length(PCAsummary(PCAmodel))
 PCAsummary(PCAmodel)[1]
 ```
 
+
+# Session Info
 ```{r}
 sessionInfo()
 ```
