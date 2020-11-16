@@ -1,9 +1,9 @@
-[![Travis-CI Build Status](https://travis-ci.com/shbrief/PCAGenomicSignatures.svg?branch=master)](https://travis-ci.org/shbrief/PCAGenomicSignatures)
-[![Coverage Status](https://codecov.io/github/shbrief/PCAGenomicSignatures/coverage.svg?branch=master)](https://codecov.io/github/shbrief/PCAGenomicSignatures?branch=master)
-[![R build status](https://github.com/shbrief/PCAGenomicSignatures/workflows/R-CMD-check/badge.svg)](https://github.com/shbrief/PCAGenomicSignatures/actions)
+[![Travis-CI Build Status](https://travis-ci.com/shbrief/GenomicSuperSignature.svg?branch=master)](https://travis-ci.org/shbrief/GenomicSuperSignature)
+[![Coverage Status](https://codecov.io/github/shbrief/GenomicSuperSignature/coverage.svg?branch=master)](https://codecov.io/github/shbrief/GenomicSuperSignature?branch=master)
+[![R build status](https://github.com/shbrief/GenomicSuperSignature/workflows/R-CMD-check/badge.svg)](https://github.com/shbrief/GenomicSuperSignature/actions)
 
 
-## PCAGenomicSignatures
+## GenomicSuperSignature
 **Interpretation of RNA-seq experiments through robust, efficient comparison to public databases**
 
 ### PURPOSE
@@ -24,26 +24,26 @@ the collection of resulting average loading vectors, which we call Replicable Ax
 of Variation (RAV), with details from the originating studies and gene set enrichment 
 analysis. Functions to match PCA of new datasets to RAVs from existing studies, 
 extract interpretable annotations, and provide intuitive visualization, are implemented 
-as the PCAGenomicSignatures R package, to be submitted to Bioconductor. 
+as the GenomicSuperSignature R package, to be submitted to Bioconductor. 
 
 ### Results
-Usecases and benchmarking examples are further documented at [PCAGenomicSignaturesPaper](https://shbrief.github.io/PCAGenomicSignaturesPaper/) page.
+Usecases and benchmarking examples are further documented at [GenomicSuperSignaturePaper](https://shbrief.github.io/GenomicSuperSignaturePaper/) page.
 
 
 
 
 ## Installation
 ```
-devtools::install_github("shbrief/PCAGenomicSignatures")
+devtools::install_github("shbrief/GenomicSuperSignature")
 ```
 
 ## Schematic
-Here is the overview of using PCAGenomicSignatures.
-<img src="https://raw.githubusercontent.com/shbrief/PCAGenomicSignatures/master/vignettes/GSig_model_usage_diagram.png"/>
+Here is the overview of using GenomicSuperSignature.
+<img src="https://raw.githubusercontent.com/shbrief/GenomicSuperSignature/master/vignettes/GSig_model_usage_diagram.png"/>
 
-PCAGenomicSignatures allows you to connect your gene expression data to the existing 
+GenomicSuperSignature allows you to connect your gene expression data to the existing 
 database through the expression profile itself. You only need to provide your gene
 expression matrix.
-<img src="https://raw.githubusercontent.com/shbrief/PCAGenomicSignatures/master/vignettes/GSig_knowledge_network.png"/>
+<img src="https://raw.githubusercontent.com/shbrief/GenomicSuperSignature/master/vignettes/GSig_knowledge_network.png"/>
 
 

@@ -1,4 +1,4 @@
 library(testthat)
-library(PCAGenomicSignatures)
+library(GenomicSuperSignature)
 
-test_check("PCAGenomicSignatures")
+test_check("GenomicSuperSignature")

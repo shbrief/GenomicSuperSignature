@@ -1,4 +1,4 @@
-title: "PCAGenomicSignatures"
+title: "GenomicSuperignature"
 type: inverse
 
 reference:
@@ -62,4 +62,4 @@ navbar:
         href: articles/Contents.html
   right:
   - icon: fa-github fa-lg
-    href: https://github.com/shbrief/PCAGenomicSignatures
+    href: https://github.com/shbrief/GenomicSuperSignature

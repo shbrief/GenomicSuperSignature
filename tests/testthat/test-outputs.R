@@ -1,4 +1,4 @@
-context("PCAGenomicSignatures functions tests")
+context("GenomicSuperSignature functions tests")
 
 data(miniPCAmodel)
 library(bcellViper)
