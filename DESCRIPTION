@@ -54,8 +54,8 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1.9000
 VignetteBuilder: knitr
-URL: https://github.com/shbrief/PCAGenomicSignatures
-BugReports: https://github.com/shbrief/PCAGenomicSignatures/issues
+URL: https://github.com/shbrief/GenomicSuperSignature
+BugReports: https://github.com/shbrief/GenomicSuperSignature/issues
 Collate: 
     'GenomicSignatures-class.R'
     'GenomicSignatures-methods.R'
