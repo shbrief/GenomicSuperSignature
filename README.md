@@ -1,8 +1,3 @@
-[![Travis-CI Build Status](https://travis-ci.com/shbrief/GenomicSuperSignature.svg?branch=master)](https://travis-ci.org/shbrief/GenomicSuperSignature)
-[![Coverage Status](https://codecov.io/github/shbrief/GenomicSuperSignature/coverage.svg?branch=master)](https://codecov.io/github/shbrief/GenomicSuperSignature?branch=master)
-[![R build status](https://github.com/shbrief/GenomicSuperSignature/workflows/R-CMD-check/badge.svg)](https://github.com/shbrief/GenomicSuperSignature/actions)
-
-
 ## GenomicSuperSignature
 **Interpretation of RNA-seq experiments through robust, efficient comparison to public databases**
 
