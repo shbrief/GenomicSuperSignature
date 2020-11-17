@@ -11,14 +11,14 @@ gsea(RVmodel) <- GenomicSuperSignature::gsea(PCAmodel)
 saveRDS(RVmodel, "~/data2/PCAGenomicSignatures/vignettes/RAVmodel_C2.rds")
 
 
-## Update the avgLoading name from 'RAV' to 'RV'
+## Update the avgLoading name 'RAV'
 fname <- "~/data2/PCAGenomicSignatures/vignettes/RAVmodel_C2.rds"
 RVmodel <- readRDS(fname)
 names(metadata(RVmodel)$size) <- gsub("PCcluster", "RAV", names(metadata(RVmodel)$size))   # before
-names(metadata(RVmodel)$size) <- paste0("RV", 1:length(metadata(RVmodel)$size))
-colnames(RVmodel) <- gsub("RAV", "RV", colnames(RVmodel))
-names(gsea(RVmodel)) <- gsub("RAV", "RV", names(gsea(RVmodel)))
-names(colData(RVmodel))[1] <- "RV"
+names(metadata(RVmodel)$size) <- paste0("RAV", 1:length(metadata(RVmodel)$size))
+colnames(RVmodel) <- gsub("PCcluster", "RAV", colnames(RVmodel))
+names(gsea(RVmodel)) <- gsub("PCcluster", "RAV", names(gsea(RVmodel)))
+names(colData(RVmodel))[1] <- "RAV"
 saveRDS(RVmodel, "~/data2/PCAGenomicSignatures/vignettes/RAVmodel_C2.rds")
 
 

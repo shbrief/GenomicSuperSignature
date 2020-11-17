@@ -1,4 +1,4 @@
-## GenomicSuperSignature
+# GenomicSuperSignature
 **Interpretation of RNA-seq experiments through robust, efficient comparison to public databases**
 
 ### PURPOSE
@@ -28,8 +28,15 @@ Usecases and benchmarking examples are further documented at [GenomicSuperSignat
 
 
 ## Installation
+Currently, you can install GenomicSuperSignature package from GitHub.
 ```
 devtools::install_github("shbrief/GenomicSuperSignature")
+```
+
+RAVmodel can be directly downloaded from Google bucket with no cost.
+```
+wget https://storage.googleapis.com/genomic_super_signature/RAVmodel_C2.rds
+wget https://storage.googleapis.com/genomic_super_signature/RAVmodel_PLIERpriors.rds
 ```
 
 ## Schematic
