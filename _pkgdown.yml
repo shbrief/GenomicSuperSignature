@@ -59,7 +59,7 @@ navbar:
       - text: Quick Start Guide
         href: articles/Quickstart.html
       - text: Model Contents
-        href: articles/Contents.html
+        href: articles/GenomicSuperSignature_Contents.html
   right:
   - icon: fa-github fa-lg
     href: https://github.com/shbrief/GenomicSuperSignature
