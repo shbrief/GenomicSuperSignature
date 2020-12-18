@@ -54,8 +54,8 @@ before adding any information in \code{trainingData} slot
 }
 \details{
 \itemize{
-    \item assay(x) : PCAmodel (= avgLoading) containing genes x RAVs
-    \item metadata(x) : Metadata associated with the PCAmodel buildling process
+    \item assay(x) : RAVmodel (= avgLoading) containing genes x RAVs
+    \item metadata(x) : Metadata associated with the RAVmodel buildling process
     \item colData(x) : Information on RAVs
 }
 }

@@ -6,7 +6,7 @@
 \usage{
 msigdb_gsea(
   ind,
-  PCAmodel,
+  RAVmodel,
   category = "C2",
   n = NULL,
   pvalueCutoff = 0.5,
@@ -22,7 +22,7 @@ msigdb_gsea(
 \arguments{
 \item{ind}{An interger. Index of RAV to apply GSEA.}
 
-\item{PCAmodel}{PCAGenomicSignature object.}
+\item{RAVmodel}{PCAGenomicSignature object.}
 
 \item{category}{A character vector representing MSigDB category. Options are
 "H", "C1", "C2"(default), "C3", "C4", "C5", "C6", and "C7"}

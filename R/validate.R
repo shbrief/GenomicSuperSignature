@@ -42,7 +42,7 @@
 #' @param dataset Single or a named list of SummarizedExperiment (RangedSummarizedExperiment,
 #' ExpressionSet or matrix) object(s). Gene names should be in 'symbol' format. Currently,
 #' each dataset should have at least 8 samples.
-#' @param PCAmodel PCAGenomicSignature object. You can also provide signature model matrix directly.
+#' @param RAVmodel PCAGenomicSignature object. You can also provide signature model matrix directly.
 #' @param method A character string indicating which correlation coefficient is
 #' to be computed. One of "pearson" (default), "kendall", or "spearman": can be abbreviated.
 #' @param maxFrom Select whether to display the maximum value from dataset's PCs or avgLoadings.
@@ -70,14 +70,14 @@
 #' avgLoading.
 #'
 #' @examples
-#' data(miniPCAmodel)
+#' data(miniRAVmodel)
 #' library(bcellViper)
 #' data(bcellViper)
-#' validate(dset, miniPCAmodel)
-#' validate(dset, miniPCAmodel, maxFrom = "avgLoading")
+#' validate(dset, miniRAVmodel)
+#' validate(dset, miniRAVmodel, maxFrom = "avgLoading")
 #'
 #' @export
-validate <- function(dataset, PCAmodel, method = "pearson",
+validate <- function(dataset, RAVmodel, method = "pearson",
                      maxFrom = "PC", level = "max", scale = FALSE) {
 
     if (!is.list(dataset)) {
@@ -88,12 +88,12 @@ validate <- function(dataset, PCAmodel, method = "pearson",
         if (level == "all") {stop("'level = \"all\"' is not available for a list of datasets.")}
     }
 
-    sw <- silhouetteWidth(PCAmodel)
-    cl_size <- S4Vectors::metadata(PCAmodel)$size
+    sw <- silhouetteWidth(RAVmodel)
+    cl_size <- S4Vectors::metadata(RAVmodel)$size
 
-    if (class(PCAmodel) %in% c("PCAGenomicSignatures", "PLIERGenomicSignatures")) {
-        avgLoading <- SummarizedExperiment::assay(PCAmodel)
-    } else {avgLoading <- PCAmodel}
+    if (class(RAVmodel) %in% c("PCAGenomicSignatures", "PLIERGenomicSignatures")) {
+        avgLoading <- SummarizedExperiment::assay(RAVmodel)
+    } else {avgLoading <- RAVmodel}
 
     # The maximum correlation coefficient among PCs
     if (maxFrom == "PC") {

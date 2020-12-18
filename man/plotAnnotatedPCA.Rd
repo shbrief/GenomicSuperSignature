@@ -6,7 +6,7 @@
 \usage{
 plotAnnotatedPCA(
   dataset,
-  PCAmodel,
+  RAVmodel,
   PCs,
   val_all = NULL,
   scoreCutoff = 0.5,
@@ -19,7 +19,7 @@ plotAnnotatedPCA(
 \arguments{
 \item{dataset}{An expression matrix with genes (rows) x samples (columns)}
 
-\item{PCAmodel}{PCAGenomicSignatures-class object}
+\item{RAVmodel}{PCAGenomicSignatures-class object}
 
 \item{PCs}{A numeric vector length of 2. It should be between 1 and 8.}
 
@@ -48,9 +48,9 @@ If any enriched pathway didn't pass the \code{nesCutoff}, it will labeled as NA.
 Two-dimentional PCA plot with the PC annotation
 }
 \examples{
-data(miniPCAmodel)
+data(miniRAVmodel)
 library(bcellViper)
 data(bcellViper)
-plotAnnotatedPCA(exprs(dset), miniPCAmodel, PCs = c(1,2))
+plotAnnotatedPCA(exprs(dset), miniRAVmodel, PCs = c(1,2))
 
 }

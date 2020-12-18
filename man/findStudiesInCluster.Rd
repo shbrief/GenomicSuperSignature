@@ -4,10 +4,10 @@
 \alias{findStudiesInCluster}
 \title{Find the studies contributing each RAV}
 \usage{
-findStudiesInCluster(PCAmodel, ind = NULL, studyTitle = FALSE)
+findStudiesInCluster(RAVmodel, ind = NULL, studyTitle = FALSE)
 }
 \arguments{
-\item{PCAmodel}{PCAGenomicSignatures object.}
+\item{RAVmodel}{PCAGenomicSignatures object.}
 
 \item{ind}{A numeric vector containing the index of RAVs you want to
 find the related studies. Default is \code{NULL}.}

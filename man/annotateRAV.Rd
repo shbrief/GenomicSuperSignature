@@ -4,10 +4,10 @@
 \alias{annotateRAV}
 \title{Search the top enriched pathways for RAV}
 \usage{
-annotateRAV(PCAmodel, ind, n = 5, abs = FALSE)
+annotateRAV(RAVmodel, ind, n = 5, abs = FALSE)
 }
 \arguments{
-\item{PCAmodel}{PCAGenomicSignatures object.}
+\item{RAVmodel}{PCAGenomicSignatures object.}
 
 \item{ind}{An integer for RAV you want to check the enriched pathways.}
 
@@ -23,10 +23,10 @@ A data frame with \code{n} rows and 4 columns; Description, NES, pvalue, and qva
 Search the top enriched pathways for RAV
 }
 \examples{
-data(miniPCAmodel)
+data(miniRAVmodel)
 library(bcellViper)
 data(bcellViper)
-annotateRAV(miniPCAmodel, ind = 695)
+annotateRAV(miniRAVmodel, ind = 695)
 #                 Description      NES pvalue      qvalues
 # 1 IRIS_Bcell-Memory_IgG_IgA 2.763472  1e-10 5.824561e-09
 # 2              DMAP_BCELLA3 2.726775  1e-10 5.824561e-09

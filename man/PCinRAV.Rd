@@ -4,10 +4,10 @@
 \alias{PCinRAV}
 \title{Extract the list of PCs in a cluster}
 \usage{
-PCinRAV(PCAmodel, ind)
+PCinRAV(RAVmodel, ind)
 }
 \arguments{
-\item{PCAmodel}{A PCAGenomicSignatures object}
+\item{RAVmodel}{A PCAGenomicSignatures object}
 
 \item{ind}{An index of RAV}
 }

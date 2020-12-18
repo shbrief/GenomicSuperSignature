@@ -1,11 +1,11 @@
 #' Extract the list of PCs in a cluster
 #'
-#' @param PCAmodel A PCAGenomicSignatures object
+#' @param RAVmodel A PCAGenomicSignatures object
 #' @param ind An index of RAV
 #'
 #' @export
-PCinRAV <- function(PCAmodel, ind) {
-    cluster <- S4Vectors::metadata(PCAmodel)$cluster
+PCinRAV <- function(RAVmodel, ind) {
+    cluster <- S4Vectors::metadata(RAVmodel)$cluster
     k <- which(cluster == ind)
     out <- names(k)
     return(out)
@@ -16,7 +16,7 @@ PCinRAV <- function(PCAmodel, ind) {
 #'
 #' @import dplyr
 #'
-#' @param PCAmodel A PCAGenomicSignatures object
+#' @param RAVmodel A PCAGenomicSignatures object
 #' @param ind An index of RAV
 #' @param rm.noise An integer. Under the default condition (\code{rm.noise=NULL}),
 #' if cluster size (= \code{s}) is smaller than 8, \code{rm.noise = floor(s*0.5)}.
@@ -30,23 +30,23 @@ PCinRAV <- function(PCAmodel, ind) {
 #' the defined RAV (by \code{ind} argument) is ordered based on their frequency.
 #'
 #' @export
-meshTable <- function(PCAmodel, ind, rm.noise = NULL, weighted = TRUE) {
+meshTable <- function(RAVmodel, ind, rm.noise = NULL, weighted = TRUE) {
 
     ### Remove noise
     if (is.null(rm.noise)) {
-        s <- S4Vectors::metadata(PCAmodel)$size[paste0("RAV", ind)]
+        s <- S4Vectors::metadata(RAVmodel)$size[paste0("RAV", ind)]
         if (s < 8) {rm.noise = floor(s*0.5)}
         else if (s >= 8) {rm.noise = 4}
     }
 
     ### Create a 'universe' for bag-of-words model
-    bow <- unlist(S4Vectors::metadata(PCAmodel)$MeSH_freq)  # frequency of the `name` in the background
+    bow <- unlist(S4Vectors::metadata(RAVmodel)$MeSH_freq)  # frequency of the `name` in the background
     bow <- bow[which(bow > rm.noise)]   # remove rare terms
 
     ### Variance explained by PC
     if (weighted == FALSE) {
-        study_id <- studies(PCAmodel)[[ind]]   # a list of studies in RAV
-        all_MeSH <- mesh(PCAmodel)   # all the MeSH data
+        study_id <- studies(RAVmodel)[[ind]]   # a list of studies in RAV
+        all_MeSH <- mesh(RAVmodel)   # all the MeSH data
 
         # remove SRP069088 (no MeSH term)
         if ("SRP069088" %in% study_id) {
@@ -71,11 +71,11 @@ meshTable <- function(PCAmodel, ind, rm.noise = NULL, weighted = TRUE) {
 
     ### Weighted, counting on variance explained by
     } else {
-        PCs <- PCinRAV(PCAmodel, ind)
-        varAll <- Reduce(cbind, PCAsummary(PCAmodel))
+        PCs <- PCinRAV(RAVmodel, ind)
+        varAll <- Reduce(cbind, PCAsummary(RAVmodel))
         var <- varAll[,PCs,drop=FALSE]
         study_id <- gsub("\\.PC.*$", "", PCs)
-        all_MeSH <- mesh(PCAmodel)   # all the MeSH data
+        all_MeSH <- mesh(RAVmodel)   # all the MeSH data
 
         # remove SRP069088 (no MeSH term)
         if ("SRP069088" %in% study_id) {
@@ -120,7 +120,7 @@ meshTable <- function(PCAmodel, ind, rm.noise = NULL, weighted = TRUE) {
 #' @description Plot a word cloud using the remaining MeSH terms in the selected
 #' RAV after user-defined filtering.
 #'
-#' @param PCAmodel PCAGenomicSignatures object
+#' @param RAVmodel PCAGenomicSignatures object
 #' @param ind An index of the RAV you want to draw wordcloud.
 #' @param rm.noise An integer. Under the default condition (\code{rm.noise=NULL}),
 #' if cluster size (= \code{s}) is smaller than 8, \code{rm.noise = floor(s*0.5)}.
@@ -135,27 +135,27 @@ meshTable <- function(PCAmodel, ind, rm.noise = NULL, weighted = TRUE) {
 #' @return A word cloud with the MeSH terms associated with the given cluster.
 #'
 #' @examples
-#' data(miniPCAmodel)
-#' drawWordcloud(miniPCAmodel, 1139)
+#' data(miniRAVmodel)
+#' drawWordcloud(miniRAVmodel, 1139)
 #'
 #' @export
-drawWordcloud <- function(PCAmodel, ind, rm.noise = NULL, scale = c(3, 0.5),
+drawWordcloud <- function(RAVmodel, ind, rm.noise = NULL, scale = c(3, 0.5),
                          weighted = TRUE, seed = NULL) {
 
     if (is.null(rm.noise)) {
-        s <- S4Vectors::metadata(PCAmodel)$size[paste0("RAV", ind)]
+        s <- S4Vectors::metadata(RAVmodel)$size[paste0("RAV", ind)]
         if (s < 8) {rm.noise = floor(s*0.5)}
         else if (s >= 8) {rm.noise = 4}
 
         ## Minimum rm.noise version
-        # s <- S4Vectors::metadata(PCAmodel)$size[ind]
+        # s <- S4Vectors::metadata(RAVmodel)$size[ind]
         # rm.noise = floor(s*0.2)
         # if (rm.noise > 4) {rm.noise = 4}
         # else if (rm.noise == 0) {rm.noise = 1}
     }
 
     # MeSH word table
-    all <- meshTable(PCAmodel, ind, rm.noise = rm.noise, weighted = weighted)
+    all <- meshTable(RAVmodel, ind, rm.noise = rm.noise, weighted = weighted)
     if (nrow(all) == 0) {stop("No MeSH term is enriched.")}
 
     # generate the word cloud

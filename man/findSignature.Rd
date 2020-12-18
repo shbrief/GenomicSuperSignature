@@ -4,10 +4,10 @@
 \alias{findSignature}
 \title{Find the RAVs with the keyword-containing enriched pathways}
 \usage{
-findSignature(PCAmodel, keyword, n = 5, k = NULL)
+findSignature(RAVmodel, keyword, n = 5, k = NULL)
 }
 \arguments{
-\item{PCAmodel}{PCAGenomicSignatures-object}
+\item{RAVmodel}{PCAGenomicSignatures-object}
 
 \item{keyword}{A character vector. If you are searching for multiple keywords
 at the same time, use \code{\link{paste}} with \code{collapse = "|"} argument.}
@@ -29,14 +29,14 @@ This function finds RAVs containing the keyword you provide. If you provide
 it will give you the RAV number.
 }
 \examples{
-data(miniPCAmodel)
+data(miniRAVmodel)
 library(bcellViper)
 data(bcellViper)
-findSignature(miniPCAmodel, "Bcell")
+findSignature(miniRAVmodel, "Bcell")
 #   # of keyword-containing pathways Freq
 # 1                                0   15
 # 2                                5    2
-findSignature(miniPCAmodel, "Bcell", k = 5)
+findSignature(miniRAVmodel, "Bcell", k = 5)
 # [1] 16 17
 
 }

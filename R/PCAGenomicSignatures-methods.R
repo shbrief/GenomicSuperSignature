@@ -32,7 +32,7 @@
 #'
 #' @details
 #' \itemize{
-#'     \item model(x) : PCAmodel (= avgLoading) containing genes x RAVs
+#'     \item model(x) : RAVmodel (= avgLoading) containing genes x RAVs
 #'     \item metadata(x)$cluster : A vector of integers (from 1:k) indicating the
 #'     cluster to which each point is allocated. Check \code{stats::kmeans} function.
 #'     \item metadata(x)$size : The number of points in each cluster. Check \code{stats::kmeans} function.
@@ -96,7 +96,7 @@ PCAGenomicSignatures <- function(...)
 #'
 #' @details
 #' \itemize{
-#'     \item assay(x) : PCAmodel (= avgLoading) containing genes x RAVs
+#'     \item assay(x) : RAVmodel (= avgLoading) containing genes x RAVs
 #'     \item metadata(x)$cluster : A vector of integers (from 1:k) indicating the
 #'     cluster to which each point is allocated. Check \code{stats::kmeans} function.
 #'     \item metadata(x)$size : The number of points in each cluster. Check \code{stats::kmeans} function.

@@ -45,10 +45,10 @@ A subset of the input matrix, which meets the given condition.
 Validation result in data frame
 }
 \examples{
-data(miniPCAmodel)
+data(miniRAVmodel)
 library(bcellViper)
 data(bcellViper)
-val_all <- validate(dset, miniPCAmodel)
+val_all <- validate(dset, miniRAVmodel)
 validatedSignatures(val_all, num.out = 3, scoreCutoff = 0)
 #             score PC          sw cl_size cl_num
 # RAV1076 0.5950767  2 -0.04447124      10      1

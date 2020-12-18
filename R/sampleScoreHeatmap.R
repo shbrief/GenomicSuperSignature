@@ -7,7 +7,7 @@
 #' with samples (row) and PrcompClusters (column) If it is a simple vector, it
 #' will be converted to a one-column matrix.
 #' @param dataName Title on the row. The name of the dataset to be scored.
-#' @param modelName Title on the column. The PCAmodel used for scoring.
+#' @param modelName Title on the column. The RAVmodel used for scoring.
 #' @param cluster_rows A logical. Under the default (\code{TRUE}), rows will be clustered.
 #' @param cluster_columns A logical. Under the default (\code{TRUE}), columns will be clustered.
 #' @param show_row_names Whether show row names. Default is \code{TRUE}, showing the row name.
@@ -20,11 +20,11 @@
 #' represent RAVs.
 #'
 #' @examples
-#' data(miniPCAmodel)
+#' data(miniRAVmodel)
 #' library(bcellViper)
 #' data(bcellViper)
-#' score <- calculateScore(dset, miniPCAmodel)
-#' sampleScoreHeatmap(score, dataName = "bcellViper", modelName = "miniPCAmodel")
+#' score <- calculateScore(dset, miniRAVmodel)
+#' sampleScoreHeatmap(score, dataName = "bcellViper", modelName = "miniRAVmodel")
 #'
 #' @export
 sampleScoreHeatmap <- function(score, dataName, modelName,

@@ -1,33 +1,34 @@
 #' Barplot GSEA output
 #'
 #' @param ind An interger. Index of RAV to apply GSEA.
-#' @param PCAmodel PCAGenomicSignature object.
+#' @param RAVmodel PCAGenomicSignature object.
 #' @param category A character vector representing MSigDB category. Options are
 #' "H", "C1", "C2"(default), "C3", "C4", "C5", "C6", and "C7"
 #' @param n An interger. The number of top and bottom enriched pathways to plot. Default is 10.
 #' @param pvalueCutoff Cutoff for both pvalue and p.adjust. Default is 0.5.
 #' @param gseaRes An output from \link{msigdb_gsea} function. If this argument
-#' is provided, you don't need to provide the above inputs: ind, PCAmodel, category, n, pvalueCutoff.
+#' is provided, you don't need to provide the above inputs: ind, RAVmodel, category, n, pvalueCutoff.
 #'
 #' @return Barplot of GSEA output. Top and bottom \code{n} genesets based on NES
 #' are plotted and qvalues are denoted by color.
 #'
 #' @export
-gseaBarplot <- function(ind, PCAmodel, category = "C2", n = 10, pvalueCutoff = 0.5, gseaRes = NULL) {
+gseaBarplot <- function(ind, RAVmodel, category = "C2", n = 10,
+                        pvalueCutoff = 0.5, gseaRes = NULL) {
 
     ## Binding the variables from res locally to the function
     NES <- Description <- qvalues <- NULL
 
-    if (is.null(gseaRes)) {
-        gseaRes <- msigdb_gsea(ind, PCAmodel, category = category, n = n, pvalueCutoff = pvalueCutoff)
-    } else {gseaRes <- gseaRes}
-
+    ## GSEA results
+    gseaRes <- gsea(RAVmodel)[[ind]]
     if (nrow(gseaRes) == 0) return("No pathway is enriched")   # Handle empty dataframes
 
     ## Barplot
-    ggplot(gseaRes, aes(NES, forcats::fct_reorder(Description, NES), fill = qvalues), showCategory=(n*2)) +
-        geom_bar(stat='identity') +
-        scale_fill_continuous(low='red', high='blue', guide=guide_colorbar(reverse=TRUE)) +
+    ggplot(gseaRes, aes(NES, forcats::fct_reorder(Description, NES),
+                        fill = qvalues), showCategory = (n*2)) +
+        geom_bar(stat = 'identity') +
+        scale_fill_continuous(low = 'red', high = 'blue',
+                              guide = guide_colorbar(reverse = TRUE)) +
         theme_minimal() + ylab(NULL)
 }
 
@@ -80,13 +81,11 @@ gseaBarplot <- function(ind, PCAmodel, category = "C2", n = 10, pvalueCutoff = 0
 #' Plot the network of enriched pathways
 #'
 #' @param ind An interger. Index of RAV to apply GSEA.
-#' @param PCAmodel PCAGenomicSignature object.
+#' @param RAVmodel PCAGenomicSignature object.
 #' @param category A character vector representing MSigDB category. Options are
 #' "H", "C1", "C2"(default), "C3", "C4", "C5", "C6", and "C7"
 #' @param n An interger. The number of top and bottom enriched pathways to plot. Default is 10.
 #' @param pvalueCutoff Cutoff for both pvalue and p.adjust. Default is 0.5.
-#' @param gseaRes An output from \link{msigdb_gsea} function. If this argument
-#' is provided, you don't need to provide the above inputs: ind, PCAmodel, category, n, pvalueCutoff.
 #' @param similarity_metric Metric to calculate geneset similarity. Available values
 #' are \code{c("jaccard_similarity", "overlap_similarity")}.
 #' @param similarity_cutoff Geneset similarity cutoff. Default is 0.3.
@@ -100,19 +99,13 @@ gseaBarplot <- function(ind, PCAmodel, category = "C2", n = 10, pvalueCutoff = 0
 #' @importFrom igraph graph.adjacency V
 #' @importFrom visNetwork visNetwork visNodes visEdges visOptions visInteraction toVisNetworkData visIgraphLayout
 #'
-#' @export
-gseaNetwork <- function(ind, PCAmodel, category = category, n = n, pvalueCutoff = pvalueCutoff,
-                        gseaRes = NULL,
+gseaNetwork <- function(ind, RAVmodel, category = "C2", n = 10, pvalueCutoff = 0.5,
                         similarity_metric = c("jaccard_similarity", "overlap_similarity"),
                         similarity_cutoff = 0.3, title = "") {
 
-    if (is.null(gseaRes)) {
-        gseaRes <- msigdb_gsea(ind, PCAmodel, category = category, n = n, pvalueCutoff = pvalueCutoff)
-        gseaRes <- as.data.frame(gseaRes)
-    } else {
-        gseaRes <- as.data.frame(gseaRes)
-    }
-
+    ## GSEA
+    gseaRes <- gsea(RAVmodel)[[ind]]
+    gseaRes <- as.data.frame(gseaRes)
     if (nrow(gseaRes) == 0) return("No pathway is enriched")   # Handle empty dataframes
 
     # Geneset similarity matrix

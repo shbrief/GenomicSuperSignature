@@ -24,7 +24,7 @@ will be converted to a one-column matrix.}
 
 \item{dataName}{Title on the row. The name of the dataset to be scored.}
 
-\item{modelName}{Title on the column. The PCAmodel used for scoring.}
+\item{modelName}{Title on the column. The RAVmodel used for scoring.}
 
 \item{cluster_rows}{A logical. Under the default (\code{TRUE}), rows will be clustered.}
 
@@ -48,10 +48,10 @@ represent RAVs.
 Plot heatmap of the sample scores
 }
 \examples{
-data(miniPCAmodel)
+data(miniRAVmodel)
 library(bcellViper)
 data(bcellViper)
-score <- calculateScore(dset, miniPCAmodel)
-sampleScoreHeatmap(score, dataName = "bcellViper", modelName = "miniPCAmodel")
+score <- calculateScore(dset, miniRAVmodel)
+sampleScoreHeatmap(score, dataName = "bcellViper", modelName = "miniRAVmodel")
 
 }

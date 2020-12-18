@@ -5,7 +5,7 @@
 \title{Draw wordcloud using the collection of RAVs' MeSH terms}
 \usage{
 drawWordcloud(
-  PCAmodel,
+  RAVmodel,
   ind,
   rm.noise = NULL,
   scale = c(3, 0.5),
@@ -14,7 +14,7 @@ drawWordcloud(
 )
 }
 \arguments{
-\item{PCAmodel}{PCAGenomicSignatures object}
+\item{RAVmodel}{PCAGenomicSignatures object}
 
 \item{ind}{An index of the RAV you want to draw wordcloud.}
 
@@ -39,7 +39,7 @@ Plot a word cloud using the remaining MeSH terms in the selected
 RAV after user-defined filtering.
 }
 \examples{
-data(miniPCAmodel)
-drawWordcloud(miniPCAmodel, 1139)
+data(miniRAVmodel)
+drawWordcloud(miniRAVmodel, 1139)
 
 }

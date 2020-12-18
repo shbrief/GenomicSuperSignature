@@ -4,10 +4,10 @@
 \alias{subsetEnrichedPathways}
 \title{Subset enriched pathways of RAV}
 \usage{
-subsetEnrichedPathways(PCAmodel, ind = NULL, n = 10, both = FALSE)
+subsetEnrichedPathways(RAVmodel, ind = NULL, n = 10, both = FALSE)
 }
 \arguments{
-\item{PCAmodel}{PCAGenomicSignatures object. Also an output from \code{\link[clusterProfiler]{GSEA}} can be used.}
+\item{RAVmodel}{PCAGenomicSignatures object. Also an output from \code{\link[clusterProfiler]{GSEA}} can be used.}
 
 \item{ind}{A numeric vector containing the RAV number you want to check
 enriched pathways. If not specified, this function returns results from all the RAVs.}
@@ -20,7 +20,7 @@ be printed. If it is set to \code{TRUE}, the ouput will contain both top and
 bottom \code{n} pathways.}
 }
 \value{
-A data frame with top and bottom \code{n} pathways from the enrichment results.
+A DataFrame with top and bottom \code{n} pathways from the enrichment results.
 }
 \description{
 This function finds the top enriched pathways of a given RAV. This function is

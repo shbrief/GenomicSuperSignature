@@ -1,6 +1,3 @@
-# large dataset
-/vignettes/*.rds
-
 # History files
 .Rhistory
 .Rapp.history
@@ -31,6 +28,9 @@ rsconnect/
 .Rproj.user
 inst/doc
 docs
+
+# large dataset
+/vignettes/*.rds
 
 inst/extdata/mini_gsea_C2/
 inst/extdata/mini_model_building/

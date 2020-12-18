@@ -71,10 +71,10 @@ This function subsets \code{\link{validate}} outputs with different criteria
 and visualize it in a heatmap-like table.
 }
 \examples{
-data(miniPCAmodel)
+data(miniRAVmodel)
 library(bcellViper)
 data(bcellViper)
-val_all <- validate(dset, miniPCAmodel)
+val_all <- validate(dset, miniRAVmodel)
 heatmapTable(val_all, swCutoff = 0)
 
 }

@@ -45,7 +45,7 @@ getModel <- function(prior = c("C2", "PLIERpriors")) {
   }
 
   bucket_name <- "genomic_super_signature"
-  fname <- paste0("PCAmodel_", prior, ".rds")
+  fname <- paste0("RAVmodel_", prior, ".rds")
   fpath <- file.path('https://storage.googleapis.com',bucket_name, fname)
 
   fpath = s2p_cached_url(fpath)

@@ -27,10 +27,10 @@
 #' check \code{\link[ggplot2]{scale_color_brewer}}
 #'
 #' @examples
-#' data(miniPCAmodel)
+#' data(miniRAVmodel)
 #' library(bcellViper)
 #' data(bcellViper)
-#' val_all <- validate(dset, miniPCAmodel)
+#' val_all <- validate(dset, miniRAVmodel)
 #' plotValidate(val_all)
 #'
 #' @export

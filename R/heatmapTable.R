@@ -86,10 +86,10 @@
 #' for any of the input studies.
 #'
 #' @examples
-#' data(miniPCAmodel)
+#' data(miniRAVmodel)
 #' library(bcellViper)
 #' data(bcellViper)
-#' val_all <- validate(dset, miniPCAmodel)
+#' val_all <- validate(dset, miniRAVmodel)
 #' heatmapTable(val_all, swCutoff = 0)
 #'
 #' @export

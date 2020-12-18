@@ -6,7 +6,7 @@
 \usage{
 validate(
   dataset,
-  PCAmodel,
+  RAVmodel,
   method = "pearson",
   maxFrom = "PC",
   level = "max",
@@ -18,7 +18,7 @@ validate(
 ExpressionSet or matrix) object(s). Gene names should be in 'symbol' format. Currently,
 each dataset should have at least 8 samples.}
 
-\item{PCAmodel}{PCAGenomicSignature object. You can also provide signature model matrix directly.}
+\item{RAVmodel}{PCAGenomicSignature object. You can also provide signature model matrix directly.}
 
 \item{method}{A character string indicating which correlation coefficient is
 to be computed. One of "pearson" (default), "kendall", or "spearman": can be abbreviated.}
@@ -54,10 +54,10 @@ avgLoading.
 Validate new datasets
 }
 \examples{
-data(miniPCAmodel)
+data(miniRAVmodel)
 library(bcellViper)
 data(bcellViper)
-validate(dset, miniPCAmodel)
-validate(dset, miniPCAmodel, maxFrom = "avgLoading")
+validate(dset, miniRAVmodel)
+validate(dset, miniRAVmodel, maxFrom = "avgLoading")
 
 }

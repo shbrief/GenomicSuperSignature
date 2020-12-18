@@ -1,10 +1,10 @@
-#' @name miniPCAmodel
+#' @name miniRAVmodel
 #' @title PCAGenomicSignatures from 536 studies annotated with MSigDB C2
 #' @docType data
 #' @description
-#' A object providing a miniature version of PCAmodel_C2 (PCAGenomicSignatures
+#' A object providing a miniature version of RAVmodel_C2 (PCAGenomicSignatures
 #' object constructed from 536 studies and annotated with MSigDB C2).
 #' @keywords data
 #'
-#' @example inst/scripts/miniPCAmodel-Ex.R
-"miniPCAmodel"
+#' @example inst/scripts/miniRAVmodel-Ex.R
+"miniRAVmodel"

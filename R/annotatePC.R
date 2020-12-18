@@ -6,7 +6,7 @@
 #' @param PCnum PC number of your dataset you want to get the annotation results. It
 #' should be an integer value between 1 and 8.
 #' @param val_all The output from \code{\link{validate}}
-#' @param PCAmodel The PCAmodel used to generate the input for the argument, \code{val_all}.
+#' @param RAVmodel The RAVmodel used to generate the input for the argument, \code{val_all}.
 #' @param n An integer. Default is 5. The number of the top enriched pathaways to
 #' print out. If there are fewer than n pathways passed the cutoff, it will print out \code{NA}.
 #' @param scoreCutoff A numeric value for the minimum correlation. Default is 0.5.
@@ -24,14 +24,14 @@
 #' output detail above.
 #'
 #' @examples
-#' data(miniPCAmodel)
+#' data(miniRAVmodel)
 #' library(bcellViper)
 #' data(bcellViper)
-#' val_all <- validate(dset, miniPCAmodel)
-#' annotatePC(2, val_all, miniPCAmodel)
+#' val_all <- validate(dset, miniRAVmodel)
+#' annotatePC(2, val_all, miniRAVmodel)
 #'
 #' @export
-annotatePC <- function(PCnum, val_all, PCAmodel, n = 5,
+annotatePC <- function(PCnum, val_all, RAVmodel, n = 5,
                        scoreCutoff = 0.5, nesCutoff = NULL,
                        simplify = TRUE, abs = FALSE) {
   res <- vector(mode = "list", length = length(PCnum))
@@ -39,10 +39,10 @@ annotatePC <- function(PCnum, val_all, PCAmodel, n = 5,
   for (i in seq_along(PCnum)) {
     annotPC <- validatedSignatures(val_all, num.out = 1, scoreCutoff = scoreCutoff, whichPC = PCnum[i])
     cl_name <- paste0("RAV", annotPC[,"cl_num"])
-    annotatedCluster <- gsea(PCAmodel)[[cl_name]]
+    annotatedCluster <- gsea(RAVmodel)[[cl_name]]
 
     if (is.null(annotatedCluster)) {
-      emptyTable <- gsea(PCAmodel)[[1]][0,] # assign the empty gsea table
+      emptyTable <- gsea(RAVmodel)[[1]][0,] # assign the empty gsea table
       emptyTable[1:5,1] <- "No significant pathways"
       res[[i]] <- emptyTable
       names(res)[i] <- paste0("PC", PCnum[i], "-noAnnot")

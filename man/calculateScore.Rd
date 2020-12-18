@@ -4,13 +4,13 @@
 \alias{calculateScore}
 \title{Calculate the validation score for a new dataset}
 \usage{
-calculateScore(dataset, PCAmodel, rescale.after = TRUE)
+calculateScore(dataset, RAVmodel, rescale.after = TRUE)
 }
 \arguments{
 \item{dataset}{A gene expression matrix, where genes are in rows and rownames
 are in 'symbol' format. It can be SummarizedExperiment, ExpressionSet, or matrix objects.}
 
-\item{PCAmodel}{PCAGenomicSignatures object. Output from \code{buildAvgLoading}
+\item{RAVmodel}{PCAGenomicSignatures object. Output from \code{buildAvgLoading}
 function, a matrix of avaerage loadings, can be directly provided.}
 
 \item{rescale.after}{If it is \code{TRUE}, the continuous scores are rescaled
@@ -26,9 +26,9 @@ assigned to each sample (row) for each cluster (column).
 Calculate the validation score for a new dataset
 }
 \examples{
-data(miniPCAmodel)
+data(miniRAVmodel)
 library(bcellViper)
 data(bcellViper)
-score <- calculateScore(dset, miniPCAmodel)
+score <- calculateScore(dset, miniRAVmodel)
 
 }

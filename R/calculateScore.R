@@ -4,7 +4,7 @@
 #'
 #' @param dataset A gene expression matrix, where genes are in rows and rownames
 #' are in 'symbol' format. It can be SummarizedExperiment, ExpressionSet, or matrix objects.
-#' @param PCAmodel PCAGenomicSignatures object. Output from \code{buildAvgLoading}
+#' @param RAVmodel PCAGenomicSignatures object. Output from \code{buildAvgLoading}
 #' function, a matrix of avaerage loadings, can be directly provided.
 #' @param rescale.after If it is \code{TRUE}, the continuous scores are rescaled
 #' post assignment, so avgerage loadings have the same standard deviation in different
@@ -15,18 +15,18 @@
 #' assigned to each sample (row) for each cluster (column).
 #'
 #' @examples
-#' data(miniPCAmodel)
+#' data(miniRAVmodel)
 #' library(bcellViper)
 #' data(bcellViper)
-#' score <- calculateScore(dset, miniPCAmodel)
+#' score <- calculateScore(dset, miniRAVmodel)
 #'
 #' @export
-calculateScore <- function(dataset, PCAmodel, rescale.after = TRUE) {
+calculateScore <- function(dataset, RAVmodel, rescale.after = TRUE) {
 
-    if (is(PCAmodel, "PCAGenomicSignatures")) {
-        avg.loadings <- assay(PCAmodel)
-    } else if (class(PCAmodel) %in% c("data.frame", "matrix")) {
-        avg.loadings <- PCAmodel
+    if (is(RAVmodel, "PCAGenomicSignatures")) {
+        avg.loadings <- assay(RAVmodel)
+    } else if (class(RAVmodel) %in% c("data.frame", "matrix")) {
+        avg.loadings <- RAVmodel
     }
 
     if (!is.list(dataset)) {dataset <- list(dataset)}

@@ -4,10 +4,10 @@
 \alias{meshTable}
 \title{Build a two-column word/frequency table}
 \usage{
-meshTable(PCAmodel, ind, rm.noise = NULL, weighted = TRUE)
+meshTable(RAVmodel, ind, rm.noise = NULL, weighted = TRUE)
 }
 \arguments{
-\item{PCAmodel}{A PCAGenomicSignatures object}
+\item{RAVmodel}{A PCAGenomicSignatures object}
 
 \item{ind}{An index of RAV}
 

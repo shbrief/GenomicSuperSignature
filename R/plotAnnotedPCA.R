@@ -4,7 +4,7 @@
 #' @import ggplot2
 #'
 #' @param dataset An expression matrix with genes (rows) x samples (columns)
-#' @param PCAmodel PCAGenomicSignatures-class object
+#' @param RAVmodel PCAGenomicSignatures-class object
 #' @param PCs A numeric vector length of 2. It should be between 1 and 8.
 #' @param val_all The output from \code{\link{validate}}
 #' @param scoreCutoff A numeric value for the minimum correlation. Default is 0.5.
@@ -22,18 +22,18 @@
 #' If any enriched pathway didn't pass the \code{nesCutoff}, it will labeled as NA.
 #'
 #' @examples
-#' data(miniPCAmodel)
+#' data(miniRAVmodel)
 #' library(bcellViper)
 #' data(bcellViper)
-#' plotAnnotatedPCA(exprs(dset), miniPCAmodel, PCs = c(1,2))
+#' plotAnnotatedPCA(exprs(dset), miniRAVmodel, PCs = c(1,2))
 #'
 #' @export
-plotAnnotatedPCA <- function(dataset, PCAmodel, PCs, val_all = NULL,
+plotAnnotatedPCA <- function(dataset, RAVmodel, PCs, val_all = NULL,
                              scoreCutoff = 0.5, nesCutoff = NULL,
                              color_by = NULL, color_lab = NULL,
                              trimed_pathway_len = 45) {
 
-  if (is.null(val_all)) {val_all <- validate(dataset, PCAmodel)}
+  if (is.null(val_all)) {val_all <- validate(dataset, RAVmodel)}
   PCAres <- stats::prcomp(dataset)$rotation %>% as.data.frame
 
   # two PCs to plot
@@ -56,7 +56,7 @@ plotAnnotatedPCA <- function(dataset, PCAmodel, PCs, val_all = NULL,
   }
 
   # Trim the long pathway names
-  annotatedPC <- annotatePC(c(ind1, ind2), val_all, PCAmodel, scoreCutoff = scoreCutoff, nesCutoff = nesCutoff)
+  annotatedPC <- annotatePC(c(ind1, ind2), val_all, RAVmodel, scoreCutoff = scoreCutoff, nesCutoff = nesCutoff)
   a <- which(nchar(annotatedPC[,1]) > trimed_pathway_len)
   annotatedPC[a,1] <- paste0(strtrim(annotatedPC[a,1], trimed_pathway_len), "...")
   b <- which(nchar(annotatedPC[,2]) > trimed_pathway_len)

@@ -4,7 +4,7 @@
 #' "the number of keyword-containing pathways per RAV" in argument \code{k},
 #' it will give you the RAV number.
 #'
-#' @param PCAmodel PCAGenomicSignatures-object
+#' @param RAVmodel PCAGenomicSignatures-object
 #' @param keyword A character vector. If you are searching for multiple keywords
 #' at the same time, use \code{\link{paste}} with \code{collapse = "|"} argument.
 #' @param n The number of top ranked (based on abs(NES)) pathways you want to search your keyword
@@ -17,19 +17,19 @@
 #' @return A data frame or integer vector depending on the parameter \code{k}.
 #'
 #' @examples
-#' data(miniPCAmodel)
+#' data(miniRAVmodel)
 #' library(bcellViper)
 #' data(bcellViper)
-#' findSignature(miniPCAmodel, "Bcell")
+#' findSignature(miniRAVmodel, "Bcell")
 #' #   # of keyword-containing pathways Freq
 #' # 1                                0   15
 #' # 2                                5    2
-#' findSignature(miniPCAmodel, "Bcell", k = 5)
+#' findSignature(miniRAVmodel, "Bcell", k = 5)
 #' # [1] 16 17
 #'
 #' @export
-findSignature <- function(PCAmodel, keyword, n = 5, k = NULL) {
-  gsea_all <- gsea(PCAmodel)
+findSignature <- function(RAVmodel, keyword, n = 5, k = NULL) {
+  gsea_all <- gsea(RAVmodel)
 
   # top n pathways based on abs(NES) value
   topPathways <- sapply(gsea_all, function(x) {
@@ -53,12 +53,12 @@ findSignature <- function(PCAmodel, keyword, n = 5, k = NULL) {
 
 #' Find the rank of your keyword in the RAV's GSEA annotation
 #'
-#' Once you provide PCAmodel, keyword you're searching for, and the RAV number
+#' Once you provide RAVmodel, keyword you're searching for, and the RAV number
 #' to this function, it will give you the abs(NES)-based rank of your keyword in
 #' the enriched pathways of the target RAV. If can be useful to find out how
 #' uniquely your keyword-containing pathways are represented.
 #'
-#' @param PCAmodel PCAGenomicSignatures-object.
+#' @param RAVmodel PCAGenomicSignatures-object.
 #' @param keyword A character vector. If you are searching for multiple keywords
 #' at the same time, use \code{\link{paste}} with \code{collapse = "|"} argument.
 #' @param ind An integer. The RAV number you want to check.
@@ -71,15 +71,15 @@ findSignature <- function(PCAmodel, keyword, n = 5, k = NULL) {
 #' by |), followed by the total number of enriched pathways in parenthesis.
 #'
 #' @examples
-#' data(miniPCAmodel)
-#' findKeywordInRAV(miniPCAmodel, "Bcell", ind = 695)
+#' data(miniRAVmodel)
+#' findKeywordInRAV(miniRAVmodel, "Bcell", ind = 695)
 #' # [1] "1|2|3|4|5|6|9"
 #'
 #' @export
-findKeywordInRAV <- function(PCAmodel, keyword, ind,
+findKeywordInRAV <- function(RAVmodel, keyword, ind,
                                    n = NULL, includeTotal = FALSE) {
   name <- paste0("RAV", ind)
-  gsea <- gsea(PCAmodel)[[name]]
+  gsea <- gsea(RAVmodel)[[name]]
   total <- nrow(gsea)
 
   if (is.null(n)) {

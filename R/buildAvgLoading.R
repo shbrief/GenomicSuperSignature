@@ -20,7 +20,7 @@
 
 #' Find the studies contributing each RAV
 #'
-#' @param PCAmodel PCAGenomicSignatures object.
+#' @param RAVmodel PCAGenomicSignatures object.
 #' @param ind A numeric vector containing the index of RAVs you want to
 #' find the related studies. Default is \code{NULL}.
 #' @param studyTitle Default is \code{FALSE}. This parameter is effective only when
@@ -33,15 +33,15 @@
 #'
 #' @note Mainly used for modeling building, within \link{buildAvgLoading}.
 #' @export
-findStudiesInCluster <- function(PCAmodel, ind = NULL, studyTitle = FALSE) {
+findStudiesInCluster <- function(RAVmodel, ind = NULL, studyTitle = FALSE) {
 
-    if (class(PCAmodel) == "PCAGenomicSignatures") {
-        x <- S4Vectors::metadata(PCAmodel)
+    if (class(RAVmodel) == "PCAGenomicSignatures") {
+        x <- S4Vectors::metadata(RAVmodel)
         k <- x$k   # the number of clusters
-    } else if (class(PCAmodel) == "list") {  # this is for model building
-        x <- PCAmodel
-        x$size <- table(PCAmodel$cluster)
-        k <- length(unique(PCAmodel$cluster))
+    } else if (class(RAVmodel) == "list") {  # this is for model building
+        x <- RAVmodel
+        x$size <- table(RAVmodel$cluster)
+        k <- length(unique(RAVmodel$cluster))
     }
 
     # z is a binary matrix showing the cluster membership of PCs

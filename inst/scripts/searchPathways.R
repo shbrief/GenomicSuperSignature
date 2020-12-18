@@ -1,27 +1,27 @@
-#' Select enriched pathways for PCAmodel
+#' Select enriched pathways for RAVmodel
 #'
 #' From the GSEA output of each RAV, subset the enriched pathways with the
 #' minimum q-value. Also, this function keeps only \code{Description, NES, qvalues}.
 #'
-#' @param PCAmodel PCAGenomicSignatures object.
-#' @param gsea.dir "~/data2/PCAGenomicSignatureLibrary/refinebioRseq/PCAmodel_536/gsea"
-#' @return A list with the length of RAVs in the provided PCAmodel. Each
+#' @param RAVmodel PCAGenomicSignatures object.
+#' @param gsea.dir "~/data2/PCAGenomicSignatureLibrary/refinebioRseq/RAVmodel_536/gsea"
+#' @return A list with the length of RAVs in the provided RAVmodel. Each
 #' element contains the subset data.frame of GSEA output.
 #'
 #' @note This function is for model construction, not for end-users.
 #'
-searchPathways <- function(PCAmodel, gsea.dir) {
+searchPathways <- function(RAVmodel, gsea.dir) {
 
   ## If you want to select only a subset of RAVs with the specific cluster size
-  # ind <- which(metadata(PCAmodel)$size > 3)
+  # ind <- which(metadata(RAVmodel)$size > 3)
   # gsea_all <- vector(mode = "list", length = length(ind))
-  # names(gsea_all) <- colnames(PCAmodel)[ind]
+  # names(gsea_all) <- colnames(RAVmodel)[ind]
 
-  gsea_all <- vector(mode = "list", length = ncol(PCAmodel))
-  names(gsea_all) <- colnames(PCAmodel)
+  gsea_all <- vector(mode = "list", length = ncol(RAVmodel))
+  names(gsea_all) <- colnames(RAVmodel)
   gsea.dir <- gsea.dir
 
-  for (i in seq_len(ncol(PCAmodel))) {
+  for (i in seq_len(ncol(RAVmodel))) {
     pathToRes <- file.path(gsea.dir, paste0("gsea_", i, ".rds"))
     res <- readRDS(pathToRes)
 

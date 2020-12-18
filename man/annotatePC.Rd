@@ -7,7 +7,7 @@
 annotatePC(
   PCnum,
   val_all,
-  PCAmodel,
+  RAVmodel,
   n = 5,
   scoreCutoff = 0.5,
   nesCutoff = NULL,
@@ -21,7 +21,7 @@ should be an integer value between 1 and 8.}
 
 \item{val_all}{The output from \code{\link{validate}}}
 
-\item{PCAmodel}{The PCAmodel used to generate the input for the argument, \code{val_all}.}
+\item{RAVmodel}{The RAVmodel used to generate the input for the argument, \code{val_all}.}
 
 \item{n}{An integer. Default is 5. The number of the top enriched pathaways to
 print out. If there are fewer than n pathways passed the cutoff, it will print out \code{NA}.}
@@ -49,10 +49,10 @@ This function finds the RAV scored highest with the top PCs of the dataset,
 including RAVs with the negative average silhouette.
 }
 \examples{
-data(miniPCAmodel)
+data(miniRAVmodel)
 library(bcellViper)
 data(bcellViper)
-val_all <- validate(dset, miniPCAmodel)
-annotatePC(2, val_all, miniPCAmodel)
+val_all <- validate(dset, miniRAVmodel)
+annotatePC(2, val_all, miniRAVmodel)
 
 }

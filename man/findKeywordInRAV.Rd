@@ -4,10 +4,10 @@
 \alias{findKeywordInRAV}
 \title{Find the rank of your keyword in the RAV's GSEA annotation}
 \usage{
-findKeywordInRAV(PCAmodel, keyword, ind, n = NULL, includeTotal = FALSE)
+findKeywordInRAV(RAVmodel, keyword, ind, n = NULL, includeTotal = FALSE)
 }
 \arguments{
-\item{PCAmodel}{PCAGenomicSignatures-object.}
+\item{RAVmodel}{PCAGenomicSignatures-object.}
 
 \item{keyword}{A character vector. If you are searching for multiple keywords
 at the same time, use \code{\link{paste}} with \code{collapse = "|"} argument.}
@@ -25,14 +25,14 @@ A character containing the rank of keyword-containing pathways (separated
 by |), followed by the total number of enriched pathways in parenthesis.
 }
 \description{
-Once you provide PCAmodel, keyword you're searching for, and the RAV number
+Once you provide RAVmodel, keyword you're searching for, and the RAV number
 to this function, it will give you the abs(NES)-based rank of your keyword in
 the enriched pathways of the target RAV. If can be useful to find out how
 uniquely your keyword-containing pathways are represented.
 }
 \examples{
-data(miniPCAmodel)
-findKeywordInRAV(miniPCAmodel, "Bcell", ind = 695)
+data(miniRAVmodel)
+findKeywordInRAV(miniRAVmodel, "Bcell", ind = 695)
 # [1] "1|2|3|4|5|6|9"
 
 }

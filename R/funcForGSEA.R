@@ -1,7 +1,7 @@
 #' MSigDB GSEA results
 #'
 #' @param ind An interger. Index of RAV to apply GSEA.
-#' @param PCAmodel PCAGenomicSignature object.
+#' @param RAVmodel PCAGenomicSignature object.
 #' @param category A character vector representing MSigDB category. Options are
 #' "H", "C1", "C2"(default), "C3", "C4", "C5", "C6", and "C7"
 #' @param n An interger. The number of top and bottom enriched pathways to plot.
@@ -21,7 +21,7 @@
 #' @return Barplot of GSEA output. Top and bottom \code{n} genesets based on NES
 #' are plotted and qvalues are denoted by color.
 #'
-msigdb_gsea <- function(ind, PCAmodel, category = "C2", n = NULL, pvalueCutoff = 0.5,
+msigdb_gsea <- function(ind, RAVmodel, category = "C2", n = NULL, pvalueCutoff = 0.5,
                         minGSSize = 10, maxGSSize = 500, pAdjustMethod = "BH",
                         verbose = FALSE, seed = FALSE, by = "fgsea", geneSets = NULL) {
 
@@ -29,7 +29,7 @@ msigdb_gsea <- function(ind, PCAmodel, category = "C2", n = NULL, pvalueCutoff =
     gs_name <- entrez_gene <- NES <- ordering <- NULL
 
     ## Target geneList
-    al <- model(PCAmodel)[, ind]
+    al <- model(RAVmodel)[, ind]
     obj <- list()
     obj[[1]] <- names(al)
     names(al) <- EnrichmentBrowser::idMap(obj, "hsa", from = "SYMBOL", to = "ENTREZID")[[1]]
@@ -181,7 +181,7 @@ run_gsea <- function(geneList, TERM2GENE, TERM2NAME,
 #'
 #' @import methods
 #'
-#' @param PCAmodel PCAGenomicSignatures object. Also an output from \code{\link[clusterProfiler]{GSEA}} can be used.
+#' @param RAVmodel PCAGenomicSignatures object. Also an output from \code{\link[clusterProfiler]{GSEA}} can be used.
 #' @param ind A numeric vector containing the RAV number you want to check
 #' enriched pathways. If not specified, this function returns results from all the RAVs.
 #' @param n The number of top and bottom pathways to be selected based on normalized
@@ -190,15 +190,15 @@ run_gsea <- function(geneList, TERM2GENE, TERM2NAME,
 #' be printed. If it is set to \code{TRUE}, the ouput will contain both top and
 #' bottom \code{n} pathways.
 #'
-#' @return A data frame with top and bottom \code{n} pathways from the enrichment results.
+#' @return A DataFrame with top and bottom \code{n} pathways from the enrichment results.
 #'
 #' @export
-subsetEnrichedPathways <- function(PCAmodel, ind = NULL, n = 10, both = FALSE) {
+subsetEnrichedPathways <- function(RAVmodel, ind = NULL, n = 10, both = FALSE) {
 
-    if (is(PCAmodel, "PCAGenomicSignatures")) {
-        gsea_loading <- gsea(PCAmodel)
-    } else if (class(PCAmodel) %in% c("data.frame", "matrix", "list")) {
-        gsea_loading <- PCAmodel
+    if (is(RAVmodel, "PCAGenomicSignatures")) {
+        gsea_loading <- gsea(RAVmodel)
+    } else if (class(RAVmodel) %in% c("data.frame", "matrix", "list")) {
+        gsea_loading <- RAVmodel
     }
 
     res <- list()
