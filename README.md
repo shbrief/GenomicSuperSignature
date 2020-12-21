@@ -33,7 +33,8 @@ Currently, you can install GenomicSuperSignature package from GitHub.
 devtools::install_github("shbrief/GenomicSuperSignature")
 ```
 
-RAVmodel can be directly downloaded from Google bucket with no cost.
+RAVmodel can be directly downloaded from Google bucket with no cost. The sizes of 
+RAVmodels`RAVmodel_C2.rds` and `RAVmodel_PLIERpriors.rds` are 476.1MB and 475.1MB, respectively.
 ```
 wget https://storage.googleapis.com/genomic_super_signature/RAVmodel_C2.rds
 wget https://storage.googleapis.com/genomic_super_signature/RAVmodel_PLIERpriors.rds

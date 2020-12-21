@@ -42,7 +42,7 @@
 #' @param dataset Single or a named list of SummarizedExperiment (RangedSummarizedExperiment,
 #' ExpressionSet or matrix) object(s). Gene names should be in 'symbol' format. Currently,
 #' each dataset should have at least 8 samples.
-#' @param RAVmodel PCAGenomicSignature object. You can also provide signature model matrix directly.
+#' @param RAVmodel PCAGenomicSignatures object. You can also provide signature model matrix directly.
 #' @param method A character string indicating which correlation coefficient is
 #' to be computed. One of "pearson" (default), "kendall", or "spearman": can be abbreviated.
 #' @param maxFrom Select whether to display the maximum value from dataset's PCs or avgLoadings.

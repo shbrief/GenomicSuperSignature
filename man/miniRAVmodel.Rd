@@ -3,7 +3,7 @@
 \docType{data}
 \name{miniRAVmodel}
 \alias{miniRAVmodel}
-\title{PCAGenomicSignatures from 536 studies annotated with MSigDB C2}
+\title{RAVmodel from 536 studies, annotated with MSigDB C2}
 \format{
 An object of class \code{PCAGenomicSignatures} with 13934 rows and 17 columns.
 }
@@ -19,11 +19,10 @@ object constructed from 536 studies and annotated with MSigDB C2).
 ## RAVmodel_PLIERpriors.The full RAVmodel_PLIERpriors was created by the pipeline
 ## at https://github.com/shbrief/model_building.
 \dontrun{
-  library(PCAGenomicSignatures)
+  library(GenomicSuperSignature)
   library(bcellViper)
   data(bcellViper)
-  getModel("PLIERpriors")
-  RAVmodel <- readRDS("RAVmodel_PLIERpriors.rds")
+  RAVmodel <- getModel("PLIERpriors")
 
   # include top 15 validated RAVs
   val_all <- validate(dset, RAVmodel)

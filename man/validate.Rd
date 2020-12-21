@@ -18,7 +18,7 @@ validate(
 ExpressionSet or matrix) object(s). Gene names should be in 'symbol' format. Currently,
 each dataset should have at least 8 samples.}
 
-\item{RAVmodel}{PCAGenomicSignature object. You can also provide signature model matrix directly.}
+\item{RAVmodel}{PCAGenomicSignatures object. You can also provide signature model matrix directly.}
 
 \item{method}{A character string indicating which correlation coefficient is
 to be computed. One of "pearson" (default), "kendall", or "spearman": can be abbreviated.}

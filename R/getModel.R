@@ -35,10 +35,13 @@ s2p_cached_url <- function(url, rname = url, ask_on_update=FALSE,
 #'     \item \code{C2} : MSigDB C2 (curated gene sets)
 #'     \item \code{PLIERpriors} : bloodCellMarkersIRISDMAP, svmMarkers, and canonicalPathways
 #' }
-#' @return PCAGenomicSignatures object in \code{.rds} format saved in the current location.
+#' @param load Default is \code{FALSE}. If it's set to \code{TRUE}, the downloaded
+#' file will be loaded.
+#'
+#' @return File cache location or PCAGenomicSignatures object loaded from it.
 #'
 #' @export
-getModel <- function(prior = c("C2", "PLIERpriors")) {
+getModel <- function(prior = c("C2", "PLIERpriors"), load = FALSE) {
 
   if (!prior %in% c("C2", "PLIERpriors")) {
     stop("Prior you entered isn't available yet.")
@@ -48,13 +51,13 @@ getModel <- function(prior = c("C2", "PLIERpriors")) {
   fname <- paste0("RAVmodel_", prior, ".rds")
   fpath <- file.path('https://storage.googleapis.com',bucket_name, fname)
 
-  fpath = s2p_cached_url(fpath)
+  fpath <- s2p_cached_url(fpath)
 
-  return(fpath)
+  if (isTRUE(load)) {
+    model <- readRDS(fpath)
+    return(model)
+  } else {return(fpath)}
 }
-
-
-
 
 
 

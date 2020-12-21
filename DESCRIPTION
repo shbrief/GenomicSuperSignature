@@ -34,7 +34,6 @@ Suggests:
   forcats,
   grid,
   stats,
-  utils,
   wordcloud,
   circlize,
   EnrichmentBrowser,

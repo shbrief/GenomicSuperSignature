@@ -1,25 +1,25 @@
 ## Update the package name from 'PCAGenomicSignatures' to 'GenomicSuperSignature'
-fname <- "~/data2/PCAGenomicSignatures/vignettes/PCAmodel_C2.rds"
+fname <- "~/data2/GenomicSuperSignature/vignettes/PCAmodel_C2.rds"
 PCAmodel <- readRDS(fname)
 RVmodel <- GenomicSuperSignature::PCAGenomicSignatures(assays = list(model = model(PCAmodel)))
 metadata(RVmodel) <- GenomicSuperSignature::metadata(PCAmodel)
-metadata(RVmodel)$version <- ">= 0.0.6"
+metadata(RVmodel)$version <- ">= 0.0.7"
 studies(RVmodel) <- GenomicSuperSignature::studies(PCAmodel)
 silhouetteWidth(RVmodel) <- GenomicSuperSignature::silhouetteWidth(PCAmodel)
 trainingData(RVmodel) <- GenomicSuperSignature::trainingData(PCAmodel)
 gsea(RVmodel) <- GenomicSuperSignature::gsea(PCAmodel)
-saveRDS(RVmodel, "~/data2/PCAGenomicSignatures/vignettes/RAVmodel_C2.rds")
+saveRDS(RVmodel, "~/data2/GenomicSuperSignature/vignettes/RAVmodel_C2.rds")
 
 
 ## Update the avgLoading name 'RAV'
-fname <- "~/data2/PCAGenomicSignatures/vignettes/RAVmodel_C2.rds"
+fname <- "~/data2/GenomicSuperSignature/vignettes/RAVmodel_C2.rds"
 RVmodel <- readRDS(fname)
 names(metadata(RVmodel)$size) <- gsub("PCcluster", "RAV", names(metadata(RVmodel)$size))   # before
 names(metadata(RVmodel)$size) <- paste0("RAV", 1:length(metadata(RVmodel)$size))
 colnames(RVmodel) <- gsub("PCcluster", "RAV", colnames(RVmodel))
 names(gsea(RVmodel)) <- gsub("PCcluster", "RAV", names(gsea(RVmodel)))
 names(colData(RVmodel))[1] <- "RAV"
-saveRDS(RVmodel, "~/data2/PCAGenomicSignatures/vignettes/RAVmodel_C2.rds")
+saveRDS(RVmodel, "~/data2/GenomicSuperSignature/vignettes/RAVmodel_C2.rds")
 
 
 

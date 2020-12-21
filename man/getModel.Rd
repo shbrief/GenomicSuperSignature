@@ -4,7 +4,7 @@
 \alias{getModel}
 \title{Download a PCAGenomicSignatures model}
 \usage{
-getModel(prior = c("C2", "PLIERpriors"))
+getModel(prior = c("C2", "PLIERpriors"), load = FALSE)
 }
 \arguments{
 \item{prior}{The name of gene sets used to annotate PCAGenomicSignatures. Currently
@@ -13,9 +13,12 @@ there are two available options.
     \item \code{C2} : MSigDB C2 (curated gene sets)
     \item \code{PLIERpriors} : bloodCellMarkersIRISDMAP, svmMarkers, and canonicalPathways
 }}
+
+\item{load}{Default is \code{FALSE}. If it's set to \code{TRUE}, the downloaded
+file will be loaded.}
 }
 \value{
-PCAGenomicSignatures object in \code{.rds} format saved in the current location.
+File cache location or PCAGenomicSignatures object loaded from it.
 }
 \description{
 Download a PCAGenomicSignatures model

@@ -1,9 +1,9 @@
 context("GenomicSuperSignature functions tests")
 
-data(miniPCAmodel)
+data(miniRAVmodel)
 library(bcellViper)
 data(bcellViper)
-val_all <- validate(dset, miniPCAmodel)
+val_all <- validate(dset, miniRAVmodel)
 
 test_that("validate.R", {
   expect_true(is(val_all, "data.frame"))
@@ -21,12 +21,12 @@ test_that("validatedSignatures.R", {
 
 
 expect_error(getModel("C3"), "Prior you entered isn\'t available yet.")
-expect_error(meshTable(miniPCAmodel, 1))
-expect_equal(dim(meshTable(miniPCAmodel, 1994)), c(31, 2))
+expect_error(meshTable(miniRAVmodel, 1))
+expect_equal(dim(meshTable(miniRAVmodel, 1994)), c(31, 2))
 
 test_that("findsignature.R", {
-  res <- findSignature(miniPCAmodel, keyword = "Bcell")
-  res2 <- findSignature(miniPCAmodel, keyword = "Bcell", k = 5)
+  res <- findSignature(miniRAVmodel, keyword = "Bcell")
+  res2 <- findSignature(miniRAVmodel, keyword = "Bcell", k = 5)
 
   expect_true(is(res, "data.frame"))
   expect_true(is(res2, "vector"))

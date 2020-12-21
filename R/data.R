@@ -1,5 +1,5 @@
 #' @name miniRAVmodel
-#' @title PCAGenomicSignatures from 536 studies annotated with MSigDB C2
+#' @title RAVmodel from 536 studies, annotated with MSigDB C2
 #' @docType data
 #' @description
 #' A object providing a miniature version of RAVmodel_C2 (PCAGenomicSignatures
