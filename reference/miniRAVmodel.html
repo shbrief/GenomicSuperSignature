@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>GSEA on pre-ordered gene lists — run_gsea • GenomicSuperignature</title>
+<title>RAVmodel from 536 studies, annotated with MSigDB C2 — miniRAVmodel • GenomicSuperignature</title>
 
 
 <!-- jquery -->
@@ -39,9 +39,9 @@
 
 
 
-<meta property="og:title" content="GSEA on pre-ordered gene lists — run_gsea" />
-<meta property="og:description" content="This function is a wrapper of GSEA function,
-making it applicable to a list of gene lists. Set seed for reproducible result." />
+<meta property="og:title" content="RAVmodel from 536 studies, annotated with MSigDB C2 — miniRAVmodel" />
+<meta property="og:description" content="A object providing a miniature version of RAVmodel_C2 (PCAGenomicSignatures
+object constructed from 536 studies and annotated with MSigDB C2)." />
 
 
 
@@ -118,68 +118,47 @@ making it applicable to a list of gene lists. Set seed for reproducible result."
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>GSEA on pre-ordered gene lists</h1>
-    <small class="dont-index">Source: <a href='https://github.com/shbrief/GenomicSuperSignature/blob/master/R/funcForGSEA.R'><code>R/funcForGSEA.R</code></a></small>
-    <div class="hidden name"><code>run_gsea.Rd</code></div>
+    <h1>RAVmodel from 536 studies, annotated with MSigDB C2</h1>
+    <small class="dont-index">Source: <a href='https://github.com/shbrief/GenomicSuperSignature/blob/master/R/data.R'><code>R/data.R</code></a></small>
+    <div class="hidden name"><code>miniRAVmodel.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>This function is a wrapper of <code><a href='https://rdrr.io/pkg/clusterProfiler/man/GSEA.html'>GSEA</a></code> function,
-making it applicable to a list of gene lists. Set seed for reproducible result.</p>
+    <p>A object providing a miniature version of RAVmodel_C2 (PCAGenomicSignatures
+object constructed from 536 studies and annotated with MSigDB C2).</p>
     </div>
 
-    <pre class="usage"><span class='fu'>run_gsea</span><span class='op'>(</span>
-  <span class='va'>geneList</span>,
-  <span class='va'>TERM2GENE</span>,
-  <span class='va'>TERM2NAME</span>,
-  minGSSize <span class='op'>=</span> <span class='fl'>10</span>,
-  maxGSSize <span class='op'>=</span> <span class='fl'>500</span>,
-  pvalueCutoff <span class='op'>=</span> <span class='fl'>0.05</span>,
-  verbose <span class='op'>=</span> <span class='cn'>FALSE</span>,
-  <span class='va'>...</span>
-<span class='op'>)</span></pre>
+    <pre class="usage"><span class='va'>miniRAVmodel</span></pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>geneList</th>
-      <td><p>A list of genes ordered by rank</p></td>
-    </tr>
-    <tr>
-      <th>TERM2GENE</th>
-      <td><p>User input annotation of TERM TO GENE mapping, a data.frame of 2 column with term and gene</p></td>
-    </tr>
-    <tr>
-      <th>TERM2NAME</th>
-      <td><p>User input of TERM TO NAME mapping, a data.frame of 2 column with term and name. Optional.</p></td>
-    </tr>
-    <tr>
-      <th>minGSSize</th>
-      <td><p>A mininum size of gene set to be analyzed</p></td>
-    </tr>
-    <tr>
-      <th>maxGSSize</th>
-      <td><p>A maximum size of gene set to be analyzed</p></td>
-    </tr>
-    <tr>
-      <th>pvalueCutoff</th>
-      <td><p>p-value cutoff</p></td>
-    </tr>
-    <tr>
-      <th>verbose</th>
-      <td><p>Logical. Default is <code>FALSE</code></p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Any additional argument inherited from <code><a href='https://rdrr.io/pkg/clusterProfiler/man/GSEA.html'>GSEA</a></code>.</p></td>
-    </tr>
-    </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A list of <code>gseaResult</code> objects. <code>NA</code> if there is no enrichment result.</p>
+    <p>An object of class <code>PCAGenomicSignatures</code> with 13934 rows and 17 columns.</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='co'>## The following is the code used to create this miniRAVmodel from the full</span>
+<span class='co'>## RAVmodel_PLIERpriors.The full RAVmodel_PLIERpriors was created by the pipeline</span>
+<span class='co'>## at https://github.com/shbrief/model_building.</span>
+<span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/shbrief/GenomicSuperSignature'>GenomicSuperSignature</a></span><span class='op'>)</span>
+  <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>bcellViper</span><span class='op'>)</span>
+  <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>bcellViper</span><span class='op'>)</span>
+  <span class='va'>RAVmodel</span> <span class='op'>&lt;-</span> <span class='fu'><a href='getModel.html'>getModel</a></span><span class='op'>(</span><span class='st'>"PLIERpriors"</span><span class='op'>)</span>
+
+  <span class='co'># include top 15 validated RAVs</span>
+  <span class='va'>val_all</span> <span class='op'>&lt;-</span> <span class='fu'><a href='validate.html'>validate</a></span><span class='op'>(</span><span class='va'>dset</span>, <span class='va'>RAVmodel</span><span class='op'>)</span>
+  <span class='va'>ind_validated</span> <span class='op'>&lt;-</span> <span class='fu'><a href='validatedSignatures.html'>validatedSignatures</a></span><span class='op'>(</span><span class='va'>val_all</span>, num.out <span class='op'>=</span> <span class='fl'>15</span>, indexOnly <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+
+  <span class='co'># include 2 keyword-containing RAVs</span>
+  <span class='va'>ind_keyword</span> <span class='op'>&lt;-</span> <span class='fu'><a href='findSignature.html'>findSignature</a></span><span class='op'>(</span><span class='va'>RAVmodel</span>, <span class='st'>"Bcell"</span>, k <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span>
+
+  <span class='va'>ind_all</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/unique.html'>unique</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='va'>ind_validated</span>, <span class='va'>ind_keyword</span><span class='op'>)</span><span class='op'>)</span>
+  <span class='va'>miniRAVmodel</span> <span class='op'>&lt;-</span> <span class='va'>RAVmodel</span><span class='op'>[</span>,<span class='va'>ind_all</span><span class='op'>]</span>
+  <span class='fu'><a href='GenomicSignatures-methods.html'>metadata</a></span><span class='op'>(</span><span class='va'>miniRAVmodel</span><span class='op'>)</span><span class='op'>$</span><span class='va'>size</span> <span class='op'>&lt;-</span> <span class='fu'><a href='GenomicSignatures-methods.html'>metadata</a></span><span class='op'>(</span><span class='va'>miniRAVmodel</span><span class='op'>)</span><span class='op'>$</span><span class='va'>size</span><span class='op'>[</span><span class='va'>ind_all</span><span class='op'>]</span>
+
+  <span class='fu'><a href='https://rdrr.io/r/base/save.html'>save</a></span><span class='op'>(</span><span class='va'>miniRAVmodel</span>, file <span class='op'>=</span> <span class='st'>"data/miniRAVmodel.RData"</span>, compress <span class='op'>=</span> <span class='st'>"bzip2"</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GenomicSuperignature</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.7</span>
       </span>
     </div>
 
@@ -59,7 +59,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/shbrief/GenomicSuperSignature">
-    <span class="fa fa-github fa-lg"></span>
+    <span class="fas fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -73,14 +73,13 @@
 
       
 
-      </header><script src="GenomicSuperSignature_Contents_files/accessible-code-block-0.0.1/empty-anchor.js"></script><link href="GenomicSuperSignature_Contents_files/anchor-sections-1.0/anchor-sections.css" rel="stylesheet">
-<script src="GenomicSuperSignature_Contents_files/anchor-sections-1.0/anchor-sections.js"></script><div class="row">
+      </header><script src="GenomicSuperSignature_Contents_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>GenomicSuperSignature - Contents</h1>
                         <h4 class="author">Sehyun Oh</h4>
             
-            <h4 class="date">November 17, 2020</h4>
+            <h4 class="date">December 21, 2020</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/shbrief/GenomicSuperSignature/blob/master/vignettes/GenomicSuperSignature_Contents.Rmd"><code>vignettes/GenomicSuperSignature_Contents.Rmd</code></a></small>
       <div class="hidden name"><code>GenomicSuperSignature_Contents.Rmd</code></div>
@@ -95,22 +94,22 @@
 <div id="install-and-load-package" class="section level2">
 <h2 class="hasAnchor">
 <a href="#install-and-load-package" class="anchor"></a>Install and load package</h2>
-<div class="sourceCode" id="cb1"><pre class="downlit">
-<span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="st"><a href="https://devtools.r-lib.org/">"devtools"</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
+<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html">require</a></span><span class="op">(</span><span class="st"><a href="https://devtools.r-lib.org/">"devtools"</a></span><span class="op">)</span><span class="op">)</span> <span class="op">{</span>
   <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span>
 <span class="op">}</span>
-<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"shbrief/GenomicSuperSignature"</span><span class="op">)</span></pre></div>
-<div class="sourceCode" id="cb2"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/shbrief/GenomicSuperSignature">GenomicSuperSignature</a></span><span class="op">)</span></pre></div>
+<span class="fu">devtools</span><span class="fu">::</span><span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"shbrief/GenomicSuperSignature"</span><span class="op">)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/shbrief/GenomicSuperSignature">GenomicSuperSignature</a></span><span class="op">)</span></code></pre></div>
 </div>
 <div id="download-ravmodel" class="section level2">
 <h2 class="hasAnchor">
 <a href="#download-ravmodel" class="anchor"></a>Download RAVmodel</h2>
 <p>Currently, you can download GenomicSuperSignature from Google Cloud bucket using <code><a href="../reference/getModel.html">GenomicSuperSignature::getModel</a></code> function. This model is built from top 20 PCs of 536 studies (containing 44,890 samples) containing 13,934 common genes from each of 536 study’s top 90% varying genes based on thier study-level standard deviation. There are two versions of this using different gene sets for GSEA-based annotation; MSigDB C2 (<code>C2</code>) and three priors from PLIER package (<code>PLIERpriors</code>). In this vignette, we are using the <code>C2</code> annotated model.</p>
-<div class="sourceCode" id="cb3"><pre class="downlit">
-<span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/files.html">file.exists</a></span><span class="op">(</span><span class="st">"RAVmodel_C2.rds"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span><span class="fu"><a href="../reference/getModel.html">getModel</a></span><span class="op">(</span><span class="st">"C2"</span><span class="op">)</span><span class="op">}</span> 
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/files.html">file.exists</a></span><span class="op">(</span><span class="st">"RAVmodel_C2.rds"</span><span class="op">)</span><span class="op">)</span> <span class="op">{</span><span class="fu"><a href="../reference/getModel.html">getModel</a></span><span class="op">(</span><span class="st">"C2"</span><span class="op">)</span><span class="op">}</span> 
 <span class="va">RAVmodel</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/readRDS.html">readRDS</a></span><span class="op">(</span><span class="st">"RAVmodel_C2.rds"</span><span class="op">)</span>
-<span class="va">RAVmodel</span></pre></div>
+<span class="va">RAVmodel</span></code></pre></div>
 <pre><code>#&gt; class: PCAGenomicSignatures 
 #&gt; dim: 13934 4764 
 #&gt; metadata(7): cluster size ... updateNote version
@@ -146,8 +145,8 @@
 <a href="#ravs" class="anchor"></a>RAVs</h2>
 <p><em>R</em>eplicable <em>A</em>xis of <em>V</em>ariation (RAVs, averaged loadings) is the main part of GenomicSuperSignature, serving as an index connecting new datasets and the existing database. You can access it through <code><a href="../reference/GenomicSignatures-methods.html">GenomicSuperSignature::model</a></code> (equivalent of <code><a href="https://rdrr.io/pkg/SummarizedExperiment/man/SummarizedExperiment-class.html">SummarizedExperiment::assay</a></code>). Rows are genes and columns are RAVs.</p>
 <p>Here, RAVmodel consists of 13,934 genes and 4,764 RAVs.</p>
-<div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="fu"><a href="../reference/GenomicSignatures-methods.html">model</a></span><span class="op">(</span><span class="va">RAVmodel</span><span class="op">)</span><span class="op">)</span>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="fu"><a href="../reference/GenomicSignatures-methods.html">model</a></span><span class="op">(</span><span class="va">RAVmodel</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; [1] "matrix" "array"</span>
 <span class="fu"><a href="https://rdrr.io/r/base/dim.html">dim</a></span><span class="op">(</span><span class="fu"><a href="../reference/GenomicSignatures-methods.html">model</a></span><span class="op">(</span><span class="va">RAVmodel</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; [1] 13934  4764</span>
@@ -156,19 +155,19 @@
 <span class="co">#&gt; CASKIN1 0.002449532 -2.845471e-03  0.001601715 -0.009366156</span>
 <span class="co">#&gt; DDX3Y   0.006093438  1.870528e-03 -0.004346019 -0.006094526</span>
 <span class="co">#&gt; MDGA1   0.009999975  2.610302e-03 -0.002831447 -0.006710757</span>
-<span class="co">#&gt; EIF1AY  0.007923652  8.507021e-05  0.002322275 -0.007850784</span></pre></div>
+<span class="co">#&gt; EIF1AY  0.007923652  8.507021e-05  0.002322275 -0.007850784</span></code></pre></div>
 </div>
 <div id="metadata" class="section level2">
 <h2 class="hasAnchor">
 <a href="#metadata" class="anchor"></a>Metadata</h2>
 <p>Metadata slot of the PCAGenomicSignatures object contains information related to the model buildling.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="fu"><a href="../reference/GenomicSignatures-methods.html">metadata</a></span><span class="op">(</span><span class="va">RAVmodel</span><span class="op">)</span><span class="op">)</span>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/names.html">names</a></span><span class="op">(</span><span class="fu"><a href="../reference/GenomicSignatures-methods.html">metadata</a></span><span class="op">(</span><span class="va">RAVmodel</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; [1] "cluster"    "size"       "k"          "n"          "MeSH_freq" </span>
-<span class="co">#&gt; [6] "updateNote" "version"</span></pre></div>
+<span class="co">#&gt; [6] "updateNote" "version"</span></code></pre></div>
 <p><code>cluster</code> contains the cluster membership of each PCs from training dataset and <code>size</code> is the integer vector with the length of clusters, containing the size of each cluster. <code>k</code> is the number of clusters and <code>n</code> is the number of top PCs kept from each study in training dataset. <code>MeSH_freq</code> is the information on the frequency of MeSH terms assigned to training dataset. You can see that MeSH term ‘Humans’ and ‘RNA-seq’ are top ranked, which is very expected because the training dataset of this model is Human RNA sequencing. <code>updateNote</code> tells you a brief note on the given model’s specification.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu"><a href="../reference/GenomicSignatures-methods.html">metadata</a></span><span class="op">(</span><span class="va">RAVmodel</span><span class="op">)</span><span class="op">$</span><span class="va">cluster</span><span class="op">)</span>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu"><a href="../reference/GenomicSignatures-methods.html">metadata</a></span><span class="op">(</span><span class="va">RAVmodel</span><span class="op">)</span><span class="op">$</span><span class="va">cluster</span><span class="op">)</span>
 <span class="co">#&gt; DRP000987.PC1 DRP000987.PC2 DRP000987.PC3 DRP000987.PC4 DRP000987.PC5 </span>
 <span class="co">#&gt;             1             2             3             4             5 </span>
 <span class="co">#&gt; DRP000987.PC6 </span>
@@ -187,14 +186,14 @@
 <span class="co">#&gt;                    RNA Whole Exome Sequencing        Sequencing, RNA </span>
 <span class="co">#&gt;                    372                    284                    277</span>
 <span class="fu"><a href="../reference/GenomicSignatures-methods.html">updateNote</a></span><span class="op">(</span><span class="va">RAVmodel</span><span class="op">)</span>  
-<span class="co">#&gt; [1] "536 refine.bio studies/ top 90% varying genes/ GSEA with MSigDB C2"</span></pre></div>
+<span class="co">#&gt; [1] "536 refine.bio studies/ top 90% varying genes/ GSEA with MSigDB C2"</span></code></pre></div>
 </div>
 <div id="studies-in-each-loading" class="section level2">
 <h2 class="hasAnchor">
 <a href="#studies-in-each-loading" class="anchor"></a>Studies in each loading</h2>
 <p>You can find which studies are in each cluster using <code>studies</code> method. Output is a list with the length of clusters, where each element is a character vector containing the name of studies in each cluster.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="../reference/PCAGenomicSignatures-methods.html">studies</a></span><span class="op">(</span><span class="va">RAVmodel</span><span class="op">)</span><span class="op">)</span>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="../reference/PCAGenomicSignatures-methods.html">studies</a></span><span class="op">(</span><span class="va">RAVmodel</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; [1] 4764</span>
 <span class="fu"><a href="../reference/PCAGenomicSignatures-methods.html">studies</a></span><span class="op">(</span><span class="va">RAVmodel</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span>
 <span class="co">#&gt; $Cl4764_01</span>
@@ -207,16 +206,16 @@
 <span class="co">#&gt; [19] "SRP133442" "SRP135684" "SRP155483"</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; $Cl4764_03</span>
-<span class="co">#&gt; [1] "DRP000987" "SRP001540" "SRP056840" "SRP125396"</span></pre></div>
+<span class="co">#&gt; [1] "DRP000987" "SRP001540" "SRP056840" "SRP125396"</span></code></pre></div>
 <p>You can check which PC from different studies are in RAVs using <code>PCinRAV</code>.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit">
-<span class="fu"><a href="../reference/PCinRAV.html">PCinRAV</a></span><span class="op">(</span><span class="va">RAVmodel</span>, <span class="fl">2</span><span class="op">)</span>
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="../reference/PCinRAV.html">PCinRAV</a></span><span class="op">(</span><span class="va">RAVmodel</span>, <span class="fl">2</span><span class="op">)</span>
 <span class="co">#&gt;  [1] "DRP000987.PC2" "ERP022839.PC2" "ERP104463.PC1" "ERP106996.PC2"</span>
 <span class="co">#&gt;  [5] "ERP109789.PC2" "ERP114435.PC1" "SRP059039.PC3" "SRP059172.PC2"</span>
 <span class="co">#&gt;  [9] "SRP065317.PC1" "SRP071547.PC3" "SRP073061.PC2" "SRP074274.PC5"</span>
 <span class="co">#&gt; [13] "SRP075449.PC2" "SRP092158.PC2" "SRP096736.PC2" "SRP107337.PC3"</span>
 <span class="co">#&gt; [17] "SRP111402.PC1" "SRP125008.PC2" "SRP133442.PC1" "SRP135684.PC4"</span>
-<span class="co">#&gt; [21] "SRP155483.PC2"</span></pre></div>
+<span class="co">#&gt; [21] "SRP155483.PC2"</span></code></pre></div>
 </div>
 <div id="silhouette-width" class="section level2">
 <h2 class="hasAnchor">
@@ -226,17 +225,17 @@
 - Values close to 0 suggest that the observation is borderline matched between two clusters<br>
 - Values close to -1 suggest that the observations may be assigned to the wrong cluster</p>
 <p>Can I use silhouette width to assign the level of validity for avgLoadings?</p>
-<div class="sourceCode" id="cb10"><pre class="downlit">
-<span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/PCAGenomicSignatures-methods.html">silhouetteWidth</a></span><span class="op">(</span><span class="va">RAVmodel</span><span class="op">)</span>
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/PCAGenomicSignatures-methods.html">silhouetteWidth</a></span><span class="op">(</span><span class="va">RAVmodel</span><span class="op">)</span>
 <span class="fu"><a href="https://rdrr.io/r/base/summary.html">summary</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span>
 <span class="co">#&gt;      Min.   1st Qu.    Median      Mean   3rd Qu.      Max. </span>
-<span class="co">#&gt; -0.156217 -0.026059  0.000000 -0.001204  0.000000  0.835684</span></pre></div>
+<span class="co">#&gt; -0.156217 -0.026059  0.000000 -0.001204  0.000000  0.835684</span></code></pre></div>
 </div>
 <div id="gsea-on-each-loading" class="section level2">
 <h2 class="hasAnchor">
 <a href="#gsea-on-each-loading" class="anchor"></a>GSEA on each loading</h2>
-<div class="sourceCode" id="cb11"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="fu"><a href="../reference/PCAGenomicSignatures-methods.html">gsea</a></span><span class="op">(</span><span class="va">RAVmodel</span><span class="op">)</span><span class="op">)</span>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="fu"><a href="../reference/PCAGenomicSignatures-methods.html">gsea</a></span><span class="op">(</span><span class="va">RAVmodel</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; [1] "list"</span>
 <span class="fu"><a href="https://rdrr.io/r/base/class.html">class</a></span><span class="op">(</span><span class="fu"><a href="../reference/PCAGenomicSignatures-methods.html">gsea</a></span><span class="op">(</span><span class="va">RAVmodel</span><span class="op">)</span><span class="op">[[</span><span class="fl">1</span><span class="op">]</span><span class="op">]</span><span class="op">)</span>
 <span class="co">#&gt; [1] "data.frame"</span>
@@ -270,14 +269,14 @@
 <span class="co">#&gt; RASHI_RESPONSE_TO_IONIZING_RADIATION_2          3.43231e-08</span>
 <span class="co">#&gt; REACTOME_TRANSLATION                            3.43231e-08</span>
 <span class="co">#&gt; ZHU_CMV_ALL_DN                                  3.43231e-08</span>
-<span class="co">#&gt; GALINDO_IMMUNE_RESPONSE_TO_ENTEROTOXIN          3.43231e-08</span></pre></div>
+<span class="co">#&gt; GALINDO_IMMUNE_RESPONSE_TO_ENTEROTOXIN          3.43231e-08</span></code></pre></div>
 </div>
 <div id="mesh-terms-for-each-study" class="section level2">
 <h2 class="hasAnchor">
 <a href="#mesh-terms-for-each-study" class="anchor"></a>MeSH terms for each study</h2>
 <p>You can find MeSH terms associated with each study using <code><a href="../reference/PCAGenomicSignatures-methods.html">mesh(x)</a></code> method. Output is a list with the length of studies in training dataset, where each element is a data frame containing the assigned MeSH terms and the detail of them. The last column <code>bagOfWords</code> is the frequency of that MeSH term in the whole training dataset.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="../reference/PCAGenomicSignatures-methods.html">mesh</a></span><span class="op">(</span><span class="va">RAVmodel</span><span class="op">)</span><span class="op">)</span>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="../reference/PCAGenomicSignatures-methods.html">mesh</a></span><span class="op">(</span><span class="va">RAVmodel</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; [1] 536</span>
 <span class="fu"><a href="../reference/PCAGenomicSignatures-methods.html">mesh</a></span><span class="op">(</span><span class="va">RAVmodel</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>
 <span class="co">#&gt; $DRP000987</span>
@@ -325,14 +324,14 @@
 <span class="co">#&gt; 1573542        372</span>
 <span class="co">#&gt; 58627           20</span>
 <span class="co">#&gt; 1230230          8</span>
-<span class="co">#&gt; 35822           11</span></pre></div>
+<span class="co">#&gt; 35822           11</span></code></pre></div>
 </div>
 <div id="pca-summary" class="section level2">
 <h2 class="hasAnchor">
 <a href="#pca-summary" class="anchor"></a>PCA summary</h2>
 <p>You can find the PCA summary of each study using <code>PCAsummary</code> method. Output is a list with the length of studies, where each element is a matrix containing PCA summary results with SD/Variance/Cumulative.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="../reference/PCAGenomicSignatures-methods.html">PCAsummary</a></span><span class="op">(</span><span class="va">RAVmodel</span><span class="op">)</span><span class="op">)</span>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/length.html">length</a></span><span class="op">(</span><span class="fu"><a href="../reference/PCAGenomicSignatures-methods.html">PCAsummary</a></span><span class="op">(</span><span class="va">RAVmodel</span><span class="op">)</span><span class="op">)</span>
 <span class="co">#&gt; [1] 536</span>
 <span class="fu"><a href="../reference/PCAGenomicSignatures-methods.html">PCAsummary</a></span><span class="op">(</span><span class="va">RAVmodel</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span>
 <span class="co">#&gt; $DRP000987</span>
@@ -355,14 +354,14 @@
 <span class="co">#&gt;            DRP000987.PC17 DRP000987.PC18 DRP000987.PC19 DRP000987.PC20</span>
 <span class="co">#&gt; SD             6.44257163    6.245257583    6.042236748    5.992461574</span>
 <span class="co">#&gt; Variance       0.00817466    0.007681604    0.007190294    0.007072317</span>
-<span class="co">#&gt; Cumulative     0.68445319    0.692134796    0.699325091    0.706397408</span></pre></div>
+<span class="co">#&gt; Cumulative     0.68445319    0.692134796    0.699325091    0.706397408</span></code></pre></div>
 </div>
 </div>
 <div id="session-info" class="section level1">
 <h1 class="hasAnchor">
 <a href="#session-info" class="anchor"></a>Session Info</h1>
-<div class="sourceCode" id="cb14"><pre class="downlit">
-<span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span>
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; R version 4.0.3 (2020-10-10)</span>
 <span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span>
 <span class="co">#&gt; Running under: Ubuntu 18.04.5 LTS</span>
@@ -384,45 +383,45 @@
 <span class="co">#&gt; [8] methods   base     </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; other attached packages:</span>
-<span class="co">#&gt;  [1] GenomicSuperSignature_0.0.6 SummarizedExperiment_1.19.9</span>
-<span class="co">#&gt;  [3] Biobase_2.49.1              GenomicRanges_1.41.6       </span>
-<span class="co">#&gt;  [5] GenomeInfoDb_1.25.11        IRanges_2.23.10            </span>
-<span class="co">#&gt;  [7] S4Vectors_0.27.14           BiocGenerics_0.35.4        </span>
-<span class="co">#&gt;  [9] MatrixGenerics_1.1.8        matrixStats_0.57.0         </span>
-<span class="co">#&gt; [11] BiocStyle_2.17.2           </span>
+<span class="co">#&gt;  [1] GenomicSuperSignature_0.0.7 SummarizedExperiment_1.20.0</span>
+<span class="co">#&gt;  [3] Biobase_2.50.0              GenomicRanges_1.42.0       </span>
+<span class="co">#&gt;  [5] GenomeInfoDb_1.26.2         IRanges_2.24.1             </span>
+<span class="co">#&gt;  [7] S4Vectors_0.28.1            BiocGenerics_0.36.0        </span>
+<span class="co">#&gt;  [9] MatrixGenerics_1.2.0        matrixStats_0.57.0         </span>
+<span class="co">#&gt; [11] BiocStyle_2.18.1           </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; loaded via a namespace (and not attached):</span>
 <span class="co">#&gt;  [1] bitops_1.0-6           fs_1.5.0               bit64_4.0.5           </span>
-<span class="co">#&gt;  [4] httr_1.4.2             RColorBrewer_1.1-2     rprojroot_1.3-2       </span>
-<span class="co">#&gt;  [7] tools_4.0.3            backports_1.1.10       R6_2.4.1              </span>
-<span class="co">#&gt; [10] DBI_1.1.0              colorspace_1.4-1       GetoptLong_1.0.4      </span>
+<span class="co">#&gt;  [4] httr_1.4.2             RColorBrewer_1.1-2     rprojroot_2.0.2       </span>
+<span class="co">#&gt;  [7] tools_4.0.3            backports_1.2.1        R6_2.5.0              </span>
+<span class="co">#&gt; [10] DBI_1.1.0              colorspace_2.0-0       GetoptLong_1.0.5      </span>
 <span class="co">#&gt; [13] tidyselect_1.1.0       bit_4.0.4              curl_4.3              </span>
-<span class="co">#&gt; [16] compiler_4.0.3         textshaping_0.1.2      desc_1.2.0            </span>
-<span class="co">#&gt; [19] DelayedArray_0.15.16   bookdown_0.21          scales_1.1.1          </span>
-<span class="co">#&gt; [22] rappdirs_0.3.1         pkgdown_1.6.1          systemfonts_0.3.2     </span>
-<span class="co">#&gt; [25] stringr_1.4.0          digest_0.6.27          foreign_0.8-79        </span>
-<span class="co">#&gt; [28] rmarkdown_2.5          rio_0.5.16             XVector_0.29.3        </span>
-<span class="co">#&gt; [31] pkgconfig_2.0.3        htmltools_0.5.0        dbplyr_1.4.4          </span>
-<span class="co">#&gt; [34] rlang_0.4.8            GlobalOptions_0.1.2    readxl_1.3.1          </span>
-<span class="co">#&gt; [37] RSQLite_2.2.1          rstudioapi_0.11        shape_1.4.5           </span>
-<span class="co">#&gt; [40] generics_0.0.2         dplyr_1.0.2            zip_2.1.1             </span>
-<span class="co">#&gt; [43] car_3.0-10             RCurl_1.98-1.2         magrittr_1.5          </span>
-<span class="co">#&gt; [46] GenomeInfoDbData_1.2.4 Matrix_1.2-18          Rcpp_1.0.5            </span>
-<span class="co">#&gt; [49] munsell_0.5.0          abind_1.4-5            lifecycle_0.2.0       </span>
-<span class="co">#&gt; [52] stringi_1.5.3          yaml_2.2.1             carData_3.0-4         </span>
-<span class="co">#&gt; [55] zlibbioc_1.35.0        BiocFileCache_1.13.1   blob_1.2.1            </span>
-<span class="co">#&gt; [58] grid_4.0.3             forcats_0.5.0          crayon_1.3.4          </span>
-<span class="co">#&gt; [61] lattice_0.20-41        haven_2.3.1            circlize_0.4.10       </span>
-<span class="co">#&gt; [64] hms_0.5.3              knitr_1.30             ComplexHeatmap_2.5.6  </span>
-<span class="co">#&gt; [67] pillar_1.4.6           ggpubr_0.4.0           rjson_0.2.20          </span>
-<span class="co">#&gt; [70] ggsignif_0.6.0         glue_1.4.2             evaluate_0.14         </span>
-<span class="co">#&gt; [73] data.table_1.13.2      BiocManager_1.30.10    png_0.1-7             </span>
-<span class="co">#&gt; [76] vctrs_0.3.4            cellranger_1.1.0       gtable_0.3.0          </span>
-<span class="co">#&gt; [79] purrr_0.3.4            tidyr_1.1.2            clue_0.3-57           </span>
-<span class="co">#&gt; [82] assertthat_0.2.1       ggplot2_3.3.2          xfun_0.18             </span>
-<span class="co">#&gt; [85] openxlsx_4.2.2         broom_0.7.2            rstatix_0.6.0         </span>
-<span class="co">#&gt; [88] ragg_0.4.0             tibble_3.0.4           memoise_1.1.0         </span>
-<span class="co">#&gt; [91] cluster_2.1.0          ellipsis_0.3.1</span></pre></div>
+<span class="co">#&gt; [16] compiler_4.0.3         textshaping_0.2.1      Cairo_1.5-12.2        </span>
+<span class="co">#&gt; [19] desc_1.2.0             DelayedArray_0.16.0    bookdown_0.21         </span>
+<span class="co">#&gt; [22] scales_1.1.1           rappdirs_0.3.1         pkgdown_1.6.1         </span>
+<span class="co">#&gt; [25] systemfonts_0.3.2      stringr_1.4.0          digest_0.6.27         </span>
+<span class="co">#&gt; [28] foreign_0.8-79         rmarkdown_2.6          rio_0.5.16            </span>
+<span class="co">#&gt; [31] XVector_0.30.0         pkgconfig_2.0.3        htmltools_0.5.0       </span>
+<span class="co">#&gt; [34] dbplyr_2.0.0           rlang_0.4.9            GlobalOptions_0.1.2   </span>
+<span class="co">#&gt; [37] readxl_1.3.1           RSQLite_2.2.1          rstudioapi_0.13       </span>
+<span class="co">#&gt; [40] shape_1.4.5            generics_0.1.0         dplyr_1.0.2           </span>
+<span class="co">#&gt; [43] zip_2.1.1              car_3.0-10             RCurl_1.98-1.2        </span>
+<span class="co">#&gt; [46] magrittr_2.0.1         GenomeInfoDbData_1.2.4 Matrix_1.2-18         </span>
+<span class="co">#&gt; [49] Rcpp_1.0.5             munsell_0.5.0          abind_1.4-5           </span>
+<span class="co">#&gt; [52] lifecycle_0.2.0        stringi_1.5.3          yaml_2.2.1            </span>
+<span class="co">#&gt; [55] carData_3.0-4          zlibbioc_1.36.0        BiocFileCache_1.14.0  </span>
+<span class="co">#&gt; [58] blob_1.2.1             grid_4.0.3             forcats_0.5.0         </span>
+<span class="co">#&gt; [61] crayon_1.3.4           lattice_0.20-41        haven_2.3.1           </span>
+<span class="co">#&gt; [64] circlize_0.4.11        hms_0.5.3              knitr_1.30            </span>
+<span class="co">#&gt; [67] ComplexHeatmap_2.6.2   pillar_1.4.7           ggpubr_0.4.0          </span>
+<span class="co">#&gt; [70] rjson_0.2.20           ggsignif_0.6.0         glue_1.4.2            </span>
+<span class="co">#&gt; [73] evaluate_0.14          data.table_1.13.4      BiocManager_1.30.10   </span>
+<span class="co">#&gt; [76] png_0.1-7              vctrs_0.3.6            cellranger_1.1.0      </span>
+<span class="co">#&gt; [79] gtable_0.3.0           purrr_0.3.4            tidyr_1.1.2           </span>
+<span class="co">#&gt; [82] clue_0.3-58            assertthat_0.2.1       ggplot2_3.3.2         </span>
+<span class="co">#&gt; [85] xfun_0.19              openxlsx_4.2.3         broom_0.7.3           </span>
+<span class="co">#&gt; [88] rstatix_0.6.0          ragg_0.4.0             tibble_3.0.4          </span>
+<span class="co">#&gt; [91] memoise_1.1.0          cluster_2.1.0          ellipsis_0.3.1</span></code></pre></div>
 </div>
   </div>
 
