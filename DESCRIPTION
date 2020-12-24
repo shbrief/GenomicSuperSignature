@@ -76,5 +76,6 @@ Collate:
     'rmNaInf.R'
     'rowNorm.R'
     'sampleScoreHeatmap.R'
+    'subsetEnrichedPathways.R'
     'validate.R'
     'validatedSignatures.R'

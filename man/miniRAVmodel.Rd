@@ -22,7 +22,8 @@ object constructed from 536 studies and annotated with MSigDB C2).
   library(GenomicSuperSignature)
   library(bcellViper)
   data(bcellViper)
-  RAVmodel <- getModel("PLIERpriors")
+  getModel("PLIERpriors")
+  RAVmodel <- readRDS("RAVmodel_PLIERpriors.rds")
 
   # include top 15 validated RAVs
   val_all <- validate(dset, RAVmodel)

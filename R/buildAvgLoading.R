@@ -69,7 +69,7 @@ findStudiesInCluster <- function(RAVmodel, ind = NULL, studyTitle = FALSE) {
         }
 
         if (isTRUE(studyTitle)) {
-            dir <- system.file("extdata", package = "PCAGenomicSignatures")
+            dir <- system.file("extdata", package = "GenomicSuperSignature")
             studyMeta <- utils::read.table(file.path(dir, "studyMeta.tsv"))
             studyMeta <- studyMeta[,c("studyName", "title")]
             res <- studyMeta[which(studyMeta$studyName %in% studies),]
