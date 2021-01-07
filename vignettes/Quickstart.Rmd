@@ -43,17 +43,13 @@ There are two versions of this using different gene sets for GSEA-based annotati
 MSigDB C2 (`C2`) and three priors from PLIER package (`PLIERpriors`). In this 
 vignette, we are using the `C2` annotated model.
 
-```{r load_model, eval=FALSE}
-if (!file.exists("RAVmodel_C2.rds")) {getModel("C2")} 
-RAVmodel <- readRDS("RAVmodel_C2.rds")
-RAVmodel
-```
+Note that the first interactive run of this code, you will be asked to allow
+R to create a cache directory. The model file will be stored there and subsequent
+calls to `getModel` will read from the cache.
 
-```{r echo=FALSE}
-RAVmodel <- readRDS("RAVmodel_C2.rds")
-RAVmodel
+```{r load_model}
+RAVmodel <- getModel("C2", load=TRUE)
 ```
-
 
 ## Example dataset
 **Human B-cell expression dataset** The human B-cell dataset (Gene Expression Omnibus series GSE2350) 
@@ -152,9 +148,7 @@ Because the test dataset is human B-cell expression data, we tried the model ann
 with blood-associated gene sets. 
 
 ```{r message=FALSE, warning=FALSE}
-if (!file.exists("RAVmodel_PLIERpriors.rds")) {getModel("PLIERpriors")} 
-RAVmodel <- readRDS("RAVmodel_PLIERpriors.rds")
-RAVmodel
+RAVmodel <- getModel("PLIERpriors", load=TRUE)
 ```
 
 You can directly access the GSEA outputs for each RAV using the accessor, `gsea`.
