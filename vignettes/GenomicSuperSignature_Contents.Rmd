@@ -48,7 +48,7 @@ R to create a cache directory. The model file will be stored there and subsequen
 calls to `getModel` will read from the cache.
 
 
-```{r load_model, eval=FALSE}
+```{r load_model}
 RAVmodel <- getModel("C2", load=TRUE)
 ```
 
