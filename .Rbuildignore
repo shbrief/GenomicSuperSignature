@@ -4,7 +4,6 @@
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
-^\.travis\.yml$
 ^\.post_script_build.sh$
 update.sh
 /vignettes/*.rds
