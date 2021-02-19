@@ -70,7 +70,7 @@ plotValidate <- function(val_all, minClusterSize = 2, swFilter = FALSE,
         scale_size(range = c(0.5, 8), name = "Cluster Size") +
         scale_color_brewer(palette = colorPalette) +
         theme_bw() +
-        xlab("Average Silhouette width of each cluster") +
+        xlab("Average silhouette width of each cluster") +
         ylab("Validation score")
 
     if (isTRUE(interactive)) {plotly::ggplotly(p)} else {p}

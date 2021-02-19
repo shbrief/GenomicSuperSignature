@@ -29,7 +29,7 @@ msigdb_gsea <- function(ind, RAVmodel, category = "C2", n = NULL, pvalueCutoff =
     gs_name <- entrez_gene <- NES <- ordering <- NULL
 
     ## Target geneList
-    al <- model(RAVmodel)[, ind]
+    al <- RAVindex(RAVmodel)[, ind]
     obj <- list()
     obj[[1]] <- names(al)
     names(al) <- EnrichmentBrowser::idMap(obj, "hsa", from = "SYMBOL", to = "ENTREZID")[[1]]

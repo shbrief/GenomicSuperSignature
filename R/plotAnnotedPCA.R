@@ -56,11 +56,9 @@ plotAnnotatedPCA <- function(dataset, RAVmodel, PCs, val_all = NULL,
   }
 
   # Trim the long pathway names
-  annotatedPC <- annotatePC(c(ind1, ind2), val_all, RAVmodel, scoreCutoff = scoreCutoff, nesCutoff = nesCutoff)
-  a <- which(nchar(annotatedPC[,1]) > trimed_pathway_len)
-  annotatedPC[a,1] <- paste0(strtrim(annotatedPC[a,1], trimed_pathway_len), "...")
-  b <- which(nchar(annotatedPC[,2]) > trimed_pathway_len)
-  annotatedPC[b,2] <- paste0(strtrim(annotatedPC[b,2], trimed_pathway_len), "...")
+  annotatedPC <- annotatePC(c(ind1, ind2), val_all, RAVmodel,
+                            scoreCutoff = scoreCutoff, nesCutoff = nesCutoff,
+                            trimed_pathway_len = trimed_pathway_len)
 
   # PC annotation table
   myTable <- ggpubr::ggtexttable(annotatedPC,

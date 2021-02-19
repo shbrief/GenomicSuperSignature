@@ -19,6 +19,8 @@
 #' element is a data frame containing detailed GSEA output of enriched pathways.
 #' @param abs Default is \code{FALSE}. If it's set to \code{TRUE}, the enriched
 #' pathways will be listed based on \code{abs(NES)}.
+#' @param trimed_pathway_len Positive inter values, which is the display width of
+#' pathway names. Default is 45.
 #'
 #' @return A data frame of a list based on the \code{simplify} argument. Check the
 #' output detail above.
@@ -33,7 +35,8 @@
 #' @export
 annotatePC <- function(PCnum, val_all, RAVmodel, n = 5,
                        scoreCutoff = 0.5, nesCutoff = NULL,
-                       simplify = TRUE, abs = FALSE) {
+                       simplify = TRUE, abs = FALSE,
+                       trimed_pathway_len = 45) {
   res <- vector(mode = "list", length = length(PCnum))
 
   for (i in seq_along(PCnum)) {
@@ -66,13 +69,19 @@ annotatePC <- function(PCnum, val_all, RAVmodel, n = 5,
     }
   }
 
+  # Trim the long pathway names
+  for (i in seq_along(res)) {
+    ind <- which(nchar(res[[i]]$Description) > trimed_pathway_len)
+    res[[i]]$Description[ind] <- paste0(strtrim(res[[i]]$Description[ind], trimed_pathway_len), "...")
+  }
+
+  # Output format: list of data frame with detail vs. data frame only with description
   if (isTRUE(simplify)) {
     simple_res <- sapply(res, function(x) x$Description) %>% as.data.frame
     return(simple_res)
   } else {
     return(res)
   }
-
 }
 
 

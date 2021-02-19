@@ -34,14 +34,24 @@ devtools::install_github("shbrief/GenomicSuperSignature")
 ```
 
 RAVmodel can be directly downloaded from Google bucket with no cost. The sizes of 
-RAVmodels`RAVmodel_C2.rds` and `RAVmodel_PLIERpriors.rds` are 476.1MB and 475.1MB, respectively.
+RAVmodels`RAVmodel_C2.rds` and `RAVmodel_PLIERpriors.rds` are 476.1MB and 475.1MB, 
+respectively. You can use `wget` or `GenomicSuperSignature::getModel` function.
+
 ```
+## Download RAVmodel with wget
 wget https://storage.googleapis.com/genomic_super_signature/RAVmodel_C2.rds
 wget https://storage.googleapis.com/genomic_super_signature/RAVmodel_PLIERpriors.rds
+
+## Download RAVmodel with getModel function
+getModel("C2")
+getModel("PLIERpriors")
 ```
 
 ## Schematic
-Here is the overview of using GenomicSuperSignature.
+Here is the overview of GenomicSuperSignature - construction and application.
+<img src="https://raw.githubusercontent.com/shbrief/GenomicSuperSignature/master/vignettes/GSig_overview.png"/>
+
+This is the user's perspective of using GenomicSuperSignature.
 <img src="https://raw.githubusercontent.com/shbrief/GenomicSuperSignature/master/vignettes/GSig_model_usage_diagram.png"/>
 
 GenomicSuperSignature allows you to connect your gene expression data to the existing 

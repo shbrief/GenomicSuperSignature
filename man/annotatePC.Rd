@@ -12,7 +12,8 @@ annotatePC(
   scoreCutoff = 0.5,
   nesCutoff = NULL,
   simplify = TRUE,
-  abs = FALSE
+  abs = FALSE,
+  trimed_pathway_len = 45
 )
 }
 \arguments{
@@ -39,6 +40,9 @@ element is a data frame containing detailed GSEA output of enriched pathways.}
 
 \item{abs}{Default is \code{FALSE}. If it's set to \code{TRUE}, the enriched
 pathways will be listed based on \code{abs(NES)}.}
+
+\item{trimed_pathway_len}{Positive inter values, which is the display width of
+pathway names. Default is 45.}
 }
 \value{
 A data frame of a list based on the \code{simplify} argument. Check the

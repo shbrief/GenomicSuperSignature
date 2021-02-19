@@ -11,8 +11,8 @@
 #'
 #' @details
 #' \itemize{
-#'     \item assay(x) : RAVmodel (= avgLoading) containing genes x RAVs
-#'     \item metadata(x) : Metadata associated with the RAVmodel buildling process
+#'     \item assay(x) : RAVindex (= avgLoadings) containing genes x RAVs
+#'     \item metadata(x) : Metadata associated with the RAVindex buildling process
 #'     \item colData(x) : Information on RAVs
 #' }
 #'
@@ -28,7 +28,7 @@
 #'
 #' @section Accessors:
 #' \itemize{
-#'    \item model : Equivalent to the \code{assays(x)$model} accessor for convenience
+#'    \item RAVindex : Equivalent to the \code{assays(x)$RAVindex} accessor for convenience
 #'    \item geneSets : Access the \code{metadata(x)$geneSets} slot
 #'    \item updateNote : Access the \code{metadata(x)$updateNote} slot
 #' }
@@ -37,7 +37,7 @@
 #' @param value See details.
 #' @param ... Additional arguments for supporting functions.
 #'
-#' @aliases model colData metadata geneSets updateNote geneSets<- updateNote<-
+#' @aliases RAVindex colData metadata geneSets updateNote geneSets<- updateNote<-
 NULL
 
 
@@ -46,11 +46,11 @@ NULL
 ### ----------------------------------------------
 
 #' @export
-setGeneric("model", function(x) standardGeneric("model"))
+setGeneric("RAVindex", function(x) standardGeneric("RAVindex"))
 
-#' @exportMethod model
+#' @exportMethod RAVindex
 #' @rdname GenomicSignatures-methods
-setMethod("model", "GenomicSignatures", function(x) {
+setMethod("RAVindex", "GenomicSignatures", function(x) {
     out <- assay(x)
     return(out)
 })

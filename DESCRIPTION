@@ -1,12 +1,12 @@
 Package: GenomicSuperSignature
 Title: Interpretation of RNA-seq experiments through robust, efficient comparison to public databases
-Version: 0.0.7
-Date: 2020-12-17
+Version: 0.0.8
+Date: 2021-2-19
 Authors@R: person("Sehyun", "Oh", email = "Sehyun.Oh@sph.cuny.edu", role = c("aut", "cre"))
 Description: This package contains the index, which is the Replicable and interpretable 
   Axes of Variation (RAV) extracted from public RNA sequencing datasets by clustering and 
-  averaging top PCs. These indexes are further annotated with MeSH terms and GSEA. Functions 
-  to match PCA of new datasets to RAVs from existing studies, extract interpretable annotations, 
+  averaging top PCs. This index, named as RAVindex, is further annotated with MeSH terms and 
+  GSEA. Functions to connect PCs from new datasets to RAVs, extract interpretable annotations, 
   and provide intuitive visualization, are implemented in this package. Overall, this
   package enables researchers to analyze new data in the context of existing databases 
   with minimal computing resources.

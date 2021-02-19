@@ -6,8 +6,7 @@
 #'
 #' @description Keep the name with 'k + cluster number + number of PCs + number of unique studies'
 #' info during the model construction to make it easy to keep track of them, but at the
-#' PCAGenomicSignatures-class object building step, covert them into a short version,
-#' mPC (mean of PCs).
+#' PCAGenomicSignatures-class object building step, covert them into 'RAV + cluster number'.
 #'
 #' @param x PCAGenomicSignature-object
 #' @param ... Additional arguments for supporting functions.
@@ -32,7 +31,7 @@
 #'
 #' @details
 #' \itemize{
-#'     \item model(x) : RAVmodel (= avgLoading) containing genes x RAVs
+#'     \item RAVindex(x) : RAVindex (= avgLoadings) containing genes x RAVs
 #'     \item metadata(x)$cluster : A vector of integers (from 1:k) indicating the
 #'     cluster to which each point is allocated. Check \code{stats::kmeans} function.
 #'     \item metadata(x)$size : The number of points in each cluster. Check \code{stats::kmeans} function.
@@ -60,7 +59,7 @@
 #' the additional accessors for \code{PCAGenomicSignatures} specific data are listed
 #' below.
 #' \itemize{
-#'    \item model : Equivalent to the \code{assays(x)$model} accessor for convenience
+#'    \item RAVindex : Equivalent to the \code{assays(x)$RAVindex} accessor for convenience
 #'    \item geneSets : Access the \code{metadata(x)$geneSets} slot
 #'    \item studies : Access the \code{colData(x)$studies} slot
 #'    \item gsea : Access the \code{colData(x)$gsea}
@@ -96,7 +95,7 @@ PCAGenomicSignatures <- function(...)
 #'
 #' @details
 #' \itemize{
-#'     \item assay(x) : RAVmodel (= avgLoading) containing genes x RAVs
+#'     \item RAVindex(x) : RAVindex (= avgLoadings) containing genes x RAVs
 #'     \item metadata(x)$cluster : A vector of integers (from 1:k) indicating the
 #'     cluster to which each point is allocated. Check \code{stats::kmeans} function.
 #'     \item metadata(x)$size : The number of points in each cluster. Check \code{stats::kmeans} function.
@@ -124,7 +123,7 @@ PCAGenomicSignatures <- function(...)
 #' the additional accessors for \code{PCAGenomicSignatures} specific data are listed
 #' below.
 #' \itemize{
-#'    \item model : Equivalent to the \code{assays(x)$model} accessor for convenience
+#'    \item RAVindex : Equivalent to the \code{assays(x)$RAVindex} accessor for convenience
 #'    \item geneSets : Access the \code{metadata(x)$geneSets} slot
 #'    \item studies : Access the \code{colData(x)$studies} slot
 #'    \item gsea : Access the \code{colData(x)$gsea}

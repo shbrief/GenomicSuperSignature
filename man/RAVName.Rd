@@ -15,6 +15,5 @@
 \description{
 Keep the name with 'k + cluster number + number of PCs + number of unique studies'
 info during the model construction to make it easy to keep track of them, but at the
-PCAGenomicSignatures-class object building step, covert them into a short version,
-mPC (mean of PCs).
+PCAGenomicSignatures-class object building step, covert them into 'RAV + cluster number'.
 }
