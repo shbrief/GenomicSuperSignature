@@ -73,7 +73,7 @@ object constructed from 536 studies and annotated with MSigDB C2)." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GenomicSuperignature</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.8</span>
       </span>
     </div>
 
@@ -143,7 +143,8 @@ object constructed from 536 studies and annotated with MSigDB C2).</p>
   <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'><a href='https://github.com/shbrief/GenomicSuperSignature'>GenomicSuperSignature</a></span><span class='op'>)</span>
   <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>bcellViper</span><span class='op'>)</span>
   <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>bcellViper</span><span class='op'>)</span>
-  <span class='va'>RAVmodel</span> <span class='op'>&lt;-</span> <span class='fu'><a href='getModel.html'>getModel</a></span><span class='op'>(</span><span class='st'>"PLIERpriors"</span><span class='op'>)</span>
+  <span class='fu'><a href='getModel.html'>getModel</a></span><span class='op'>(</span><span class='st'>"PLIERpriors"</span><span class='op'>)</span>
+  <span class='va'>RAVmodel</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/readRDS.html'>readRDS</a></span><span class='op'>(</span><span class='st'>"RAVmodel_PLIERpriors.rds"</span><span class='op'>)</span>
 
   <span class='co'># include top 15 validated RAVs</span>
   <span class='va'>val_all</span> <span class='op'>&lt;-</span> <span class='fu'><a href='validate.html'>validate</a></span><span class='op'>(</span><span class='va'>dset</span>, <span class='va'>RAVmodel</span><span class='op'>)</span>

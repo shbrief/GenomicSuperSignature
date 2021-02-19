@@ -73,7 +73,7 @@ including RAVs with the negative average silhouette." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GenomicSuperignature</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.8</span>
       </span>
     </div>
 
@@ -136,7 +136,8 @@ including RAVs with the negative average silhouette.</p>
   scoreCutoff <span class='op'>=</span> <span class='fl'>0.5</span>,
   nesCutoff <span class='op'>=</span> <span class='cn'>NULL</span>,
   simplify <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  abs <span class='op'>=</span> <span class='cn'>FALSE</span>
+  abs <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  trimed_pathway_len <span class='op'>=</span> <span class='fl'>45</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -182,6 +183,11 @@ element is a data frame containing detailed GSEA output of enriched pathways.</p
       <td><p>Default is <code>FALSE</code>. If it's set to <code>TRUE</code>, the enriched
 pathways will be listed based on <code><a href='https://rdrr.io/r/base/MathFun.html'>abs(NES)</a></code>.</p></td>
     </tr>
+    <tr>
+      <th>trimed_pathway_len</th>
+      <td><p>Positive inter values, which is the display width of
+pathway names. Default is 45.</p></td>
+    </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -198,7 +204,7 @@ output detail above.</p>
 </div><div class='output co'>#&gt;                                        PC2-RAV1076
 #&gt; 1                  REACTOME_METABOLISM_OF_PROTEINS
 #&gt; 2                                 KEGG_SPLICEOSOME
-#&gt; 3 REACTOME_ASSEMBLY_OF_THE_PRE_REPLICATIVE_COMPLEX
+#&gt; 3 REACTOME_ASSEMBLY_OF_THE_PRE_REPLICATIVE_COMP...
 #&gt; 4            REACTOME_LATE_PHASE_OF_HIV_LIFE_CYCLE
 #&gt; 5         MIPS_39S_RIBOSOMAL_SUBUNIT_MITOCHONDRIAL</div><div class='input'>
 </div></pre>

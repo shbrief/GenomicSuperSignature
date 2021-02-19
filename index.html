@@ -14,8 +14,8 @@
 <script src="pkgdown.js"></script><meta property="og:title" content="Interpretation of RNA-seq experiments through robust, efficient comparison to public databases">
 <meta property="og:description" content="This package contains the index, which is the Replicable and interpretable 
   Axes of Variation (RAV) extracted from public RNA sequencing datasets by clustering and 
-  averaging top PCs. These indexes are further annotated with MeSH terms and GSEA. Functions 
-  to match PCA of new datasets to RAVs from existing studies, extract interpretable annotations, 
+  averaging top PCs. This index, named as RAVindex, is further annotated with MeSH terms and 
+  GSEA. Functions to connect PCs from new datasets to RAVs, extract interpretable annotations, 
   and provide intuitive visualization, are implemented in this package. Overall, this
   package enables researchers to analyze new data in the context of existing databases 
   with minimal computing resources.">
@@ -37,7 +37,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">GenomicSuperignature</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.8</span>
       </span>
     </div>
 
@@ -105,15 +105,36 @@
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>Currently, you can install GenomicSuperSignature package from GitHub.</p>
 <pre><code><a href="https://devtools.r-lib.org//reference/remote-reexports.html">devtools::install_github("shbrief/GenomicSuperSignature")</a></code></pre>
-<p>RAVmodel can be directly downloaded from Google bucket with no cost. The sizes of RAVmodels<code>RAVmodel_C2.rds</code> and <code>RAVmodel_PLIERpriors.rds</code> are 476.1MB and 475.1MB, respectively.</p>
-<pre><code>wget https://storage.googleapis.com/genomic_super_signature/RAVmodel_C2.rds
-wget https://storage.googleapis.com/genomic_super_signature/RAVmodel_PLIERpriors.rds</code></pre>
+<p>RAVmodel can be directly downloaded from Google bucket with no cost. The sizes of RAVmodels<code>RAVmodel_C2.rds</code> and <code>RAVmodel_PLIERpriors.rds</code> are 476.1MB and 475.1MB, respectively. You can use <code>wget</code> or <code><a href="reference/getModel.html">GenomicSuperSignature::getModel</a></code> function.</p>
+<pre><code>## Download RAVmodel with wget
+wget https://storage.googleapis.com/genomic_super_signature/RAVmodel_C2.rds
+wget https://storage.googleapis.com/genomic_super_signature/RAVmodel_PLIERpriors.rds
+
+## Download RAVmodel with getModel function
+getModel("C2")
+getModel("PLIERpriors")</code></pre>
 </div>
 <div id="schematic" class="section level2">
 <h2 class="hasAnchor">
 <a href="#schematic" class="anchor"></a>Schematic</h2>
-<p>Here is the overview of using GenomicSuperSignature. <img src="https://raw.githubusercontent.com/shbrief/GenomicSuperSignature/master/vignettes/GSig_model_usage_diagram.png"></p>
-<p>GenomicSuperSignature allows you to connect your gene expression data to the existing database through the expression profile itself. You only need to provide your gene expression matrix. <img src="https://raw.githubusercontent.com/shbrief/GenomicSuperSignature/master/vignettes/GSig_knowledge_network.png"></p>
+<div id="overview-of-genomicsupersignature" class="section level4">
+<h4 class="hasAnchor">
+<a href="#overview-of-genomicsupersignature" class="anchor"></a>Overview of GenomicSuperSignature</h4>
+<p>Schematic illustration of RAVmodel construction and GenomicSuperSignature application. Building the RAVmodel (components in grey) is performed once on a time scale of hours on a high-memory, high-storage server. Users can apply RAVmodel on their data (component in red) using the GenomicSuperSignature R/Bioconductor package (components in blue), which operates on a time scale of seconds for exploratory data analyses (components in orange) on a typical laptop computer.</p>
+<p><img src="https://raw.githubusercontent.com/shbrief/GenomicSuperSignature/master/vignettes/GSig_overview.png"></p>
+</div>
+<div id="users-perspective" class="section level4">
+<h4 class="hasAnchor">
+<a href="#users-perspective" class="anchor"></a>User’s perspective</h4>
+<p>The GenomicSuperSignature package allows users to access a RAVmodel (Z matrix, blue) and annotation information on each RAV. From a gene expression matrix (Y matrix, grey), users can calculate dataset-level validation score or sample score matrix (B matrix, red). Through the RAV of your interest, additional information such as related studies, GSEA, and MeSH terms can be easily extracted.</p>
+<p><img src="https://raw.githubusercontent.com/shbrief/GenomicSuperSignature/master/vignettes/GSig_model_usage_diagram.png"></p>
+</div>
+<div id="knoweledge-network-assembled-by-genomicsupersignature" class="section level4">
+<h4 class="hasAnchor">
+<a href="#knoweledge-network-assembled-by-genomicsupersignature" class="anchor"></a>Knoweledge network assembled by GenomicSuperSignature</h4>
+<p>GenomicSuperSignature connects different public databases and prior information through RAVindex, creating the knowledge network illustrated here. Users can instantly access data and metadata resources from multiple entry points, such as gene expression profiles, MeSH terms, gene sets, and keywords.</p>
+<p><img src="https://raw.githubusercontent.com/shbrief/GenomicSuperSignature/master/vignettes/GSig_knowledge_network.png"></p>
+</div>
 </div>
 </div>
   </div>

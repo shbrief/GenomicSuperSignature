@@ -76,7 +76,7 @@ before adding any information in trainingData slot" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GenomicSuperignature</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.8</span>
       </span>
     </div>
 
@@ -135,7 +135,7 @@ before adding any information in <code>trainingData</code> slot</p>
     </div>
 
     <pre class="usage"><span class='co'># S4 method for GenomicSignatures</span>
-<span class='fu'>model</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+<span class='fu'>RAVindex</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
 
 <span class='co'># S4 method for GenomicSignatures</span>
 <span class='fu'>colData</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
@@ -182,8 +182,8 @@ before adding any information in <code>trainingData</code> slot</p>
 
     
 <ul>
-<li><p>assay(x) : RAVmodel (= avgLoading) containing genes x RAVs</p></li>
-<li><p>metadata(x) : Metadata associated with the RAVmodel buildling process</p></li>
+<li><p>assay(x) : RAVindex (= avgLoadings) containing genes x RAVs</p></li>
+<li><p>metadata(x) : Metadata associated with the RAVindex buildling process</p></li>
 <li><p>colData(x) : Information on RAVs</p></li>
 </ul>
 
@@ -204,7 +204,7 @@ before adding any information in <code>trainingData</code> slot</p>
     
 
 <ul>
-<li><p>model : Equivalent to the <code>assays(x)$model</code> accessor for convenience</p></li>
+<li><p>RAVindex : Equivalent to the <code>assays(x)$RAVindex</code> accessor for convenience</p></li>
 <li><p>geneSets : Access the <code>metadata(x)$geneSets</code> slot</p></li>
 <li><p>updateNote : Access the <code>metadata(x)$updateNote</code> slot</p></li>
 </ul>
