@@ -160,7 +160,6 @@ drawWordcloud <- function(RAVmodel, ind, rm.noise = NULL, scale = c(3, 0.5),
 
     # generate the word cloud
     if (is.null(seed)) {set.seed(1234)}
-    par(mar = rep(0, 4))
     wordcloud::wordcloud(words = all$word, freq = all$freq, scale = scale,
                          max.words = Inf, random.order = FALSE, rot.per = 0,
                          colors = RColorBrewer::brewer.pal(8, "Dark2"))

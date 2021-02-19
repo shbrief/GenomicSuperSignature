@@ -48,15 +48,19 @@ getModel("PLIERpriors")
 ```
 
 ## Schematic
-Here is the overview of GenomicSuperSignature - construction and application.
+#### Overview of GenomicSuperSignature 
+Schematic illustration of RAVmodel construction and GenomicSuperSignature application.  Building the RAVmodel (components in grey) is performed once on a time scale of hours on a high-memory, high-storage server. Users can apply RAVmodel on their data (component in red) using the GenomicSuperSignature R/Bioconductor package (components in blue), which operates on a time scale of seconds for exploratory data analyses (components in orange) on a typical laptop computer.   
+
 <img src="https://raw.githubusercontent.com/shbrief/GenomicSuperSignature/master/vignettes/GSig_overview.png"/>
 
-This is the user's perspective of using GenomicSuperSignature.
+#### User's perspective
+The GenomicSuperSignature package allows users to access a RAVmodel (Z matrix, blue) and annotation information on each RAV. From a gene expression matrix (Y matrix, grey), users can calculate dataset-level validation score or sample score matrix (B matrix, red). Through the RAV of your interest, additional information such as related studies, GSEA, and MeSH terms can be easily extracted. 
+
 <img src="https://raw.githubusercontent.com/shbrief/GenomicSuperSignature/master/vignettes/GSig_model_usage_diagram.png"/>
 
-GenomicSuperSignature allows you to connect your gene expression data to the existing 
-database through the expression profile itself. You only need to provide your gene
-expression matrix.
+#### Knoweledge network assembled by GenomicSuperSignature
+GenomicSuperSignature connects different public databases and prior information through RAVindex, creating the knowledge network illustrated here. Users can instantly access data and metadata resources from multiple entry points, such as gene expression profiles, MeSH terms, gene sets, and keywords. 
+
 <img src="https://raw.githubusercontent.com/shbrief/GenomicSuperSignature/master/vignettes/GSig_knowledge_network.png"/>
 
 
