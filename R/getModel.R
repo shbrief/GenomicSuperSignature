@@ -5,7 +5,6 @@ s2p_get_cache <- function(cache = rappdirs::user_cache_dir(appname='genomic_supe
 #' @importFrom BiocFileCache bfcneedsupdate bfcdownload bfcadd bfcquery bfcrpath
 #'
 s2p_cached_url <- function(url, rname = url, ask_on_update=FALSE,
-                           max_cache_age=getOption('sars2pack.max_cache_age', '2 days'),
                            ...) {
   bfc = s2p_get_cache()
   bfcres = bfcquery(bfc,rname,'rname')
