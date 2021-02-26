@@ -1,6 +1,6 @@
 Package: GenomicSuperSignature
 Title: Interpretation of RNA-seq experiments through robust, efficient comparison to public databases
-Version: 0.1.0
+Version: 0.1.1
 Date: 2021-02-25
 Authors@R: c(
   person("Sehyun", "Oh", email = "Sehyun.Oh@sph.cuny.edu", role = c("aut", "cre")),
@@ -23,6 +23,7 @@ Imports:
   Biobase,
   ggpubr,
   dplyr,
+  plotly,
   BiocFileCache
 Suggests:
   knitr,
@@ -42,7 +43,6 @@ Suggests:
   clusterProfiler,
   msigdbr,
   cluster,
-  plotly,
   RColorBrewer,
   reshape2,
   tibble,
