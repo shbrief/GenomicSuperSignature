@@ -1,6 +1,6 @@
 Package: GenomicSuperSignature
 Title: Interpretation of RNA-seq experiments through robust, efficient comparison to public databases
-Version: 0.0.8
+Version: 0.99.0
 Date: 2021-2-19
 Authors@R: person("Sehyun", "Oh", email = "Sehyun.Oh@sph.cuny.edu", role = c("aut", "cre"))
 Description: This package contains the index, which is the Replicable and interpretable 
