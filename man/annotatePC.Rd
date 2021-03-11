@@ -17,8 +17,8 @@ annotatePC(
 )
 }
 \arguments{
-\item{PCnum}{PC number of your dataset you want to get the annotation results. It
-should be an integer value between 1 and 8.}
+\item{PCnum}{A numeric vector. PC number of your dataset that you want to get
+the annotation results. The vector can contain any integer number among \code{1:8}.}
 
 \item{val_all}{The output from \code{\link{validate}}}
 
