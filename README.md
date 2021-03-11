@@ -63,6 +63,6 @@ The GenomicSuperSignature package allows users to access a RAVmodel (Z matrix, b
 #### Knoweledge network assembled by GenomicSuperSignature
 GenomicSuperSignature connects different public databases and prior information through RAVindex, creating the knowledge network illustrated here. Users can instantly access data and metadata resources from multiple entry points, such as gene expression profiles, MeSH terms, gene sets, and keywords. 
 
-<img src="https://raw.githubusercontent.com/shbrief/GenomicSuperSignature/master/vignettes/GSig_knowledge_network.png" width="90%" height="90%"/>
+<img src="https://raw.githubusercontent.com/shbrief/GenomicSuperSignature/master/vignettes/GSig_knowledge_graph.png" width="90%" height="90%"/>
 
 
