@@ -31,7 +31,7 @@
 #' all the RAVs will be checked for their contributing studies and the length
 #' of the list will be same as the number of RAVs (= \code{metadata(x)$k}).
 #'
-#' @note Mainly used for modeling building, within \link{buildAvgLoading}.
+#' @note Mainly used for model building, within \link{buildAvgLoading}.
 #' @export
 findStudiesInCluster <- function(RAVmodel, ind = NULL, studyTitle = FALSE) {
 

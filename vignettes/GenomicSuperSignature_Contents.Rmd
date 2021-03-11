@@ -54,7 +54,7 @@ RAVmodel <- getModel("C2", load=TRUE)
 
 
 ## Quick Summary of main information
-* model(RAVmodel) : avgLoading matrix   
+* RAVindex(RAVmodel) : avgLoading matrix   
 * studies(RAVmodel) : a list of character vectors, containing studies in each loading   
 * gsea(RAVmodel) : a list of gseaResult objects of each loading   
 * mesh(RAVmodel) : a list of data frames containing MeSH information associated with each study   
@@ -65,20 +65,20 @@ RAVmodel <- getModel("C2", load=TRUE)
 ## RAVs
 *R*eplicable *A*xis of *V*ariation (RAVs, averaged loadings) is the main part of 
 GenomicSuperSignature, serving as an index connecting new datasets and the existing 
-database. You can access it through `GenomicSuperSignature::model` (equivalent of `SummarizedExperiment::assay`). 
+database. You can access it through `GenomicSuperSignature::RAVindex` (equivalent of `SummarizedExperiment::assay`). 
 Rows are genes and columns are RAVs.
 
 Here, RAVmodel consists of 13,934 genes and 4,764 RAVs.
 
 ```{r}
-class(model(RAVmodel))
-dim(model(RAVmodel))
-model(RAVmodel)[1:4, 1:4]
+class(RAVindex(RAVmodel))
+dim(RAVindex(RAVmodel))
+RAVindex(RAVmodel)[1:4, 1:4]
 ```
 
 ## Metadata
 Metadata slot of the PCAGenomicSignatures object contains information related to 
-the model buildling.
+the model building.
 
 ```{r}
 names(metadata(RAVmodel))

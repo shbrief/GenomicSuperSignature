@@ -25,5 +25,5 @@ of the list will be same as the number of RAVs (= \code{metadata(x)$k}).
 Find the studies contributing each RAV
 }
 \note{
-Mainly used for modeling building, within \link{buildAvgLoading}.
+Mainly used for model building, within \link{buildAvgLoading}.
 }

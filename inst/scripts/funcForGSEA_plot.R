@@ -39,6 +39,8 @@ gseaBarplot <- function(ind, RAVmodel, category = "C2", n = 10,
 #' @param b A vector
 #' @return A numerical value
 #'
+#' @note From https://github.com/montilab/hypeR/blob/master/R/utils.R
+#'
 #' @keywords internal
 .jaccard_similarity <- function(a, b) {
     length(intersect(a, b)) / length(union(a, b))
@@ -50,6 +52,8 @@ gseaBarplot <- function(ind, RAVmodel, category = "C2", n = 10,
 #' @param b A vector
 #' @return A numerical value
 #'
+#' @note From https://github.com/montilab/hypeR/blob/master/R/utils.R
+#'
 #' @keywords internal
 .overlap_similarity <- function(a, b) {
     length(intersect(a, b)) / min(length(a), length(b))
@@ -60,6 +64,8 @@ gseaBarplot <- function(ind, RAVmodel, category = "C2", n = 10,
 #' @param string A an unformatted string with placeholders
 #' @param ... Variables to format placeholders with
 #' @return A formatted string
+#'
+#' @note From https://github.com/montilab/hypeR/blob/master/R/utils.R
 #'
 #' @examples
 #' \dontrun{

@@ -43,7 +43,7 @@ meshTable <- function(RAVmodel, ind, rm.noise = NULL, weighted = TRUE) {
     bow <- unlist(S4Vectors::metadata(RAVmodel)$MeSH_freq)  # frequency of the `name` in the background
     bow <- bow[which(bow > rm.noise)]   # remove rare terms
 
-    ### Variance explained by PC
+    ### Not weighted version
     if (weighted == FALSE) {
         study_id <- studies(RAVmodel)[[ind]]   # a list of studies in RAV
         all_MeSH <- mesh(RAVmodel)   # all the MeSH data
@@ -69,7 +69,7 @@ meshTable <- function(RAVmodel, ind, rm.noise = NULL, weighted = TRUE) {
         summary <- table(summary)
         summary <- summary[names(summary) %in% names(bow)]
 
-    ### Weighted, counting on variance explained by
+    ### Weighted based on variance explained by PC
     } else {
         PCs <- PCinRAV(RAVmodel, ind)
         varAll <- Reduce(cbind, PCAsummary(RAVmodel))

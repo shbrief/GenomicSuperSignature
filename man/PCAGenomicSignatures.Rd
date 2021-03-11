@@ -21,7 +21,7 @@ before adding any information in \code{trainingData} slot
 }
 \details{
 \itemize{
-    \item model(x) : RAVmodel (= avgLoading) containing genes x RAVs
+    \item RAVindex(x) : RAVindex (= avgLoadings) containing genes x RAVs
     \item metadata(x)$cluster : A vector of integers (from 1:k) indicating the
     cluster to which each point is allocated. Check \code{stats::kmeans} function.
     \item metadata(x)$size : The number of points in each cluster. Check \code{stats::kmeans} function.
@@ -59,7 +59,7 @@ All the accessors inherited from \code{SummarizedExperiment} are available and
 the additional accessors for \code{PCAGenomicSignatures} specific data are listed
 below.
 \itemize{
-   \item model : Equivalent to the \code{assays(x)$model} accessor for convenience
+   \item RAVindex : Equivalent to the \code{assays(x)$RAVindex} accessor for convenience
    \item geneSets : Access the \code{metadata(x)$geneSets} slot
    \item studies : Access the \code{colData(x)$studies} slot
    \item gsea : Access the \code{colData(x)$gsea}

@@ -56,19 +56,23 @@ plotAnnotatedPCA <- function(dataset, RAVmodel, PCs, val_all = NULL,
   }
 
   # Trim the long pathway names
-  annotatedPC <- annotatePC(c(ind1, ind2), val_all, RAVmodel, scoreCutoff = scoreCutoff, nesCutoff = nesCutoff)
-  a <- which(nchar(annotatedPC[,1]) > trimed_pathway_len)
-  annotatedPC[a,1] <- paste0(strtrim(annotatedPC[a,1], trimed_pathway_len), "...")
-  b <- which(nchar(annotatedPC[,2]) > trimed_pathway_len)
-  annotatedPC[b,2] <- paste0(strtrim(annotatedPC[b,2], trimed_pathway_len), "...")
+  annotatedPC <- annotatePC(c(ind1, ind2), val_all, RAVmodel,
+                            scoreCutoff = scoreCutoff, nesCutoff = nesCutoff,
+                            trimed_pathway_len = trimed_pathway_len)
 
-  # PC annotation table
-  myTable <- ggpubr::ggtexttable(annotatedPC,
-                                 rows = NULL, theme = ggpubr::ttheme("mOrange"))
-  myTable <- ggpubr::table_cell_font(myTable, row = 2:ggpubr::tab_nrow(myTable),
-                                     column = 1:2, size = 9)
+  # PC annotation table - flextable version
+  flextable::set_flextable_defaults(na_str = "NA")
+  myTable <- flextable::flextable(annotatedPC) %>% flextable::width(., width = 2.5)
+  myTable <- grid::rasterGrob(flextable::as_raster(myTable))
 
-  res <- ggpubr::ggarrange(myPlot, myTable, ncol = 1, nrow = 2, heights = c(1, 0.5))
+  # # PC annotation table - ggpubr version
+  # myTable <- ggpubr::ggtexttable(annotatedPC,
+  #                                rows = NULL, theme = ggpubr::ttheme("mOrange"))
+  # myTable <- ggpubr::table_cell_font(myTable, row = 2:ggpubr::tab_nrow(myTable),
+  #                                    column = 1:2, size = 9)
+
+  res <- ggpubr::ggarrange(myPlot, myTable,
+                           ncol = 1, nrow = 2, heights = c(1, 0.5))
   print(res)
 }
 

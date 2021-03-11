@@ -2,14 +2,14 @@
 % Please edit documentation in R/GenomicSignatures-methods.R
 \name{GenomicSignatures-methods}
 \alias{GenomicSignatures-methods}
-\alias{model}
+\alias{RAVindex}
 \alias{colData}
 \alias{metadata}
 \alias{geneSets}
 \alias{updateNote}
 \alias{geneSets<-}
 \alias{updateNote<-}
-\alias{model,GenomicSignatures-method}
+\alias{RAVindex,GenomicSignatures-method}
 \alias{colData,GenomicSignatures-method}
 \alias{metadata,GenomicSignatures-method}
 \alias{geneSets,GenomicSignatures-method}
@@ -20,7 +20,7 @@
 \alias{updateNote<-,GenomicSignatures-method}
 \title{Methods and accesors for \code{GenomicSignatures} object}
 \usage{
-\S4method{model}{GenomicSignatures}(x)
+\S4method{RAVindex}{GenomicSignatures}(x)
 
 \S4method{colData}{GenomicSignatures}(x)
 
@@ -54,8 +54,8 @@ before adding any information in \code{trainingData} slot
 }
 \details{
 \itemize{
-    \item assay(x) : RAVmodel (= avgLoading) containing genes x RAVs
-    \item metadata(x) : Metadata associated with the RAVmodel buildling process
+    \item assay(x) : RAVindex (= avgLoadings) containing genes x RAVs
+    \item metadata(x) : Metadata associated with the RAVindex buildling process
     \item colData(x) : Information on RAVs
 }
 }
@@ -74,7 +74,7 @@ Setter method values (i.e., \code{function(x) <- value}):
 \section{Accessors}{
 
 \itemize{
-   \item model : Equivalent to the \code{assays(x)$model} accessor for convenience
+   \item RAVindex : Equivalent to the \code{assays(x)$RAVindex} accessor for convenience
    \item geneSets : Access the \code{metadata(x)$geneSets} slot
    \item updateNote : Access the \code{metadata(x)$updateNote} slot
 }
