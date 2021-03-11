@@ -60,13 +60,19 @@ plotAnnotatedPCA <- function(dataset, RAVmodel, PCs, val_all = NULL,
                             scoreCutoff = scoreCutoff, nesCutoff = nesCutoff,
                             trimed_pathway_len = trimed_pathway_len)
 
-  # PC annotation table
-  myTable <- ggpubr::ggtexttable(annotatedPC,
-                                 rows = NULL, theme = ggpubr::ttheme("mOrange"))
-  myTable <- ggpubr::table_cell_font(myTable, row = 2:ggpubr::tab_nrow(myTable),
-                                     column = 1:2, size = 9)
+  # PC annotation table - flextable version
+  flextable::set_flextable_defaults(na_str = "NA")
+  myTable <- flextable::flextable(annotatedPC) %>% flextable::width(., width = 2.5)
+  myTable <- grid::rasterGrob(flextable::as_raster(myTable))
 
-  res <- ggpubr::ggarrange(myPlot, myTable, ncol = 1, nrow = 2, heights = c(1, 0.5))
+  # # PC annotation table - ggpubr version
+  # myTable <- ggpubr::ggtexttable(annotatedPC,
+  #                                rows = NULL, theme = ggpubr::ttheme("mOrange"))
+  # myTable <- ggpubr::table_cell_font(myTable, row = 2:ggpubr::tab_nrow(myTable),
+  #                                    column = 1:2, size = 9)
+
+  res <- ggpubr::ggarrange(myPlot, myTable,
+                           ncol = 1, nrow = 2, heights = c(1, 0.5))
   print(res)
 }
 

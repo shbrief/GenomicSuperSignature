@@ -3,8 +3,8 @@
 #' This function finds the RAV scored highest with the top PCs of the dataset,
 #' including RAVs with the negative average silhouette.
 #'
-#' @param PCnum PC number of your dataset you want to get the annotation results. It
-#' should be an integer value between 1 and 8.
+#' @param PCnum A numeric vector. PC number of your dataset that you want to get
+#' the annotation results. The vector can contain any integer number among \code{1:8}.
 #' @param val_all The output from \code{\link{validate}}
 #' @param RAVmodel The RAVmodel used to generate the input for the argument, \code{val_all}.
 #' @param n An integer. Default is 5. The number of the top enriched pathaways to
@@ -37,6 +37,10 @@ annotatePC <- function(PCnum, val_all, RAVmodel, n = 5,
                        scoreCutoff = 0.5, nesCutoff = NULL,
                        simplify = TRUE, abs = FALSE,
                        trimed_pathway_len = 45) {
+
+  ## Check PCnum is a valid input
+  if (any(!PCnum %in% 1:8)) {stop("PCnum should be an integer among c(1:8).")}
+
   res <- vector(mode = "list", length = length(PCnum))
 
   for (i in seq_along(PCnum)) {
