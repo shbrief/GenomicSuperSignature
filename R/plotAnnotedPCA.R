@@ -62,7 +62,7 @@ plotAnnotatedPCA <- function(dataset, RAVmodel, PCs, val_all = NULL,
 
   # PC annotation table - flextable version
   flextable::set_flextable_defaults(na_str = "NA")
-  myTable <- flextable::flextable(annotatedPC) %>% flextable::width(., width = 2.5)
+  myTable <- flextable::flextable(annotatedPC) %>% flextable::width(width = 2.5)
   myTable <- grid::rasterGrob(flextable::as_raster(myTable))
 
   # # PC annotation table - ggpubr version
