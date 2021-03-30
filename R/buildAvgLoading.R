@@ -35,10 +35,10 @@
 #' @export
 findStudiesInCluster <- function(RAVmodel, ind = NULL, studyTitle = FALSE) {
 
-    if (class(RAVmodel) == "PCAGenomicSignatures") {
+    if (is(RAVmodel,"PCAGenomicSignatures")) {
         x <- S4Vectors::metadata(RAVmodel)
         k <- x$k   # the number of clusters
-    } else if (class(RAVmodel) == "list") {  # this is for model building
+    } else if (is(RAVmodel,"list")) {  # this is for model building
         x <- RAVmodel
         x$size <- table(RAVmodel$cluster)
         k <- length(unique(RAVmodel$cluster))
