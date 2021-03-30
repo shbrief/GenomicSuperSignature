@@ -159,7 +159,6 @@ drawWordcloud <- function(RAVmodel, ind, rm.noise = NULL, scale = c(3, 0.5),
     if (nrow(all) == 0) {stop("No MeSH term is enriched.")}
 
     # generate the word cloud
-    if (is.null(seed)) {set.seed(1234)}
     wordcloud::wordcloud(words = all$word, freq = all$freq, scale = scale,
                          max.words = Inf, random.order = FALSE, rot.per = 0,
                          colors = RColorBrewer::brewer.pal(8, "Dark2"))
