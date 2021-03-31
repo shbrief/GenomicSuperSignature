@@ -18,6 +18,11 @@ A result from principle components analysis (PCA) in \code{\link[stats]{prcomp}}
 Performs a principal components analysis on the given data matrix and returns
 the results as an object of class prcomp.
 }
+\examples{
+m = matrix(rnorm(100),ncol=5)
+extractPC(m)
+
+}
 \seealso{
 \code{\link[stats]{prcomp}}
 }

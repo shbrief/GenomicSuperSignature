@@ -1,7 +1,18 @@
 #' Extract the list of PCs in a cluster
 #'
+#' A RAV model contain clusters of PCs from individual
+#' studies. This function extracts the names of the original
+#' PCs from the RAV model given the index in the RAV model.
+#'
 #' @param RAVmodel A PCAGenomicSignatures object
 #' @param ind An index of RAV
+#'
+#' @return A character vector of PC/study names
+#'
+#' @examples
+#' data(miniRAVmodel)
+#' miniRAVmodel
+#' PCinRAV(miniRAVmodel,695)
 #'
 #' @export
 PCinRAV <- function(RAVmodel, ind) {

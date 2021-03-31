@@ -8,6 +8,10 @@
 #' samples in the columns.
 #' @return A result from principle components analysis (PCA) in \code{\link[stats]{prcomp}} object.
 #'
+#' @examples
+#' m = matrix(rnorm(100),ncol=5)
+#' extractPC(m)
+#'
 #' @seealso \code{\link[stats]{prcomp}}
 #' @export
 extractPC <- function(x) {

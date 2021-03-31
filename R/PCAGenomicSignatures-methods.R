@@ -145,6 +145,10 @@ PCAGenomicSignatures <- function(...)
 #' @param object,x A \code{PCAGenomicSignatures} object
 #' @param value See details.
 #'
+#' @examples
+#' data(miniRAVmodel)
+#' miniRAVmodel
+#'
 #' @return PCAGenomicSignatures object with multiple setters or accessors
 #' @aliases studies<- silhouetteWidth<- gsea<- trainingData<- mesh<- PCAsummary<-
 #' studies silhouetteWidth gsea trainingData mesh PCAsummary

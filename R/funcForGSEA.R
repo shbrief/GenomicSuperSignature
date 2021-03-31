@@ -80,6 +80,8 @@ msigdb_gsea <- function(ind, RAVmodel, category = "C2", n = NULL, pvalueCutoff =
 #' @param gseaRes An output from \code{\link[clusterProfiler]{GSEA}}
 #' @param n A number of output to keep based on the \code{abs(NES)}
 #'
+#' @return a subset the original gseaRes object
+#'
 subsetGSEA <- function(gseaRes, n = 20) {
 
     ## Binding the variables from res locally to the function
@@ -88,7 +90,7 @@ subsetGSEA <- function(gseaRes, n = 20) {
     topPathways <- clusterProfiler::mutate(gseaRes, ordering = abs(NES)) %>%
         clusterProfiler::arrange(dplyr::desc(ordering)) %>%
         clusterProfiler::group_by(sign(NES)) %>%
-        clusterProfiler::slice(1:n)
+        clusterProfiler::slice(seq_len(n))
     return(topPathways)
 }
 
