@@ -49,12 +49,12 @@ findStudiesInCluster <- function(RAVmodel, ind = NULL, studyTitle = FALSE) {
     for (i in seq_along(x$cluster)) {
         z[i, x$cluster[i]] <- 1
     }
-    colnames(z) <- paste0("Cl", k, "_", formatC(1:k, width = 2, format = "d", flag = "0"))
+    colnames(z) <- paste0("Cl", k, "_", formatC(seq_len(k), width = 2, format = "d", flag = "0"))
     rownames(z) <- names(x$cluster)
 
     if (is.null(ind)) {
         studies <- list()
-        for (i in 1:ncol(z)) {
+        for (i in seq_len(ncol(z))) {
             studies[[i]] <- rownames(z)[which(z[,i] == 1)]
             studies[[i]] <- lapply(studies[[i]], function(x) {unlist(strsplit(x, "\\."))[1]})
             studies[[i]] <- unique(unlist(studies[[i]]))
@@ -114,14 +114,14 @@ buildAvgLoading <- function(dat, k, n = 20, cluster = NULL, study = TRUE) {
 
     # Separate the PC table into each cluster
     cl_ls <- list()
-    for (i in 1:k) {
+    for (i in seq_len(k)) {
         datName <- paste0("Cl", k, "_", formatC(i, width = 2, format = "d", flag = "0"))
         cl_ls[[datName]] <- dat[,res$cluster == i,drop=FALSE] %>% t
     }
 
     # the number of unique datasets in each cluster
     unique_sets <- c()
-    for (i in 1:k) {
+    for (i in seq_len(k)) {
         dat <- cl_ls[[i]]
         dataSetName <- gsub(".PC\\d+$", "", rownames(dat))
         uniqueDataSetName <- length(unique(dataSetName))
