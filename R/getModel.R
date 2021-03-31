@@ -34,13 +34,16 @@ s2p_cached_url <- function(url, rname = url, ask_on_update=FALSE,
 #'     \item \code{C2} : MSigDB C2 (curated gene sets)
 #'     \item \code{PLIERpriors} : bloodCellMarkersIRISDMAP, svmMarkers, and canonicalPathways
 #' }
-#' @param load Default is \code{FALSE}. If it's set to \code{TRUE}, the downloaded
-#' file will be loaded.
+#' @param load Default is \code{TRUE}. If it's set to \code{FALSE}, the models
+#' are just downloaded to cache but not loaded into memory.
 #'
 #' @return File cache location or PCAGenomicSignatures object loaded from it.
 #'
+#' @examples
+#' z = getModel("C2")
+#'
 #' @export
-getModel <- function(prior = c("C2", "PLIERpriors"), load = FALSE) {
+getModel <- function(prior = c("C2", "PLIERpriors"), load = TRUE) {
 
   if (!prior %in% c("C2", "PLIERpriors")) {
     stop("Prior you entered isn't available yet.")
