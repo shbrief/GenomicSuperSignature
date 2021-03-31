@@ -16,13 +16,13 @@
 
     if (is(dataset, "ExpressionSet")) {
         dat <- Biobase::exprs(dataset)
-    } else if (is(dataset,"SummarizedExperiment", "RangedSummarizedExperiment")) {
+    } else if (is(dataset,"SummarizedExperiment")) {
         dat <- SummarizedExperiment::assay(dataset)
     } else if (is(dataset,"matrix")) {
         dat <- dataset
     } else {
         stop("'dataset' should be one of the following objects: ExpressionSet,
-             SummarizedExperiment, RangedSummarizedExperiment, and matrix.")
+             SummarizedExperiment, and matrix.")
     }
 
     if (isTRUE(scale)) {dat <- rowNorm(dat)}   # row normalization
