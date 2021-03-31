@@ -75,6 +75,10 @@
 #' @param ... Additional arguments for supporting functions.
 #' @return PCAGenomicSignatures object with multiple setters or accessors
 #'
+#' @examples
+#' data(miniRAVmodel)
+#' miniRAVmodel
+#'
 #' @export
 PCAGenomicSignatures <- function(...)
 {
