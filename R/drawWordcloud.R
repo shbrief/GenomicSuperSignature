@@ -29,6 +29,10 @@ PCinRAV <- function(RAVmodel, ind) {
 #' @return A table with two columns, \code{word} and \code{freq}. MeSH terms in
 #' the defined RAV (by \code{ind} argument) is ordered based on their frequency.
 #'
+#' @examples
+#' data(miniRAVmodel)
+#' meshTable(miniRAVmodel,1139)
+#'
 #' @export
 meshTable <- function(RAVmodel, ind, rm.noise = NULL, weighted = TRUE) {
 

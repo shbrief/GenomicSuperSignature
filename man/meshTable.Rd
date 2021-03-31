@@ -27,3 +27,8 @@ the defined RAV (by \code{ind} argument) is ordered based on their frequency.
 \description{
 Build a two-column word/frequency table
 }
+\examples{
+data(miniRAVmodel)
+meshTable(miniRAVmodel,1139)
+
+}
