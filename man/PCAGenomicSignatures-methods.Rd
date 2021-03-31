@@ -121,3 +121,8 @@ below.
 }
 }
 
+\examples{
+data(miniRAVmodel)
+miniRAVmodel
+
+}

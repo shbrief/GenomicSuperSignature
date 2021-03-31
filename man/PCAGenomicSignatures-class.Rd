@@ -23,3 +23,8 @@ PCAGenomicSignatures
 associated with training data}
 }}
 
+\examples{
+data(miniRAVmodel)
+miniRAVmodel
+
+}

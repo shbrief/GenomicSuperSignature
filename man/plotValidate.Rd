@@ -37,6 +37,9 @@ Default is \code{FALSE}.}
 \item{colorPalette}{Default is \code{Dark2}. For other color options, please
 check \code{\link[ggplot2]{scale_color_brewer}}}
 }
+\value{
+a ggplot object
+}
 \description{
 There are three main information on the graph:
 \itemize{

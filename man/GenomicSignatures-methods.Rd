@@ -45,6 +45,9 @@
 
 \item{value}{See details.}
 }
+\value{
+A GenomicSignatures object for the constructor
+}
 \description{
 The default contents of \code{GenomicSignatures} object, with
 a set of accessor and setter generic functions, which extract either the \code{assay},
@@ -80,3 +83,9 @@ Setter method values (i.e., \code{function(x) <- value}):
 }
 }
 
+\examples{
+data(miniRAVmodel)
+miniRAVmodel
+
+
+}

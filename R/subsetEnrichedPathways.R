@@ -16,6 +16,16 @@
 #'
 #' @return A DataFrame with top and bottom \code{n} pathways from the enrichment results.
 #'
+#' @examples
+#' data(miniRAVmodel)
+#'
+#' # all RAVS in model
+#' subsetEnrichedPathways(miniRAVmodel,n=5)
+#'
+#' # only a specific RAV (note the colnames above)
+#' subsetEnrichedPathways(miniRAVmodel,ind=695,n=5)
+#'
+#'
 #' @export
 subsetEnrichedPathways <- function(RAVmodel, ind = NULL, n = 10, both = FALSE) {
 

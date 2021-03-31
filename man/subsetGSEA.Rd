@@ -11,6 +11,9 @@ subsetGSEA(gseaRes, n = 20)
 
 \item{n}{A number of output to keep based on the \code{abs(NES)}}
 }
+\value{
+a subset the original gseaRes object
+}
 \description{
 Subset GSEA output
 }

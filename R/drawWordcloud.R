@@ -1,7 +1,18 @@
 #' Extract the list of PCs in a cluster
 #'
+#' A RAV model contain clusters of PCs from individual
+#' studies. This function extracts the names of the original
+#' PCs from the RAV model given the index in the RAV model.
+#'
 #' @param RAVmodel A PCAGenomicSignatures object
 #' @param ind An index of RAV
+#'
+#' @return A character vector of PC/study names
+#'
+#' @examples
+#' data(miniRAVmodel)
+#' miniRAVmodel
+#' PCinRAV(miniRAVmodel,695)
 #'
 #' @export
 PCinRAV <- function(RAVmodel, ind) {
@@ -28,6 +39,10 @@ PCinRAV <- function(RAVmodel, ind) {
 #'
 #' @return A table with two columns, \code{word} and \code{freq}. MeSH terms in
 #' the defined RAV (by \code{ind} argument) is ordered based on their frequency.
+#'
+#' @examples
+#' data(miniRAVmodel)
+#' meshTable(miniRAVmodel,1139)
 #'
 #' @export
 meshTable <- function(RAVmodel, ind, rm.noise = NULL, weighted = TRUE) {
@@ -159,7 +174,6 @@ drawWordcloud <- function(RAVmodel, ind, rm.noise = NULL, scale = c(3, 0.5),
     if (nrow(all) == 0) {stop("No MeSH term is enriched.")}
 
     # generate the word cloud
-    if (is.null(seed)) {set.seed(1234)}
     wordcloud::wordcloud(words = all$word, freq = all$freq, scale = scale,
                          max.words = Inf, random.order = FALSE, rot.per = 0,
                          colors = RColorBrewer::brewer.pal(8, "Dark2"))

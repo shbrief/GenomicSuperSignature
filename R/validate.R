@@ -14,15 +14,15 @@
 #'
 .loadingCor <- function(dataset, avgLoading, method = "pearson", scale = FALSE) {
 
-    if (any(class(dataset) == "ExpressionSet")) {
+    if (is(dataset, "ExpressionSet")) {
         dat <- Biobase::exprs(dataset)
-    } else if (any(class(dataset) %in% c("SummarizedExperiment", "RangedSummarizedExperiment"))) {
+    } else if (is(dataset,"SummarizedExperiment")) {
         dat <- SummarizedExperiment::assay(dataset)
-    } else if (any(class(dataset) == "matrix")) {
+    } else if (is(dataset,"matrix")) {
         dat <- dataset
     } else {
         stop("'dataset' should be one of the following objects: ExpressionSet,
-             SummarizedExperiment, RangedSummarizedExperiment, and matrix.")
+             SummarizedExperiment, and matrix.")
     }
 
     if (isTRUE(scale)) {dat <- rowNorm(dat)}   # row normalization
@@ -91,7 +91,7 @@ validate <- function(dataset, RAVmodel, method = "pearson",
     sw <- silhouetteWidth(RAVmodel)
     cl_size <- S4Vectors::metadata(RAVmodel)$size
 
-    if (class(RAVmodel) %in% c("PCAGenomicSignatures", "PLIERGenomicSignatures")) {
+    if (is(RAVmodel,"GenomicSignatures")) {
         avgLoading <- SummarizedExperiment::assay(RAVmodel)
     } else {avgLoading <- RAVmodel}
 

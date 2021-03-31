@@ -25,9 +25,9 @@ annotateRAV <- function(RAVmodel, ind, n = 5, abs = FALSE) {
   cl_name <- paste0("RAV", ind)
   annotatedCluster <- gsea(RAVmodel)[[cl_name]]
   if (isTRUE(abs)) {
-    topAnnotation <- annotatedCluster[order(abs(annotatedCluster$NES), decreasing = TRUE),,drop = FALSE][1:n,]
+    topAnnotation <- annotatedCluster[order(abs(annotatedCluster$NES), decreasing = TRUE),,drop = FALSE][seq(n),]
   } else {
-    topAnnotation <- annotatedCluster[order(annotatedCluster$NES, decreasing = TRUE),,drop = FALSE][1:n,]
+    topAnnotation <- annotatedCluster[order(annotatedCluster$NES, decreasing = TRUE),,drop = FALSE][seq(n),]
   }
   rownames(topAnnotation) <- NULL
   return(topAnnotation)

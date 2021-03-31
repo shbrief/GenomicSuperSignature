@@ -9,9 +9,18 @@ rowNorm(x)
 \arguments{
 \item{x}{A gene-expression matrix with genes in rows and samples in columns}
 }
+\value{
+a matrix with each row mean centered and scaled by rowwise sd
+}
 \description{
 z-score each row of the data
 }
-\author{
+\examples{
+x = matrix(rnorm(100),nc=10)
+y = rowNorm(x)
+apply(y,1,mean)
+
+}
+\references{
 \url{https://github.com/shbrief/PLIER/blob/master/R/Allfuncs.R}
 }

@@ -2,16 +2,25 @@
 % Please edit documentation in R/rmNaInf.R
 \name{rmNaInf}
 \alias{rmNaInf}
-\title{Remove missing and Inf values from expression dataset}
+\title{Remove rows with missing and Inf values from a matrix}
 \usage{
 rmNaInf(x)
 }
 \arguments{
-\item{x}{A matrix with the expression values.}
+\item{x}{A numeric matrix.}
 }
 \value{
-The updated input matrix where NA and Inf values are removed.
+The updated input matrix where rows with
+   NA and Inf values are removed.
 }
 \description{
-Remove missing and Inf values from expression dataset
+Remove rows with missing and Inf values from a matrix
+}
+\examples{
+m = matrix(rnorm(100),ncol=10)
+m[1,1] = NA
+
+m1 = rmNaInf(m)
+dim(m1)
+
 }

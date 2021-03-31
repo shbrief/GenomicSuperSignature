@@ -1,9 +1,11 @@
 Package: GenomicSuperSignature
 Title: Interpretation of RNA-seq experiments through robust, efficient comparison to public databases
-Version: 0.99.0
-Date: 2021-2-19
-Authors@R: person("Sehyun", "Oh", email = "Sehyun.Oh@sph.cuny.edu", role = c("aut", "cre"))
-Description: This package contains the index, which is the Replicable and interpretable 
+Authors@R: c(
+  person("Sehyun", "Oh", email = "Sehyun.Oh@sph.cuny.edu", role = c("aut")),
+  person("Sean", "Davis", email = "seandavi@gmail.com", role = c("aut","cre")))
+Version: 0.99.2
+Date: 2021-03-30
+Description: This package contains the index, which is the Replicable and interpretable
   Axes of Variation (RAV) extracted from public RNA sequencing datasets by clustering and 
   averaging top PCs. This index, named as RAVindex, is further annotated with MeSH terms and 
   GSEA. Functions to connect PCs from new datasets to RAVs, extract interpretable annotations, 
@@ -11,7 +13,7 @@ Description: This package contains the index, which is the Replicable and interp
   package enables researchers to analyze new data in the context of existing databases 
   with minimal computing resources.
 Depends: 
-  R (>= 3.6.0), 
+  R (>= 4.0.0),
   SummarizedExperiment
 Imports:
   ComplexHeatmap,
@@ -21,7 +23,10 @@ Imports:
   Biobase,
   ggpubr,
   dplyr,
-  BiocFileCache
+  plotly,
+  BiocFileCache,
+  grid,
+  flextable
 Suggests:
   knitr,
   rmarkdown,
@@ -32,7 +37,6 @@ Suggests:
   BiocStyle,
   testthat,
   forcats,
-  grid,
   stats,
   wordcloud,
   circlize,
@@ -40,7 +44,6 @@ Suggests:
   clusterProfiler,
   msigdbr,
   cluster,
-  plotly,
   RColorBrewer,
   reshape2,
   tibble,
@@ -49,6 +52,14 @@ Suggests:
   readr,
   utils
 License: Artistic-2.0
+biocViews: 
+  Transcriptomics,
+  SystemsBiology,
+  PrincipalComponent,
+  RNASeq,
+  Sequencing,
+  Pathways,
+  Clustering
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1.9000

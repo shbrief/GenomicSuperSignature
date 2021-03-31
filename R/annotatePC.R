@@ -39,7 +39,7 @@ annotatePC <- function(PCnum, val_all, RAVmodel, n = 5,
                        trimed_pathway_len = 45) {
 
   ## Check PCnum is a valid input
-  if (any(!PCnum %in% 1:8)) {stop("PCnum should be an integer among c(1:8).")}
+  if (any(!PCnum %in% seq(8))) {stop("PCnum should be an integer among c(1:8).")}
 
   res <- vector(mode = "list", length = length(PCnum))
 
@@ -50,7 +50,7 @@ annotatePC <- function(PCnum, val_all, RAVmodel, n = 5,
 
     if (is.null(annotatedCluster)) {
       emptyTable <- gsea(RAVmodel)[[1]][0,] # assign the empty gsea table
-      emptyTable[1:5,1] <- "No significant pathways"
+      emptyTable[seq(5),1] <- "No significant pathways"
       res[[i]] <- emptyTable
       names(res)[i] <- paste0("PC", PCnum[i], "-noAnnot")
     } else {
@@ -66,7 +66,7 @@ annotatePC <- function(PCnum, val_all, RAVmodel, n = 5,
         topAnnotation <- topAnnotation[order(abs(annotatedCluster$NES), decreasing = TRUE),,drop = FALSE]
       }
 
-      topAnnotation <- topAnnotation[1:n,]
+      topAnnotation <- topAnnotation[seq(n),]
       rownames(topAnnotation) <- NULL
       res[[i]] <- topAnnotation
       names(res)[i] <- paste0("PC", PCnum[i], "-", cl_name)
@@ -81,7 +81,7 @@ annotatePC <- function(PCnum, val_all, RAVmodel, n = 5,
 
   # Output format: list of data frame with detail vs. data frame only with description
   if (isTRUE(simplify)) {
-    simple_res <- sapply(res, function(x) x$Description) %>% as.data.frame
+    simple_res <- lapply(res, function(x) x$Description) %>% as.data.frame
     return(simple_res)
   } else {
     return(res)

@@ -4,7 +4,7 @@
 \alias{getModel}
 \title{Download a PCAGenomicSignatures model}
 \usage{
-getModel(prior = c("C2", "PLIERpriors"), load = FALSE)
+getModel(prior = c("C2", "PLIERpriors"), load = TRUE)
 }
 \arguments{
 \item{prior}{The name of gene sets used to annotate PCAGenomicSignatures. Currently
@@ -14,12 +14,16 @@ there are two available options.
     \item \code{PLIERpriors} : bloodCellMarkersIRISDMAP, svmMarkers, and canonicalPathways
 }}
 
-\item{load}{Default is \code{FALSE}. If it's set to \code{TRUE}, the downloaded
-file will be loaded.}
+\item{load}{Default is \code{TRUE}. If it's set to \code{FALSE}, the models
+are just downloaded to cache but not loaded into memory.}
 }
 \value{
 File cache location or PCAGenomicSignatures object loaded from it.
 }
 \description{
 Download a PCAGenomicSignatures model
+}
+\examples{
+z = getModel("C2")
+
 }

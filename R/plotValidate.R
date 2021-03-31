@@ -26,6 +26,8 @@
 #' @param colorPalette Default is \code{Dark2}. For other color options, please
 #' check \code{\link[ggplot2]{scale_color_brewer}}
 #'
+#' @return a ggplot object
+#'
 #' @examples
 #' data(miniRAVmodel)
 #' library(bcellViper)

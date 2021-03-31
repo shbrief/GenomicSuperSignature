@@ -1,7 +1,15 @@
-#' Remove missing and Inf values from expression dataset
+#' Remove rows with missing and Inf values from a matrix
 #'
-#' @param x A matrix with the expression values.
-#' @return The updated input matrix where NA and Inf values are removed.
+#' @param x A numeric matrix.
+#' @return The updated input matrix where rows with
+#'    NA and Inf values are removed.
+#'
+#' @examples
+#' m = matrix(rnorm(100),ncol=10)
+#' m[1,1] = NA
+#'
+#' m1 = rmNaInf(m)
+#' dim(m1)
 #'
 #' @export
 rmNaInf <- function(x) {

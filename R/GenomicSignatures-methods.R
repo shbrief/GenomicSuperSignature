@@ -37,6 +37,13 @@
 #' @param value See details.
 #' @param ... Additional arguments for supporting functions.
 #'
+#' @return A GenomicSignatures object for the constructor
+#'
+#' @examples
+#' data(miniRAVmodel)
+#' miniRAVmodel
+#'
+#'
 #' @aliases RAVindex colData metadata geneSets updateNote geneSets<- updateNote<-
 NULL
 

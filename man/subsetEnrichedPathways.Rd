@@ -26,3 +26,14 @@ A DataFrame with top and bottom \code{n} pathways from the enrichment results.
 This function finds the top enriched pathways of a given RAV. This function is
 renamed from \code{subsetPathways} to \code{subsetEnrichedPathways}.
 }
+\examples{
+data(miniRAVmodel)
+
+# all RAVS in model
+subsetEnrichedPathways(miniRAVmodel,n=5)
+
+# only a specific RAV (note the colnames above)
+subsetEnrichedPathways(miniRAVmodel,ind=695,n=5)
+
+
+}

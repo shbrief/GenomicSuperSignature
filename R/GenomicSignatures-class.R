@@ -34,6 +34,11 @@ setClass("GenomicSignatures",
 #' @param value See details.
 #'
 #' @docType class
+#'
+#' @examples
+#' data(miniRAVmodel)
+#' miniRAVmodel
+#'
 #' @exportClass PCAGenomicSignatures
 .PCAGenomicSignatures <- setClass("PCAGenomicSignatures",
          slots = representation(
