@@ -21,3 +21,6 @@ y = rowNorm(x)
 apply(y,1,mean)
 
 }
+\references{
+\url{https://github.com/shbrief/PLIER/blob/master/R/Allfuncs.R}
+}

@@ -1,7 +1,6 @@
 #' @include GenomicSignatures-class.R
 
 
-#' @name RAVName
 #' @title Formatting RAV name
 #'
 #' @description Keep the name with 'k + cluster number + number of PCs + number of unique studies'
@@ -10,6 +9,9 @@
 #'
 #' @param x PCAGenomicSignature-object
 #' @param ... Additional arguments for supporting functions.
+#'
+#' @return a character vector
+#'
 .RAVName <- function(x, ...) {
     x@colData$RAV <- rownames(x@colData)
     rownames(x@colData) <- paste0("RAV", 1:ncol(x))
