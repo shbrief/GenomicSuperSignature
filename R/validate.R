@@ -91,7 +91,7 @@ validate <- function(dataset, RAVmodel, method = "pearson",
     sw <- silhouetteWidth(RAVmodel)
     cl_size <- S4Vectors::metadata(RAVmodel)$size
 
-    if (is(RAVmodel,"PCAGenomicSignatures", "PLIERGenomicSignatures")) {
+    if (is(RAVmodel,"GenomicSignatures")) {
         avgLoading <- SummarizedExperiment::assay(RAVmodel)
     } else {avgLoading <- RAVmodel}
 
