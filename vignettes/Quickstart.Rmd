@@ -101,8 +101,9 @@ validation score and use avgerage silhouette width as a secondary criteria.
 
 ```{r plotValidate_function}
 plotValidate(val_all, interactive = FALSE)
-plotValidate(val_all, interactive = TRUE, minClusterSize = 4)
 ```
+Note that `interactive = TRUE` will result in a zoomable, interactive plot
+that included tooltips. 
 
 <br>
 
