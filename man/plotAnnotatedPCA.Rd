@@ -51,6 +51,7 @@ Two-dimentional PCA plot with the PC annotation
 data(miniRAVmodel)
 library(bcellViper)
 data(bcellViper)
+\dontrun{
 plotAnnotatedPCA(exprs(dset), miniRAVmodel, PCs = c(1,2))
-
+}
 }

@@ -2,7 +2,7 @@
 #'
 #' @description The silhouette value is a measure of how similar an object is to
 #' its own cluster (cohesion) compared to other clusters (separation). The silhouette
-#' ranges from −1 to +1, where a high value indicates that the object is well matched
+#' ranges from -1 to +1, where a high value indicates that the object is well matched
 #' to its own cluster and poorly matched to neighboring clusters.
 #'
 #' @param dat A matrix with all the top PCs from training data to be clustered.
