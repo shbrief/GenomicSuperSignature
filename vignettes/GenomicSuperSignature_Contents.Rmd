@@ -38,7 +38,7 @@ library(GenomicSuperSignature)
 Currently, you can download GenomicSuperSignature from Google Cloud bucket using 
 `GenomicSuperSignature::getModel` function. This model is built from top 20 PCs of 
 536 studies (containing 44,890 samples) containing 13,934 common genes from each 
-of 536 study's top 90% varying genes based on thier study-level standard deviation.
+of 536 study's top 90% varying genes based on their study-level standard deviation.
 There are two versions of this using different gene sets for GSEA-based annotation;
 MSigDB C2 (`C2`) and three priors from PLIER package (`PLIERpriors`). In this 
 vignette, we are using the `C2` annotated model.
