@@ -10,6 +10,7 @@ drawWordcloud(
   rm.noise = NULL,
   scale = c(3, 0.5),
   weighted = TRUE,
+  drop = NULL,
   seed = NULL
 )
 }
@@ -28,6 +29,10 @@ the MeSH terms in RAV will be used to draw wordcloud.}
 \item{weighted}{A logical. If \code{TRUE} (default), MeSH terms from each study are
 weighted based on the variance explained by the principle component of the
 study contributing to a given RAV.}
+
+\item{drop}{A character vector containing MeSH terms to be excluded from word
+cloud. Under the default (\code{NULL}), manually selected non-informative MeSH
+terms are excluded, which can be viewed through \code{data(droplist)}.}
 
 \item{seed}{Random seed. If it is not specified, \code{set.seed(1234)} will be used.}
 }

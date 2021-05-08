@@ -7,3 +7,10 @@
 #' @keywords data
 #'
 "miniRAVmodel"
+
+
+#' MeSH terms to be excluded in drawWordcloud function
+#'
+#' @format A character vector containing MeSH terms to be excluded.
+#'
+"droplist"
