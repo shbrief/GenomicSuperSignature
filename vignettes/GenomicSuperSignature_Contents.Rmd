@@ -23,10 +23,9 @@ knitr::opts_chunk$set(
 
 ## Install and load package
 ```{r eval = FALSE}
-if (!require("devtools")) {
-  install.packages("devtools")
-}
-devtools::install_github("shbrief/GenomicSuperSignature")
+if (!require("BiocManager"))
+    install.packages("BiocManager")
+BiocManager::install("GenomicSuperSignature")
 ```
 
 ```{r results="hide", message=FALSE, warning=FALSE}
