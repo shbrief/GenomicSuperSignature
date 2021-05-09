@@ -21,11 +21,7 @@
 #' library(bcellViper)
 #' data(bcellViper)
 #' findSignature(miniRAVmodel, "Bcell")
-#' #   # of keyword-containing pathways Freq
-#' # 1                                0   15
-#' # 2                                5    2
 #' findSignature(miniRAVmodel, "Bcell", k = 5)
-#' # [1] 16 17
 #'
 #' @export
 findSignature <- function(RAVmodel, keyword, n = 5, k = NULL) {
@@ -73,7 +69,6 @@ findSignature <- function(RAVmodel, keyword, n = 5, k = NULL) {
 #' @examples
 #' data(miniRAVmodel)
 #' findKeywordInRAV(miniRAVmodel, "Bcell", ind = 695)
-#' # [1] "1|2|3|4|5|6|9"
 #'
 #' @export
 findKeywordInRAV <- function(RAVmodel, keyword, ind,

@@ -60,10 +60,6 @@
 #' data(bcellViper)
 #' val_all <- validate(dset, miniRAVmodel)
 #' validatedSignatures(val_all, num.out = 3, scoreCutoff = 0)
-#' #             score PC          sw cl_size cl_num
-#' # RAV1076 0.5950767  2 -0.04447124      10      1
-#' # RAV2538 0.5838616  2  0.06996166       4      2
-#' # RAV338  0.5709072  2 -0.04683319      21      3
 #'
 #' @export
 validatedSignatures <- function(val_all, num.out = 5, scoreCutoff = NULL, swCutoff = NULL,
