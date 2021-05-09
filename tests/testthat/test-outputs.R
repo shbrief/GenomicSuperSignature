@@ -34,3 +34,14 @@ test_that("findsignature.R", {
   expect_equal(dim(res), c(2, 2))
   expect_equal(res2, c(16, 17))
 })
+
+test_that("annotateOCcluster.R", {
+  a <- annotateRAV(miniRAVmodel, ind = 695)
+  des <- a$Description
+  val <- c("IRIS_Bcell-Memory_IgG_IgA", "DMAP_BCELLA3", "IRIS_Bcell-Memory_IgM",
+           "IRIS_Bcell-naive", "DMAP_BCELLA4")
+
+  expect_equal(dim(a), c(5, 4))
+  expect_equal(colnames(a), c("Description","NES", "pvalue", "qvalues"))
+  expect_equal(des, val)
+})
