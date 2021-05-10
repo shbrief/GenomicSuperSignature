@@ -1,8 +1,8 @@
 #' Validating new dataset
 #'
-#' @param dataset A expression dataset to validate. Genes in rows and samples in
-#' columns. Gene names should be in 'symbol' format. It can be ExpressionSet,
-#' SummarizedExperiment, RangedSummarizedExperiment, or matrix.
+#' @param dataset A gene expression dataset to validate. It can be ExpressionSet,
+#' SummarizedExperiment, RangedSummarizedExperiment, or matrix. Genes should be in
+#' 'symbol' format. If it is a matrix, genes should be in rows and samples in columns.
 #' @param avgLoading A matrix with genes by RAVs.
 #' @param method A character string indicating which correlation coefficient is
 #' to be computed. One of "pearson" (default), "kendall", or "spearman": can be abbreviated.
@@ -14,16 +14,8 @@
 #'
 .loadingCor <- function(dataset, avgLoading, method = "pearson", scale = FALSE) {
 
-    if (is(dataset, "ExpressionSet")) {
-        dat <- Biobase::exprs(dataset)
-    } else if (is(dataset,"SummarizedExperiment")) {
-        dat <- SummarizedExperiment::assay(dataset)
-    } else if (is.matrix(dataset)) {
-        dat <- dataset
-    } else {
-        stop("'dataset' should be one of the following objects: ExpressionSet,
-             SummarizedExperiment, and matrix.")
-    }
+    # Extract expression matrix from different classes
+    dat <- .extractExprsMatrix(dataset)
 
     # row normalization
     stopifnot(length(scale) == 1L, !is.na(scale), is.logical(scale))
@@ -45,7 +37,7 @@
 #' @param dataset Single or a named list of SummarizedExperiment (RangedSummarizedExperiment,
 #' ExpressionSet or matrix) object(s). Gene names should be in 'symbol' format. Currently,
 #' each dataset should have at least 8 samples.
-#' @param RAVmodel PCAGenomicSignatures object. You can also provide signature model matrix directly.
+#' @param RAVmodel PCAGenomicSignatures object.
 #' @param method A character string indicating which correlation coefficient is
 #' to be computed. One of "pearson" (default), "kendall", or "spearman": can be abbreviated.
 #' @param maxFrom Select whether to display the maximum value from dataset's PCs or avgLoadings.
@@ -95,10 +87,7 @@ validate <- function(dataset, RAVmodel, method = "pearson",
 
     sw <- silhouetteWidth(RAVmodel)
     cl_size <- S4Vectors::metadata(RAVmodel)$size
-
-    if (is(RAVmodel,"GenomicSignatures")) {
-        avgLoading <- SummarizedExperiment::assay(RAVmodel)
-    } else {avgLoading <- RAVmodel}
+    avgLoading <- SummarizedExperiment::assay(RAVmodel)
 
     # The maximum correlation coefficient among PCs
     if (maxFrom == "PC") {

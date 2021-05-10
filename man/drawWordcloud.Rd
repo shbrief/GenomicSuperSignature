@@ -9,8 +9,7 @@ drawWordcloud(
   ind,
   rm.noise = NULL,
   scale = c(3, 0.5),
-  weighted = TRUE,
-  seed = NULL
+  weighted = TRUE
 )
 }
 \arguments{
@@ -28,8 +27,6 @@ the MeSH terms in RAV will be used to draw wordcloud.}
 \item{weighted}{A logical. If \code{TRUE} (default), MeSH terms from each study are
 weighted based on the variance explained by the principle component of the
 study contributing to a given RAV.}
-
-\item{seed}{Random seed. If it is not specified, \code{set.seed(1234)} will be used.}
 }
 \value{
 A word cloud with the MeSH terms associated with the given cluster.

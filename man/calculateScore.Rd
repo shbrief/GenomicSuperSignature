@@ -7,8 +7,9 @@
 calculateScore(dataset, RAVmodel, rescale.after = TRUE)
 }
 \arguments{
-\item{dataset}{A gene expression matrix, where genes are in rows and rownames
-are in 'symbol' format. It can be SummarizedExperiment, ExpressionSet, or matrix objects.}
+\item{dataset}{A gene expression dataset to validate. It can be ExpressionSet,
+SummarizedExperiment, RangedSummarizedExperiment, or matrix. Genes should be in
+'symbol' format. If it is a matrix, genes should be in rows and samples in columns.}
 
 \item{RAVmodel}{PCAGenomicSignatures object. Output from \code{buildAvgLoading}
 function, a matrix of average loadings, can be directly provided.}

@@ -2,8 +2,9 @@
 #'
 #' @import methods
 #'
-#' @param dataset A gene expression matrix, where genes are in rows and rownames
-#' are in 'symbol' format. It can be SummarizedExperiment, ExpressionSet, or matrix objects.
+#' @param dataset A gene expression dataset to validate. It can be ExpressionSet,
+#' SummarizedExperiment, RangedSummarizedExperiment, or matrix. Genes should be in
+#' 'symbol' format. If it is a matrix, genes should be in rows and samples in columns.
 #' @param RAVmodel PCAGenomicSignatures object. Output from \code{buildAvgLoading}
 #' function, a matrix of average loadings, can be directly provided.
 #' @param rescale.after If it is \code{TRUE}, the continuous scores are rescaled
@@ -31,14 +32,7 @@ calculateScore <- function(dataset, RAVmodel, rescale.after = TRUE) {
 
     if (!is.list(dataset)) {dataset <- list(dataset)}
     validationScore <- lapply(dataset, function(dat) {
-        if (is(dat, "ExpressionSet")) {
-            count <- Biobase::exprs(dat)
-        } else if (is(dat, "SummarizedExperiment")) {
-            count <- SummarizedExperiment::assay(dat)
-        } else if (is.matrix(dat)) {
-            count <- dat
-        }
-
+        dat <- .extractExprsMatrix(dataset)
         count <- count[apply(count, 1,
                              function(x) {!any(is.na(x) | (x==Inf) | (x==-Inf))}),]
         count <- apply(count, 1, function(x) {x - mean(x)}) %>% t  # row centered
