@@ -147,7 +147,6 @@ meshTable <- function(RAVmodel, ind, rm.noise = NULL, weighted = TRUE) {
 #' @param weighted A logical. If \code{TRUE} (default), MeSH terms from each study are
 #' weighted based on the variance explained by the principle component of the
 #' study contributing to a given RAV.
-#' @param seed Random seed. If it is not specified, \code{set.seed(1234)} will be used.
 #'
 #' @return A word cloud with the MeSH terms associated with the given cluster.
 #'
@@ -157,7 +156,7 @@ meshTable <- function(RAVmodel, ind, rm.noise = NULL, weighted = TRUE) {
 #'
 #' @export
 drawWordcloud <- function(RAVmodel, ind, rm.noise = NULL, scale = c(3, 0.5),
-                         weighted = TRUE, seed = NULL) {
+                         weighted = TRUE) {
 
     if (is.null(rm.noise)) {
         s <- S4Vectors::metadata(RAVmodel)$size[paste0("RAV", ind)]
