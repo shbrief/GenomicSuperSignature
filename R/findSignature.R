@@ -7,7 +7,8 @@
 #' @param RAVmodel PCAGenomicSignatures-object
 #' @param keyword A character vector. If you are searching for multiple keywords
 #' at the same time, use \code{\link{paste}} with \code{collapse = "|"} argument.
-#' @param n The number of top ranked (based on abs(NES)) pathways you want to search your keyword
+#' @param n The number of top ranked (based on abs(NES)) pathways you want to
+#' search your keyword
 #' @param k The number of keyword-containing pathways you want to get the RAV
 #' number. Under default (\code{NULL}), the output will be a data frame with two
 #' columns: '# of keyword-containing pathways' and 'Freq'. If you assign the value
@@ -58,7 +59,7 @@ findSignature <- function(RAVmodel, keyword, n = 5, k = NULL) {
 #' @param keyword A character vector. If you are searching for multiple keywords
 #' at the same time, use \code{\link{paste}} with \code{collapse = "|"} argument.
 #' @param ind An integer. The RAV number you want to check.
-#' @param n An interger. The number of top enriched pathways (based on abs(NES))
+#' @param n An integer. The number of top enriched pathways (based on abs(NES))
 #' to search. Under default (\code{NULL}), all the enriched pathways are used.
 #' @param includeTotal Default is \code{FALSE}. If it is set to \code{TRUE}, the
 #' total number of enriched pathways will be also printed out as an output.
@@ -72,16 +73,13 @@ findSignature <- function(RAVmodel, keyword, n = 5, k = NULL) {
 #'
 #' @export
 findKeywordInRAV <- function(RAVmodel, keyword, ind,
-                                   n = NULL, includeTotal = FALSE) {
+                             n = NULL, includeTotal = FALSE) {
   name <- paste0("RAV", ind)
   gsea <- gsea(RAVmodel)[[name]]
   total <- nrow(gsea)
 
-  if (is.null(n)) {
-    gsea <- gsea[order(abs(gsea$NES), decreasing = TRUE),,drop = FALSE]
-  } else {
-    gsea <- gsea[order(abs(gsea$NES), decreasing = TRUE),,drop = FALSE][seq_len(n),]
-  }
+  gsea <- gsea[order(abs(gsea$NES), decreasing = TRUE),,drop = FALSE]
+  if (!is.null(n)) {gsea <- gsea[seq_len(n),]}
 
   keywordRank <- grep(keyword, gsea$Description, ignore.case = TRUE)
   if (isFALSE(includeTotal)) {

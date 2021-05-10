@@ -18,14 +18,17 @@
         dat <- Biobase::exprs(dataset)
     } else if (is(dataset,"SummarizedExperiment")) {
         dat <- SummarizedExperiment::assay(dataset)
-    } else if (is(dataset,"matrix")) {
+    } else if (is.matrix(dataset)) {
         dat <- dataset
     } else {
         stop("'dataset' should be one of the following objects: ExpressionSet,
              SummarizedExperiment, and matrix.")
     }
 
-    if (isTRUE(scale)) {dat <- rowNorm(dat)}   # row normalization
+    # row normalization
+    stopifnot(length(scale) == 1L, !is.na(scale), is.logical(scale))
+    if (scale) {dat <- rowNorm(dat)}
+
     dat <- dat[apply(dat, 1, function (x) {!any(is.na(x) | (x==Inf) | (x==-Inf))}),]
     gene_common <- intersect(rownames(avgLoading), rownames(dat))
     prcomRes <- stats::prcomp(t(dat[gene_common,]))  # centered, but not scaled by default
@@ -81,11 +84,13 @@ validate <- function(dataset, RAVmodel, method = "pearson",
                      maxFrom = "PC", level = "max", scale = FALSE) {
 
     if (!is.list(dataset)) {
-        if (ncol(dataset) < 8) {stop("Provide a study with at least 8 samples.")}
-    }
-    if (is.list(dataset)) {
-        if (any(lapply(dataset, ncol) < 8)) {stop("Provide a study with at least 8 samples.")}
-        if (level == "all") {stop("'level = \"all\"' is not available for a list of datasets.")}
+        if (ncol(dataset) < 8) {
+            stop("Provide a study with at least 8 samples.")}
+    } else {
+        if (any(lapply(dataset, ncol) < 8)) {
+            stop("Provide a study with at least 8 samples.")}
+        if (level == "all") {
+            stop("'level = \"all\"' is not available for a list of datasets.")}
     }
 
     sw <- silhouetteWidth(RAVmodel)

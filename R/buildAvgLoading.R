@@ -13,7 +13,8 @@
 #' @seealso \code{\link[stats]{kmeans}}
 #'
 .calculateSilhouetteWidth <- function (dat, kmeansRes) {
-    swRes <- cluster::silhouette(x = kmeansRes$cluster, dist = cluster::daisy(dat))
+    swRes <- cluster::silhouette(x = kmeansRes$cluster,
+                                 dist = cluster::daisy(dat))
     SW <- summary(swRes)
     return(SW)
 }
@@ -21,15 +22,17 @@
 #' Find the studies contributing each RAV
 #'
 #' @param RAVmodel PCAGenomicSignatures object.
-#' @param ind A numeric vector containing the index of RAVs you want to
-#' find the related studies. Default is \code{NULL}.
+#' @param ind A numeric vector containing the RAV indexes. Under the default (\code{NULL}),
+#' studies associated with all the RAV indexes will be returned as a list.
 #' @param studyTitle Default is \code{FALSE}. This parameter is effective only when
 #' the \code{index} value is specificed. If it's \code{TRUE}, the output will be
 #' a data frame with the study
 #'
-#' @return A list of character vector. Under the default conditoin (\code{ind = NULL}),
+#' @return A list of character vector. Under the default condition (\code{ind = NULL}),
 #' all the RAVs will be checked for their contributing studies and the length
-#' of the list will be same as the number of RAVs (= \code{metadata(x)$k}).
+#' of the list will be same as the number of RAVs (= \code{metadata(x)$k}). If you
+#' provide the \code{ind} argument, studies associated with only the specified RAVs
+#' will be returned.
 #'
 #' @note Mainly used for model building, within \link{buildAvgLoading}.
 #' @export
@@ -38,7 +41,7 @@ findStudiesInCluster <- function(RAVmodel, ind = NULL, studyTitle = FALSE) {
     if (is(RAVmodel,"PCAGenomicSignatures")) {
         x <- S4Vectors::metadata(RAVmodel)
         k <- x$k   # the number of clusters
-    } else if (is(RAVmodel,"list")) {  # this is for model building
+    } else if (is.list(RAVmodel)) {   # [internal] this is for model building
         x <- RAVmodel
         x$size <- table(RAVmodel$cluster)
         k <- length(unique(RAVmodel$cluster))
@@ -49,14 +52,16 @@ findStudiesInCluster <- function(RAVmodel, ind = NULL, studyTitle = FALSE) {
     for (i in seq_along(x$cluster)) {
         z[i, x$cluster[i]] <- 1
     }
-    colnames(z) <- paste0("Cl", k, "_", formatC(seq_len(k), width = 2, format = "d", flag = "0"))
+    colnames(z) <- paste0("Cl", k, "_",
+                          formatC(seq_len(k), width=2, format="d", flag="0"))
     rownames(z) <- names(x$cluster)
 
     if (is.null(ind)) {
         studies <- list()
         for (i in seq_len(ncol(z))) {
             studies[[i]] <- rownames(z)[which(z[,i] == 1)]
-            studies[[i]] <- lapply(studies[[i]], function(x) {unlist(strsplit(x, "\\."))[1]})
+            studies[[i]] <- lapply(studies[[i]],
+                                   function(x) {unlist(strsplit(x, "\\."))[1]})
             studies[[i]] <- unique(unlist(studies[[i]]))
             names(studies)[i] <- colnames(z)[i]
             res <- studies
@@ -64,11 +69,12 @@ findStudiesInCluster <- function(RAVmodel, ind = NULL, studyTitle = FALSE) {
     } else {
         for (i in ind) {
             studies <- rownames(z[which(z[,i] == 1),])
-            studies <- lapply(studies, function(x) {unlist(strsplit(x, "\\."))[1]})
+            studies <- lapply(studies,
+                              function(x) {unlist(strsplit(x, "\\."))[1]})
             res <- studies <- unique(unlist(studies))
         }
 
-        if (isTRUE(studyTitle)) {
+        if (studyTitle) {
             dir <- system.file("extdata", package = "GenomicSuperSignature")
             studyMeta <- utils::read.table(file.path(dir, "studyMeta.tsv"))
             studyMeta <- studyMeta[,c("studyName", "title")]
@@ -84,8 +90,10 @@ findStudiesInCluster <- function(RAVmodel, ind = NULL, studyTitle = FALSE) {
 #' @param dat A data frame. Each row represents principle components from different
 #' training datasets. Each column represents genes used for PCA analysis.
 #' @param k The number of clusters used for hierarchical clustering
-#' @param n The number of top principle components from each datasets used for model buildling. Default is 20.
-#' @param study Under default (\code{TRUE}), studies involved in each cluster will be added in the output.
+#' @param n The number of top principle components from each datasets used for
+#' model building. Default is 20.
+#' @param study Under default (\code{TRUE}), studies involved in each cluster
+#' will be added in the output.
 #' @param cluster Provide pre-defined cluster membership of your data.
 #'
 #' @return
@@ -102,6 +110,8 @@ findStudiesInCluster <- function(RAVmodel, ind = NULL, studyTitle = FALSE) {
 #' @export
 buildAvgLoading <- function(dat, k, n = 20, cluster = NULL, study = TRUE) {
 
+    # Input validation
+    if (missing(k)) {stop("`k` must be provided.")}
     if (!is.null(cluster)) {
         k <- length(unique(cluster))
         x <- table(cluster) %>% as.data.frame()
@@ -109,14 +119,15 @@ buildAvgLoading <- function(dat, k, n = 20, cluster = NULL, study = TRUE) {
     } else {
         stop("Error: Cluster membership of elements should be provided through 'cluster' argument.")
     }
+    stopifnot(length(study) == 1L, !is.na(study), is.logical(study))
 
-    if (missing(k)) {stop("`k` must be provided.")}
 
     # Separate the PC table into each cluster
     cl_ls <- list()
     for (i in seq_len(k)) {
-        datName <- paste0("Cl", k, "_", formatC(i, width = 2, format = "d", flag = "0"))
-        cl_ls[[datName]] <- dat[,res$cluster == i,drop=FALSE] %>% t
+        datName <- paste0("Cl", k, "_",
+                          formatC(i, width = 2, format = "d", flag = "0"))
+        cl_ls[[datName]] <- dat[, res$cluster==i, drop=FALSE] %>% t
     }
 
     # the number of unique datasets in each cluster
@@ -141,10 +152,7 @@ buildAvgLoading <- function(dat, k, n = 20, cluster = NULL, study = TRUE) {
     # sw <- .calculateSilhouetteWidth(dat, res)
     # res$sw <- sw
 
-    if (study == TRUE) {
-        res$studies <- findStudiesInCluster(res)
-    }
-
+    if (study) {res$studies <- findStudiesInCluster(res)}
     return(res)
 }
 

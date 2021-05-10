@@ -11,10 +11,10 @@ calculateScore(dataset, RAVmodel, rescale.after = TRUE)
 are in 'symbol' format. It can be SummarizedExperiment, ExpressionSet, or matrix objects.}
 
 \item{RAVmodel}{PCAGenomicSignatures object. Output from \code{buildAvgLoading}
-function, a matrix of avaerage loadings, can be directly provided.}
+function, a matrix of average loadings, can be directly provided.}
 
 \item{rescale.after}{If it is \code{TRUE}, the continuous scores are rescaled
-post assignment, so avgerage loadings have the same standard deviation in different
+post assignment, so average loadings have the same standard deviation in different
 studies. If it is \code{FALSE}, the rescaling of column (= dividing by \code{sqrt(sum(x^2})
 is done before score assignment. Default is \code{TRUE}.}
 }

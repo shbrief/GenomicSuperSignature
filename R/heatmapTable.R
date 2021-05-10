@@ -23,11 +23,13 @@
   }
 
   # Draw Heatmap
-  ComplexHeatmap::Heatmap(dat, col = circlize::colorRamp2(breaks, colors), name = "Corr",
+  ComplexHeatmap::Heatmap(dat, col = circlize::colorRamp2(breaks, colors),
+                          name = "Corr",
                           cluster_rows = FALSE,
                           cluster_columns = FALSE,
                           cell_fun = function(j, i, x, y, width, height, fill) {
-                            grid::grid.text(sprintf("%.2f", dat[i, j]), x, y, gp = grid::gpar(fontsize = 8))
+                            grid::grid.text(sprintf("%.2f", dat[i, j]), x, y,
+                                            gp = grid::gpar(fontsize = 8))
                           },
                           show_heatmap_legend = FALSE,
                           row_title = row_title,
@@ -108,7 +110,7 @@ heatmapTable <- function(val_all, ind = NULL, num.out = 5,
          `level = \"max\"`, not `level = \"all\"`.")
   }
 
-  # If the validation result is from the list of datsets
+  # If the validation result is from the list of datasets
   if (length(score_ind) == 0) {
     res <- .heatmapTableMultiStudies(val_all, scoreCutoff = scoreCutoff,
                                      breaks = breaks, colors = colors,
@@ -119,8 +121,9 @@ heatmapTable <- function(val_all, ind = NULL, num.out = 5,
   }
 
   if (is.null(ind)) {
-    val <- validatedSignatures(val_all, num.out = num.out, whichPC = whichPC, indexOnly = FALSE,
-                               scoreCutoff = scoreCutoff, swCutoff = swCutoff, clsizeCutoff = clsizeCutoff)
+    val <- validatedSignatures(val_all, num.out = num.out, whichPC = whichPC,
+                               indexOnly = FALSE, scoreCutoff = scoreCutoff,
+                               swCutoff = swCutoff, clsizeCutoff = clsizeCutoff)
     dat <- val[,score_ind,drop=FALSE] %>% t
     sw <- val[,sw_ind,drop=FALSE] %>% as.numeric
   } else {
@@ -148,8 +151,9 @@ heatmapTable <- function(val_all, ind = NULL, num.out = 5,
   }
 
   # Heatmap annotation representing Silhouette width of selected RAVs
-  ha <- ComplexHeatmap::HeatmapAnnotation(avg.sw = ComplexHeatmap::anno_barplot(sw, baseline = 0,
-                                                                                gp = grid::gpar(fill = ifelse(sw > 0, "red", "blue"), alpha = 0.5)),
+  avg_sw <- ComplexHeatmap::anno_barplot(
+    sw, baseline = 0, gp = grid::gpar(fill = ifelse(sw > 0, "red", "blue"), alpha = 0.5))
+  ha <- ComplexHeatmap::HeatmapAnnotation(avg.sw = avg_sw,
                                           annotation_name_side = "left",
                                           annotation_name_gp = grid::gpar(fontsize = 10))
 
@@ -158,7 +162,8 @@ heatmapTable <- function(val_all, ind = NULL, num.out = 5,
                           cluster_rows = FALSE,
                           cluster_columns = FALSE,
                           cell_fun = function(j, i, x, y, width, height, fill) {
-                            grid::grid.text(sprintf("%.2f", dat[i, j]), x, y, gp = grid::gpar(fontsize = 8))
+                            grid::grid.text(sprintf("%.2f", dat[i, j]), x, y,
+                                            gp = grid::gpar(fontsize = 8))
                           },
                           row_title = row_title,
                           row_title_gp = grid::gpar(fontsize = 11, fontface = "bold"),

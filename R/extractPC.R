@@ -1,7 +1,7 @@
 #' PCA on gene expression profile
 #'
 #' Performs a principal components analysis on the given data matrix and returns
-#' the results as an object of class prcomp.
+#' the results as an object of class \code{\link[stats]{prcomp}}.
 #'
 #' @param x a numeric or complex matrix (or data frame) which provides the gene
 #' expression data for the principal components analysis. Genes in the rows and

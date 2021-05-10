@@ -16,7 +16,7 @@ A result from principle components analysis (PCA) in \code{\link[stats]{prcomp}}
 }
 \description{
 Performs a principal components analysis on the given data matrix and returns
-the results as an object of class prcomp.
+the results as an object of class \code{\link[stats]{prcomp}}.
 }
 \examples{
 m = matrix(rnorm(100),ncol=5)

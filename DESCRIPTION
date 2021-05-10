@@ -3,8 +3,8 @@ Title: Interpretation of RNA-seq experiments through robust, efficient compariso
 Authors@R: c(
   person("Sehyun", "Oh", email = "Sehyun.Oh@sph.cuny.edu", role = c("aut")),
   person("Sean", "Davis", email = "seandavi@gmail.com", role = c("aut","cre")))
-Version: 0.99.11
-Date: 2021-04-07
+Version: 0.99.12
+Date: 2021-05-10
 Description: This package contains the index, which is the Replicable and interpretable
   Axes of Variation (RAV) extracted from public RNA sequencing datasets by clustering and 
   averaging top PCs. This index, named as RAVindex, is further annotated with MeSH terms and 

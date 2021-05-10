@@ -14,7 +14,7 @@ at the same time, use \code{\link{paste}} with \code{collapse = "|"} argument.}
 
 \item{ind}{An integer. The RAV number you want to check.}
 
-\item{n}{An interger. The number of top enriched pathways (based on abs(NES))
+\item{n}{An integer. The number of top enriched pathways (based on abs(NES))
 to search. Under default (\code{NULL}), all the enriched pathways are used.}
 
 \item{includeTotal}{Default is \code{FALSE}. If it is set to \code{TRUE}, the
@@ -33,6 +33,5 @@ uniquely your keyword-containing pathways are represented.
 \examples{
 data(miniRAVmodel)
 findKeywordInRAV(miniRAVmodel, "Bcell", ind = 695)
-# [1] "1|2|3|4|5|6|9"
 
 }

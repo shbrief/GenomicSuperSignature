@@ -43,7 +43,8 @@ plotAnnotatedPCA <- function(dataset, RAVmodel, PCs, val_all = NULL,
 
   if (is.null(color_lab)) {color_lab = "Color By"}
   if (!is.null(color_by)) {
-    colorFeature <- utils::stack(color_by) %>% tibble::column_to_rownames(var = "ind")
+    colorFeature <- utils::stack(color_by) %>%
+      tibble::column_to_rownames(var = "ind")
     PCAres <- cbind(PCAres, colorFeature)
     myPlot <- ggplot(PCAres, mapping = aes_string(x = names(PCAres)[ind1],
                                                   y = names(PCAres)[ind2],

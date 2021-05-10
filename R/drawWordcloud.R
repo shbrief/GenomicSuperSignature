@@ -11,7 +11,6 @@
 #'
 #' @examples
 #' data(miniRAVmodel)
-#' miniRAVmodel
 #' PCinRAV(miniRAVmodel,695)
 #'
 #' @export
@@ -55,8 +54,10 @@ meshTable <- function(RAVmodel, ind, rm.noise = NULL, weighted = TRUE) {
     }
 
     ### Create a 'universe' for bag-of-words model
-    bow <- unlist(S4Vectors::metadata(RAVmodel)$MeSH_freq)  # frequency of the `name` in the background
-    bow <- bow[which(bow > rm.noise)]   # remove rare terms
+    # frequency of the `name` in the background
+    bow <- unlist(S4Vectors::metadata(RAVmodel)$MeSH_freq)
+    # remove rare terms
+    bow <- bow[which(bow > rm.noise)]
 
     ### Not weighted version
     if (weighted == FALSE) {
@@ -71,7 +72,8 @@ meshTable <- function(RAVmodel, ind, rm.noise = NULL, weighted = TRUE) {
             study_id <- study_id[-ind_rm]
         }
 
-        mesh_subset <- all_MeSH[study_id]   # subset to the participating studies
+        # subset to the participating studies
+        mesh_subset <- all_MeSH[study_id]
 
         ### Combine all MeSH words
         d <- list()

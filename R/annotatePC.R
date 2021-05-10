@@ -38,36 +38,40 @@ annotatePC <- function(PCnum, val_all, RAVmodel, n = 5,
                        simplify = TRUE, abs = FALSE,
                        trimed_pathway_len = 45) {
 
-  ## Check PCnum is a valid input
+  ## Input validation
   if (any(!PCnum %in% seq(8))) {stop("PCnum should be an integer among c(1:8).")}
+  stopifnot(length(simplify) == 1L, !is.na(simplify), is.logical(simplify))
+  stopifnot(length(abs) == 1L, !is.na(abs), is.logical(abs))
 
   res <- vector(mode = "list", length = length(PCnum))
 
   for (i in seq_along(PCnum)) {
-    annotPC <- validatedSignatures(val_all, num.out = 1, scoreCutoff = scoreCutoff, whichPC = PCnum[i])
+    annotPC <- validatedSignatures(val_all, num.out = 1,
+                                   scoreCutoff = scoreCutoff, whichPC = PCnum[i])
     cl_name <- paste0("RAV", annotPC[,"cl_num"])
     annotatedCluster <- gsea(RAVmodel)[[cl_name]]
 
     if (is.null(annotatedCluster)) {
-      emptyTable <- gsea(RAVmodel)[[1]][0,] # assign the empty gsea table
+      emptyTable <- gsea(RAVmodel)[[1]][0,] # assign the empty GSEA table
       emptyTable[seq(5),1] <- "No significant pathways"
       res[[i]] <- emptyTable
       names(res)[i] <- paste0("PC", PCnum[i], "-noAnnot")
     } else {
-      # topAnnotation <- annotatedCluster[order(abs(annotatedCluster$NES), decreasing = TRUE),,drop = FALSE][1:n,]
+      # apply NES cutoff
       if (!is.null(nesCutoff)) {
-        topAnnotation <- annotatedCluster[annotatedCluster$NES >= nesCutoff,,drop = FALSE]
-        topAnnotation <- topAnnotation[order(topAnnotation$NES, decreasing = TRUE),,drop = FALSE]
-      } else {
-        topAnnotation <- annotatedCluster[order(annotatedCluster$NES, decreasing = TRUE),,drop = FALSE]
+        annotatedCluster <- annotatedCluster[
+          annotatedCluster$NES >= nesCutoff,,drop = FALSE]
       }
 
-      if (isTRUE(abs)) {
-        topAnnotation <- topAnnotation[order(abs(annotatedCluster$NES), decreasing = TRUE),,drop = FALSE]
-      }
+      # absolute value of NES
+      FUN <- if (abs) {abs} else {I}
 
-      topAnnotation <- topAnnotation[seq(n),]
+      # subset GSEA results
+      topAnnotation <- annotatedCluster[
+        order(FUN(annotatedCluster$NES), decreasing = TRUE),,drop = FALSE]
+      topAnnotation <- topAnnotation[seq_len(n),]
       rownames(topAnnotation) <- NULL
+
       res[[i]] <- topAnnotation
       names(res)[i] <- paste0("PC", PCnum[i], "-", cl_name)
     }
@@ -76,11 +80,13 @@ annotatePC <- function(PCnum, val_all, RAVmodel, n = 5,
   # Trim the long pathway names
   for (i in seq_along(res)) {
     ind <- which(nchar(res[[i]]$Description) > trimed_pathway_len)
-    res[[i]]$Description[ind] <- paste0(strtrim(res[[i]]$Description[ind], trimed_pathway_len), "...")
+    res[[i]]$Description[ind] <- paste0(strtrim(res[[i]]$Description[ind],
+                                                trimed_pathway_len), "...")
   }
 
-  # Output format: list of data frame with detail vs. data frame only with description
-  if (isTRUE(simplify)) {
+  # Output formats:
+  # A list of data frames with details vs. data frame with description only
+  if (simplify) {
     simple_res <- lapply(res, function(x) x$Description) %>% as.data.frame
     return(simple_res)
   } else {
@@ -97,7 +103,8 @@ annotatePC <- function(PCnum, val_all, RAVmodel, n = 5,
 #     annotPC <- validatedSignatures(dat, num.out = 1, whichPC = PCnum[i])
 #     cl_name <- paste0("RAV_", annotPC[,"cl_num"])
 #     annotatedCluster <- a[[cl_name]]
-#     topAnnotation <- annotatedCluster[order(abs(annotatedCluster$NES), decreasing = TRUE),][1:n,]
+#     topAnnotation <- annotatedCluster[
+#       order(abs(annotatedCluster$NES), decreasing = TRUE),][1:n,]
 #     rownames(topAnnotation) <- NULL
 #     res[[i]] <- topAnnotation
 #     names(res)[i] <- paste0("PC", PCnum[i], "-", cl_name)
