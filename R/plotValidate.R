@@ -64,7 +64,6 @@ plotValidate <- function(val_all, minClusterSize = 2, swFilter = FALSE,
     clSizeFiltered <- dplyr::filter(val_all, cl_size >= minClusterSize)
 
     if (swFilter) {
-        # filtered <- clSizeFiltered %>% filter(sw > minSilhouetteWidth)
         filtered <- dplyr::filter(clSizeFiltered, sw >= minSilhouetteWidth)
     } else {filtered <- clSizeFiltered}
 

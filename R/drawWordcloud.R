@@ -163,12 +163,6 @@ drawWordcloud <- function(RAVmodel, ind, rm.noise = NULL, scale = c(3, 0.5),
         s <- S4Vectors::metadata(RAVmodel)$size[paste0("RAV", ind)]
         if (s < 8) {rm.noise = floor(s*0.5)}
         else if (s >= 8) {rm.noise = 4}
-
-        ## Minimum rm.noise version
-        # s <- S4Vectors::metadata(RAVmodel)$size[ind]
-        # rm.noise = floor(s*0.2)
-        # if (rm.noise > 4) {rm.noise = 4}
-        # else if (rm.noise == 0) {rm.noise = 1}
     }
 
     # MeSH word table

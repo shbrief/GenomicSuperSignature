@@ -1,24 +1,3 @@
-# .filterByClusterSize <- function(data, cutoff) {
-#   ind <- which(rownames(data) == "cl_size")
-#   val_ind <- which(data[ind,] >= cutoff)
-#   dat <- data[,val_ind]
-#   return(dat)
-# }
-#
-# .filterByScore <- function(data, cutoff) {
-#   ind <- which(rownames(data) == "score")
-#   val_ind <- which(data[ind,] >= cutoff)
-#   dat <- data[,val_ind]
-#   return(dat)
-# }
-#
-# .filterByAvgSW <- function(data, cutoff) {
-#   ind <- which(rownames(data) == "sw")
-#   val_ind <- which(data[ind,] >= cutoff)
-#   dat <- data[,val_ind]
-#   return(dat)
-# }
-
 .filterBy <- function(data, cutoff, type = c("cl_size", "score", "sw")) {
   type <- match.arg(type)
   ind <- rownames(data) == type
