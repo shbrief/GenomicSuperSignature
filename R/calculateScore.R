@@ -32,7 +32,7 @@ calculateScore <- function(dataset, RAVmodel, rescale.after = TRUE) {
 
     if (!is.list(dataset)) {dataset <- list(dataset)}
     validationScore <- lapply(dataset, function(dat) {
-        dat <- .extractExprsMatrix(dataset)
+        count <- .extractExprsMatrix(dat)
         count <- count[apply(count, 1,
                              function(x) {!any(is.na(x) | (x==Inf) | (x==-Inf))}),]
         count <- apply(count, 1, function(x) {x - mean(x)}) %>% t  # row centered
