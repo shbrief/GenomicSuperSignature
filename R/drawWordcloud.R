@@ -61,7 +61,8 @@ meshTable <- function(RAVmodel, ind, rm.noise = NULL, weighted = TRUE) {
 
     ### Not weighted version
     if (weighted == FALSE) {
-        study_id <- studies(RAVmodel)[[ind]]   # a list of studies in RAV
+        ind_name <- paste0("Cl", metadata(RAVmodel)$k, "_", ind)
+        study_id <- studies(RAVmodel)[[ind_name]]   # a list of studies in RAV
         all_MeSH <- mesh(RAVmodel)   # all the MeSH data
 
         # remove SRP069088 (no MeSH term)
