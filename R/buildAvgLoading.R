@@ -123,20 +123,21 @@ buildAvgLoading <- function(dat, k, n = 20, cluster = NULL, study = TRUE) {
 
 
     # Separate the PC table into each cluster
-    cl_ls <- list()
+    cl_ls <- vector(mode = "list", length = k)
     for (i in seq_len(k)) {
         datName <- paste0("Cl", k, "_",
                           formatC(i, width = 2, format = "d", flag = "0"))
-        cl_ls[[datName]] <- dat[, res$cluster==i, drop=FALSE] %>% t
+        cl_ls[[i]] <- dat[, res$cluster==i, drop=FALSE] %>% t
+        names(cl_ls)[i] <- datName
     }
 
     # the number of unique datasets in each cluster
-    unique_sets <- c()
+    unique_sets <- vector(length = k)
     for (i in seq_len(k)) {
         dat <- cl_ls[[i]]
         dataSetName <- gsub(".PC\\d+$", "", rownames(dat))
         uniqueDataSetName <- length(unique(dataSetName))
-        unique_sets <- c(unique_sets, uniqueDataSetName)
+        unique_sets[i] <- uniqueDataSetName
     }
 
     # Calculate the average of loadings in each cluster
