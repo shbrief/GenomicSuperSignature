@@ -142,7 +142,8 @@ buildAvgLoading <- function(dat, k, n = 20, cluster = NULL, study = TRUE) {
 
     # Calculate the average of loadings in each cluster
     names(cl_ls) <- paste0(names(cl_ls), " (", res$size, "/", unique_sets, ")")
-    avg.loadings <- sapply(cl_ls, colMeans)
+    l <- ncol(dat)   # the number of genes for average loading
+    avg.loadings <- vapply(cl_ls, colMeans, FUN.VALUE = numeric(l))
 
     # Save avgloading, and 'studies in cluster'
     res$avgLoading <- as.matrix(avg.loadings)

@@ -108,9 +108,12 @@ validate <- function(dataset, RAVmodel, method = "pearson",
         } else {
             # For a list of datasets
             x <- lapply(dataset, .loadingCor, avgLoading, method, scale)
+            l <- nrow(x[[1]]) # the number of RAVs in validation output
             if (level == "max") {
-                z <- sapply(x, function(y) {apply(y, 1, max)})
-                zPC <- sapply(x, function(y) {apply(y, 1, which.max)})
+                z <- vapply(x, function(y) {apply(y, 1, max)},
+                            FUN.VALUE = numeric(l))
+                zPC <- vapply(x, function(y) {apply(y, 1, which.max)},
+                              FUN.VALUE = integer(l))
                 colnames(zPC) <- paste0(colnames(zPC), "_PC")
                 res <- cbind(z, zPC)
             } else if (level == "all") {
@@ -127,7 +130,8 @@ validate <- function(dataset, RAVmodel, method = "pearson",
             x <- .loadingCor(dataset, avgLoading, method)
             if (level == "max") {
                 z <- apply(x, 2, max) %>% as.data.frame # colMax
-                z$avgLoading <- apply(x, 2, which.max)
+                max_z_ind <- apply(x, 2, which.max)
+                z$validated_RAV <- rownames(x)[max_z_ind]
                 colnames(z)[1] <- "score"
                 return(z)
             } else if (level == "all") {
@@ -136,7 +140,7 @@ validate <- function(dataset, RAVmodel, method = "pearson",
         } else {
             x <- lapply(dataset, .loadingCor, avgLoading, method)
             if (level == "max") {
-                z <- sapply(x, function(y) {apply(y, 2, max)})
+                z <- apply(y, 2, max)
                 return(z)
             } else if (level == "all") {
                 return(x)

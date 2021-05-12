@@ -34,7 +34,7 @@ findSignature <- function(RAVmodel, keyword, n = 5, k = NULL) {
     grep(keyword, y[["Description"]], ignore.case = TRUE)
   })
 
-  nTopPathways <- sapply(topPathways, length)
+  nTopPathways <- vapply(topPathways, length, FUN.VALUE = integer(1))
   res <- nTopPathways %>% table %>% as.data.frame
   colnames(res)[1] <- c("# of keyword-containing pathways")
 
