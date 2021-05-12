@@ -41,13 +41,17 @@ plotValidate <- function(val_all, minClusterSize = 2, swFilter = FALSE,
                          minClSize = NULL, maxClSize = NULL,
                          colorPalette = "Dark2") {
 
+    # Validate inputs
+    stopifnot(length(swFilter) == 1L, !is.na(swFilter), is.logical(swFilter))
+    stopifnot(length(interactive) == 1L, !is.na(interactive), is.logical(interactive))
+
     # If the validation result contains all PCs (`validate` with `level = "all"`)
     if (identical(colnames(val_all), paste0("PC", 1:8))) {
         stop("'val_all' input should be created by `validate` function with
          `level = \"max\"`, not `level = \"all\"`.")
     }
 
-    # If the validation result is from the list of datsets
+    # If the validation result is from the list of datasets
     score_ind <- which(colnames(val_all) == "score")
     if (length(score_ind) == 0) {
         stop("'val_all' input should be from one dataset, not from multiple datasets")
@@ -59,8 +63,7 @@ plotValidate <- function(val_all, minClusterSize = 2, swFilter = FALSE,
     val_all <-  as.data.frame(val_all)
     clSizeFiltered <- dplyr::filter(val_all, cl_size >= minClusterSize)
 
-    if (isTRUE(swFilter)) {
-        # filtered <- clSizeFiltered %>% filter(sw > minSilhouetteWidth)
+    if (swFilter) {
         filtered <- dplyr::filter(clSizeFiltered, sw >= minSilhouetteWidth)
     } else {filtered <- clSizeFiltered}
 
@@ -75,6 +78,6 @@ plotValidate <- function(val_all, minClusterSize = 2, swFilter = FALSE,
         xlab("Average silhouette width of each cluster") +
         ylab("Validation score")
 
-    if (isTRUE(interactive)) {plotly::ggplotly(p)} else {p}
+    if (interactive) {plotly::ggplotly(p)} else {p}
 }
 

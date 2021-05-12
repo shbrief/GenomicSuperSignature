@@ -23,14 +23,15 @@ knitr::opts_chunk$set(
 
 ## Install and load package
 ```{r eval = FALSE}
-if (!require("devtools")) {
-  install.packages("devtools")
-}
-devtools::install_github("shbrief/GenomicSuperSignature")
+if (!require("BiocManager"))
+    install.packages("BiocManager")
+BiocManager::install("GenomicSuperSignature")
+BiocManager::install("bcellViper")
 ```
 
 ```{r results="hide", message=FALSE, warning=FALSE}
 library(GenomicSuperSignature)
+library(bcellViper)
 ```
 
 
@@ -38,7 +39,7 @@ library(GenomicSuperSignature)
 Currently, you can download GenomicSuperSignature from Google Cloud bucket using 
 `GenomicSuperSignature::getModel` function. This model is built from top 20 PCs of 
 536 studies (containing 44,890 samples) containing 13,934 common genes from each 
-of 536 study's top 90% varying genes based on thier study-level standard deviation.
+of 536 study's top 90% varying genes based on their study-level standard deviation.
 There are two versions of this using different gene sets for GSEA-based annotation;
 MSigDB C2 (`C2`) and three priors from PLIER package (`PLIERpriors`). In this 
 vignette, we are using the `C2` annotated model.
@@ -56,13 +57,7 @@ RAVmodel <- getModel("C2", load=TRUE)
 consists of 211 normal and tumor human B-cell phenotypes whose expression was profiled on Affymatrix
 HG-U95Av2 arrays, and it is contained in an ExpressionSet object with 6,249 features x 211 samples.
 
-```{r echo=FALSE}
-if (!"BiocManager" %in% rownames(installed.packages())) {install.packages("BiocManager")}
-if (!"bcellViper" %in% rownames(installed.packages())) {BiocManager::install("bcellViper")}
-```
-
 ```{r message=FALSE, warning=FALSE}
-suppressPackageStartupMessages(library(bcellViper))
 data(bcellViper)
 dset
 dataset <- exprs(dset)   # genes in SYMBOL
@@ -97,7 +92,7 @@ Under the default condition, `plotValidate` plots all non single-element cluster
 validation results in a single graph, where x-axis represent average silhouette
 width of the RAVs (a quality control measure of the signature) and y-axis
 represent validation score. We recommend users to focus on RAVs with higher
-validation score and use avgerage silhouette width as a secondary criteria. 
+validation score and use average silhouette width as a secondary criteria. 
 
 ```{r plotValidate_function}
 plotValidate(val_all, interactive = FALSE)
@@ -109,7 +104,7 @@ that included tooltips.
 
 You can hover each data point for more information:    
 
-- **sw** : the average silhouette width of the clutser   
+- **sw** : the average silhouette width of the cluster   
 - **score** : the top validation score between 8 PCs of the dataset and the cluster   
 - **cl_size** : the size of the cluster, represented by the dot size   
 - **cl_num** : the RAV number. You need this index to find more information about the cluster.      
@@ -122,7 +117,7 @@ mode where you can add an additional group of data point by single-click.
 
 # MeSH terms in wordcloud
 You can draw a wordcloud with the enriched MeSH term of RAVs that validate
-your dataset. Besed on the heatmap table above, 1st-3rd RAVs (2538, 1139, and 884) 
+your dataset. Based on the heatmap table above, 1st-3rd RAVs (2538, 1139, and 884) 
 show high validation scores with positive average silhouette widths, so we draw 
 wordclouds of those RAVs using `drawWordcloud` function. You need to provide 
 RAVmodel and the index of the RAV you are interested in.
@@ -189,83 +184,3 @@ annotateRAV(RAVmodel, ind = 1994, n = 3, abs = FALSE)
 ```{r}
 sessionInfo()
 ```
-
-
-
-
-
-
-
-
-
-```{r collapse=FALSE, echo=FALSE, eval=FALSE}
-### Ordered by NES
-msC2_2nes <- msC2_2[order(msC2_2$NES, decreasing = TRUE),]
-ind2 <- grep(keyword, msC2_2nes$Description, ignore.case = TRUE) # index containing keyword
-
-print(paste("The number of enriched pathways =", nrow(msC2_2nes)))
-print(paste("The number of enriched pathways containing keyword =", length(ind2)))
-
-### Ordered by qvalues
-msC2_2qval <- msC2_2[order(msC2_2$qvalues, decreasing = FALSE),]
-ind2 <- grep(keyword, msC2_2qval$Description, ignore.case = TRUE) # index containing keyword
-
-print(paste("The number of enriched pathways =", nrow(msC2_2qval)))
-print(paste("The number of enriched pathways containing keyword =", length(ind2)))
-```
-
-
-
-
-
-
-
-```{r echo=FALSE, eval=FALSE}
-res1 <- msigdb_gsea(validated_ind[1], RAVmodel, category = "C2")
-dim(res1)
-
-gseaSub <- subsetGSEA(res1, n = 20)
-gseaBarplot(gseaRes = gseaSub)
-res_os <- gseaNetwork(gseaRes = gseaSub, similarity_metric = "overlap_similarity", similarity_cutoff = 0.3)
-res_js <- gseaNetwork(gseaRes = gseaSub, similarity_metric = "jaccard_similarity", similarity_cutoff = 0.3)
-
-visNetwork::visSave(res_os, file = "res_os.html")
-htmltools::includeHTML("res_os.html")
-
-visNetwork::visSave(res_js, file = "res_js.html")
-htmltools::includeHTML("res_js.html")
-```
-
-
-```{r echo=FALSE, eval=FALSE}
-res2 <- msigdb_gsea(validated_ind[2], RAVmodel, category = "C2")
-dim(res2)
-
-gseaSub <- subsetGSEA(res2, n = 20)
-gseaBarplot(gseaRes = gseaSub)
-gseaNetwork(gseaRes = gseaSub, similarity_metric = "overlap_similarity", similarity_cutoff = 0.3)
-gseaNetwork(gseaRes = gseaSub, similarity_metric = "jaccard_similarity", similarity_cutoff = 0.3)
-```
-
-
-```{r echo=FALSE, eval=FALSE}
-res3 <- msigdb_gsea(validated_ind[3], RAVmodel, category = "C2")
-dim(res3)
-
-gseaSub <- subsetGSEA(res3, n = 20)
-gseaBarplot(gseaRes = gseaSub)
-gseaNetwork(gseaRes = gseaSub, similarity_metric = "overlap_similarity", similarity_cutoff = 0.3)
-gseaNetwork(gseaRes = gseaSub, similarity_metric = "jaccard_similarity", similarity_cutoff = 0.3)
-```
-
-
-```{r echo=FALSE, eval=FALSE}
-res4 <- msigdb_gsea(validated_ind[4], RAVmodel, category = "C2")
-dim(res4)
-
-gseaSub <- subsetGSEA(res4, n = 20)
-gseaBarplot(gseaRes = gseaSub)
-gseaNetwork(gseaRes = gseaSub, similarity_metric = "overlap_similarity", similarity_cutoff = 0.3)
-gseaNetwork(gseaRes = gseaSub, similarity_metric = "jaccard_similarity", similarity_cutoff = 0.3)
-```
-

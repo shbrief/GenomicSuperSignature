@@ -7,9 +7,9 @@
 .loadingCor(dataset, avgLoading, method = "pearson", scale = FALSE)
 }
 \arguments{
-\item{dataset}{A expression dataset to validate. Genes in rows and samples in
-columns. Gene names should be in 'symbol' format. It can be ExpressionSet,
-SummarizedExperiment, RangedSummarizedExperiment, or matrix.}
+\item{dataset}{A gene expression dataset to validate. It can be ExpressionSet,
+SummarizedExperiment, RangedSummarizedExperiment, or matrix. Genes should be in
+'symbol' format. If it is a matrix, genes should be in rows and samples in columns.}
 
 \item{avgLoading}{A matrix with genes by RAVs.}
 

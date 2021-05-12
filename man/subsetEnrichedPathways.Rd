@@ -16,7 +16,7 @@ enriched pathways. If not specified, this function returns results from all the 
 enrichment score (NES).}
 
 \item{both}{Default is \code{FALSE}, where only the top \code{n} pathways will
-be printed. If it is set to \code{TRUE}, the ouput will contain both top and
+be printed. If it is set to \code{TRUE}, the output will contain both top and
 bottom \code{n} pathways.}
 }
 \value{

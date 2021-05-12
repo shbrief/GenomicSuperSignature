@@ -32,5 +32,4 @@ docs
 # large dataset
 /vignettes/*.rds
 
-inst/extdata/mini_gsea_C2/
-inst/extdata/mini_model_building/
+GenomicSuperSignature.Rproj

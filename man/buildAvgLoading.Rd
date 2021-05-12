@@ -12,11 +12,13 @@ training datasets. Each column represents genes used for PCA analysis.}
 
 \item{k}{The number of clusters used for hierarchical clustering}
 
-\item{n}{The number of top principle components from each datasets used for model buildling. Default is 20.}
+\item{n}{The number of top principle components from each datasets used for
+model building. Default is 20.}
 
 \item{cluster}{Provide pre-defined cluster membership of your data.}
 
-\item{study}{Under default (\code{TRUE}), studies involved in each cluster will be added in the output.}
+\item{study}{Under default (\code{TRUE}), studies involved in each cluster
+will be added in the output.}
 }
 \value{
 A named list of 6 elements is returned. It contains:

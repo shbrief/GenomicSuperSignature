@@ -17,7 +17,9 @@ plotAnnotatedPCA(
 )
 }
 \arguments{
-\item{dataset}{An expression matrix with genes (rows) x samples (columns)}
+\item{dataset}{A gene expression dataset to validate. It can be ExpressionSet,
+SummarizedExperiment, RangedSummarizedExperiment, or matrix. Genes should be in
+'symbol' format. If it is a matrix, genes should be in rows and samples in columns.}
 
 \item{RAVmodel}{PCAGenomicSignatures-class object}
 

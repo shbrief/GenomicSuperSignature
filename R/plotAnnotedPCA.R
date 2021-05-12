@@ -3,7 +3,9 @@
 #' @import ggpubr
 #' @import ggplot2
 #'
-#' @param dataset An expression matrix with genes (rows) x samples (columns)
+#' @param dataset A gene expression dataset to validate. It can be ExpressionSet,
+#' SummarizedExperiment, RangedSummarizedExperiment, or matrix. Genes should be in
+#' 'symbol' format. If it is a matrix, genes should be in rows and samples in columns.
 #' @param RAVmodel PCAGenomicSignatures-class object
 #' @param PCs A numeric vector length of 2. It should be between 1 and 8.
 #' @param val_all The output from \code{\link{validate}}
@@ -34,6 +36,9 @@ plotAnnotatedPCA <- function(dataset, RAVmodel, PCs, val_all = NULL,
                              color_by = NULL, color_lab = NULL,
                              trimed_pathway_len = 45) {
 
+  # Extract expression matrix from different classes
+  dat <- .extractExprsMatrix(dataset)
+
   if (is.null(val_all)) {val_all <- validate(dataset, RAVmodel)}
   PCAres <- stats::prcomp(dataset)$rotation %>% as.data.frame
 
@@ -43,7 +48,8 @@ plotAnnotatedPCA <- function(dataset, RAVmodel, PCs, val_all = NULL,
 
   if (is.null(color_lab)) {color_lab = "Color By"}
   if (!is.null(color_by)) {
-    colorFeature <- utils::stack(color_by) %>% tibble::column_to_rownames(var = "ind")
+    colorFeature <- utils::stack(color_by) %>%
+      tibble::column_to_rownames(var = "ind")
     PCAres <- cbind(PCAres, colorFeature)
     myPlot <- ggplot(PCAres, mapping = aes_string(x = names(PCAres)[ind1],
                                                   y = names(PCAres)[ind2],

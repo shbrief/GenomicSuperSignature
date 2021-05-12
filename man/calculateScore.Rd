@@ -7,14 +7,15 @@
 calculateScore(dataset, RAVmodel, rescale.after = TRUE)
 }
 \arguments{
-\item{dataset}{A gene expression matrix, where genes are in rows and rownames
-are in 'symbol' format. It can be SummarizedExperiment, ExpressionSet, or matrix objects.}
+\item{dataset}{A gene expression dataset to validate. It can be ExpressionSet,
+SummarizedExperiment, RangedSummarizedExperiment, or matrix. Genes should be in
+'symbol' format. If it is a matrix, genes should be in rows and samples in columns.}
 
 \item{RAVmodel}{PCAGenomicSignatures object. Output from \code{buildAvgLoading}
-function, a matrix of avaerage loadings, can be directly provided.}
+function, a matrix of average loadings, can be directly provided.}
 
 \item{rescale.after}{If it is \code{TRUE}, the continuous scores are rescaled
-post assignment, so avgerage loadings have the same standard deviation in different
+post assignment, so average loadings have the same standard deviation in different
 studies. If it is \code{FALSE}, the rescaling of column (= dividing by \code{sqrt(sum(x^2})
 is done before score assignment. Default is \code{TRUE}.}
 }

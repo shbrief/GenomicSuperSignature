@@ -1,22 +1,8 @@
-.filterByClusterSize <- function(data, cutoff) {
-  ind <- which(rownames(data) == "cl_size")
+.filterBy <- function(data, cutoff, type = c("cl_size", "score", "sw")) {
+  type <- match.arg(type)
+  ind <- rownames(data) == type
   val_ind <- which(data[ind,] >= cutoff)
-  dat <- data[,val_ind]
-  return(dat)
-}
-
-.filterByScore <- function(data, cutoff) {
-  ind <- which(rownames(data) == "score")
-  val_ind <- which(data[ind,] >= cutoff)
-  dat <- data[,val_ind]
-  return(dat)
-}
-
-.filterByAvgSW <- function(data, cutoff) {
-  ind <- which(rownames(data) == "sw")
-  val_ind <- which(data[ind,] >= cutoff)
-  dat <- data[,val_ind]
-  return(dat)
+  data[,val_ind]
 }
 
 .validatedSignaturesForMulipleStudies <- function(data, num.out = num.out, scoreCutoff = NULL) {
@@ -60,14 +46,14 @@
 #' data(bcellViper)
 #' val_all <- validate(dset, miniRAVmodel)
 #' validatedSignatures(val_all, num.out = 3, scoreCutoff = 0)
-#' #             score PC          sw cl_size cl_num
-#' # RAV1076 0.5950767  2 -0.04447124      10      1
-#' # RAV2538 0.5838616  2  0.06996166       4      2
-#' # RAV338  0.5709072  2 -0.04683319      21      3
 #'
 #' @export
-validatedSignatures <- function(val_all, num.out = 5, scoreCutoff = NULL, swCutoff = NULL,
-                                clsizeCutoff = NULL, indexOnly = FALSE, whichPC = NULL) {
+validatedSignatures <- function(val_all, num.out = 5, scoreCutoff = NULL,
+                                swCutoff = NULL, clsizeCutoff = NULL,
+                                indexOnly = FALSE, whichPC = NULL) {
+  # Input validation
+  stopifnot(length(indexOnly) == 1L, !is.na(indexOnly), is.logical(indexOnly))
+
   data <- t(val_all)
   ind <- which(rownames(data) == "score")
   pc_ind <- which(rownames(data) == "PC")
@@ -76,7 +62,7 @@ validatedSignatures <- function(val_all, num.out = 5, scoreCutoff = NULL, swCuto
   if (length(ind) == 0) {
     res <- .validatedSignaturesForMulipleStudies(data, scoreCutoff = scoreCutoff)
 
-    if (isFALSE(indexOnly)) {
+    if (!indexOnly) {
       return(res)
     } else {
       res_ind <- gsub("RAV", "", colnames(res))
@@ -92,9 +78,15 @@ validatedSignatures <- function(val_all, num.out = 5, scoreCutoff = NULL, swCuto
     data <- data[,subset_ind, drop = FALSE]
   }
 
-  if (!is.null(scoreCutoff)) {score_subset <- .filterByScore(data, scoreCutoff)} else {score_subset <- data}
-  if (!is.null(swCutoff)) {sw_subset <- .filterByAvgSW(data, swCutoff)} else {sw_subset <- data}
-  if (!is.null(clsizeCutoff)) {clsize_subset <- .filterByClusterSize(data, clsizeCutoff)} else {clsize_subset <- data}
+  if (!is.null(scoreCutoff)) {
+    score_subset <- .filterBy(data, scoreCutoff, "score")
+  } else {score_subset <- data}
+  if (!is.null(swCutoff)) {
+    sw_subset <- .filterBy(data, swCutoff, "sw")
+  } else {sw_subset <- data}
+  if (!is.null(clsizeCutoff)) {
+    clsize_subset <- .filterBy(data, clsizeCutoff, "cl_size")
+  } else {clsize_subset <- data}
 
   common_col <- intersect(colnames(score_subset), colnames(sw_subset))
   common_col <- intersect(common_col, colnames(clsize_subset))
@@ -103,11 +95,12 @@ validatedSignatures <- function(val_all, num.out = 5, scoreCutoff = NULL, swCuto
     dat <- data[, 0]
   } else {
     common_subset <- data[, common_col]
-    ordered_ind <- order(common_subset[ind,], decreasing = TRUE)[1:min(num.out, ncol(common_subset))]
+    ordered_ind <- order(common_subset[ind,], decreasing = TRUE)
+    ordered_ind <- ordered_ind[1:min(num.out, ncol(common_subset))]
     dat <- common_subset[,ordered_ind, drop = FALSE]
   }
 
-  if (isFALSE(indexOnly)) {
+  if (!indexOnly) {
     return(t(dat))
   } else {
     validatedIndex <- dat["cl_num",]

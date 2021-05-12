@@ -11,7 +11,7 @@
 #' @param n The number of top and bottom pathways to be selected based on normalized
 #' enrichment score (NES).
 #' @param both Default is \code{FALSE}, where only the top \code{n} pathways will
-#' be printed. If it is set to \code{TRUE}, the ouput will contain both top and
+#' be printed. If it is set to \code{TRUE}, the output will contain both top and
 #' bottom \code{n} pathways.
 #'
 #' @return A DataFrame with top and bottom \code{n} pathways from the enrichment results.
@@ -31,7 +31,7 @@ subsetEnrichedPathways <- function(RAVmodel, ind = NULL, n = 10, both = FALSE) {
 
   if (is(RAVmodel, "PCAGenomicSignatures")) {
     gsea_loading <- gsea(RAVmodel)
-  } else if (class(RAVmodel) %in% c("data.frame", "matrix", "list")) {
+  } else if (is.data.frame(RAVmodel) | is.matrix(RAVmodel) | is.list(RAVmodel)) {
     gsea_loading <- RAVmodel
   }
 
@@ -41,23 +41,23 @@ subsetEnrichedPathways <- function(RAVmodel, ind = NULL, n = 10, both = FALSE) {
     if (is.null(dim(x))) {
       res[[name]] <- "There is no enriched pathway"
     } else {
-      up <- x$Description[order(x$NES, decreasing=TRUE)][1:n]
-      down <- x$Description[order(x$NES, decreasing=FALSE)][1:n]
+      up <- x$Description[order(x$NES, decreasing=TRUE)][seq_len(n)]
+      down <- x$Description[order(x$NES, decreasing=FALSE)][seq_len(n)]
       res[[name]] <- c(up, down)
     }
 
     ### Adding NES and qvalues?
     # y <- x[,c("Description", "NES", "qvalues")]
-    # up <- y[order(y$NES, decreasing=TRUE),][1:n,]
-    # down <- y[order(y$NES, decreasing=FALSE),][1:n,]
+    # up <- y[order(y$NES, decreasing=TRUE),][seq_len(n),]
+    # down <- y[order(y$NES, decreasing=FALSE),][seq_len(n),]
     # res[[name]] <- rbind(up, down)
   }
 
   res <- data.frame(res, check.names = FALSE)
-  rnames <- c(paste0("Up_", 1:n), paste0("Down_", 1:n))
+  rnames <- c(paste0("Up_", seq_len(n)), paste0("Down_", seq_len(n)))
   rownames(res) <- rnames
 
-  if (both == FALSE) {res <- res[1:n,]}
+  if (!both) {res <- res[seq_len(n),]}
 
   if (is.null(ind)) {
     res <- S4Vectors::DataFrame(res)

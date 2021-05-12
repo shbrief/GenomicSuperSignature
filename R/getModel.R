@@ -1,4 +1,4 @@
-s2p_get_cache <- function(cache = rappdirs::user_cache_dir(appname='genomic_super_signature')) {
+s2p_get_cache <- function(cache = tools::R_user_dir("GenomicSuperSignature", "cache")) {
   BiocFileCache::BiocFileCache(cache=cache)
 }
 

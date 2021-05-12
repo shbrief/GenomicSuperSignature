@@ -1,8 +1,8 @@
 #' Validating new dataset
 #'
-#' @param dataset A expression dataset to validate. Genes in rows and samples in
-#' columns. Gene names should be in 'symbol' format. It can be ExpressionSet,
-#' SummarizedExperiment, RangedSummarizedExperiment, or matrix.
+#' @param dataset A gene expression dataset to validate. It can be ExpressionSet,
+#' SummarizedExperiment, RangedSummarizedExperiment, or matrix. Genes should be in
+#' 'symbol' format. If it is a matrix, genes should be in rows and samples in columns.
 #' @param avgLoading A matrix with genes by RAVs.
 #' @param method A character string indicating which correlation coefficient is
 #' to be computed. One of "pearson" (default), "kendall", or "spearman": can be abbreviated.
@@ -14,18 +14,13 @@
 #'
 .loadingCor <- function(dataset, avgLoading, method = "pearson", scale = FALSE) {
 
-    if (is(dataset, "ExpressionSet")) {
-        dat <- Biobase::exprs(dataset)
-    } else if (is(dataset,"SummarizedExperiment")) {
-        dat <- SummarizedExperiment::assay(dataset)
-    } else if (is(dataset,"matrix")) {
-        dat <- dataset
-    } else {
-        stop("'dataset' should be one of the following objects: ExpressionSet,
-             SummarizedExperiment, and matrix.")
-    }
+    # Extract expression matrix from different classes
+    dat <- .extractExprsMatrix(dataset)
 
-    if (isTRUE(scale)) {dat <- rowNorm(dat)}   # row normalization
+    # row normalization
+    stopifnot(length(scale) == 1L, !is.na(scale), is.logical(scale))
+    if (scale) {dat <- rowNorm(dat)}
+
     dat <- dat[apply(dat, 1, function (x) {!any(is.na(x) | (x==Inf) | (x==-Inf))}),]
     gene_common <- intersect(rownames(avgLoading), rownames(dat))
     prcomRes <- stats::prcomp(t(dat[gene_common,]))  # centered, but not scaled by default
@@ -42,7 +37,7 @@
 #' @param dataset Single or a named list of SummarizedExperiment (RangedSummarizedExperiment,
 #' ExpressionSet or matrix) object(s). Gene names should be in 'symbol' format. Currently,
 #' each dataset should have at least 8 samples.
-#' @param RAVmodel PCAGenomicSignatures object. You can also provide signature model matrix directly.
+#' @param RAVmodel PCAGenomicSignatures object.
 #' @param method A character string indicating which correlation coefficient is
 #' to be computed. One of "pearson" (default), "kendall", or "spearman": can be abbreviated.
 #' @param maxFrom Select whether to display the maximum value from dataset's PCs or avgLoadings.
@@ -81,19 +76,18 @@ validate <- function(dataset, RAVmodel, method = "pearson",
                      maxFrom = "PC", level = "max", scale = FALSE) {
 
     if (!is.list(dataset)) {
-        if (ncol(dataset) < 8) {stop("Provide a study with at least 8 samples.")}
-    }
-    if (is.list(dataset)) {
-        if (any(lapply(dataset, ncol) < 8)) {stop("Provide a study with at least 8 samples.")}
-        if (level == "all") {stop("'level = \"all\"' is not available for a list of datasets.")}
+        if (ncol(dataset) < 8) {
+            stop("Provide a study with at least 8 samples.")}
+    } else {
+        if (any(lapply(dataset, ncol) < 8)) {
+            stop("Provide a study with at least 8 samples.")}
+        if (level == "all") {
+            stop("'level = \"all\"' is not available for a list of datasets.")}
     }
 
     sw <- silhouetteWidth(RAVmodel)
     cl_size <- S4Vectors::metadata(RAVmodel)$size
-
-    if (is(RAVmodel,"GenomicSignatures")) {
-        avgLoading <- SummarizedExperiment::assay(RAVmodel)
-    } else {avgLoading <- RAVmodel}
+    avgLoading <- SummarizedExperiment::assay(RAVmodel)
 
     # The maximum correlation coefficient among PCs
     if (maxFrom == "PC") {
@@ -114,9 +108,12 @@ validate <- function(dataset, RAVmodel, method = "pearson",
         } else {
             # For a list of datasets
             x <- lapply(dataset, .loadingCor, avgLoading, method, scale)
+            l <- nrow(x[[1]]) # the number of RAVs in validation output
             if (level == "max") {
-                z <- sapply(x, function(y) {apply(y, 1, max)})
-                zPC <- sapply(x, function(y) {apply(y, 1, which.max)})
+                z <- vapply(x, function(y) {apply(y, 1, max)},
+                            FUN.VALUE = numeric(l))
+                zPC <- vapply(x, function(y) {apply(y, 1, which.max)},
+                              FUN.VALUE = integer(l))
                 colnames(zPC) <- paste0(colnames(zPC), "_PC")
                 res <- cbind(z, zPC)
             } else if (level == "all") {
@@ -133,7 +130,8 @@ validate <- function(dataset, RAVmodel, method = "pearson",
             x <- .loadingCor(dataset, avgLoading, method)
             if (level == "max") {
                 z <- apply(x, 2, max) %>% as.data.frame # colMax
-                z$avgLoading <- apply(x, 2, which.max)
+                max_z_ind <- apply(x, 2, which.max)
+                z$validated_RAV <- rownames(x)[max_z_ind]
                 colnames(z)[1] <- "score"
                 return(z)
             } else if (level == "all") {
@@ -142,7 +140,7 @@ validate <- function(dataset, RAVmodel, method = "pearson",
         } else {
             x <- lapply(dataset, .loadingCor, avgLoading, method)
             if (level == "max") {
-                z <- sapply(x, function(y) {apply(y, 2, max)})
+                z <- apply(y, 2, max)
                 return(z)
             } else if (level == "all") {
                 return(x)

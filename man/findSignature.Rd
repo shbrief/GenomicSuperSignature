@@ -12,7 +12,8 @@ findSignature(RAVmodel, keyword, n = 5, k = NULL)
 \item{keyword}{A character vector. If you are searching for multiple keywords
 at the same time, use \code{\link{paste}} with \code{collapse = "|"} argument.}
 
-\item{n}{The number of top ranked (based on abs(NES)) pathways you want to search your keyword}
+\item{n}{The number of top ranked (based on abs(NES)) pathways you want to
+search your keyword}
 
 \item{k}{The number of keyword-containing pathways you want to get the RAV
 number. Under default (\code{NULL}), the output will be a data frame with two
@@ -33,10 +34,6 @@ data(miniRAVmodel)
 library(bcellViper)
 data(bcellViper)
 findSignature(miniRAVmodel, "Bcell")
-#   # of keyword-containing pathways Freq
-# 1                                0   15
-# 2                                5    2
 findSignature(miniRAVmodel, "Bcell", k = 5)
-# [1] 16 17
 
 }
