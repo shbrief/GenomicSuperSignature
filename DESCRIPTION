@@ -1,7 +1,7 @@
 Package: GenomicSuperSignature
 Title: Interpretation of RNA-seq experiments through robust, efficient comparison to public databases
 Authors@R: c(
-  person("Sehyun", "Oh", email = "Sehyun.Oh@sph.cuny.edu", role = c("aut")),
+  person("Sehyun", "Oh", email = "shbrief@gmail.com", role = c("aut")),
   person("Sean", "Davis", email = "seandavi@gmail.com", role = c("aut","cre")))
 Version: 0.99.13
 Date: 2021-05-12
