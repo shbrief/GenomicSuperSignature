@@ -30,7 +30,7 @@ calculateScore <- function(dataset, RAVmodel, rescale.after = TRUE) {
         avg.loadings <- RAVmodel
     }
 
-    if (!is.list(dataset)) {dataset <- list(dataset)}
+    if (!is.list(dataset)) {dataset <- as.list(dataset)}
     validationScore <- lapply(dataset, function(dat) {
         count <- .extractExprsMatrix(dat)
         count <- count[apply(count, 1,
