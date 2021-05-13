@@ -24,7 +24,7 @@
 #' @import methods
 #'
 #' @param dataset A gene expression dataset to validate. It can be ExpressionSet,
-#' SummarizedExperiment, RangedSummarizedExperiment, or matrix. Genes should be in
+#' SummarizedExperiment, RangedSummarizedExperiment, or matrix. Rownames (genes) should be in
 #' 'symbol' format. If it is a matrix, genes should be in rows and samples in columns.
 #' @param RAVmodel PCAGenomicSignatures object. Output from \code{buildAvgLoading}
 #' function, a matrix of average loadings, can be directly provided.
@@ -38,10 +38,17 @@
 #'
 #' @examples
 #' data(miniRAVmodel)
-#' library(bcellViper)
-#' data(bcellViper)
-#' score <- calculateScore(dset, miniRAVmodel)
-#'
+#' dim(miniRAVmodel)
+#' miniRAVmodel
+#' if(require(bcellViper)) {
+#'   data(bcellViper)
+#'   dset
+#'   head(rownames(dset))
+#'   score <- calculateScore(dset, miniRAVmodel)
+#'   dim(score)
+#'   head(colnames(score))
+#'   head(rownames(score))
+#' }
 #' @export
 calculateScore <- function(dataset, RAVmodel, rescale.after = TRUE) {
 
