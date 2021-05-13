@@ -1,3 +1,24 @@
+.validateScore <- function(dat, rescale.after, avg.loadings) {
+    count <- .extractExprsMatrix(dat)
+    count <- count[apply(count, 1,
+                         function(x) {!any(is.na(x) | (x==Inf) | (x==-Inf))}),]
+    count <- apply(count, 1, function(x) {x - mean(x)}) %>% t  # row centered
+    gene_common <- intersect(rownames(avg.loadings), rownames(count))
+
+    if (rescale.after) {
+        # CRC paper version
+        score <- t(count[gene_common,]) %*% as.matrix(avg.loadings[gene_common,])
+        score <- (t(score) / apply(score, 2, stats::sd)) %>% t
+    } else {
+        score <- t(count[gene_common,]) %*%
+            apply(avg.loadings[gene_common,], 2,
+                  function(x) x / sqrt(sum(x^2, na.rm = TRUE)))
+    }
+
+    colnames(score) <- colnames(avg.loadings)
+    return(score)
+}
+
 #' Calculate the validation score for a new dataset
 #'
 #' @import methods
@@ -30,29 +51,12 @@ calculateScore <- function(dataset, RAVmodel, rescale.after = TRUE) {
         avg.loadings <- RAVmodel
     }
 
-    if (!is.list(dataset)) {dataset <- as.list(dataset)}
-    validationScore <- lapply(dataset, function(dat) {
-        count <- .extractExprsMatrix(dat)
-        count <- count[apply(count, 1,
-                             function(x) {!any(is.na(x) | (x==Inf) | (x==-Inf))}),]
-        count <- apply(count, 1, function(x) {x - mean(x)}) %>% t  # row centered
-        gene_common <- intersect(rownames(avg.loadings), rownames(count))
+    if (!is.list(dataset)) {
+        validationScore <- .validateScore(dataset, rescale.after, avg.loadings)
+    } else {
+        validationScore <- lapply(dataset, .validateScore,
+                                  rescale.after, avg.loadings)
+    }
 
-        if (rescale.after) {
-            # CRC paper version
-            score <- t(count[gene_common,]) %*% as.matrix(avg.loadings[gene_common,])
-            score <- (t(score) / apply(score, 2, stats::sd)) %>% t
-        } else {
-            score <- t(count[gene_common,]) %*%
-                apply(avg.loadings[gene_common,], 2,
-                      function(x) x / sqrt(sum(x^2, na.rm = TRUE)))
-        }
-
-        colnames(score) <- colnames(avg.loadings)
-        return(score)
-    })
-
-    if (length(dataset) == 1) {
-        return(validationScore[[1]])
-    } else {return(validationScore)}
+    return(validationScore)
 }
