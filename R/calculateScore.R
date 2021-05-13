@@ -38,17 +38,10 @@
 #'
 #' @examples
 #' data(miniRAVmodel)
-#' dim(miniRAVmodel)
-#' miniRAVmodel
-#' if(require(bcellViper)) {
-#'   data(bcellViper)
-#'   dset
-#'   head(rownames(dset))
-#'   score <- calculateScore(dset, miniRAVmodel)
-#'   dim(score)
-#'   head(colnames(score))
-#'   head(rownames(score))
-#' }
+#' library(bcellViper)
+#' data(bcellViper)
+#' score <- calculateScore(dset, miniRAVmodel)
+#'
 #' @export
 calculateScore <- function(dataset, RAVmodel, rescale.after = TRUE) {
 
