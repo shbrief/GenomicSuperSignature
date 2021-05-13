@@ -25,6 +25,7 @@ PCinRAV <- function(RAVmodel, ind) {
 #' Build a two-column word/frequency table
 #'
 #' @import dplyr
+#' @importFrom S4Vectors metadata
 #'
 #' @param RAVmodel A PCAGenomicSignatures object
 #' @param ind An index of RAV
