@@ -34,6 +34,7 @@
 #' provide the \code{ind} argument, studies associated with only the specified RAVs
 #' will be returned.
 #'
+#' @note Mainly used for model building, within \link{buildAvgLoading}.
 #' @export
 findStudiesInCluster <- function(RAVmodel, ind = NULL, studyTitle = FALSE) {
 
