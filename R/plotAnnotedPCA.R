@@ -27,9 +27,10 @@
 #' data(miniRAVmodel)
 #' library(bcellViper)
 #' data(bcellViper)
-#' \dontrun{
+#' \donttest{
 #' plotAnnotatedPCA(exprs(dset), miniRAVmodel, PCs = c(1,2))
 #' }
+#'
 #' @export
 plotAnnotatedPCA <- function(dataset, RAVmodel, PCs, val_all = NULL,
                              scoreCutoff = 0.5, nesCutoff = NULL,
