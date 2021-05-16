@@ -30,8 +30,6 @@
 \item{x}{A \code{GenomicSignatures} object}
 
 \item{value}{See details.}
-
-\item{...}{Additional arguments for supporting functions.}
 }
 \value{
 A GenomicSignatures object for the constructor

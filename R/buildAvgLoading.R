@@ -24,9 +24,6 @@
 #' @param RAVmodel PCAGenomicSignatures object.
 #' @param ind A numeric vector containing the RAV indexes. Under the default (\code{NULL}),
 #' studies associated with all the RAV indexes will be returned as a list.
-#' @param studyTitle Default is \code{FALSE}. This parameter is effective only when
-#' the \code{index} value is specificed. If it's \code{TRUE}, the output will be
-#' a data frame with the study
 #'
 #' @return A list of character vector. Under the default condition (\code{ind = NULL}),
 #' all the RAVs will be checked for their contributing studies and the length
@@ -34,9 +31,13 @@
 #' provide the \code{ind} argument, studies associated with only the specified RAVs
 #' will be returned.
 #'
+#' @examples
+#' data(miniRAVmodel)
+#' findStudiesInCluster(miniRAVmodel, 1076)
+#'
 #' @note Mainly used for model building, within \link{buildAvgLoading}.
 #' @export
-findStudiesInCluster <- function(RAVmodel, ind = NULL, studyTitle = FALSE) {
+findStudiesInCluster <- function(RAVmodel, ind = NULL) {
 
     if (is(RAVmodel,"PCAGenomicSignatures")) {
         x <- S4Vectors::metadata(RAVmodel)
@@ -73,13 +74,6 @@ findStudiesInCluster <- function(RAVmodel, ind = NULL, studyTitle = FALSE) {
                               function(x) {unlist(strsplit(x, "\\."))[1]})
             res <- studies <- unique(unlist(studies))
         }
-
-        if (studyTitle) {
-            dir <- system.file("extdata", package = "GenomicSuperSignature")
-            studyMeta <- utils::read.table(file.path(dir, "studyMeta.tsv"))
-            studyMeta <- studyMeta[,c("studyName", "title")]
-            res <- studyMeta[which(studyMeta$studyName %in% studies),]
-        }
     }
     return(res)
 }
@@ -106,6 +100,11 @@ findStudiesInCluster <- function(RAVmodel, ind = NULL, studyTitle = FALSE) {
 #'    \item{\code{n}}{The number of top PCs used for clustering}
 #'    \item{\code{studies}}{A list of character vector containing studies in each cluster}
 #' }
+#'
+#' @examples
+#' data(miniAllZ)
+#' data(res_hcut)
+#' res <- buildAvgLoading(miniAllZ, k = 40, cluster = res_hcut$cluster)
 #'
 #' @export
 buildAvgLoading <- function(dat, k, n = 20, cluster = NULL, study = TRUE) {

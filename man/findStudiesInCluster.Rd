@@ -11,10 +11,6 @@ findStudiesInCluster(RAVmodel, ind = NULL, studyTitle = FALSE)
 
 \item{ind}{A numeric vector containing the RAV indexes. Under the default (\code{NULL}),
 studies associated with all the RAV indexes will be returned as a list.}
-
-\item{studyTitle}{Default is \code{FALSE}. This parameter is effective only when
-the \code{index} value is specificed. If it's \code{TRUE}, the output will be
-a data frame with the study}
 }
 \value{
 A list of character vector. Under the default condition (\code{ind = NULL}),

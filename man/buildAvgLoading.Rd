@@ -34,3 +34,9 @@ A named list of 6 elements is returned. It contains:
 \description{
 Calculate average loadings of each cluster
 }
+\examples{
+data(miniAllZ)
+data(res_hcut)
+res <- buildAvgLoading(miniAllZ, k = 40, cluster = res_hcut$cluster)
+
+}
