@@ -36,7 +36,6 @@
 #'
 #' @param x A \code{GenomicSignatures} object
 #' @param value See details.
-#' @param ... Additional arguments for supporting functions.
 #'
 #' @return A GenomicSignatures object for the constructor
 #'
