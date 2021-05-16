@@ -14,7 +14,7 @@
 #'
 .RAVName <- function(x, ...) {
     x@colData$RAV <- rownames(x@colData)
-    rownames(x@colData) <- paste0("RAV", 1:ncol(x))
+    rownames(x@colData) <- paste0("RAV", seq_len(ncol(x)))
     return(x)
 }
 

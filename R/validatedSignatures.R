@@ -73,7 +73,7 @@ validatedSignatures <- function(val_all, num.out = 5, scoreCutoff = NULL,
   }
 
   if (!is.null(whichPC)) {
-    if (!whichPC %in% c(1:8)) {stop("whichPC should be an integer between 1 and 8.")}
+    if (!whichPC %in% seq_len(8)) {stop("whichPC should be an integer between 1 and 8.")}
     subset_ind <- which(data[pc_ind,] == whichPC)
     data <- data[,subset_ind, drop = FALSE]
   }
@@ -96,7 +96,8 @@ validatedSignatures <- function(val_all, num.out = 5, scoreCutoff = NULL,
   } else {
     common_subset <- data[, common_col]
     ordered_ind <- order(common_subset[ind,], decreasing = TRUE)
-    ordered_ind <- ordered_ind[1:min(num.out, ncol(common_subset))]
+    n_out <- min(num.out, ncol(common_subset))
+    ordered_ind <- ordered_ind[seq_len(n_out)]
     dat <- common_subset[,ordered_ind, drop = FALSE]
   }
 

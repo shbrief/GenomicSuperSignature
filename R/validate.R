@@ -24,7 +24,7 @@
     dat <- dat[apply(dat, 1, function (x) {!any(is.na(x) | (x==Inf) | (x==-Inf))}),]
     gene_common <- intersect(rownames(avgLoading), rownames(dat))
     prcomRes <- stats::prcomp(t(dat[gene_common,]))  # centered, but not scaled by default
-    loadings <- prcomRes$rotation[, 1:8]
+    loadings <- prcomRes$rotation[, seq_len(8)]
     loading_cor <- abs(stats::cor(avgLoading[gene_common,], loadings[gene_common,],
                                   use = "pairwise.complete.obs",
                                   method = method))
@@ -102,8 +102,10 @@ validate <- function(dataset, RAVmodel, method = "pearson",
                 z$cl_size <- cl_size   # Cluster size
                 z$cl_num <- readr::parse_number(rownames(z))   # Cluster number
                 res <- z
+                return(res)
             } else if (level == "all") {
                 res <- x
+                return(res)
             }
         } else {
             # For a list of datasets
@@ -116,12 +118,12 @@ validate <- function(dataset, RAVmodel, method = "pearson",
                               FUN.VALUE = integer(l))
                 colnames(zPC) <- paste0(colnames(zPC), "_PC")
                 res <- cbind(z, zPC)
+                return(res)
             } else if (level == "all") {
                 res <- x
+                return(res)
             }
         }
-        # return(t(res))
-        return(res)
     }
 
     # The maximum correlation coefficient among avgLoadings

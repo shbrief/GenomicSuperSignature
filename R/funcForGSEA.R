@@ -69,7 +69,7 @@ msigdb_gsea <- function(ind, RAVmodel, category = "C2", n = NULL, pvalueCutoff =
         return(y)
     } else {
         y <- clusterProfiler::group_by(y, sign(NES)) %>%
-            clusterProfiler::slice(1:n)
+            clusterProfiler::slice(seq_len(n))
         return(y)
     }
 }

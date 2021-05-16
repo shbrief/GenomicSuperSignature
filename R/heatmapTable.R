@@ -105,7 +105,7 @@ heatmapTable <- function(val_all, ind = NULL, num.out = 5,
   sw_ind <- which(colnames(val_all) == "sw")
 
   # If the validation result contains all PCs (`validate` with `level = "all"`)
-  if (identical(colnames(val_all), paste0("PC", 1:8))) {
+  if (identical(colnames(val_all), paste0("PC", seq_len(8)))) {
     stop("'val_all' input should be created by `validate` function with
          `level = \"max\"`, not `level = \"all\"`.")
   }
