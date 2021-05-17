@@ -5,7 +5,8 @@
   data[,val_ind]
 }
 
-.validatedSignaturesForMulipleStudies <- function(data, num.out = num.out, scoreCutoff = NULL) {
+.validatedSignaturesForMulipleStudies <- function(data, num.out = num.out,
+                                                  scoreCutoff = NULL) {
   studies <- rownames(data)
   ind <- grep("_PC", studies)
   data <- data[-ind,]
@@ -22,21 +23,22 @@
 #' Validation result in data frame
 #'
 #' @param val_all An output matrix from \code{\link{validate}} function. If this
-#' input is from multiple datasets, only \code{scoreCutoff} argument will be considered
-#' and other inputs will be ignored.
+#' input is from multiple datasets, only \code{scoreCutoff} argument will be
+#' considered and other inputs will be ignored.
 #' @param num.out A number of highly validated RAVs to output. Default is 5.
 #' If any of the cutoff parameters are provided, \code{num.out} or the number of
 #' filtered RAVs, whichever smaller, will be chosen.
-#' @param scoreCutoff A numeric value for the minimum correlation. For multi-studies
-#' case, the default is 0.7.
+#' @param scoreCutoff A numeric value for the minimum correlation. For
+#' multi-studies case, the default is 0.7.
 #' @param swCutoff A numeric value for the minimum average silhouette width.
 #' @param clsizeCutoff An integer value for the minimum cluster size.
-#' @param indexOnly A logical. Under the default (= FALSE), the detailed information
-#' on validated RAVs, such as score, average silhouette width, cluster size, is
-#' printed. If it is set TRUE, only the RAV number will be printed.
-#' @param whichPC An integer value between 1 and 8. PC number of your data to check
-#' the validated signatures with. Under the default (\code{NULL}), it outputs top
-#' scored signatures with any PC of your data.
+#' @param indexOnly A logical. Under the default (= \code{FALSE}), the detailed
+#' information on validated RAVs, such as score, average silhouette width,
+#' cluster size, is printed. If it is set TRUE, only the RAV number will be
+#' printed.
+#' @param whichPC An integer value between 1 and 8. PC number of your data to
+#' check the validated signatures with. Under the default (\code{NULL}), it
+#' outputs top scored signatures with any PC of your data.
 #'
 #' @return A subset of the input matrix, which meets the given condition.
 #'
@@ -60,7 +62,7 @@ validatedSignatures <- function(val_all, num.out = 5, scoreCutoff = NULL,
 
   # If the validation result is from the list of datasets
   if (length(ind) == 0) {
-    res <- .validatedSignaturesForMulipleStudies(data, scoreCutoff = scoreCutoff)
+    res <- .validatedSignaturesForMulipleStudies(data, scoreCutoff=scoreCutoff)
 
     if (!indexOnly) {
       return(res)
@@ -73,7 +75,9 @@ validatedSignatures <- function(val_all, num.out = 5, scoreCutoff = NULL,
   }
 
   if (!is.null(whichPC)) {
-    if (!whichPC %in% seq_len(8)) {stop("whichPC should be an integer between 1 and 8.")}
+    if (!whichPC %in% seq_len(8)) {
+      stop("whichPC should be an integer between 1 and 8.")
+    }
     subset_ind <- which(data[pc_ind,] == whichPC)
     data <- data[,subset_ind, drop = FALSE]
   }

@@ -5,9 +5,10 @@
 #' @name GenomicSignatures-class
 #' @title Virtual class inherited from SummarizedExperiment
 #'
-#' @description GenomicSignatures is a virtual class inherited from SummarizedExperiment
-#' and hosts GenomicSignatures models built from different dimensional reduction methods.
-#' Currently, PCA-based model, called PCAGenomicSignatures, is available.
+#' @description GenomicSignatures is a virtual class inherited from
+#' SummarizedExperiment and hosts GenomicSignatures models built from different
+#' dimensional reduction methods. Currently, PCA-based model, called
+#' PCAGenomicSignatures, is available.
 #'
 #' @param x A \code{GenomicSignatures-class} object
 #' @param value See details.
@@ -28,8 +29,8 @@ setClass("GenomicSignatures",
 #'
 #' @description PCA-based \code{\link{GenomicSignatures-class}}.
 #'
-#' @slot trainingData A \code{\link[S4Vectors]{DataFrame}} class object for metadata
-#' associated with training data
+#' @slot trainingData A \code{\link[S4Vectors]{DataFrame}} class object for
+#' metadata associated with training data
 #' @param x A \code{GenomicSignatures-class} object
 #' @param value See details.
 #'

@@ -5,25 +5,29 @@
 #' @param category A character vector representing MSigDB category. Options are
 #' "H", "C1", "C2"(default), "C3", "C4", "C5", "C6", and "C7"
 #' @param n An interger. The number of top and bottom enriched pathways to plot.
-#' Default is \code{NULL} and print out all the pathways enriched under \code{pvalueCutoff}.
+#' Default is \code{NULL}, which prints out all the pathways enriched under
+#' \code{pvalueCutoff}.
 #' @param pvalueCutoff Cutoff for both pvalue and p.adjust. Default is 0.5.
 #' @param minGSSize A mininum size of gene set to be analyzed
 #' @param maxGSSize A maximum size of gene set to be analyzed
-#' @param pAdjustMethod p-value adjustment methods, which will be used as an input
-#' for \code{method} argument of \code{\link[stats]{p.adjust}} function. Available
-#' options are "holm", "hochberg", "hommel", "bonferroni", "BH"(default), "BY", "fdr", "none".
+#' @param pAdjustMethod p-value adjustment methods, which will be used as an
+#' input for \code{method} argument of \code{\link[stats]{p.adjust}} function.
+#' Available options are "holm", "hochberg", "hommel", "bonferroni",
+#' "BH"(default), "BY", "fdr", "none".
 #' @param verbose Logical. Default is FALSE.
 #' @param seed Logical. Default is FALSE.
-#' @param by Available options are \code{c("fgsea", "DOSE")}. Default is "fgsea".
+#' @param by Available options are \code{c("fgsea", "DOSE")}. Default "fgsea".
 #' @param geneSets Custom genesets to use with MSigDB genesets. It should be in
 #' a named list format.
 #'
 #' @return Barplot of GSEA output. Top and bottom \code{n} genesets based on NES
 #' are plotted and qvalues are denoted by color.
 #'
-msigdb_gsea <- function(ind, RAVmodel, category = "C2", n = NULL, pvalueCutoff = 0.5,
+msigdb_gsea <- function(ind, RAVmodel, category = "C2", n = NULL,
+                        pvalueCutoff = 0.5,
                         minGSSize = 10, maxGSSize = 500, pAdjustMethod = "BH",
-                        verbose = FALSE, seed = FALSE, by = "fgsea", geneSets = NULL) {
+                        verbose = FALSE, seed = FALSE,
+                        by = "fgsea", geneSets = NULL) {
 
     ## Binding the variables from res locally to the function
     gs_name <- entrez_gene <- NES <- ordering <- NULL
@@ -32,7 +36,8 @@ msigdb_gsea <- function(ind, RAVmodel, category = "C2", n = NULL, pvalueCutoff =
     al <- RAVindex(RAVmodel)[, ind]
     obj <- list()
     obj[[1]] <- names(al)
-    names(al) <- EnrichmentBrowser::idMap(obj, "hsa", from = "SYMBOL", to = "ENTREZID")[[1]]
+    names(al) <- EnrichmentBrowser::idMap(obj, "hsa",
+                                          from="SYMBOL", to="ENTREZID")[[1]]
     al <- sort(al, decreasing = TRUE)
 
     ## Formating
@@ -46,7 +51,8 @@ msigdb_gsea <- function(ind, RAVmodel, category = "C2", n = NULL, pvalueCutoff =
     ## Custom genesets
     if (!is.null(geneSets)) {
         if (is.list(geneSets)) {
-            geneSets <- EnrichmentBrowser::idMap(geneSets, "hsa", from = "SYMBOL", to = "ENTREZID")
+            geneSets <- EnrichmentBrowser::idMap(geneSets, "hsa",
+                                                 from="SYMBOL", to="ENTREZID")
             custom_m <- reshape2::melt(geneSets)
             colnames(custom_m) <- c("entrez_gene", "gs_name")
             custom_m$gs_name <- gsub(" ", "_", custom_m$gs_name)
@@ -55,10 +61,11 @@ msigdb_gsea <- function(ind, RAVmodel, category = "C2", n = NULL, pvalueCutoff =
     }
 
     ## GSEA
-    ms <- clusterProfiler::GSEA(geneList, TERM2GENE = m, pvalueCutoff = pvalueCutoff,
+    ms <- clusterProfiler::GSEA(geneList, TERM2GENE = m,
+                                pvalueCutoff = pvalueCutoff,
                                 minGSSize = minGSSize, maxGSSize = maxGSSize,
-                                pAdjustMethod = pAdjustMethod, verbose = verbose,
-                                seed = seed, by = by)
+                                pAdjustMethod = pAdjustMethod,
+                                verbose = verbose, seed = seed, by = by)
 
     ## Subset
     y <- clusterProfiler::mutate(ms, ordering = abs(NES)) %>%
@@ -97,14 +104,14 @@ subsetGSEA <- function(gseaRes, n = 20) {
 
 
 #' @title Order genes in loading vectors
-#' @description This function takes Z matrix (= averaged loadings) and orders the
-#' genes in each loading vector (= RAV) in a descending manner.
+#' @description This function takes Z matrix (= averaged loadings) and orders
+#' the genes in each loading vector (= RAV) in a descending manner.
 #'
 #' @param LoadingMatrix An avgloading matrix. Rows represent genes and columns
 #' represent clusters of principle components
-#' @param LoadingVector A list of column names or indexes of \code{LoadingMatrix}
-#' you want to check. Default is \code{NULL}, under which the function takes the
-#' all column names of \code{LoadingMatrix}
+#' @param LoadingVector A list of column names or indexes of
+#' \code{LoadingMatrix} you want to check. Default is \code{NULL}, under which
+#' the function takes the all column names of \code{LoadingMatrix}
 #' @param abs Under the defaul condition (\code{TRUE}), this function will
 #' create a gene list based on the absolute value.
 #'
@@ -124,14 +131,15 @@ makeGeneList <- function(LoadingMatrix, LoadingVector = NULL, abs = TRUE) {
     geneLists <- list()
     for (x in LoadingVector) {
         if (x %in% colnames(LoadingMatrix)) {
-            geneList <- LoadingMatrix[, x]    # feature 1: numeric vector
-            names(geneList) <- rownames(LoadingMatrix)    # feature 2: named vector
+            geneList <- LoadingMatrix[, x] # feature 1: numeric vector
+            names(geneList) <- rownames(LoadingMatrix) # feature 2: named vector
         } else {
-            geneList <- LoadingMatrix[, c(x)]   # If index, not the name of column, is provided.
+            # If index, not the name of column, is provided.
+            geneList <- LoadingMatrix[, c(x)]
             names(geneList) <- rownames(LoadingMatrix)
         }
 
-        geneList <- sort(geneList, decreasing = TRUE)    # feature 3: decreasing order
+        geneList <- sort(geneList,decreasing=TRUE) # feature 3: decreasing order
         geneLists[[as.character(x)]] <- geneList
     }
     return(geneLists)
@@ -139,19 +147,24 @@ makeGeneList <- function(LoadingMatrix, LoadingVector = NULL, abs = TRUE) {
 
 
 #' @title GSEA on pre-ordered gene lists
-#' @description This function is a wrapper of \code{\link[clusterProfiler]{GSEA}} function,
-#' making it applicable to a list of gene lists. Set seed for reproducible result.
+#' @description This function is a wrapper of
+#' \code{\link[clusterProfiler]{GSEA}} function, making it applicable to a list
+#' of gene lists. Set seed for reproducible result.
 #'
 #' @param geneList A list of genes ordered by rank
-#' @param TERM2GENE User input annotation of TERM TO GENE mapping, a data.frame of 2 column with term and gene
-#' @param TERM2NAME User input of TERM TO NAME mapping, a data.frame of 2 column with term and name. Optional.
+#' @param TERM2GENE User input annotation of TERM TO GENE mapping, a data frame
+#' of 2 column with term and gene
+#' @param TERM2NAME User input of TERM TO NAME mapping, a data.frame of 2 column
+#' with term and name. Optional.
 #' @param minGSSize A mininum size of gene set to be analyzed
 #' @param maxGSSize A maximum size of gene set to be analyzed
 #' @param pvalueCutoff p-value cutoff
 #' @param verbose Logical. Default is \code{FALSE}
-#' @param ... Any additional argument inherited from \code{\link[clusterProfiler]{GSEA}}.
+#' @param ... Any additional argument inherited from
+#' \code{\link[clusterProfiler]{GSEA}}.
 #'
-#' @return A list of \code{gseaResult} objects. \code{NA} if there is no enrichment result.
+#' @return A list of \code{gseaResult} objects. If there is no enrichment
+#' result, \code{NA} will be returned.
 #'
 run_gsea <- function(geneList, TERM2GENE, TERM2NAME,
                      minGSSize = 10, maxGSSize = 500,
@@ -166,11 +179,7 @@ run_gsea <- function(geneList, TERM2GENE, TERM2NAME,
                                      verbose = verbose,
                                      pvalueCutoff = pvalueCutoff,
                                      ...)
-
-        # collect GSEA outputs with enrichment result under the assigned pvalueCutoff
-        if (nrow(res) != 0) {
-            gsea[[x]] <- res
-        }
+        if (nrow(res) != 0) {gsea[[x]] <- res}
     }
     return(gsea)
 }

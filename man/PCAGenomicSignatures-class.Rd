@@ -19,8 +19,8 @@ PCAGenomicSignatures
 \section{Slots}{
 
 \describe{
-\item{\code{trainingData}}{A \code{\link[S4Vectors]{DataFrame}} class object for metadata
-associated with training data}
+\item{\code{trainingData}}{A \code{\link[S4Vectors]{DataFrame}} class object for
+metadata associated with training data}
 }}
 
 \examples{

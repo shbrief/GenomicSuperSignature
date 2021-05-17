@@ -7,21 +7,24 @@
 .loadingCor(dataset, avgLoading, method = "pearson", scale = FALSE)
 }
 \arguments{
-\item{dataset}{A gene expression dataset to validate. It can be ExpressionSet,
-SummarizedExperiment, RangedSummarizedExperiment, or matrix. Genes should be in
-'symbol' format. If it is a matrix, genes should be in rows and samples in columns.}
+\item{dataset}{A gene expression profile to be validated. Different classes
+of objects can be used including ExpressionSet, SummarizedExperiment,
+RangedSummarizedExperiment, or matrix. Rownames (genes) should be in symbol
+format. If it is a matrix, genes should be in rows and samples in columns.}
 
 \item{avgLoading}{A matrix with genes by RAVs.}
 
 \item{method}{A character string indicating which correlation coefficient is
-to be computed. One of "pearson" (default), "kendall", or "spearman": can be abbreviated.}
+to be computed. One of "pearson" (default), "kendall", or "spearman": can be
+abbreviated.}
 
-\item{scale}{Default is \code{FALSE}. If it is set to \code{TRUE}, dataset will
-be row normalized by \link{rowNorm} function.}
+\item{scale}{Default is \code{FALSE}. If it is set to \code{TRUE}, dataset
+will be row normalized by \link{rowNorm} function.}
 }
 \value{
-A matrix of Pearson correlation coefficient (default, defined through \code{method}
-argument) between RAVs (row) and the top 8 PCs from the datasets (column)
+A matrix of Pearson correlation coefficient (default, defined through
+\code{method} argument) between RAVs (row) and the top 8 PCs from the
+datasets (column)
 }
 \description{
 Validating new dataset

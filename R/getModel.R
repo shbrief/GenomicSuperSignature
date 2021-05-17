@@ -1,4 +1,5 @@
-s2p_get_cache <- function(cache = tools::R_user_dir("GenomicSuperSignature", "cache")) {
+s2p_get_cache <- function(cache = tools::R_user_dir("GenomicSuperSignature",
+                                                    "cache")) {
   BiocFileCache::BiocFileCache(cache=cache)
 }
 
@@ -28,11 +29,12 @@ s2p_cached_url <- function(url, rname = url, ask_on_update=FALSE,
 
 #' Download a PCAGenomicSignatures model
 #'
-#' @param prior The name of gene sets used to annotate PCAGenomicSignatures. Currently
-#' there are two available options.
+#' @param prior The name of gene sets used to annotate PCAGenomicSignatures.
+#' Currently  there are two available options.
 #' \itemize{
 #'     \item \code{C2} : MSigDB C2 (curated gene sets)
-#'     \item \code{PLIERpriors} : bloodCellMarkersIRISDMAP, svmMarkers, and canonicalPathways
+#'     \item \code{PLIERpriors} : bloodCellMarkersIRISDMAP, svmMarkers, and
+#'     canonicalPathways
 #' }
 #' @param load Default is \code{TRUE}. If it's set to \code{FALSE}, the models
 #' are just downloaded to cache but not loaded into memory.

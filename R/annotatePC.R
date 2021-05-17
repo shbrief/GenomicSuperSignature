@@ -4,26 +4,31 @@
 #' including RAVs with the negative average silhouette.
 #'
 #' @param PCnum A numeric vector. PC number of your dataset that you want to get
-#' the annotation results. The vector can contain any integer number among \code{1:8}.
+#' the annotation results. The vector can contain any integer number among
+#' \code{1:8}.
 #' @param val_all The output from \code{\link{validate}}
-#' @param RAVmodel The RAVmodel used to generate the input for the argument, \code{val_all}.
-#' @param n An integer. Default is 5. The number of the top enriched pathaways to
-#' print out. If there are fewer than n pathways passed the cutoff, it will print out \code{NA}.
-#' @param scoreCutoff A numeric value for the minimum correlation. Default is 0.5.
-#' @param nesCutoff A numeric value for the minimum NES. Default is \code{NULL} and
-#' the suggested value is 3.
+#' @param RAVmodel The RAVmodel used to generate the input for the argument,
+#' \code{val_all}.
+#' @param n An integer. Default is 5. The number of the top enriched pathways
+#' to print out. If there are fewer than n pathways passed the cutoff, it will
+#' print out \code{NA}.
+#' @param scoreCutoff A numeric value for the minimum correlation.
+#' Default is 0.5.
+#' @param nesCutoff A numeric value for the minimum NES. Default is \code{NULL}
+#' and the suggested value is 3.
 #' @param simplify A logical. Under default (\code{TRUE}), the output will be a
-#' data frame with the number of column same as the length of \code{PCnum} argument,
-#' and the number of row same as the \code{n} argument. If it is set to \code{FALSE},
-#' the output will be a list with the length of \code{PCnum} argument, where each
-#' element is a data frame containing detailed GSEA output of enriched pathways.
+#' data frame with the number of column same as the length of \code{PCnum}
+#' argument, and the number of row same as the \code{n} argument. If it is set
+#' to \code{FALSE}, the output will be a list with the length of \code{PCnum}
+#' argument, where each element is a data frame containing detailed GSEA output
+#' of enriched pathways.
 #' @param abs Default is \code{FALSE}. If it's set to \code{TRUE}, the enriched
 #' pathways will be listed based on \code{abs(NES)}.
-#' @param trimed_pathway_len Positive inter values, which is the display width of
-#' pathway names. Default is 45.
+#' @param trimed_pathway_len Positive inter values, which is the display width
+#' of pathway names. Default is 45.
 #'
-#' @return A data frame of a list based on the \code{simplify} argument. Check the
-#' output detail above.
+#' @return A data frame of a list based on the \code{simplify} argument. Check
+#' the output detail above.
 #'
 #' @examples
 #' data(miniRAVmodel)
@@ -39,7 +44,7 @@ annotatePC <- function(PCnum, val_all, RAVmodel, n = 5,
                        trimed_pathway_len = 45) {
 
   ## Input validation
-  if (any(!PCnum %in% seq(8))) {stop("PCnum should be an integer among c(1:8).")}
+  if(any(!PCnum %in% seq(8))) {stop("PCnum should be an integer among c(1:8).")}
   stopifnot(length(simplify) == 1L, !is.na(simplify), is.logical(simplify))
   stopifnot(length(abs) == 1L, !is.na(abs), is.logical(abs))
 
@@ -47,7 +52,8 @@ annotatePC <- function(PCnum, val_all, RAVmodel, n = 5,
 
   for (i in seq_along(PCnum)) {
     annotPC <- validatedSignatures(val_all, num.out = 1,
-                                   scoreCutoff = scoreCutoff, whichPC = PCnum[i])
+                                   scoreCutoff = scoreCutoff,
+                                   whichPC = PCnum[i])
     cl_name <- paste0("RAV", annotPC[,"cl_num"])
     annotatedCluster <- gsea(RAVmodel)[[cl_name]]
 

@@ -7,8 +7,8 @@
 buildAvgLoading(dat, k, n = 20, cluster = NULL, study = TRUE)
 }
 \arguments{
-\item{dat}{A data frame. Each row represents principle components from different
-training datasets. Each column represents genes used for PCA analysis.}
+\item{dat}{A data frame. Each row represents principle components from
+different training datasets. Columns are genes used for PCA analysis.}
 
 \item{k}{The number of clusters used for hierarchical clustering}
 
@@ -25,10 +25,12 @@ A named list of 6 elements is returned. It contains:
 \describe{
    \item{\code{cluster}}{A numeric vector on cluster membership of PCs}
    \item{\code{size}}{A integer vector on the size of clusters}
-   \item{\code{avgLoading}}{A matrix of average loadings. Columns for clusters and rows for genes}
+   \item{\code{avgLoading}}{A matrix of average loadings. Columns for
+   clusters and rows for genes}
    \item{\code{k}}{The number of clusters}
    \item{\code{n}}{The number of top PCs used for clustering}
-   \item{\code{studies}}{A list of character vector containing studies in each cluster}
+   \item{\code{studies}}{A list of character vector containing studies in
+   each cluster}
 }
 }
 \description{

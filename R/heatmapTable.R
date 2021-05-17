@@ -33,12 +33,14 @@
                           },
                           show_heatmap_legend = FALSE,
                           row_title = row_title,
-                          row_title_gp = grid::gpar(fontsize = 11, fontface = "bold"),
+                          row_title_gp = grid::gpar(fontsize = 11,
+                                                    fontface = "bold"),
                           row_names_gp = grid::gpar(fontsize = 10),
                           row_names_side = "right",
                           row_names_max_width = unit(0.5, "cm"),
                           column_title = column_title,
-                          column_title_gp = grid::gpar(fontsize = 11, fontface = "bold"),
+                          column_title_gp = grid::gpar(fontsize = 11,
+                                                       fontface = "bold"),
                           column_names_side = "bottom",
                           column_names_gp = grid::gpar(fontsize = 10),
                           column_names_rot = 90,
@@ -56,26 +58,28 @@
 #' @param val_all An output matrix from \code{\link{validate}} function with the
 #' parameter \code{level = "max"}. Subset of this matrix is plotted as a heatmap
 #' using \code{\link[ComplexHeatmap]{Heatmap}}
-#' @param ind An integer vector. If this parameter is provided, the other parameters,
-#' \code{num.out, scoreCutoff, swCutoff, clsizeCutoff} will be ignored and the heatmap
-#' table containing only the provided index will be printed.
+#' @param ind An integer vector. If this parameter is provided, the other
+#' parameters, \code{num.out, scoreCutoff, swCutoff, clsizeCutoff} will be
+#' ignored and the heatmap table containing only the provided index will be
+#' printed.
 #' @param num.out A number of highly validated RAVs to output. Default is 5.
 #' If any of the cutoff parameters are provided, \code{num.out} or the number of
 #' filtered RAVs, whichever smaller, will be chosen.
-#' @param scoreCutoff A numeric value for the minimum correlation. If \code{val_all}
-#' input is from multiple studies, the default is 0.7 and this is the only cutoff
-#' criteria considred: \code{swCutoff} and \code{clsizeCutoff} will be ignored.
+#' @param scoreCutoff A numeric value for the minimum correlation. If
+#' \code{val_all} input is from multiple studies, the default is 0.7 and this is
+#' the only cutoff criteria considered: \code{swCutoff} and \code{clsizeCutoff}
+#' will be ignored.
 #' @param swCutoff A numeric value for the minimum average silhouette width.
 #' @param clsizeCutoff A integer value for the minimum cluster size.
-#' @param breaks A numeric vector of length 3. Number represents the values assigned
-#' to three colors. Default is \code{c(0, 0.5, 1)}.
-#' @param colors A character vector of length 3. Each represents the color assigned
-#' to three breaks. Default is \code{c("white", "white smoke", "red")}.
+#' @param breaks A numeric vector of length 3. Number represents the values
+#' assigned to three colors. Default is \code{c(0, 0.5, 1)}.
+#' @param colors A character vector of length 3. Each represents the color
+#' assigned to three breaks. Default is \code{c("white", "white smoke", "red")}.
 #' @param column_title A character string. Provide the column title.
 #' @param row_title A character string. Provide the row title.
-#' @param whichPC An integer value between 1 and 8. PC number of your data to check
-#' the validated signatures with. Under the default (\code{NULL}), it outputs top
-#' scored signatures with any PC of your data.
+#' @param whichPC An integer value between 1 and 8. PC number of your data to
+#' check the validated signatures with. Under the default (\code{NULL}), it
+#' outputs top scored signatures with any PC of your data.
 #' @param ... any additional argument for \code{\link[ComplexHeatmap]{Heatmap}}
 #'
 #' @return A heatmap displaying the subset of the validation result that met the
@@ -83,9 +87,9 @@
 #' output heatmap will contain both score and average silhouette width for each
 #' cluster.
 #'
-#' If \code{val_all} input is from multiple studies, the output heatmap's rows will
-#' represent each study and the columns will be RAVs, which meet \code{scoreCutoff}
-#' for any of the input studies.
+#' If \code{val_all} input is from multiple studies, the output heatmap's rows
+#' will represent each study and the columns will be RAVs, which meet
+#' \code{scoreCutoff} for any of the input studies.
 #'
 #' @examples
 #' data(miniRAVmodel)
@@ -96,10 +100,12 @@
 #'
 #' @export
 heatmapTable <- function(val_all, ind = NULL, num.out = 5,
-                         scoreCutoff = NULL, swCutoff = NULL, clsizeCutoff = NULL,
+                         scoreCutoff = NULL, swCutoff = NULL,
+                         clsizeCutoff = NULL,
                          breaks = c(0, 0.5, 1),
                          colors = c("white", "white smoke", "red"),
-                         column_title = NULL, row_title = NULL, whichPC = NULL, ...) {
+                         column_title = NULL, row_title = NULL,
+                         whichPC = NULL, ...) {
 
   score_ind <- which(colnames(val_all) == "score")
   sw_ind <- which(colnames(val_all) == "sw")
@@ -152,13 +158,16 @@ heatmapTable <- function(val_all, ind = NULL, num.out = 5,
 
   # Heatmap annotation representing Silhouette width of selected RAVs
   avg_sw <- ComplexHeatmap::anno_barplot(
-    sw, baseline = 0, gp = grid::gpar(fill = ifelse(sw > 0, "red", "blue"), alpha = 0.5))
+    sw, baseline = 0, gp = grid::gpar(fill = ifelse(sw > 0, "red", "blue"),
+                                      alpha = 0.5))
+  gp <- grid::gpar(fontsize = 10)
   ha <- ComplexHeatmap::HeatmapAnnotation(avg.sw = avg_sw,
                                           annotation_name_side = "left",
-                                          annotation_name_gp = grid::gpar(fontsize = 10))
+                                          annotation_name_gp = gp)
 
   # Draw Heatmap
-  ComplexHeatmap::Heatmap(dat, col = circlize::colorRamp2(breaks, colors), name = "Corr",
+  ComplexHeatmap::Heatmap(dat, col = circlize::colorRamp2(breaks, colors),
+                          name = "Corr",
                           cluster_rows = FALSE,
                           cluster_columns = FALSE,
                           cell_fun = function(j, i, x, y, width, height, fill) {
@@ -166,12 +175,14 @@ heatmapTable <- function(val_all, ind = NULL, num.out = 5,
                                             gp = grid::gpar(fontsize = 8))
                           },
                           row_title = row_title,
-                          row_title_gp = grid::gpar(fontsize = 11, fontface = "bold"),
+                          row_title_gp = grid::gpar(fontsize = 11,
+                                                    fontface = "bold"),
                           row_names_gp = grid::gpar(fontsize = 10),
                           row_names_side = "left",
                           row_names_max_width = unit(0.5, "cm"),
                           column_title = column_title,
-                          column_title_gp = grid::gpar(fontsize = 11, fontface = "bold"),
+                          column_title_gp = grid::gpar(fontsize = 11,
+                                                       fontface = "bold"),
                           column_names_side = "bottom",
                           column_names_gp = grid::gpar(fontsize = 10),
                           column_names_rot = 90,

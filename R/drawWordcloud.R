@@ -29,8 +29,8 @@ PCinRAV <- function(RAVmodel, ind) {
 #'
 #' @param RAVmodel A PCAGenomicSignatures object
 #' @param ind An index of RAV
-#' @param rm.noise An integer. Under the default condition (\code{rm.noise=NULL}),
-#' if cluster size (= \code{s}) is smaller than 8, \code{rm.noise = floor(s*0.5)}.
+#' @param rm.noise An integer. Under the default (\code{rm.noise=NULL}), if
+#' cluster size (= \code{s}) is smaller than 8, \code{rm.noise = floor(s*0.5)}.
 #' For clusters with >= 8 PCs, \code{rm.noise = 4}. If \code{rm.noise = 0}, all
 #' the MeSH terms in RAV will be used to draw wordcloud.
 #' @param weighted A logical. If \code{TRUE}, MeSH terms from each study are
@@ -141,14 +141,15 @@ meshTable <- function(RAVmodel, ind, rm.noise = NULL, weighted = TRUE) {
 #'
 #' @param RAVmodel PCAGenomicSignatures object
 #' @param ind An index of the RAV you want to draw wordcloud.
-#' @param rm.noise An integer. Under the default condition (\code{rm.noise=NULL}),
-#' if cluster size (= \code{s}) is smaller than 8, \code{rm.noise = floor(s*0.5)}.
+#' @param rm.noise An integer. Under the default (\code{rm.noise=NULL}), if
+#' cluster size (= \code{s}) is smaller than 8, \code{rm.noise = floor(s*0.5)}.
 #' For clusters with >= 8 PCs, \code{rm.noise = 4}. If \code{rm.noise = 0}, all
 #' the MeSH terms in RAV will be used to draw wordcloud.
-#' @param scale A \code{scale} argument for \code{\link[wordcloud]{wordcloud}} function
-#' @param weighted A logical. If \code{TRUE} (default), MeSH terms from each study are
-#' weighted based on the variance explained by the principle component of the
-#' study contributing to a given RAV.
+#' @param scale A \code{scale} argument for \code{\link[wordcloud]{wordcloud}}
+#' function
+#' @param weighted A logical. If \code{TRUE} (default), MeSH terms from each
+#' study are weighted based on the variance explained by the principle component
+#' of the study contributing to a given RAV.
 #'
 #' @return A word cloud with the MeSH terms associated with the given cluster.
 #'

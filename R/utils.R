@@ -7,7 +7,7 @@
     dat <- dataset
   } else {
     stop("'dataset' should be one of the following objects: ExpressionSet,
-             SummarizedExperiment, and matrix.")
+         SummarizedExperiment, and matrix.")
   }
   return(dat)
 }

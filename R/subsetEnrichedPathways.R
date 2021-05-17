@@ -1,20 +1,20 @@
 #' Subset enriched pathways of RAV
 #'
-#' This function finds the top enriched pathways of a given RAV. This function is
-#' renamed from \code{subsetPathways} to \code{subsetEnrichedPathways}.
-#'
 #' @import methods
 #'
-#' @param RAVmodel PCAGenomicSignatures object. Also an output from \code{\link[clusterProfiler]{GSEA}} can be used.
+#' @param RAVmodel PCAGenomicSignatures object. Also an output from
+#' \code{\link[clusterProfiler]{GSEA}} can be used.
 #' @param ind A numeric vector containing the RAV number you want to check
-#' enriched pathways. If not specified, this function returns results from all the RAVs.
-#' @param n The number of top and bottom pathways to be selected based on normalized
-#' enrichment score (NES).
-#' @param both Default is \code{FALSE}, where only the top \code{n} pathways will
-#' be printed. If it is set to \code{TRUE}, the output will contain both top and
-#' bottom \code{n} pathways.
+#' enriched pathways. If not specified, this function returns results from all
+#' the RAVs.
+#' @param n The number of top and bottom pathways to be selected based on
+#' normalized enrichment score (NES).
+#' @param both Default is \code{FALSE}, where only the top \code{n} pathways
+#' will be printed. If it is set to \code{TRUE}, the output will contain both
+#' top and bottom \code{n} pathways.
 #'
-#' @return A DataFrame with top and bottom \code{n} pathways from the enrichment results.
+#' @return A DataFrame with top and bottom \code{n} pathways from the
+#' enrichment results.
 #'
 #' @examples
 #' data(miniRAVmodel)
@@ -31,7 +31,7 @@ subsetEnrichedPathways <- function(RAVmodel, ind = NULL, n = 10, both = FALSE) {
 
   if (is(RAVmodel, "PCAGenomicSignatures")) {
     gsea_loading <- gsea(RAVmodel)
-  } else if (is.data.frame(RAVmodel) | is.matrix(RAVmodel) | is.list(RAVmodel)) {
+  } else if(is.data.frame(RAVmodel) | is.matrix(RAVmodel) | is.list(RAVmodel)) {
     gsea_loading <- RAVmodel
   }
 

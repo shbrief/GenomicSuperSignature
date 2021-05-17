@@ -10,9 +10,9 @@ makeGeneList(LoadingMatrix, LoadingVector = NULL, abs = TRUE)
 \item{LoadingMatrix}{An avgloading matrix. Rows represent genes and columns
 represent clusters of principle components}
 
-\item{LoadingVector}{A list of column names or indexes of \code{LoadingMatrix}
-you want to check. Default is \code{NULL}, under which the function takes the
-all column names of \code{LoadingMatrix}}
+\item{LoadingVector}{A list of column names or indexes of
+\code{LoadingMatrix} you want to check. Default is \code{NULL}, under which
+the function takes the all column names of \code{LoadingMatrix}}
 
 \item{abs}{Under the defaul condition (\code{TRUE}), this function will
 create a gene list based on the absolute value.}
@@ -22,6 +22,6 @@ A list of loadings selected by \code{LoadingVector}, where all the
 genes in each loading are listed in descending order.
 }
 \description{
-This function takes Z matrix (= averaged loadings) and orders the
-genes in each loading vector (= RAV) in a descending manner.
+This function takes Z matrix (= averaged loadings) and orders
+the genes in each loading vector (= RAV) in a descending manner.
 }

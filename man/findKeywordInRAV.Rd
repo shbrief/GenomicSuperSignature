@@ -10,7 +10,7 @@ findKeywordInRAV(RAVmodel, keyword, ind, n = NULL, includeTotal = FALSE)
 \item{RAVmodel}{PCAGenomicSignatures-object.}
 
 \item{keyword}{A character vector. If you are searching for multiple keywords
-at the same time, use \code{\link{paste}} with \code{collapse = "|"} argument.}
+at the same time, use \code{\link{paste}} with \code{collapse="|"} argument.}
 
 \item{ind}{An integer. The RAV number you want to check.}
 
@@ -21,8 +21,9 @@ to search. Under default (\code{NULL}), all the enriched pathways are used.}
 total number of enriched pathways will be also printed out as an output.}
 }
 \value{
-A character containing the rank of keyword-containing pathways (separated
-by |), followed by the total number of enriched pathways in parenthesis.
+A character containing the rank of keyword-containing pathways
+(separated by |), followed by the total number of enriched pathways in
+parenthesis.
 }
 \description{
 Once you provide RAVmodel, keyword you're searching for, and the RAV number

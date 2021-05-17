@@ -34,17 +34,17 @@ library(GenomicSuperSignature)
 
 
 ## Download RAVmodel
-Currently, you can download GenomicSuperSignature from Google Cloud bucket using 
-`GenomicSuperSignature::getModel` function. This model is built from top 20 PCs of 
-536 studies (containing 44,890 samples) containing 13,934 common genes from each 
-of 536 study's top 90% varying genes based on their study-level standard deviation.
-There are two versions of this using different gene sets for GSEA-based annotation;
-MSigDB C2 (`C2`) and three priors from PLIER package (`PLIERpriors`). In this 
-vignette, we are using the `C2` annotated model.
+Currently, you can download GenomicSuperSignature from Google Cloud bucket using
+`GenomicSuperSignature::getModel` function. This model is built from top 20 PCs 
+of 536 studies (containing 44,890 samples) containing 13,934 common genes from 
+each of 536 study's top 90% varying genes based on their study-level standard 
+deviation. There are two versions of this using different gene sets for 
+GSEA-based annotation; MSigDB C2 (`C2`) and three priors from PLIER package 
+(`PLIERpriors`). In this vignette, we are using the `C2` annotated model.
 
 Note that the first interactive run of this code, you will be asked to allow
-R to create a cache directory. The model file will be stored there and subsequent
-calls to `getModel` will read from the cache.
+R to create a cache directory. The model file will be stored there and 
+subsequent calls to `getModel` will read from the cache.
 
 
 ```{r load_model}
@@ -54,18 +54,22 @@ RAVmodel <- getModel("C2", load=TRUE)
 
 ## Quick Summary of main information
 * RAVindex(RAVmodel) : avgLoading matrix   
-* studies(RAVmodel) : a list of character vectors, containing studies in each loading   
+* studies(RAVmodel) : a list of character vectors, containing studies in each 
+loading   
 * gsea(RAVmodel) : a list of gseaResult objects of each loading   
-* mesh(RAVmodel) : a list of data frames containing MeSH information associated with each study   
-* PCAsummary(RAVmodel) : a list of matrix (3 by 20) containing PCA summary of each study   
+* mesh(RAVmodel) : a list of data frames containing MeSH information associated 
+with each study   
+* PCAsummary(RAVmodel) : a list of matrix (3 by 20) containing PCA summary of 
+each study   
 
 
 # Accessors
 ## RAVs
-*R*eplicable *A*xis of *V*ariation (RAVs, averaged loadings) is the main part of 
-GenomicSuperSignature, serving as an index connecting new datasets and the existing 
-database. You can access it through `GenomicSuperSignature::RAVindex` (equivalent of `SummarizedExperiment::assay`). 
-Rows are genes and columns are RAVs.
+*R*eplicable *A*xis of *V*ariation (RAVs, averaged loadings) is the main part of
+GenomicSuperSignature, serving as an index connecting new datasets and the 
+existing database. You can access it through `GenomicSuperSignature::RAVindex` 
+(equivalent of `SummarizedExperiment::assay`). Rows are genes and columns are 
+RAVs.
 
 Here, RAVmodel consists of 13,934 genes and 4,764 RAVs.
 
@@ -76,7 +80,7 @@ RAVindex(RAVmodel)[1:4, 1:4]
 ```
 
 ## Metadata
-Metadata slot of the PCAGenomicSignatures object contains information related to 
+Metadata slot of the PCAGenomicSignatures object contains information related to
 the model building.
 
 ```{r}
@@ -84,13 +88,13 @@ names(metadata(RAVmodel))
 ```
 
 `cluster` contains the cluster membership of each PCs from training dataset and 
-`size` is the integer vector with the length of clusters, containing the size of 
-each cluster. `k` is the number of clusters and `n` is the number of top PCs kept
-from each study in training dataset. `MeSH_freq` is the information on the frequency
-of MeSH terms assigned to training dataset. You can see that MeSH term 'Humans' 
-and 'RNA-seq' are top ranked, which is very expected because the training dataset
-of this model is Human RNA sequencing. `updateNote` tells you a brief note on the
-given model's specification.
+`size` is the integer vector with the length of clusters, containing the size of
+each cluster. `k` is the number of clusters and `n` is the number of top PCs 
+kept  from each study in training dataset. `MeSH_freq` is the information on the
+frequency of MeSH terms assigned to training dataset. You can see that MeSH term
+'Humans' and 'RNA-seq' are top ranked, which is very expected because the 
+training dataset of this model is Human RNA sequencing. `updateNote` tells you 
+a brief note on the given model's specification.
 
 ```{r}
 head(metadata(RAVmodel)$cluster)
@@ -103,9 +107,9 @@ updateNote(RAVmodel)
 
 
 ## Studies in each loading
-You can find which studies are in each cluster using `studies` method. Output is 
-a list with the length of clusters, where each element is a character vector containing
-the name of studies in each cluster.
+You can find which studies are in each cluster using `studies` method. Output is
+a list with the length of clusters, where each element is a character vector 
+containing the name of studies in each cluster.
 
 ```{r}
 length(studies(RAVmodel))
@@ -119,11 +123,14 @@ PCinRAV(RAVmodel, 2)
 ```
 
 ## Silhouette Width
-Silhouette width ranges from -1 to 1 for each observation in your data and can be
-interpreted as follows:   
-  - Values close to 1 suggest that the observation is well matched to the assigned cluster   
-  - Values close to 0 suggest that the observation is borderline matched between two clusters   
-  - Values close to -1 suggest that the observations may be assigned to the wrong cluster   
+Silhouette width ranges from -1 to 1 for each observation in your data and can 
+be interpreted as follows:   
+  - Values close to 1 suggest that the observation is well matched to the 
+  assigned cluster   
+  - Values close to 0 suggest that the observation is borderline matched 
+  between two clusters   
+  - Values close to -1 suggest that the observations may be assigned to the 
+  wrong cluster   
   
 Can I use silhouette width to assign the level of validity for avgLoadings?
 
@@ -142,10 +149,11 @@ gsea(RAVmodel)[1]
 
 
 ## MeSH terms for each study
-You can find MeSH terms associated with each study using `mesh(x)` method. Output is 
-a list with the length of studies in training dataset, where each element is a 
-data frame containing the assigned MeSH terms and the detail of them. The last 
-column `bagOfWords` is the frequency of that MeSH term in the whole training dataset.
+You can find MeSH terms associated with each study using `mesh(x)` method. 
+Output is a list with the length of studies in training dataset, where each 
+element is a data frame containing the assigned MeSH terms and the detail of 
+them. The last column `bagOfWords` is the frequency of that MeSH term in the 
+whole training dataset.
 
 ```{r}
 length(mesh(RAVmodel))

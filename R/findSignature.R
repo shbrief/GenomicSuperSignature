@@ -6,14 +6,14 @@
 #'
 #' @param RAVmodel PCAGenomicSignatures-object
 #' @param keyword A character vector. If you are searching for multiple keywords
-#' at the same time, use \code{\link{paste}} with \code{collapse = "|"} argument.
+#' at the same time, use \code{\link{paste}} with \code{collapse="|"} argument.
 #' @param n The number of top ranked (based on abs(NES)) pathways you want to
 #' search your keyword
 #' @param k The number of keyword-containing pathways you want to get the RAV
 #' number. Under default (\code{NULL}), the output will be a data frame with two
-#' columns: '# of keyword-containing pathways' and 'Freq'. If you assign the value
-#' for this argument, the output will be an integer vector containing the RAV
-#' index.
+#' columns: '# of keyword-containing pathways' and 'Freq'. If you assign the
+#' value for this argument, the output will be an integer vector containing the
+#' RAV index.
 #'
 #' @return A data frame or integer vector depending on the parameter \code{k}.
 #'
@@ -57,15 +57,16 @@ findSignature <- function(RAVmodel, keyword, n = 5, k = NULL) {
 #'
 #' @param RAVmodel PCAGenomicSignatures-object.
 #' @param keyword A character vector. If you are searching for multiple keywords
-#' at the same time, use \code{\link{paste}} with \code{collapse = "|"} argument.
+#' at the same time, use \code{\link{paste}} with \code{collapse="|"} argument.
 #' @param ind An integer. The RAV number you want to check.
 #' @param n An integer. The number of top enriched pathways (based on abs(NES))
 #' to search. Under default (\code{NULL}), all the enriched pathways are used.
 #' @param includeTotal Default is \code{FALSE}. If it is set to \code{TRUE}, the
 #' total number of enriched pathways will be also printed out as an output.
 #'
-#' @return A character containing the rank of keyword-containing pathways (separated
-#' by |), followed by the total number of enriched pathways in parenthesis.
+#' @return A character containing the rank of keyword-containing pathways
+#' (separated by |), followed by the total number of enriched pathways in
+#' parenthesis.
 #'
 #' @examples
 #' data(miniRAVmodel)

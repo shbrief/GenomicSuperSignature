@@ -5,7 +5,7 @@
 \alias{miniRAVmodel}
 \title{RAVmodel from 536 studies, annotated with MSigDB C2}
 \format{
-An object of class \code{PCAGenomicSignatures} with 13934 rows and 17 columns.
+PCAGenomicSignatures
 }
 \usage{
 miniRAVmodel
@@ -13,5 +13,8 @@ miniRAVmodel
 \description{
 A object providing a miniature version of RAVmodel_C2 (PCAGenomicSignatures
 object constructed from 536 studies and annotated with MSigDB C2).
+}
+\author{
+Sehyun Oh \email{shbrief@gmail.com}
 }
 \keyword{data}

@@ -4,15 +4,16 @@
 #' @title Methods and accesors for \code{GenomicSignatures} object
 #'
 #' @description The default contents of \code{GenomicSignatures} object, with
-#' a set of getter and setter generic functions, which extract either the \code{assay},
-#' \code{colData}, or \code{metadata} slots of a \code{\link{GenomicSignatures-class}}
-#' object. When you create this object, \code{colData$studies} should be populated
-#' before adding any information in \code{trainingData} slot.
+#' a set of getter and setter generic functions, which extract either the
+#' \code{assay}, \code{colData}, or \code{metadata} slots of a
+#' \code{\link{GenomicSignatures-class}} object. When you create this object,
+#' \code{colData$studies} should be populated before adding any information in
+#' \code{trainingData} slot.
 #'
 #' @details
 #' \itemize{
 #'     \item assay(x) : RAVindex (= avgLoadings) containing genes x RAVs
-#'     \item metadata(x) : Metadata associated with the RAVindex building process
+#'     \item metadata(x) : Metadata associated with RAVindex building process
 #'     \item colData(x) : Information on RAVs
 #' }
 #'
@@ -21,8 +22,8 @@
 #' \itemize{
 #'     \item metadata<- : Assign metadata
 #'     \item coldata<- : Assign extra information associated with RAVs
-#'     \item geneSets<- : A character vector containing the name of gene sets used
-#'     to annotate average loadings
+#'     \item geneSets<- : A character vector containing the name of gene sets
+#'     used to annotate average loadings
 #'     \item updateNote<- : A character vector. Describes the main feature of a
 #'     model construction
 #' }
@@ -44,7 +45,8 @@
 #' miniRAVmodel
 #'
 #'
-#' @aliases RAVindex colData metadata geneSets updateNote geneSets<- updateNote<-
+#' @aliases RAVindex colData metadata geneSets updateNote
+#' geneSets<- updateNote<-
 NULL
 
 

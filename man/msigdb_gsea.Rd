@@ -28,7 +28,8 @@ msigdb_gsea(
 "H", "C1", "C2"(default), "C3", "C4", "C5", "C6", and "C7"}
 
 \item{n}{An interger. The number of top and bottom enriched pathways to plot.
-Default is \code{NULL} and print out all the pathways enriched under \code{pvalueCutoff}.}
+Default is \code{NULL}, which prints out all the pathways enriched under
+\code{pvalueCutoff}.}
 
 \item{pvalueCutoff}{Cutoff for both pvalue and p.adjust. Default is 0.5.}
 
@@ -36,15 +37,16 @@ Default is \code{NULL} and print out all the pathways enriched under \code{pvalu
 
 \item{maxGSSize}{A maximum size of gene set to be analyzed}
 
-\item{pAdjustMethod}{p-value adjustment methods, which will be used as an input
-for \code{method} argument of \code{\link[stats]{p.adjust}} function. Available
-options are "holm", "hochberg", "hommel", "bonferroni", "BH"(default), "BY", "fdr", "none".}
+\item{pAdjustMethod}{p-value adjustment methods, which will be used as an
+input for \code{method} argument of \code{\link[stats]{p.adjust}} function.
+Available options are "holm", "hochberg", "hommel", "bonferroni",
+"BH"(default), "BY", "fdr", "none".}
 
 \item{verbose}{Logical. Default is FALSE.}
 
 \item{seed}{Logical. Default is FALSE.}
 
-\item{by}{Available options are \code{c("fgsea", "DOSE")}. Default is "fgsea".}
+\item{by}{Available options are \code{c("fgsea", "DOSE")}. Default "fgsea".}
 
 \item{geneSets}{Custom genesets to use with MSigDB genesets. It should be in
 a named list format.}

@@ -3,31 +3,34 @@
 #' @import ggpubr
 #' @import ggplot2
 #'
-#' @param dataset A gene expression dataset to validate. It can be ExpressionSet,
-#' SummarizedExperiment, RangedSummarizedExperiment, or matrix. Genes should be in
-#' 'symbol' format. If it is a matrix, genes should be in rows and samples in columns.
+#' @param dataset A gene expression profile to be validated. Different classes
+#' of objects can be used including ExpressionSet, SummarizedExperiment,
+#' RangedSummarizedExperiment, or matrix. Rownames (genes) should be in symbol
+#' format. If it is a matrix, genes should be in rows and samples in columns.
 #' @param RAVmodel PCAGenomicSignatures-class object
 #' @param PCs A numeric vector length of 2. It should be between 1 and 8.
 #' @param val_all The output from \code{\link{validate}}
-#' @param scoreCutoff A numeric value for the minimum correlation. Default is 0.5.
-#' @param nesCutoff A numeric value for the minimum NES. Default is \code{NULL} and
-#' the suggested value is 3.
-#' @param color_by A named vector with the feature you want to color by. Name should
-#' be match with the sample names of the dataset.
-#' @param color_lab A name for color legend. If this argument is not provided, the
-#' color legend will be labeld as "Color By" by default.
-#' @param trimed_pathway_len Positive inter values, which is the display width of
-#' pathway names. Default is 45.
+#' @param scoreCutoff A numeric value for the minimum correlation.
+#' Default 0.5.
+#' @param nesCutoff A numeric value for the minimum NES. Default is \code{NULL}
+#' and the suggested value is 3.
+#' @param color_by A named vector with the feature you want to color by. Name
+#' should be match with the sample names of the dataset.
+#' @param color_lab A name for color legend. If this argument is not provided,
+#' the color legend will be labeled as "Color By" by default.
+#' @param trimed_pathway_len Positive inter values, which is the display width
+#' of pathway names. Default is 45.
 #'
-#' @return Scatter plot and the table with annotation. If enriched pathway didn't
-#' pass the \code{scoreCutoff} the table will be labeled as "No significant pathways".
-#' If any enriched pathway didn't pass the \code{nesCutoff}, it will labeled as NA.
+#' @return Scatter plot and the table with annotation. If enriched pathway
+#' didn't pass the \code{scoreCutoff} the table will be labeled as "No
+#' significant pathways". If any enriched pathway didn't pass the
+#' \code{nesCutoff}, it will labeled as NA.
 #'
 #' @examples
 #' data(miniRAVmodel)
 #' library(bcellViper)
 #' data(bcellViper)
-#' \donttest{
+#' \dontrun{
 #' plotAnnotatedPCA(exprs(dset), miniRAVmodel, PCs = c(1,2))
 #' }
 #'
@@ -75,8 +78,10 @@ plotAnnotatedPCA <- function(dataset, RAVmodel, PCs, val_all = NULL,
 
   # # PC annotation table - ggpubr version
   # myTable <- ggpubr::ggtexttable(annotatedPC,
-  #                                rows = NULL, theme = ggpubr::ttheme("mOrange"))
-  # myTable <- ggpubr::table_cell_font(myTable, row = 2:ggpubr::tab_nrow(myTable),
+  #                                rows = NULL,
+  #                                theme = ggpubr::ttheme("mOrange"))
+  # myTable <- ggpubr::table_cell_font(myTable,
+  #                                    row = 2:ggpubr::tab_nrow(myTable),
   #                                    column = 1:2, size = 9)
 
   res <- ggpubr::ggarrange(myPlot, myTable,

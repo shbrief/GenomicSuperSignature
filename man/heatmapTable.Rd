@@ -24,35 +24,37 @@ heatmapTable(
 parameter \code{level = "max"}. Subset of this matrix is plotted as a heatmap
 using \code{\link[ComplexHeatmap]{Heatmap}}}
 
-\item{ind}{An integer vector. If this parameter is provided, the other parameters,
-\code{num.out, scoreCutoff, swCutoff, clsizeCutoff} will be ignored and the heatmap
-table containing only the provided index will be printed.}
+\item{ind}{An integer vector. If this parameter is provided, the other
+parameters, \code{num.out, scoreCutoff, swCutoff, clsizeCutoff} will be
+ignored and the heatmap table containing only the provided index will be
+printed.}
 
 \item{num.out}{A number of highly validated RAVs to output. Default is 5.
 If any of the cutoff parameters are provided, \code{num.out} or the number of
 filtered RAVs, whichever smaller, will be chosen.}
 
-\item{scoreCutoff}{A numeric value for the minimum correlation. If \code{val_all}
-input is from multiple studies, the default is 0.7 and this is the only cutoff
-criteria considred: \code{swCutoff} and \code{clsizeCutoff} will be ignored.}
+\item{scoreCutoff}{A numeric value for the minimum correlation. If
+\code{val_all} input is from multiple studies, the default is 0.7 and this is
+the only cutoff criteria considered: \code{swCutoff} and \code{clsizeCutoff}
+will be ignored.}
 
 \item{swCutoff}{A numeric value for the minimum average silhouette width.}
 
 \item{clsizeCutoff}{A integer value for the minimum cluster size.}
 
-\item{breaks}{A numeric vector of length 3. Number represents the values assigned
-to three colors. Default is \code{c(0, 0.5, 1)}.}
+\item{breaks}{A numeric vector of length 3. Number represents the values
+assigned to three colors. Default is \code{c(0, 0.5, 1)}.}
 
-\item{colors}{A character vector of length 3. Each represents the color assigned
-to three breaks. Default is \code{c("white", "white smoke", "red")}.}
+\item{colors}{A character vector of length 3. Each represents the color
+assigned to three breaks. Default is \code{c("white", "white smoke", "red")}.}
 
 \item{column_title}{A character string. Provide the column title.}
 
 \item{row_title}{A character string. Provide the row title.}
 
-\item{whichPC}{An integer value between 1 and 8. PC number of your data to check
-the validated signatures with. Under the default (\code{NULL}), it outputs top
-scored signatures with any PC of your data.}
+\item{whichPC}{An integer value between 1 and 8. PC number of your data to
+check the validated signatures with. Under the default (\code{NULL}), it
+outputs top scored signatures with any PC of your data.}
 
 \item{...}{any additional argument for \code{\link[ComplexHeatmap]{Heatmap}}}
 }
@@ -62,9 +64,9 @@ given cutoff criteria. If \code{val_all} input is from a single dataset, the
 output heatmap will contain both score and average silhouette width for each
 cluster.
 
-If \code{val_all} input is from multiple studies, the output heatmap's rows will
-represent each study and the columns will be RAVs, which meet \code{scoreCutoff}
-for any of the input studies.
+If \code{val_all} input is from multiple studies, the output heatmap's rows
+will represent each study and the columns will be RAVs, which meet
+\code{scoreCutoff} for any of the input studies.
 }
 \description{
 This function subsets \code{\link{validate}} outputs with different criteria

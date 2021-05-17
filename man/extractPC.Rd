@@ -12,7 +12,7 @@ expression data for the principal components analysis. Genes in the rows and
 samples in the columns.}
 }
 \value{
-A result from principle components analysis (PCA) in \code{\link[stats]{prcomp}} object.
+A \code{\link[stats]{prcomp}} object.
 }
 \description{
 Performs a principal components analysis on the given data matrix and returns

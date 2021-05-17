@@ -36,26 +36,27 @@ library(bcellViper)
 
 
 ## Download RAVmodel
-Currently, you can download GenomicSuperSignature from Google Cloud bucket using 
-`GenomicSuperSignature::getModel` function. This model is built from top 20 PCs of 
-536 studies (containing 44,890 samples) containing 13,934 common genes from each 
-of 536 study's top 90% varying genes based on their study-level standard deviation.
-There are two versions of this using different gene sets for GSEA-based annotation;
-MSigDB C2 (`C2`) and three priors from PLIER package (`PLIERpriors`). In this 
-vignette, we are using the `C2` annotated model.
+Currently, you can download GenomicSuperSignature from Google Cloud bucket using
+`GenomicSuperSignature::getModel` function. This model is built from top 20 PCs 
+of 536 studies (containing 44,890 samples) containing 13,934 common genes from 
+each of 536 study's top 90% varying genes based on their study-level standard 
+deviation. There are two versions of this using different gene sets for 
+GSEA-based annotation; MSigDB C2 (`C2`) and three priors from PLIER package 
+(`PLIERpriors`). In this vignette, we are using the `C2` annotated model.
 
 Note that the first interactive run of this code, you will be asked to allow
-R to create a cache directory. The model file will be stored there and subsequent
-calls to `getModel` will read from the cache.
+R to create a cache directory. The model file will be stored there and 
+subsequent calls to `getModel` will read from the cache.
 
 ```{r load_model}
 RAVmodel <- getModel("C2", load=TRUE)
 ```
 
 ## Example dataset
-**Human B-cell expression dataset** The human B-cell dataset (Gene Expression Omnibus series GSE2350) 
-consists of 211 normal and tumor human B-cell phenotypes whose expression was profiled on Affymatrix
-HG-U95Av2 arrays, and it is contained in an ExpressionSet object with 6,249 features x 211 samples.
+**Human B-cell expression dataset** The human B-cell dataset (Gene Expression 
+Omnibus series GSE2350) consists of 211 normal and tumor human B-cell phenotypes
+whose expression was profiled on Affymatrix HG-U95Av2 arrays, and it is 
+contained in an ExpressionSet object with 6,249 features x 211 samples.
 
 ```{r message=FALSE, warning=FALSE}
 data(bcellViper)
@@ -63,22 +64,22 @@ dset
 dataset <- exprs(dset)   # genes in SYMBOL
 ```
 
-You can provide your own expression dataset in any of these formats: simple matrix, 
-ExpressionSet, or SummarizedExperiment. Just make sure that genes in rows are in
-a 'symbol' format. 
+You can provide your own expression dataset in any of these formats: simple 
+matrix, ExpressionSet, or SummarizedExperiment. Just make sure that genes in 
+rows are in a 'symbol' format. 
 
 
 # Validate
 ## HeatmapTable
-`heatmapTable` outputs a two panel table: top panel represents average silhouette
-width (avg.sw) and the bottom panel represents the validation score.
+`heatmapTable` outputs a two panel table: top panel represents average 
+silhouette width (avg.sw) and the bottom panel represents the validation score.
 
-You can display the validation output in multiple ways. For example, if you specify 
-`scoreCutoff` argument of `heatmapTable`, any validation result above that score 
-will be shown. If you specify the number of top validation results (= n) 
-through `num.out` argument of `heatmapTable`, the output will be a n-columned
-heatmap table. You can also use the average silhouette width (`swCutoff`), the 
-size of cluster (`clsizecutoff`), PC from dataset (`whichPC`).   
+You can display the validation output in multiple ways. For example, if you 
+specify `scoreCutoff` argument of `heatmapTable`, any validation result above 
+that score will be shown. If you specify the number of top validation results 
+(= n) through `num.out` argument of `heatmapTable`, the output will be a 
+n-columned heatmap table. You can also use the average silhouette width 
+(`swCutoff`), the size of cluster (`clsizecutoff`), PC from dataset (`whichPC`).
 
 Here, we print out top 5 validated RAVs with > 0 average silhouette width.
 
@@ -88,10 +89,10 @@ heatmapTable(val_all, num.out = 5, swCutoff = 0)
 ```
 
 ## Interactive Graph
-Under the default condition, `plotValidate` plots all non single-element clusters'
-validation results in a single graph, where x-axis represent average silhouette
-width of the RAVs (a quality control measure of the signature) and y-axis
-represent validation score. We recommend users to focus on RAVs with higher
+Under the default condition, `plotValidate` plots validation results of all non 
+single-element clusters in one graph, where x-axis represent average silhouette 
+width of the RAVs (a quality control measure of the signature) and y-axis 
+represent validation score. We recommend users to focus on RAVs with higher 
 validation score and use average silhouette width as a secondary criteria. 
 
 ```{r plotValidate_function}
@@ -105,22 +106,25 @@ that included tooltips.
 You can hover each data point for more information:    
 
 - **sw** : the average silhouette width of the cluster   
-- **score** : the top validation score between 8 PCs of the dataset and the cluster   
+- **score** : the top validation score between 8 PCs of the dataset and the 
+cluster   
 - **cl_size** : the size of the cluster, represented by the dot size   
-- **cl_num** : the RAV number. You need this index to find more information about the cluster.      
-- **PC** : Test dataset's PC number that validates the given RAV. Because we used 
-top 8 PCs of the test dataset, there are 8 categories. 
+- **cl_num** : the RAV number. You need this index to find more information 
+about the cluster.      
+- **PC** : Test dataset's PC number that validates the given RAV. Because we 
+used top 8 PCs of the test dataset, there are 8 categories. 
 
-If you double-click the PC legend on the right, you will enter an individual display
-mode where you can add an additional group of data point by single-click. 
+If you double-click the PC legend on the right, you will enter an 
+individual display mode where you can add an additional group of data 
+point by single-click. 
 
 
 # MeSH terms in wordcloud
 You can draw a wordcloud with the enriched MeSH term of RAVs that validate
-your dataset. Based on the heatmap table above, 1st-3rd RAVs (2538, 1139, and 884) 
-show high validation scores with positive average silhouette widths, so we draw 
-wordclouds of those RAVs using `drawWordcloud` function. You need to provide 
-RAVmodel and the index of the RAV you are interested in.
+your dataset. Based on the heatmap table above, 1st-3rd RAVs (2538, 1139, and 
+884) show high validation scores with positive average silhouette widths, so we 
+draw wordclouds of those RAVs using `drawWordcloud` function. You need to 
+provide RAVmodel and the index of the RAV you are interested in.
 
 Index of validated RAVs can be easily collected using `validatedSingatures`
 function, which outputs the validated index based on `num.out`, PC from dataset 
@@ -140,14 +144,14 @@ drawWordcloud(RAVmodel, validated_ind[3])
 
 # GSEA
 ## Annotation on RAV1139
-Because the test dataset is human B-cell expression data, we tried the model annotated
-with blood-associated gene sets. 
+Because the test dataset is human B-cell expression data, we tried the model 
+annotated with blood-associated gene sets. 
 
 ```{r message=FALSE, warning=FALSE}
 RAVmodel <- getModel("PLIERpriors", load=TRUE)
 ```
 
-You can directly access the GSEA outputs for each RAV using the accessor, `gsea`.
+You can directly access the GSEA outputs for each RAV using `gsea`.
 
 ```{r}
 PCNum <- validated_ind[2]   # RAV1139
@@ -156,17 +160,18 @@ head(res)
 ```
 
 
-Find the RAVs annotated with the keyword-containing pathways. Without the `k` argument, 
-the data frame containing the number of RAVs (`Freq` column) with the different numbers 
-of keyword-containing, enriched pathways (`# of keyword-containing pathways` column).
+Find the RAVs annotated with the keyword-containing pathways. Without the `k` 
+argument, the data frame containing the number of RAVs (`Freq` column) with 
+the different numbers of keyword-containing, enriched pathways 
+(`# of keyword-containing pathways` column).
 
 ```{r}
 findSignature(RAVmodel, "Bcell")
 findSignature(RAVmodel, "Bcell", k = 5)
 ```
 
-Enriched pathways of the given RAVmodel, ordered by NES. If `both=TRUE`, both the
-top and bottom enriched pathways will be printed.
+Enriched pathways of the given RAVmodel, ordered by NES. If `both=TRUE`, both 
+the top and bottom enriched pathways will be printed.
 
 ```{r}
 subsetEnrichedPathways(RAVmodel, ind = PCNum, n = 3, both = TRUE)

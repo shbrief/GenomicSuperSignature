@@ -1,9 +1,10 @@
 #' Calculate Silhouette Information of RAVs
 #'
-#' @description The silhouette value is a measure of how similar an object is to
-#' its own cluster (cohesion) compared to other clusters (separation). The silhouette
-#' ranges from -1 to +1, where a high value indicates that the object is well matched
-#' to its own cluster and poorly matched to neighboring clusters.
+#' @description The silhouette value is a measure of how similar an object is
+#' to its own cluster (cohesion) compared to other clusters (separation). The
+#' silhouette width ranges from -1 to +1, where a high value indicates that
+#' the object is well matched to its own cluster and poorly matched to
+#' neighboring clusters.
 #'
 #' @param dat A matrix with all the top PCs from training data to be clustered.
 #' @param kmeansRes Output from \code{stats::kmeans}.
@@ -22,14 +23,15 @@
 #' Find the studies contributing each RAV
 #'
 #' @param RAVmodel PCAGenomicSignatures object.
-#' @param ind A numeric vector containing the RAV indexes. Under the default (\code{NULL}),
-#' studies associated with all the RAV indexes will be returned as a list.
+#' @param ind A numeric vector containing the RAV indexes. Under the default
+#' (\code{NULL}), studies associated with all the RAV indexes will be returned
+#' as a list.
 #'
-#' @return A list of character vector. Under the default condition (\code{ind = NULL}),
-#' all the RAVs will be checked for their contributing studies and the length
-#' of the list will be same as the number of RAVs (= \code{metadata(x)$k}). If you
-#' provide the \code{ind} argument, studies associated with only the specified RAVs
-#' will be returned.
+#' @return A list of character vectors. Under the default condition
+#' (\code{ind = NULL}), all the RAVs will be checked for their contributing
+#' studies and the length of the list will be same as the number of RAVs
+#' (= \code{metadata(x)$k}). If you provide the \code{ind} argument, studies
+#' associated with only the specified RAVs will be returned.
 #'
 #' @examples
 #' data(miniRAVmodel)
@@ -81,8 +83,8 @@ findStudiesInCluster <- function(RAVmodel, ind = NULL) {
 
 #' Calculate average loadings of each cluster
 #'
-#' @param dat A data frame. Each row represents principle components from different
-#' training datasets. Each column represents genes used for PCA analysis.
+#' @param dat A data frame. Each row represents principle components from
+#' different training datasets. Columns are genes used for PCA analysis.
 #' @param k The number of clusters used for hierarchical clustering
 #' @param n The number of top principle components from each datasets used for
 #' model building. Default is 20.
@@ -95,10 +97,12 @@ findStudiesInCluster <- function(RAVmodel, ind = NULL) {
 #' \describe{
 #'    \item{\code{cluster}}{A numeric vector on cluster membership of PCs}
 #'    \item{\code{size}}{A integer vector on the size of clusters}
-#'    \item{\code{avgLoading}}{A matrix of average loadings. Columns for clusters and rows for genes}
+#'    \item{\code{avgLoading}}{A matrix of average loadings. Columns for
+#'    clusters and rows for genes}
 #'    \item{\code{k}}{The number of clusters}
 #'    \item{\code{n}}{The number of top PCs used for clustering}
-#'    \item{\code{studies}}{A list of character vector containing studies in each cluster}
+#'    \item{\code{studies}}{A list of character vector containing studies in
+#'    each cluster}
 #' }
 #'
 #' @examples
@@ -116,7 +120,8 @@ buildAvgLoading <- function(dat, k, n = 20, cluster = NULL, study = TRUE) {
         x <- table(cluster) %>% as.data.frame()
         res <- list(cluster = cluster, size = x$Freq)
     } else {
-        stop("Error: Cluster membership of elements should be provided through 'cluster' argument.")
+        stop("Error: Cluster membership of elements should be provided through
+             'cluster' argument.")
     }
     stopifnot(length(study) == 1L, !is.na(study), is.logical(study))
 
