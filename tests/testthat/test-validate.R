@@ -1,9 +1,9 @@
 context("Test validate function handles differnet types of inputs")
 
 data(miniRAVmodel)
+data(miniTCGA)
 library(bcellViper)
 data(bcellViper)
-miniTCGA <- readRDS("miniTCGA.rds")
 microTCGA <- readRDS("microTCGA.rds")
 
 

@@ -7,7 +7,8 @@ val_all <- validate(dset, miniRAVmodel)
 
 test_that("validatedSignatures.R", {
   val_sig <- validatedSignatures(val_all, num.out = 3, scoreCutoff = 0)
-  val_sig2 <- validatedSignatures(val_all, num.out = 3, scoreCutoff = 0, indexOnly = TRUE)
+  val_sig2 <- validatedSignatures(val_all, num.out = 3, scoreCutoff = 0,
+                                  indexOnly = TRUE)
 
   expect_true(is.matrix(val_sig))
   expect_true(is.vector(val_sig2))
