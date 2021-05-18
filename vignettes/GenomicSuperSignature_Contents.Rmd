@@ -1,14 +1,14 @@
 ---
-title: "GenomicSuperSignature - Contents"
+title: "Structure and content of RAVmodel"
 author: "Sehyun Oh"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteIndexEntry{Information in GenomicSuperSignature}
+  %\VignetteIndexEntry{Introduction on RAVmodel}
   %\VignetteEncoding{UTF-8}
 output:
   BiocStyle::html_document:
-    number_sections: no
+    number_sections: yes
     toc: yes
     toc_depth: 4
 ---
@@ -34,39 +34,42 @@ library(GenomicSuperSignature)
 
 
 ## Download RAVmodel
-Currently, you can download GenomicSuperSignature from Google Cloud bucket using
-`GenomicSuperSignature::getModel` function. This model is built from top 20 PCs 
-of 536 studies (containing 44,890 samples) containing 13,934 common genes from 
-each of 536 study's top 90% varying genes based on their study-level standard 
-deviation. There are two versions of this using different gene sets for 
-GSEA-based annotation; MSigDB C2 (`C2`) and three priors from PLIER package 
-(`PLIERpriors`). In this vignette, we are using the `C2` annotated model.
+You can download GenomicSuperSignature from Google Cloud bucket using
+`GenomicSuperSignature::getModel` function. Currently available models are 
+built from top 20 PCs of 536 studies (containing 44,890 samples) containing 
+13,934 common genes from each of 536 study's top 90% varying genes based on 
+their study-level standard deviation. There are two versions of this RAVmodel
+annotated with different gene sets for GSEA: MSigDB C2 (`C2`) and three 
+priors from PLIER package (`PLIERpriors`). In this vignette, we are showing 
+the `C2` annotated model.
 
 Note that the first interactive run of this code, you will be asked to allow
 R to create a cache directory. The model file will be stored there and 
 subsequent calls to `getModel` will read from the cache.
-
 
 ```{r load_model}
 RAVmodel <- getModel("C2", load=TRUE)
 ```
 
 
-## Quick Summary of main information
-* RAVindex(RAVmodel) : avgLoading matrix   
-* studies(RAVmodel) : a list of character vectors, containing studies in each 
-loading   
-* gsea(RAVmodel) : a list of gseaResult objects of each loading   
-* mesh(RAVmodel) : a list of data frames containing MeSH information associated 
-with each study   
-* PCAsummary(RAVmodel) : a list of matrix (3 by 20) containing PCA summary of 
-each study   
+# Content of RAVmodel
+`RAVindex` is a matrix containing genes in rows and RAVs in columns. `colData` 
+slot provides the information on each RAVs, such as GSEA annotation and 
+studies involved in each cluster. `metadata` slot stores model construction 
+information. `trainingData` slot contains the information on individual 
+studies in training dataset, such as MeSH terms assigned to each study.
 
+```{r}
+RAVmodel
+```
 
-# Accessors
-## RAVs
-*R*eplicable *A*xis of *V*ariation (RAVs, averaged loadings) is the main part of
-GenomicSuperSignature, serving as an index connecting new datasets and the 
+<center>
+<img src="https://raw.githubusercontent.com/shbrief/GenomicSuperSignaturePaper/master/inst/images/GSig_RAVmodel.png" width="90%" height="90%"/>
+</center>
+
+## RAVindex
+*R*eplicable *A*xis of *V*ariation (RAV) index is the main component of
+GenomicSuperSignature. It serves as an index connecting new datasets and the 
 existing database. You can access it through `GenomicSuperSignature::RAVindex` 
 (equivalent of `SummarizedExperiment::assay`). Rows are genes and columns are 
 RAVs.
@@ -79,34 +82,40 @@ dim(RAVindex(RAVmodel))
 RAVindex(RAVmodel)[1:4, 1:4]
 ```
 
-## Metadata
-Metadata slot of the PCAGenomicSignatures object contains information related to
-the model building.
+
+## Metadata for RAVmodel
+Metadata slot of RAVmodel contains information related to the model building.
 
 ```{r}
 names(metadata(RAVmodel))
 ```
 
-`cluster` contains the cluster membership of each PCs from training dataset and 
-`size` is the integer vector with the length of clusters, containing the size of
-each cluster. `k` is the number of clusters and `n` is the number of top PCs 
-kept  from each study in training dataset. `MeSH_freq` is the information on the
-frequency of MeSH terms assigned to training dataset. You can see that MeSH term
-'Humans' and 'RNA-seq' are top ranked, which is very expected because the 
-training dataset of this model is Human RNA sequencing. `updateNote` tells you 
-a brief note on the given model's specification.
+* `cluster` : cluster membership of each PCs from the training dataset      
+* `size` : an integer vector with the length of clusters, containing the number
+of PCs in each cluster   
+* `k` : the number of all clusters in the given RAVmodel   
+* `n` : the number of top PCs kept from each study in the training dataset
+* `geneSets` : the name of gene sets used for GSEA annotation   
+* `MeSH_freq` : the frequency of MeSH terms associated with the training 
+dataset. MeSH terms like 'Humans' and 'RNA-seq' are top ranked (which is very 
+expected) because the training dataset of this model is Human RNA sequencing
+data. 
+* `updateNote` : a brief note on the given model's specification
+* `version` : the version of the given model
 
 ```{r}
 head(metadata(RAVmodel)$cluster)
 head(metadata(RAVmodel)$size)
 metadata(RAVmodel)$k
 metadata(RAVmodel)$n
+geneSets(RAVmodel)
 head(metadata(RAVmodel)$MeSH_freq)
 updateNote(RAVmodel)  
+metadata(RAVmodel)$version
 ```
 
 
-## Studies in each loading
+## Studies in each RAV
 You can find which studies are in each cluster using `studies` method. Output is
 a list with the length of clusters, where each element is a character vector 
 containing the name of studies in each cluster.
@@ -122,9 +131,10 @@ You can check which PC from different studies are in RAVs using `PCinRAV`.
 PCinRAV(RAVmodel, 2)
 ```
 
-## Silhouette Width
-Silhouette width ranges from -1 to 1 for each observation in your data and can 
-be interpreted as follows:   
+
+## Silhouette width for each RAV
+Silhouette width ranges from -1 to 1 for each cluster. Typically, it is 
+interpreted as follows:   
   - Values close to 1 suggest that the observation is well matched to the 
   assigned cluster   
   - Values close to 0 suggest that the observation is borderline matched 
@@ -132,14 +142,20 @@ be interpreted as follows:
   - Values close to -1 suggest that the observations may be assigned to the 
   wrong cluster   
   
-Can I use silhouette width to assign the level of validity for avgLoadings?
+For RAVmodel, the average silhouette width of each cluster is a quality control
+measure and suggested as a secondary reference to choose proper RAVs, 
+following validation score.
 
 ```{r}
 x <- silhouetteWidth(RAVmodel)
-summary(x)
+head(x)   # average silhouette width of the first 6 RAVs
 ```
 
-## GSEA on each loading
+
+## GSEA on each RAV
+Pre-processed GSEA results on each RAV are stored in RAVmodel and can be 
+accessed through `gsea` function.
+
 ```{r}
 class(gsea(RAVmodel))
 class(gsea(RAVmodel)[[1]])
@@ -149,11 +165,11 @@ gsea(RAVmodel)[1]
 
 
 ## MeSH terms for each study
-You can find MeSH terms associated with each study using `mesh(x)` method. 
-Output is a list with the length of studies in training dataset, where each 
-element is a data frame containing the assigned MeSH terms and the detail of 
-them. The last column `bagOfWords` is the frequency of that MeSH term in the 
-whole training dataset.
+You can find MeSH terms associated with each study using `mesh` method. 
+Output is a list with the length of studies used for training. Each element of
+this output list is a data frame containing the assigned MeSH terms and the 
+detail of them. The last column `bagOfWords` is the frequency of the MeSH term 
+in the whole training dataset.
 
 ```{r}
 length(mesh(RAVmodel))
@@ -161,10 +177,11 @@ mesh(RAVmodel)[1]
 ```
 
 
-## PCA summary
-You can find the PCA summary of each study using `PCAsummary` method. Output is 
-a list with the length of studies, where each element is a matrix containing PCA
-summary results with SD/Variance/Cumulative.
+## PCA summary for each study
+PCA summary of each study can be accessed through `PCAsummary` method. Output 
+is a list with the length of studies, where each element is a matrix containing 
+PCA summary results: standard deviation (SD), variance explained by each PC 
+(Variance), and the cumulative variance explained (Cumulative).
 
 ```{r}
 length(PCAsummary(RAVmodel))
@@ -173,7 +190,9 @@ PCAsummary(RAVmodel)[1]
 
 
 # Session Info
+
+<details>
 ```{r}
 sessionInfo()
 ```
-
+</details>
