@@ -41,8 +41,13 @@ findSignature <- function(RAVmodel, keyword, n = 5, k = NULL) {
   if (is.null(k)) {
     return(res)
   } else {
-    res <- which(nTopPathways == k) %>% as.numeric
-    return(res)
+    if (!k %in% res[,1]) {
+      warning(paste("There is no RAV with", k,
+                    "keyword-containing, enriched pathways."))
+    } else {
+      res <- which(nTopPathways == k) %>% as.numeric
+      return(res)
+    }
   }
 }
 
@@ -61,8 +66,8 @@ findSignature <- function(RAVmodel, keyword, n = 5, k = NULL) {
 #' @param ind An integer. The RAV number you want to check.
 #' @param n An integer. The number of top enriched pathways (based on abs(NES))
 #' to search. Under default (\code{NULL}), all the enriched pathways are used.
-#' @param includeTotal Default is \code{FALSE}. If it is set to \code{TRUE}, the
-#' total number of enriched pathways will be also printed out as an output.
+#' @param includeTotal Under the default condition (\code{TRUE}), the total
+#' number of enriched pathways will be also printed out as a part of the output.
 #'
 #' @return A character containing the rank of keyword-containing pathways
 #' (separated by |), followed by the total number of enriched pathways in
@@ -74,7 +79,7 @@ findSignature <- function(RAVmodel, keyword, n = 5, k = NULL) {
 #'
 #' @export
 findKeywordInRAV <- function(RAVmodel, keyword, ind,
-                             n = NULL, includeTotal = FALSE) {
+                             n = NULL, includeTotal = TRUE) {
   name <- paste0("RAV", ind)
   gsea <- gsea(RAVmodel)[[name]]
   total <- nrow(gsea)
@@ -83,7 +88,7 @@ findKeywordInRAV <- function(RAVmodel, keyword, ind,
   if (!is.null(n)) {gsea <- gsea[seq_len(n),]}
 
   keywordRank <- grep(keyword, gsea$Description, ignore.case = TRUE)
-  if (isFALSE(includeTotal)) {
+  if (!includeTotal) {
     res <- paste(keywordRank, collapse = "|")
   } else {
     res <- paste0(paste(keywordRank, collapse = "|"), " (out of ", total, ")")
