@@ -30,7 +30,7 @@ test_that("findsignature.R", {
   expect_true(is.numeric(res2))
   expect_equal(dim(res), c(2, 2))
   expect_equal(res2, c(16, 17))
-  expect_equal(res3, "1|2|3|4|5|6|9")
+  expect_equal(res3, "1|2|3|4|5|6|9 (out of 9)")
 })
 
 test_that("annotatePCcluster.R", {
