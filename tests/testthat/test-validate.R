@@ -10,9 +10,12 @@ microTCGA <- readRDS("microTCGA.rds")
 test_that("validate works with a single dataset", {
   val_all <- validate(dset, miniRAVmodel)
   val_se <- validate(miniTCGA[[1]], miniRAVmodel)
+  val_se_2 <- validate(miniTCGA[[1]], miniRAVmodel,
+                       maxFrom = "avgLoading", level = "all")
 
   expect_true(is.data.frame(val_all))
   expect_true(is.data.frame(val_se))
+  expect_equal(dim(val_se_2), c(17, 8))
 })
 
 test_that("validate works with a list of input datasets", {
@@ -22,5 +25,10 @@ test_that("validate works with a list of input datasets", {
   expect_equal(dim(val_miniTCGA), c(17, 4))
 })
 
-expect_error(validate(microTCGA, miniRAVmodel),
-             "Provide a study with at least 8 samples.")
+test_that("Filter out invalid inputs for validate function", {
+  expect_error(validate(microTCGA, miniRAVmodel),
+               "Provide a study with at least 8 samples.")
+  expect_error(validate(miniTCGA, miniRAVmodel, level = "all"),
+               "'level = \"all\"' is not available for a list of datasets.")
+})
+
