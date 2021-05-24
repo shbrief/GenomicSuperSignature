@@ -59,7 +59,7 @@ annotatePC <- function(PCnum, val_all, RAVmodel, n = 5,
 
     if (is.null(annotatedCluster)) {
       emptyTable <- gsea(RAVmodel)[[1]][0,] # assign the empty GSEA table
-      emptyTable[seq(5),1] <- "No significant pathways"
+      emptyTable[seq(n),1] <- "No significant pathways"
       res[[i]] <- emptyTable
       names(res)[i] <- paste0("PC", PCnum[i], "-noAnnot")
     } else {
