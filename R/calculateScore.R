@@ -43,6 +43,9 @@
 #' data(bcellViper)
 #' score <- calculateScore(dset, miniRAVmodel)
 #'
+#' data(miniTCGA)
+#' score <- calculateScore(miniTCGA, miniRAVmodel)
+#' 
 #' @export
 calculateScore <- function(dataset, RAVmodel, rescale.after = TRUE) {
 

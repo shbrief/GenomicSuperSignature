@@ -19,8 +19,6 @@
 #'
 #' @examples
 #' data(miniRAVmodel)
-#' library(bcellViper)
-#' data(bcellViper)
 #' findSignature(miniRAVmodel, "Bcell")
 #' findSignature(miniRAVmodel, "Bcell", k = 5)
 #'
