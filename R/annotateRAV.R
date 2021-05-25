@@ -21,7 +21,7 @@ annotateRAV <- function(RAVmodel, ind, n = 5, abs = FALSE) {
   annotatedCluster <- gsea(RAVmodel)[[cl_name]]
 
   # absolute value of NES
-  FUN <- if (abs) {abs} else {I}
+  FUN <- function(x) {if (abs) {abs(x)} else {I(x)}}
 
   # subset GSEA results
   topAnnotation <- annotatedCluster[
