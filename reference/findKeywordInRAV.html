@@ -75,7 +75,7 @@ uniquely your keyword-containing pathways are represented." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GenomicSuperignature</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
       </span>
     </div>
 
@@ -132,7 +132,7 @@ the enriched pathways of the target RAV. If can be useful to find out how
 uniquely your keyword-containing pathways are represented.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>findKeywordInRAV</span><span class='op'>(</span><span class='va'>RAVmodel</span>, <span class='va'>keyword</span>, <span class='va'>ind</span>, n <span class='op'>=</span> <span class='cn'>NULL</span>, includeTotal <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>findKeywordInRAV</span><span class='op'>(</span><span class='va'>RAVmodel</span>, <span class='va'>keyword</span>, <span class='va'>ind</span>, n <span class='op'>=</span> <span class='cn'>NULL</span>, includeTotal <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -144,7 +144,7 @@ uniquely your keyword-containing pathways are represented.</p>
     <tr>
       <th>keyword</th>
       <td><p>A character vector. If you are searching for multiple keywords
-at the same time, use <code><a href='https://rdrr.io/r/base/paste.html'>paste</a></code> with <code>collapse = "|"</code> argument.</p></td>
+at the same time, use <code><a href='https://rdrr.io/r/base/paste.html'>paste</a></code> with <code>collapse="|"</code> argument.</p></td>
     </tr>
     <tr>
       <th>ind</th>
@@ -152,26 +152,26 @@ at the same time, use <code><a href='https://rdrr.io/r/base/paste.html'>paste</a
     </tr>
     <tr>
       <th>n</th>
-      <td><p>An interger. The number of top enriched pathways (based on abs(NES))
+      <td><p>An integer. The number of top enriched pathways (based on abs(NES))
 to search. Under default (<code>NULL</code>), all the enriched pathways are used.</p></td>
     </tr>
     <tr>
       <th>includeTotal</th>
-      <td><p>Default is <code>FALSE</code>. If it is set to <code>TRUE</code>, the
-total number of enriched pathways will be also printed out as an output.</p></td>
+      <td><p>Under the default condition (<code>TRUE</code>), the total
+number of enriched pathways will be also printed out as a part of the output.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A character containing the rank of keyword-containing pathways (separated
-by |), followed by the total number of enriched pathways in parenthesis.</p>
+    <p>A character containing the rank of keyword-containing pathways
+(separated by |), followed by the total number of enriched pathways in
+parenthesis.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>miniRAVmodel</span><span class='op'>)</span>
 <span class='fu'>findKeywordInRAV</span><span class='op'>(</span><span class='va'>miniRAVmodel</span>, <span class='st'>"Bcell"</span>, ind <span class='op'>=</span> <span class='fl'>695</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] "1|2|3|4|5|6|9"</div><div class='input'><span class='co'># [1] "1|2|3|4|5|6|9"</span>
-
+</div><div class='output co'>#&gt; [1] "1|2|3|4|5|6|9 (out of 9)"</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -184,7 +184,7 @@ by |), followed by the total number of enriched pathways in parenthesis.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Sehyun Oh.</p>
+  <p>Developed by Sehyun Oh, Levi Waldron, Sean Davis.</p>
 </div>
 
 <div class="pkgdown">

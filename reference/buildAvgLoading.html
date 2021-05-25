@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GenomicSuperignature</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
       </span>
     </div>
 
@@ -133,8 +133,8 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>dat</th>
-      <td><p>A data frame. Each row represents principle components from different
-training datasets. Each column represents genes used for PCA analysis.</p></td>
+      <td><p>A data frame. Each row represents principle components from
+different training datasets. Columns are genes used for PCA analysis.</p></td>
     </tr>
     <tr>
       <th>k</th>
@@ -142,7 +142,8 @@ training datasets. Each column represents genes used for PCA analysis.</p></td>
     </tr>
     <tr>
       <th>n</th>
-      <td><p>The number of top principle components from each datasets used for model buildling. Default is 20.</p></td>
+      <td><p>The number of top principle components from each datasets used for
+model building. Default is 20.</p></td>
     </tr>
     <tr>
       <th>cluster</th>
@@ -150,7 +151,8 @@ training datasets. Each column represents genes used for PCA analysis.</p></td>
     </tr>
     <tr>
       <th>study</th>
-      <td><p>Under default (<code>TRUE</code>), studies involved in each cluster will be added in the output.</p></td>
+      <td><p>Under default (<code>TRUE</code>), studies involved in each cluster
+will be added in the output.</p></td>
     </tr>
     </table>
 
@@ -159,14 +161,22 @@ training datasets. Each column represents genes used for PCA analysis.</p></td>
     <p>A named list of 6 elements is returned. It contains:</p><dl>
    <dt><code>cluster</code></dt><dd><p>A numeric vector on cluster membership of PCs</p></dd>
    <dt><code>size</code></dt><dd><p>A integer vector on the size of clusters</p></dd>
-   <dt><code>avgLoading</code></dt><dd><p>A matrix of average loadings. Columns for clusters and rows for genes</p></dd>
+   <dt><code>avgLoading</code></dt><dd><p>A matrix of average loadings. Columns for
+   clusters and rows for genes</p></dd>
    <dt><code>k</code></dt><dd><p>The number of clusters</p></dd>
    <dt><code>n</code></dt><dd><p>The number of top PCs used for clustering</p></dd>
-   <dt><code>studies</code></dt><dd><p>A list of character vector containing studies in each cluster</p></dd>
+   <dt><code>studies</code></dt><dd><p>A list of character vector containing studies in
+   each cluster</p></dd>
 
 </dl>
 
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>miniAllZ</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>res_hcut</span><span class='op'>)</span>
+<span class='va'>res</span> <span class='op'>&lt;-</span> <span class='fu'>buildAvgLoading</span><span class='op'>(</span><span class='va'>miniAllZ</span>, k <span class='op'>=</span> <span class='fl'>40</span>, cluster <span class='op'>=</span> <span class='va'>res_hcut</span><span class='op'>$</span><span class='va'>cluster</span><span class='op'>)</span>
+
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -178,7 +188,7 @@ training datasets. Each column represents genes used for PCA analysis.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Sehyun Oh.</p>
+  <p>Developed by Sehyun Oh, Levi Waldron, Sean Davis.</p>
 </div>
 
 <div class="pkgdown">

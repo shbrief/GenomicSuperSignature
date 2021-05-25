@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GenomicSuperignature</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
       </span>
     </div>
 
@@ -144,9 +144,9 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>score</th>
-      <td><p>An output from <code><a href='calculateScore.html'>calculateScore</a></code> function, which is a matrix
-with samples (row) and PrcompClusters (column) If it is a simple vector, it
-will be converted to a one-column matrix.</p></td>
+      <td><p>An output from <code><a href='calculateScore.html'>calculateScore</a></code> function, which is
+a matrix with samples (row) and PrcompClusters (column) If it is a simple
+vector, it will be converted to a one-column matrix.</p></td>
     </tr>
     <tr>
       <th>dataName</th>
@@ -158,19 +158,23 @@ will be converted to a one-column matrix.</p></td>
     </tr>
     <tr>
       <th>cluster_rows</th>
-      <td><p>A logical. Under the default (<code>TRUE</code>), rows will be clustered.</p></td>
+      <td><p>A logical. Under the default (<code>TRUE</code>), rows will be
+clustered.</p></td>
     </tr>
     <tr>
       <th>cluster_columns</th>
-      <td><p>A logical. Under the default (<code>TRUE</code>), columns will be clustered.</p></td>
+      <td><p>A logical. Under the default (<code>TRUE</code>), columns
+will be clustered.</p></td>
     </tr>
     <tr>
       <th>show_row_names</th>
-      <td><p>Whether show row names. Default is <code>TRUE</code>, showing the row name.</p></td>
+      <td><p>Whether show row names. Default is <code>TRUE</code>, showing
+the row name.</p></td>
     </tr>
     <tr>
       <th>show_column_names</th>
-      <td><p>Whether show column names. Default is <code>TRUE</code>, showing the column name.</p></td>
+      <td><p>Whether show column names. Default is <code>TRUE</code>,
+showing the column name.</p></td>
     </tr>
     <tr>
       <th>row_names_gp</th>
@@ -196,7 +200,7 @@ represent RAVs.</p>
 <span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>bcellViper</span><span class='op'>)</span>
 <span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>bcellViper</span><span class='op'>)</span>
 <span class='va'>score</span> <span class='op'>&lt;-</span> <span class='fu'><a href='calculateScore.html'>calculateScore</a></span><span class='op'>(</span><span class='va'>dset</span>, <span class='va'>miniRAVmodel</span><span class='op'>)</span>
-<span class='fu'>sampleScoreHeatmap</span><span class='op'>(</span><span class='va'>score</span>, dataName <span class='op'>=</span> <span class='st'>"bcellViper"</span>, modelName <span class='op'>=</span> <span class='st'>"miniRAVmodel"</span><span class='op'>)</span>
+<span class='fu'>sampleScoreHeatmap</span><span class='op'>(</span><span class='va'>score</span>, dataName<span class='op'>=</span><span class='st'>"bcellViper"</span>, modelName<span class='op'>=</span><span class='st'>"miniRAVmodel"</span><span class='op'>)</span>
 </div><div class='img'><img src='sampleScoreHeatmap-1.png' alt='' width='700' height='433' /></div><div class='input'>
 </div></pre>
   </div>
@@ -210,7 +214,7 @@ represent RAVs.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Sehyun Oh.</p>
+  <p>Developed by Sehyun Oh, Levi Waldron, Sean Davis.</p>
 </div>
 
 <div class="pkgdown">

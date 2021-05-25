@@ -80,7 +80,7 @@ color : Test dataset's PC number that validate each RAV. Because we
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GenomicSuperignature</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
       </span>
     </div>
 
@@ -162,23 +162,24 @@ color : Test dataset's PC number that validate each RAV. Because we
     </tr>
     <tr>
       <th>minClusterSize</th>
-      <td><p>The minimum size of clusters to be included in the plotting.
-Default value is 2, so any single-element clusters are excluded.</p></td>
+      <td><p>The minimum size of clusters to be included in the
+plotting. Default value is 2, so any single-element clusters are excluded.</p></td>
     </tr>
     <tr>
       <th>swFilter</th>
       <td><p>If <code>swFilter=TRUE</code>, only RAV above the cutoff, defined
-through <code>minSilhouetteWidth</code> argument will be plotted. Default is <code>swFilter=FALSE</code></p></td>
+through <code>minSilhouetteWidth</code> argument will be plotted. Default is
+<code>swFilter=FALSE</code></p></td>
     </tr>
     <tr>
       <th>minSilhouetteWidth</th>
-      <td><p>A minimum average silhouette width to be plotted. Only
-effective under <code>swFilter=TRUE</code> condition. Default is 0.</p></td>
+      <td><p>A minimum average silhouette width to be plotted.
+Only effective under <code>swFilter=TRUE</code> condition. Default is 0.</p></td>
     </tr>
     <tr>
       <th>interactive</th>
-      <td><p>If set to <code>TRUE</code>, the output will be interactive plot.
-Default is <code>FALSE</code>.</p></td>
+      <td><p>If set to <code>TRUE</code>, the output will be interactive
+plot. Default is <code>FALSE</code>.</p></td>
     </tr>
     <tr>
       <th>minClSize</th>
@@ -195,6 +196,9 @@ check <code><a href='https://ggplot2.tidyverse.org/reference/scale_brewer.html'>
     </tr>
     </table>
 
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>a ggplot object</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>miniRAVmodel</span><span class='op'>)</span>
@@ -215,7 +219,7 @@ check <code><a href='https://ggplot2.tidyverse.org/reference/scale_brewer.html'>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Sehyun Oh.</p>
+  <p>Developed by Sehyun Oh, Levi Waldron, Sean Davis.</p>
 </div>
 
 <div class="pkgdown">

@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GenomicSuperignature</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
       </span>
     </div>
 
@@ -137,10 +137,20 @@
     </tr>
     </table>
 
-    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>a matrix with each row mean centered and scaled by rowwise sd</p>
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p><a href='https://github.com/shbrief/PLIER/blob/master/R/Allfuncs.R'>https://github.com/shbrief/PLIER/blob/master/R/Allfuncs.R</a></p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='va'>x</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>100</span><span class='op'>)</span>,nc<span class='op'>=</span><span class='fl'>10</span><span class='op'>)</span>
+<span class='va'>y</span> <span class='op'>=</span> <span class='fu'>rowNorm</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/apply.html'>apply</a></span><span class='op'>(</span><span class='va'>y</span>,<span class='fl'>1</span>,<span class='va'>mean</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;  [1]  5.561957e-18  4.179599e-18 -4.163336e-17 -3.888627e-17 -1.317848e-17
+#&gt;  [6] -3.052029e-17 -5.561957e-18 -9.698188e-18 -3.816392e-17  3.194737e-17</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -152,7 +162,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Sehyun Oh.</p>
+  <p>Developed by Sehyun Oh, Levi Waldron, Sean Davis.</p>
 </div>
 
 <div class="pkgdown">

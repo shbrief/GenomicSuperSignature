@@ -41,10 +41,11 @@
 
 <meta property="og:title" content="Methods and accesors for PCAGenomicSignatures object — PCAGenomicSignatures-methods" />
 <meta property="og:description" content="The default contents of PCAGenomicSignatures object, with
-a set of accessor and setter generic functions, which extract either the assay,
-colData, metadata, or trainingData slots of a PCAGenomicSignatures-class
-object. When you create this object, colData$studies should be populated
-before adding any information in trainingData slot" />
+a set of accessor and setter generic functions, which extract either the
+assay, colData, metadata, or trainingData slots
+of a PCAGenomicSignatures-class object. When you create this
+object, colData$studies should be populated before adding any
+information in trainingData slot" />
 
 
 
@@ -76,7 +77,7 @@ before adding any information in trainingData slot" />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GenomicSuperignature</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
       </span>
     </div>
 
@@ -128,10 +129,11 @@ before adding any information in trainingData slot" />
 
     <div class="ref-description">
     <p>The default contents of <code>PCAGenomicSignatures</code> object, with
-a set of accessor and setter generic functions, which extract either the <code>assay</code>,
-<code>colData</code>, <code>metadata</code>, or <code>trainingData</code> slots of a <code><a href='PCAGenomicSignatures-class.html'>PCAGenomicSignatures-class</a></code>
-object. When you create this object, <code>colData$studies</code> should be populated
-before adding any information in <code>trainingData</code> slot</p>
+a set of accessor and setter generic functions, which extract either the
+<code>assay</code>, <code>colData</code>, <code>metadata</code>, or <code>trainingData</code> slots
+of a <code><a href='PCAGenomicSignatures-class.html'>PCAGenomicSignatures-class</a></code> object. When you create this
+object, <code>colData$studies</code> should be populated before adding any
+information in <code>trainingData</code> slot</p>
     </div>
 
     <pre class="usage"><span class='co'># S4 method for PCAGenomicSignatures</span>
@@ -194,15 +196,17 @@ before adding any information in <code>trainingData</code> slot</p>
     
 <ul>
 <li><p>RAVindex(x) : RAVindex (= avgLoadings) containing genes x RAVs</p></li>
-<li><p>metadata(x)$cluster : A vector of integers (from 1:k) indicating the
-    cluster to which each point is allocated. Check <code><a href='https://rdrr.io/r/stats/kmeans.html'>stats::kmeans</a></code> function.</p></li>
-<li><p>metadata(x)$size : The number of points in each cluster. Check <code><a href='https://rdrr.io/r/stats/kmeans.html'>stats::kmeans</a></code> function.</p></li>
-<li><p>metadata(x)$iter : The number of (outer) iterations. Check <code><a href='https://rdrr.io/r/stats/kmeans.html'>stats::kmeans</a></code> function.</p></li>
+<li><p>metadata(x)$cluster : A vector of integers (from 1:k) indicating
+    the cluster to which each PC is allocated.</p></li>
+<li><p>metadata(x)$size : The number of PCs in each cluster.</p></li>
 <li><p>metadata(x)$k : The number of RAVs.</p></li>
 <li><p>metadata(x)$n : The number of top PCs from each dataset.</p></li>
-<li><p>metadata(x)$geneSets : Name of the prior gene sets used to annotate average loadings.</p></li>
-<li><p>colData(x)$studies : A list of character vectors containing studies contributing to each PC cluster.</p></li>
-<li><p>colData(x)$gsea : A list of <code>gseaResult</code> objects. Build using <code><a href='https://rdrr.io/pkg/clusterProfiler/man/GSEA.html'>clusterProfiler::GSEA</a></code> function.</p></li>
+<li><p>metadata(x)$geneSets : Name of the prior gene sets used to annotate
+    average loadings.</p></li>
+<li><p>colData(x)$studies : A list of character vectors containing studies
+    contributing to each PC cluster.</p></li>
+<li><p>colData(x)$gsea : A list of data frames. Each element is a subset
+    of outputs from <code><a href='https://rdrr.io/pkg/clusterProfiler/man/GSEA.html'>clusterProfiler::GSEA</a></code> function.</p></li>
 </ul>
 
     <h2 class="hasAnchor" id="slots"><a class="anchor" href="#slots"></a>Slots</h2>
@@ -210,8 +214,8 @@ before adding any information in <code>trainingData</code> slot</p>
     
 
 <dl>
-<dt><code>trainingData</code></dt><dd><p>A <code><a href='https://rdrr.io/pkg/S4Vectors/man/DataFrame-class.html'>DataFrame</a></code> class object for metadata
-associated with training data</p></dd>
+<dt><code>trainingData</code></dt><dd><p>A <code><a href='https://rdrr.io/pkg/S4Vectors/man/DataFrame-class.html'>DataFrame</a></code> class object for
+metadata associated with training data</p></dd>
 
 </dl>
     <h2 class="hasAnchor" id="setters"><a class="anchor" href="#setters"></a>Setters</h2>
@@ -219,9 +223,10 @@ associated with training data</p></dd>
     
 
 <p>Setter method values (i.e., <code>function(x) &lt;- value</code>):</p><ul>
-<li><p>geneSets&lt;- : A character vector containing the name of gene sets used
+<li><p>geneSets&lt;- : A character vector containing the name of gene sets
+    used to annotate average loadings</p></li>
+<li><p>studies&lt;- : A list of character vectors containing gene sets used
     to annotate average loadings</p></li>
-<li><p>studies&lt;- : A list of character vectors containing gene sets used to annotate average loadings</p></li>
 <li><p>gsea&lt;- : A list of <code>gseaResult</code> objects.</p></li>
 <li><p>metadata&lt;- : A <code>list</code> object of metadata</p></li>
 <li><p>`$&lt;-` : A vector to replace the indicated column in <code>colData</code></p></li>
@@ -231,10 +236,10 @@ associated with training data</p></dd>
 
     
 
-<p>All the accessors inherited from <code>SummarizedExperiment</code> are available and
-the additional accessors for <code>PCAGenomicSignatures</code> specific data are listed
-below.</p><ul>
-<li><p>RAVindex : Equivalent to the <code>assays(x)$RAVindex</code> accessor for convenience</p></li>
+<p>All the accessors inherited from <code>SummarizedExperiment</code> are available
+and the additional accessors for <code>PCAGenomicSignatures</code> specific data
+are listed below.</p><ul>
+<li><p>RAVindex : Equivalent to the <code>assay(x)</code></p></li>
 <li><p>geneSets : Access the <code>metadata(x)$geneSets</code> slot</p></li>
 <li><p>studies : Access the <code>colData(x)$studies</code> slot</p></li>
 <li><p>gsea : Access the <code>colData(x)$gsea</code></p></li>
@@ -245,6 +250,20 @@ below.</p><ul>
 </ul>
 
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>miniRAVmodel</span><span class='op'>)</span>
+<span class='va'>miniRAVmodel</span>
+</div><div class='output co'>#&gt; class: PCAGenomicSignatures 
+#&gt; dim: 13934 17 
+#&gt; metadata(7): cluster size ... updateNote version
+#&gt; assays(1): RAVindex
+#&gt; rownames(13934): CASKIN1 DDX3Y ... CTC-457E21.9 AC007966.1
+#&gt; rowData names(0):
+#&gt; colnames(17): RAV1076 RAV2538 ... RAV695 RAV1994
+#&gt; colData names(4): RAV studies silhouetteWidth gsea
+#&gt; trainingData(2): PCAsummary MeSH
+#&gt; trainingData names(536): DRP000987 SRP059172 ... SRP164913 SRP188526</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -256,7 +275,7 @@ below.</p><ul>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Sehyun Oh.</p>
+  <p>Developed by Sehyun Oh, Levi Waldron, Sean Davis.</p>
 </div>
 
 <div class="pkgdown">

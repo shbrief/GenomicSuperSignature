@@ -73,7 +73,7 @@ and visualize it in a heatmap-like table." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GenomicSuperignature</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
       </span>
     </div>
 
@@ -154,9 +154,10 @@ using <code><a href='https://rdrr.io/pkg/ComplexHeatmap/man/Heatmap.html'>Heatma
     </tr>
     <tr>
       <th>ind</th>
-      <td><p>An integer vector. If this parameter is provided, the other parameters,
-<code>num.out, scoreCutoff, swCutoff, clsizeCutoff</code> will be ignored and the heatmap
-table containing only the provided index will be printed.</p></td>
+      <td><p>An integer vector. If this parameter is provided, the other
+parameters, <code>num.out, scoreCutoff, swCutoff, clsizeCutoff</code> will be
+ignored and the heatmap table containing only the provided index will be
+printed.</p></td>
     </tr>
     <tr>
       <th>num.out</th>
@@ -166,9 +167,10 @@ filtered RAVs, whichever smaller, will be chosen.</p></td>
     </tr>
     <tr>
       <th>scoreCutoff</th>
-      <td><p>A numeric value for the minimum correlation. If <code>val_all</code>
-input is from multiple studies, the default is 0.7 and this is the only cutoff
-criteria considred: <code>swCutoff</code> and <code>clsizeCutoff</code> will be ignored.</p></td>
+      <td><p>A numeric value for the minimum correlation. If
+<code>val_all</code> input is from multiple studies, the default is 0.7 and this is
+the only cutoff criteria considered: <code>swCutoff</code> and <code>clsizeCutoff</code>
+will be ignored.</p></td>
     </tr>
     <tr>
       <th>swCutoff</th>
@@ -180,13 +182,13 @@ criteria considred: <code>swCutoff</code> and <code>clsizeCutoff</code> will be 
     </tr>
     <tr>
       <th>breaks</th>
-      <td><p>A numeric vector of length 3. Number represents the values assigned
-to three colors. Default is <code><a href='https://rdrr.io/r/base/c.html'>c(0, 0.5, 1)</a></code>.</p></td>
+      <td><p>A numeric vector of length 3. Number represents the values
+assigned to three colors. Default is <code><a href='https://rdrr.io/r/base/c.html'>c(0, 0.5, 1)</a></code>.</p></td>
     </tr>
     <tr>
       <th>colors</th>
-      <td><p>A character vector of length 3. Each represents the color assigned
-to three breaks. Default is <code><a href='https://rdrr.io/r/base/c.html'>c("white", "white smoke", "red")</a></code>.</p></td>
+      <td><p>A character vector of length 3. Each represents the color
+assigned to three breaks. Default is <code><a href='https://rdrr.io/r/base/c.html'>c("white", "white smoke", "red")</a></code>.</p></td>
     </tr>
     <tr>
       <th>column_title</th>
@@ -198,9 +200,9 @@ to three breaks. Default is <code><a href='https://rdrr.io/r/base/c.html'>c("whi
     </tr>
     <tr>
       <th>whichPC</th>
-      <td><p>An integer value between 1 and 8. PC number of your data to check
-the validated signatures with. Under the default (<code>NULL</code>), it outputs top
-scored signatures with any PC of your data.</p></td>
+      <td><p>An integer value between 1 and 8. PC number of your data to
+check the validated signatures with. Under the default (<code>NULL</code>), it
+outputs top scored signatures with any PC of your data.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -214,9 +216,9 @@ scored signatures with any PC of your data.</p></td>
 given cutoff criteria. If <code>val_all</code> input is from a single dataset, the
 output heatmap will contain both score and average silhouette width for each
 cluster.</p>
-<p>If <code>val_all</code> input is from multiple studies, the output heatmap's rows will
-represent each study and the columns will be RAVs, which meet <code>scoreCutoff</code>
-for any of the input studies.</p>
+<p>If <code>val_all</code> input is from multiple studies, the output heatmap's rows
+will represent each study and the columns will be RAVs, which meet
+<code>scoreCutoff</code> for any of the input studies.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>miniRAVmodel</span><span class='op'>)</span>
@@ -237,7 +239,7 @@ for any of the input studies.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Sehyun Oh.</p>
+  <p>Developed by Sehyun Oh, Levi Waldron, Sean Davis.</p>
 </div>
 
 <div class="pkgdown">

@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GenomicSuperignature</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
       </span>
     </div>
 
@@ -160,7 +160,8 @@
     <tr>
       <th>n</th>
       <td><p>An interger. The number of top and bottom enriched pathways to plot.
-Default is <code>NULL</code> and print out all the pathways enriched under <code>pvalueCutoff</code>.</p></td>
+Default is <code>NULL</code>, which prints out all the pathways enriched under
+<code>pvalueCutoff</code>.</p></td>
     </tr>
     <tr>
       <th>pvalueCutoff</th>
@@ -176,9 +177,10 @@ Default is <code>NULL</code> and print out all the pathways enriched under <code
     </tr>
     <tr>
       <th>pAdjustMethod</th>
-      <td><p>p-value adjustment methods, which will be used as an input
-for <code>method</code> argument of <code><a href='https://rdrr.io/r/stats/p.adjust.html'>p.adjust</a></code> function. Available
-options are "holm", "hochberg", "hommel", "bonferroni", "BH"(default), "BY", "fdr", "none".</p></td>
+      <td><p>p-value adjustment methods, which will be used as an
+input for <code>method</code> argument of <code><a href='https://rdrr.io/r/stats/p.adjust.html'>p.adjust</a></code> function.
+Available options are "holm", "hochberg", "hommel", "bonferroni",
+"BH"(default), "BY", "fdr", "none".</p></td>
     </tr>
     <tr>
       <th>verbose</th>
@@ -190,7 +192,7 @@ options are "holm", "hochberg", "hommel", "bonferroni", "BH"(default), "BY", "fd
     </tr>
     <tr>
       <th>by</th>
-      <td><p>Available options are <code><a href='https://rdrr.io/r/base/c.html'>c("fgsea", "DOSE")</a></code>. Default is "fgsea".</p></td>
+      <td><p>Available options are <code><a href='https://rdrr.io/r/base/c.html'>c("fgsea", "DOSE")</a></code>. Default "fgsea".</p></td>
     </tr>
     <tr>
       <th>geneSets</th>
@@ -215,7 +217,7 @@ are plotted and qvalues are denoted by color.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Sehyun Oh.</p>
+  <p>Developed by Sehyun Oh, Levi Waldron, Sean Davis.</p>
 </div>
 
 <div class="pkgdown">

@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GenomicSuperignature</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
       </span>
     </div>
 
@@ -118,7 +118,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Find the studies contributing each RAV</h1>
-    <small class="dont-index">Source: <a href='https://github.com/shbrief/GenomicSuperSignature/blob/master/R/buildAvgLoading.R'><code>R/buildAvgLoading.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/shbrief/GenomicSuperSignature/blob/master/R/findStudiesInCluster.R'><code>R/findStudiesInCluster.R</code></a></small>
     <div class="hidden name"><code>findStudiesInCluster.Rd</code></div>
     </div>
 
@@ -126,7 +126,7 @@
     <p>Find the studies contributing each RAV</p>
     </div>
 
-    <pre class="usage"><span class='fu'>findStudiesInCluster</span><span class='op'>(</span><span class='va'>RAVmodel</span>, ind <span class='op'>=</span> <span class='cn'>NULL</span>, studyTitle <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span></pre>
+    <pre class="usage"><span class='fu'>findStudiesInCluster</span><span class='op'>(</span><span class='va'>RAVmodel</span>, ind <span class='op'>=</span> <span class='cn'>NULL</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -137,26 +137,29 @@
     </tr>
     <tr>
       <th>ind</th>
-      <td><p>A numeric vector containing the index of RAVs you want to
-find the related studies. Default is <code>NULL</code>.</p></td>
-    </tr>
-    <tr>
-      <th>studyTitle</th>
-      <td><p>Default is <code>FALSE</code>. This parameter is effective only when
-the <code>index</code> value is specificed. If it's <code>TRUE</code>, the output will be
-a data frame with the study</p></td>
+      <td><p>A numeric vector containing the RAV indexes. Under the default
+(<code>NULL</code>), studies associated with all the RAV indexes will be returned
+as a list.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list of character vector. Under the default conditoin (<code>ind = NULL</code>),
-all the RAVs will be checked for their contributing studies and the length
-of the list will be same as the number of RAVs (= <code>metadata(x)$k</code>).</p>
+    <p>A list of character vectors. Under the default condition
+(<code>ind = NULL</code>), all the RAVs will be checked for their contributing
+studies and the length of the list will be same as the number of RAVs
+(= <code>metadata(x)$k</code>). If you provide the <code>ind</code> argument, studies
+associated with only the specified RAVs will be returned.</p>
     <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
     <p>Mainly used for model building, within <a href='buildAvgLoading.html'>buildAvgLoading</a>.</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>miniRAVmodel</span><span class='op'>)</span>
+<span class='fu'>findStudiesInCluster</span><span class='op'>(</span><span class='va'>miniRAVmodel</span>, <span class='fl'>1076</span><span class='op'>)</span>
+</div><div class='output co'>#&gt;  [1] "SRP028155" "SRP049340" "SRP058840" "SRP059035" "SRP063867" "SRP066204"
+#&gt;  [7] "SRP102952" "SRP107198" "SRP124967" "SRP178271"</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -168,7 +171,7 @@ of the list will be same as the number of RAVs (= <code>metadata(x)$k</code>).</
 
       <footer>
       <div class="copyright">
-  <p>Developed by Sehyun Oh.</p>
+  <p>Developed by Sehyun Oh, Levi Waldron, Sean Davis.</p>
 </div>
 
 <div class="pkgdown">

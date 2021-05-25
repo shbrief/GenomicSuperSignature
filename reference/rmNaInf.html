@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Remove missing and Inf values from expression dataset — rmNaInf • GenomicSuperignature</title>
+<title>Remove rows with missing and Inf values from a matrix — rmNaInf • GenomicSuperignature</title>
 
 
 <!-- jquery -->
@@ -39,8 +39,8 @@
 
 
 
-<meta property="og:title" content="Remove missing and Inf values from expression dataset — rmNaInf" />
-<meta property="og:description" content="Remove missing and Inf values from expression dataset" />
+<meta property="og:title" content="Remove rows with missing and Inf values from a matrix — rmNaInf" />
+<meta property="og:description" content="Remove rows with missing and Inf values from a matrix" />
 
 
 
@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GenomicSuperignature</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
       </span>
     </div>
 
@@ -117,13 +117,13 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Remove missing and Inf values from expression dataset</h1>
+    <h1>Remove rows with missing and Inf values from a matrix</h1>
     <small class="dont-index">Source: <a href='https://github.com/shbrief/GenomicSuperSignature/blob/master/R/rmNaInf.R'><code>R/rmNaInf.R</code></a></small>
     <div class="hidden name"><code>rmNaInf.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Remove missing and Inf values from expression dataset</p>
+    <p>Remove rows with missing and Inf values from a matrix</p>
     </div>
 
     <pre class="usage"><span class='fu'>rmNaInf</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span></pre>
@@ -133,14 +133,23 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>x</th>
-      <td><p>A matrix with the expression values.</p></td>
+      <td><p>A numeric matrix.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>The updated input matrix where NA and Inf values are removed.</p>
+    <p>The updated input matrix where rows with
+   NA and Inf values are removed.</p>
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='va'>m</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>100</span><span class='op'>)</span>,ncol<span class='op'>=</span><span class='fl'>10</span><span class='op'>)</span>
+<span class='va'>m</span><span class='op'>[</span><span class='fl'>1</span>,<span class='fl'>1</span><span class='op'>]</span> <span class='op'>=</span> <span class='cn'>NA</span>
+
+<span class='va'>m1</span> <span class='op'>=</span> <span class='fu'>rmNaInf</span><span class='op'>(</span><span class='va'>m</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/dim.html'>dim</a></span><span class='op'>(</span><span class='va'>m1</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1]  9 10</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -152,7 +161,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by Sehyun Oh.</p>
+  <p>Developed by Sehyun Oh, Levi Waldron, Sean Davis.</p>
 </div>
 
 <div class="pkgdown">

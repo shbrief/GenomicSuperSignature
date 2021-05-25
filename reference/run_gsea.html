@@ -40,8 +40,9 @@
 
 
 <meta property="og:title" content="GSEA on pre-ordered gene lists — run_gsea" />
-<meta property="og:description" content="This function is a wrapper of GSEA function,
-making it applicable to a list of gene lists. Set seed for reproducible result." />
+<meta property="og:description" content="This function is a wrapper of
+GSEA function, making it applicable to a list
+of gene lists. Set seed for reproducible result." />
 
 
 
@@ -73,7 +74,7 @@ making it applicable to a list of gene lists. Set seed for reproducible result."
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GenomicSuperignature</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
       </span>
     </div>
 
@@ -124,8 +125,9 @@ making it applicable to a list of gene lists. Set seed for reproducible result."
     </div>
 
     <div class="ref-description">
-    <p>This function is a wrapper of <code><a href='https://rdrr.io/pkg/clusterProfiler/man/GSEA.html'>GSEA</a></code> function,
-making it applicable to a list of gene lists. Set seed for reproducible result.</p>
+    <p>This function is a wrapper of
+<code><a href='https://rdrr.io/pkg/clusterProfiler/man/GSEA.html'>GSEA</a></code> function, making it applicable to a list
+of gene lists. Set seed for reproducible result.</p>
     </div>
 
     <pre class="usage"><span class='fu'>run_gsea</span><span class='op'>(</span>
@@ -148,11 +150,13 @@ making it applicable to a list of gene lists. Set seed for reproducible result.<
     </tr>
     <tr>
       <th>TERM2GENE</th>
-      <td><p>User input annotation of TERM TO GENE mapping, a data.frame of 2 column with term and gene</p></td>
+      <td><p>User input annotation of TERM TO GENE mapping, a data frame
+of 2 column with term and gene</p></td>
     </tr>
     <tr>
       <th>TERM2NAME</th>
-      <td><p>User input of TERM TO NAME mapping, a data.frame of 2 column with term and name. Optional.</p></td>
+      <td><p>User input of TERM TO NAME mapping, a data.frame of 2 column
+with term and name. Optional.</p></td>
     </tr>
     <tr>
       <th>minGSSize</th>
@@ -172,13 +176,15 @@ making it applicable to a list of gene lists. Set seed for reproducible result.<
     </tr>
     <tr>
       <th>...</th>
-      <td><p>Any additional argument inherited from <code><a href='https://rdrr.io/pkg/clusterProfiler/man/GSEA.html'>GSEA</a></code>.</p></td>
+      <td><p>Any additional argument inherited from
+<code><a href='https://rdrr.io/pkg/clusterProfiler/man/GSEA.html'>GSEA</a></code>.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A list of <code>gseaResult</code> objects. <code>NA</code> if there is no enrichment result.</p>
+    <p>A list of <code>gseaResult</code> objects. If there is no enrichment
+result, <code>NA</code> will be returned.</p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -191,7 +197,7 @@ making it applicable to a list of gene lists. Set seed for reproducible result.<
 
       <footer>
       <div class="copyright">
-  <p>Developed by Sehyun Oh.</p>
+  <p>Developed by Sehyun Oh, Levi Waldron, Sean Davis.</p>
 </div>
 
 <div class="pkgdown">

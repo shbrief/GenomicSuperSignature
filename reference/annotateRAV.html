@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GenomicSuperignature</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
       </span>
     </div>
 
@@ -118,7 +118,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Search the top enriched pathways for RAV</h1>
-    <small class="dont-index">Source: <a href='https://github.com/shbrief/GenomicSuperSignature/blob/master/R/annotatePCcluster.R'><code>R/annotatePCcluster.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/shbrief/GenomicSuperSignature/blob/master/R/annotateRAV.R'><code>R/annotateRAV.R</code></a></small>
     <div class="hidden name"><code>annotateRAV.Rd</code></div>
     </div>
 
@@ -152,25 +152,18 @@ pathways will be listed based on <code><a href='https://rdrr.io/r/base/MathFun.h
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A data frame with <code>n</code> rows and 4 columns; Description, NES, pvalue, and qval</p>
+    <p>A data frame with <code>n</code> rows and 4 columns;
+Description, NES, pvalue, and qvalues</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>miniRAVmodel</span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>bcellViper</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>bcellViper</span><span class='op'>)</span>
 <span class='fu'>annotateRAV</span><span class='op'>(</span><span class='va'>miniRAVmodel</span>, ind <span class='op'>=</span> <span class='fl'>695</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;                 Description      NES pvalue      qvalues
 #&gt; 1 IRIS_Bcell-Memory_IgG_IgA 2.763472  1e-10 5.824561e-09
 #&gt; 2              DMAP_BCELLA3 2.726775  1e-10 5.824561e-09
 #&gt; 3     IRIS_Bcell-Memory_IgM 2.701570  1e-10 5.824561e-09
 #&gt; 4          IRIS_Bcell-naive 2.699145  1e-10 5.824561e-09
-#&gt; 5              DMAP_BCELLA4 2.698821  1e-10 5.824561e-09</div><div class='input'><span class='co'>#                 Description      NES pvalue      qvalues</span>
-<span class='co'># 1 IRIS_Bcell-Memory_IgG_IgA 2.763472  1e-10 5.824561e-09</span>
-<span class='co'># 2              DMAP_BCELLA3 2.726775  1e-10 5.824561e-09</span>
-<span class='co'># 3     IRIS_Bcell-Memory_IgM 2.701570  1e-10 5.824561e-09</span>
-<span class='co'># 4          IRIS_Bcell-naive 2.699145  1e-10 5.824561e-09</span>
-<span class='co'># 5              DMAP_BCELLA4 2.698821  1e-10 5.824561e-09</span>
-
+#&gt; 5              DMAP_BCELLA4 2.698821  1e-10 5.824561e-09</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -183,7 +176,7 @@ pathways will be listed based on <code><a href='https://rdrr.io/r/base/MathFun.h
 
       <footer>
       <div class="copyright">
-  <p>Developed by Sehyun Oh.</p>
+  <p>Developed by Sehyun Oh, Levi Waldron, Sean Davis.</p>
 </div>
 
 <div class="pkgdown">

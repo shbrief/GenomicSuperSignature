@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GenomicSuperignature</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
       </span>
     </div>
 
@@ -140,53 +140,56 @@
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>dataset</th>
-      <td><p>Single or a named list of SummarizedExperiment (RangedSummarizedExperiment,
-ExpressionSet or matrix) object(s). Gene names should be in 'symbol' format. Currently,
-each dataset should have at least 8 samples.</p></td>
+      <td><p>Single or a named list of SummarizedExperiment
+(RangedSummarizedExperiment, ExpressionSet or matrix) object(s). Gene names
+should be in 'symbol' format. Currently, each dataset should have at least
+8 samples.</p></td>
     </tr>
     <tr>
       <th>RAVmodel</th>
-      <td><p>PCAGenomicSignatures object. You can also provide signature model matrix directly.</p></td>
+      <td><p>PCAGenomicSignatures object.</p></td>
     </tr>
     <tr>
       <th>method</th>
       <td><p>A character string indicating which correlation coefficient is
-to be computed. One of "pearson" (default), "kendall", or "spearman": can be abbreviated.</p></td>
+to be computed. One of "pearson" (default), "kendall", or "spearman": can be
+abbreviated.</p></td>
     </tr>
     <tr>
       <th>maxFrom</th>
-      <td><p>Select whether to display the maximum value from dataset's PCs or avgLoadings.
-Under the default (<code>maxFrom="PC"</code>), the maximum correlation coefficient from
-top 8 PCs for each avgLoading will be selected as an output. If you choose (<code>maxFrom="avgLoading"</code>),
-the avgLoading with the maximum correlation coefficient with each PC will be in the output.</p></td>
+      <td><p>Select whether to display the maximum value from dataset's PCs
+or avgLoadings. Under the default (<code>maxFrom="PC"</code>), the maximum
+correlation coefficient from top 8 PCs for each avgLoading will be selected
+as an output. If you choose (<code>maxFrom="avgLoading"</code>), the avgLoading
+with the maximum correlation coefficient with each PC will be in the output.</p></td>
     </tr>
     <tr>
       <th>level</th>
-      <td><p>Output format of validated result. Two options are available: <code><a href='https://rdrr.io/r/base/c.html'>c("max", "all")</a></code>.
-Default is "max", which outputs the matrix containing only the maximum coefficient.
-To get the coefficient of all 8 PCs, set this argument as "all". <code>level = "all"</code>
-can be used only for one dataset.</p></td>
+      <td><p>Output format of validated result. Two options are available:
+<code><a href='https://rdrr.io/r/base/c.html'>c("max", "all")</a></code>. Default is "max", which outputs the matrix containing
+only the maximum coefficient. To get the coefficient of all 8 PCs, set this
+argument as "all". <code>level = "all"</code> can be used only for one dataset.</p></td>
     </tr>
     <tr>
       <th>scale</th>
-      <td><p>Default is <code>FALSE</code>. If it is set to <code>TRUE</code>, dataset will
-be row normalized by <a href='rowNorm.html'>rowNorm</a> function.</p></td>
+      <td><p>Default is <code>FALSE</code>. If it is set to <code>TRUE</code>, dataset
+will be row normalized by <a href='rowNorm.html'>rowNorm</a> function.</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A data frame containing the maximum pearson correlation coefficient between
-the top 8 PCs of the dataset and pre-calculated average loadings (in row) of training
-datasets (<code>score</code> column). It also contains other metadata associated with
-each RAV: <code>PC</code> for one of the top 8 PCs of the dataset that results
-in the given <code>score</code>, <code>sw</code> for the average silhouette width of the RAV,
-<code>cl_size</code> for the size of each RAV.</p>
-<p>If the input for <code>dataset</code> argument is a list of different datasets, each row
-of the output represents a new dataset for test, and each column represents
-clusters from training datasets. If <code>level = "all"</code>, a list containing the matrices
-of the pearson correlation coefficient between all top 8 PCs of the datasets and
-avgLoading.</p>
+    <p>A data frame containing the maximum pearson correlation coefficient
+between the top 8 PCs of the dataset and pre-calculated average loadings
+(in row) of training datasets (<code>score</code> column). It also contains other
+metadata associated with each RAV: <code>PC</code> for one of the top 8 PCs of the
+dataset that results in the given <code>score</code>, <code>sw</code> for the average
+silhouette width of the RAV, <code>cl_size</code> for the size of each RAV.</p>
+<p>If the input for <code>dataset</code> argument is a list of different datasets,
+each row of the output represents a new dataset for test, and each column
+represents clusters from training datasets. If <code>level = "all"</code>, a list
+containing the matrices of the pearson correlation coefficient between all
+top 8 PCs of the datasets and avgLoading.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>miniRAVmodel</span><span class='op'>)</span>
@@ -211,15 +214,15 @@ avgLoading.</p>
 #&gt; RAV941  0.4872848  2 -0.020971183       3    941
 #&gt; RAV695  0.2415454  3  0.105812565       2    695
 #&gt; RAV1994 0.1729988  3 -0.034939005       3   1994</div><div class='input'><span class='fu'>validate</span><span class='op'>(</span><span class='va'>dset</span>, <span class='va'>miniRAVmodel</span>, maxFrom <span class='op'>=</span> <span class='st'>"avgLoading"</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;         score avgLoading
-#&gt; PC1 0.2285693          5
-#&gt; PC2 0.5950767          1
-#&gt; PC3 0.2415454         16
-#&gt; PC4 0.2282201          3
-#&gt; PC5 0.2129687          5
-#&gt; PC6 0.2126171          3
-#&gt; PC7 0.1150177          5
-#&gt; PC8 0.1192014         13</div><div class='input'>
+</div><div class='output co'>#&gt;         score validated_RAV
+#&gt; PC1 0.2285693       RAV1139
+#&gt; PC2 0.5950767       RAV1076
+#&gt; PC3 0.2415454        RAV695
+#&gt; PC4 0.2282201        RAV338
+#&gt; PC5 0.2129687       RAV1139
+#&gt; PC6 0.2126171        RAV338
+#&gt; PC7 0.1150177       RAV1139
+#&gt; PC8 0.1192014       RAV1497</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -232,7 +235,7 @@ avgLoading.</p>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Sehyun Oh.</p>
+  <p>Developed by Sehyun Oh, Levi Waldron, Sean Davis.</p>
 </div>
 
 <div class="pkgdown">

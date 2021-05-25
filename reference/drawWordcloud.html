@@ -73,7 +73,7 @@ RAV after user-defined filtering." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GenomicSuperignature</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
       </span>
     </div>
 
@@ -133,8 +133,7 @@ RAV after user-defined filtering.</p>
   <span class='va'>ind</span>,
   rm.noise <span class='op'>=</span> <span class='cn'>NULL</span>,
   scale <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>3</span>, <span class='fl'>0.5</span><span class='op'>)</span>,
-  weighted <span class='op'>=</span> <span class='cn'>TRUE</span>,
-  seed <span class='op'>=</span> <span class='cn'>NULL</span>
+  weighted <span class='op'>=</span> <span class='cn'>TRUE</span>
 <span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -150,24 +149,21 @@ RAV after user-defined filtering.</p>
     </tr>
     <tr>
       <th>rm.noise</th>
-      <td><p>An integer. Under the default condition (<code>rm.noise=NULL</code>),
-if cluster size (= <code>s</code>) is smaller than 8, <code>rm.noise = floor(s*0.5)</code>.
+      <td><p>An integer. Under the default (<code>rm.noise=NULL</code>), if
+cluster size (= <code>s</code>) is smaller than 8, <code>rm.noise = floor(s*0.5)</code>.
 For clusters with &gt;= 8 PCs, <code>rm.noise = 4</code>. If <code>rm.noise = 0</code>, all
 the MeSH terms in RAV will be used to draw wordcloud.</p></td>
     </tr>
     <tr>
       <th>scale</th>
-      <td><p>A <code>scale</code> argument for <code><a href='https://rdrr.io/pkg/wordcloud/man/wordcloud.html'>wordcloud</a></code> function</p></td>
+      <td><p>A <code>scale</code> argument for <code><a href='https://rdrr.io/pkg/wordcloud/man/wordcloud.html'>wordcloud</a></code>
+function</p></td>
     </tr>
     <tr>
       <th>weighted</th>
-      <td><p>A logical. If <code>TRUE</code> (default), MeSH terms from each study are
-weighted based on the variance explained by the principle component of the
-study contributing to a given RAV.</p></td>
-    </tr>
-    <tr>
-      <th>seed</th>
-      <td><p>Random seed. If it is not specified, <code><a href='https://rdrr.io/r/base/Random.html'>set.seed(1234)</a></code> will be used.</p></td>
+      <td><p>A logical. If <code>TRUE</code> (default), MeSH terms from each
+study are weighted based on the variance explained by the principle component
+of the study contributing to a given RAV.</p></td>
     </tr>
     </table>
 
@@ -191,7 +187,7 @@ study contributing to a given RAV.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Sehyun Oh.</p>
+  <p>Developed by Sehyun Oh, Levi Waldron, Sean Davis.</p>
 </div>
 
 <div class="pkgdown">

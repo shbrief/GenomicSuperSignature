@@ -74,7 +74,7 @@ it will give you the RAV number." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GenomicSuperignature</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
       </span>
     </div>
 
@@ -142,19 +142,20 @@ it will give you the RAV number.</p>
     <tr>
       <th>keyword</th>
       <td><p>A character vector. If you are searching for multiple keywords
-at the same time, use <code><a href='https://rdrr.io/r/base/paste.html'>paste</a></code> with <code>collapse = "|"</code> argument.</p></td>
+at the same time, use <code><a href='https://rdrr.io/r/base/paste.html'>paste</a></code> with <code>collapse="|"</code> argument.</p></td>
     </tr>
     <tr>
       <th>n</th>
-      <td><p>The number of top ranked (based on abs(NES)) pathways you want to search your keyword</p></td>
+      <td><p>The number of top ranked (based on abs(NES)) pathways you want to
+search your keyword</p></td>
     </tr>
     <tr>
       <th>k</th>
       <td><p>The number of keyword-containing pathways you want to get the RAV
 number. Under default (<code>NULL</code>), the output will be a data frame with two
-columns: '# of keyword-containing pathways' and 'Freq'. If you assign the value
-for this argument, the output will be an integer vector containing the RAV
-index.</p></td>
+columns: '# of keyword-containing pathways' and 'Freq'. If you assign the
+value for this argument, the output will be an integer vector containing the
+RAV index.</p></td>
     </tr>
     </table>
 
@@ -169,12 +170,8 @@ index.</p></td>
 <span class='fu'>findSignature</span><span class='op'>(</span><span class='va'>miniRAVmodel</span>, <span class='st'>"Bcell"</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;   # of keyword-containing pathways Freq
 #&gt; 1                                0   15
-#&gt; 2                                5    2</div><div class='input'><span class='co'>#   # of keyword-containing pathways Freq</span>
-<span class='co'># 1                                0   15</span>
-<span class='co'># 2                                5    2</span>
-<span class='fu'>findSignature</span><span class='op'>(</span><span class='va'>miniRAVmodel</span>, <span class='st'>"Bcell"</span>, k <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; [1] 16 17</div><div class='input'><span class='co'># [1] 16 17</span>
-
+#&gt; 2                                5    2</div><div class='input'><span class='fu'>findSignature</span><span class='op'>(</span><span class='va'>miniRAVmodel</span>, <span class='st'>"Bcell"</span>, k <span class='op'>=</span> <span class='fl'>5</span><span class='op'>)</span>
+</div><div class='output co'>#&gt; [1] 16 17</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -187,7 +184,7 @@ index.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Sehyun Oh.</p>
+  <p>Developed by Sehyun Oh, Levi Waldron, Sean Davis.</p>
 </div>
 
 <div class="pkgdown">

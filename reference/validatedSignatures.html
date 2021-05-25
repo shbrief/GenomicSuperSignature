@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GenomicSuperignature</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.0.8</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
       </span>
     </div>
 
@@ -142,8 +142,8 @@
     <tr>
       <th>val_all</th>
       <td><p>An output matrix from <code><a href='validate.html'>validate</a></code> function. If this
-input is from multiple datasets, only <code>scoreCutoff</code> argument will be considered
-and other inputs will be ignored.</p></td>
+input is from multiple datasets, only <code>scoreCutoff</code> argument will be
+considered and other inputs will be ignored.</p></td>
     </tr>
     <tr>
       <th>num.out</th>
@@ -153,8 +153,8 @@ filtered RAVs, whichever smaller, will be chosen.</p></td>
     </tr>
     <tr>
       <th>scoreCutoff</th>
-      <td><p>A numeric value for the minimum correlation. For multi-studies
-case, the default is 0.7.</p></td>
+      <td><p>A numeric value for the minimum correlation. For
+multi-studies case, the default is 0.7.</p></td>
     </tr>
     <tr>
       <th>swCutoff</th>
@@ -166,15 +166,16 @@ case, the default is 0.7.</p></td>
     </tr>
     <tr>
       <th>indexOnly</th>
-      <td><p>A logical. Under the default (= FALSE), the detailed information
-on validated RAVs, such as score, average silhouette width, cluster size, is
-printed. If it is set TRUE, only the RAV number will be printed.</p></td>
+      <td><p>A logical. Under the default (= <code>FALSE</code>), the detailed
+information on validated RAVs, such as score, average silhouette width,
+cluster size, is printed. If it is set TRUE, only the RAV number will be
+printed.</p></td>
     </tr>
     <tr>
       <th>whichPC</th>
-      <td><p>An integer value between 1 and 8. PC number of your data to check
-the validated signatures with. Under the default (<code>NULL</code>), it outputs top
-scored signatures with any PC of your data.</p></td>
+      <td><p>An integer value between 1 and 8. PC number of your data to
+check the validated signatures with. Under the default (<code>NULL</code>), it
+outputs top scored signatures with any PC of your data.</p></td>
     </tr>
     </table>
 
@@ -191,11 +192,7 @@ scored signatures with any PC of your data.</p></td>
 </div><div class='output co'>#&gt;             score PC          sw cl_size cl_num
 #&gt; RAV1076 0.5950767  2 -0.04447124      10   1076
 #&gt; RAV2538 0.5838616  2  0.06996166       4   2538
-#&gt; RAV338  0.5709072  2 -0.04683319      21    338</div><div class='input'><span class='co'>#             score PC          sw cl_size cl_num</span>
-<span class='co'># RAV1076 0.5950767  2 -0.04447124      10      1</span>
-<span class='co'># RAV2538 0.5838616  2  0.06996166       4      2</span>
-<span class='co'># RAV338  0.5709072  2 -0.04683319      21      3</span>
-
+#&gt; RAV338  0.5709072  2 -0.04683319      21    338</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -208,7 +205,7 @@ scored signatures with any PC of your data.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Sehyun Oh.</p>
+  <p>Developed by Sehyun Oh, Levi Waldron, Sean Davis.</p>
 </div>
 
 <div class="pkgdown">

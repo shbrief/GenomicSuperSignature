@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Methods and accesors for GenomicSignatures object — GenomicSignatures-methods • GenomicSuperignature</title>
+<title>Subset of allZ matrix constructed from 8 CRC training datasets — res_hcut • GenomicSuperignature</title>
 
 
 <!-- jquery -->
@@ -39,13 +39,11 @@
 
 
 
-<meta property="og:title" content="Methods and accesors for GenomicSignatures object — GenomicSignatures-methods" />
-<meta property="og:description" content="The default contents of GenomicSignatures object, with
-a set of getter and setter generic functions, which extract either the
-assay, colData, or metadata slots of a
-GenomicSignatures-class object. When you create this object,
-colData$studies should be populated before adding any information in
-trainingData slot." />
+<meta property="og:title" content="Subset of allZ matrix constructed from 8 CRC training datasets — res_hcut" />
+<meta property="og:description" content="Eight colorectal cancer microarray datasets were used to build RAVmodel and
+the intermediate file containing genes and top PCs from each dataset is named
+as allZ. Hierarchical clustering result of allZ is saved as
+res_hcut." />
 
 
 
@@ -122,99 +120,28 @@ trainingData slot." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Methods and accesors for <code>GenomicSignatures</code> object</h1>
-    <small class="dont-index">Source: <a href='https://github.com/shbrief/GenomicSuperSignature/blob/master/R/GenomicSignatures-methods.R'><code>R/GenomicSignatures-methods.R</code></a></small>
-    <div class="hidden name"><code>GenomicSignatures-methods.Rd</code></div>
+    <h1>Subset of allZ matrix constructed from 8 CRC training datasets</h1>
+    <small class="dont-index">Source: <a href='https://github.com/shbrief/GenomicSuperSignature/blob/master/R/data.R'><code>R/data.R</code></a></small>
+    <div class="hidden name"><code>res_hcut.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>The default contents of <code>GenomicSignatures</code> object, with
-a set of getter and setter generic functions, which extract either the
-<code>assay</code>, <code>colData</code>, or <code>metadata</code> slots of a
-<code><a href='GenomicSignatures-class.html'>GenomicSignatures-class</a></code> object. When you create this object,
-<code>colData$studies</code> should be populated before adding any information in
-<code>trainingData</code> slot.</p>
+    <p>Eight colorectal cancer microarray datasets were used to build RAVmodel and
+the intermediate file containing genes and top PCs from each dataset is named
+as <code>allZ</code>. Hierarchical clustering result of <code>allZ</code> is saved as
+<code>res_hcut</code>.</p>
     </div>
 
-    <pre class="usage"><span class='co'># S4 method for GenomicSignatures</span>
-<span class='fu'>RAVindex</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
-
-<span class='co'># S4 method for GenomicSignatures</span>
-<span class='fu'>geneSets</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
-
-<span class='co'># S4 method for GenomicSignatures</span>
-<span class='fu'>updateNote</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span>
-
-<span class='co'># S4 method for GenomicSignatures</span>
-<span class='fu'>geneSets</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>value</span>
-
-<span class='co'># S4 method for GenomicSignatures</span>
-<span class='fu'>updateNote</span><span class='op'>(</span><span class='va'>x</span><span class='op'>)</span> <span class='op'>&lt;-</span> <span class='va'>value</span></pre>
-
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>x</th>
-      <td><p>A <code>GenomicSignatures</code> object</p></td>
-    </tr>
-    <tr>
-      <th>value</th>
-      <td><p>See details.</p></td>
-    </tr>
-    </table>
-
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>A GenomicSignatures object for the constructor</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    
-<ul>
-<li><p>assay(x) : RAVindex (= avgLoadings) containing genes x RAVs</p></li>
-<li><p>metadata(x) : Metadata associated with RAVindex building process</p></li>
-<li><p>colData(x) : Information on RAVs</p></li>
-</ul>
-
-    <h2 class="hasAnchor" id="setters"><a class="anchor" href="#setters"></a>Setters</h2>
-
-    
-
-<p>Setter method values (i.e., <code>function(x) &lt;- value</code>):</p><ul>
-<li><p>metadata&lt;- : Assign metadata</p></li>
-<li><p>coldata&lt;- : Assign extra information associated with RAVs</p></li>
-<li><p>geneSets&lt;- : A character vector containing the name of gene sets
-    used to annotate average loadings</p></li>
-<li><p>updateNote&lt;- : A character vector. Describes the main feature of a
-    model construction</p></li>
-</ul>
-
-    <h2 class="hasAnchor" id="getters"><a class="anchor" href="#getters"></a>Getters</h2>
-
-    
-
-<ul>
-<li><p>RAVindex : Equivalent to <code>assays(x)$RAVindex</code></p></li>
-<li><p>geneSets : Access the <code>metadata(x)$geneSets</code> slot</p></li>
-<li><p>updateNote : Access the <code>metadata(x)$updateNote</code> slot</p></li>
-</ul>
+    <pre class="usage"><span class='va'>res_hcut</span></pre>
 
 
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>miniRAVmodel</span><span class='op'>)</span>
-<span class='va'>miniRAVmodel</span>
-</div><div class='output co'>#&gt; class: PCAGenomicSignatures 
-#&gt; dim: 13934 17 
-#&gt; metadata(7): cluster size ... updateNote version
-#&gt; assays(1): RAVindex
-#&gt; rownames(13934): CASKIN1 DDX3Y ... CTC-457E21.9 AC007966.1
-#&gt; rowData names(0):
-#&gt; colnames(17): RAV1076 RAV2538 ... RAV695 RAV1994
-#&gt; colData names(4): RAV studies silhouetteWidth gsea
-#&gt; trainingData(2): PCAsummary MeSH
-#&gt; trainingData names(536): DRP000987 SRP059172 ... SRP164913 SRP188526</div><div class='input'>
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-</div></pre>
+    <p><code>hclust</code> object from <code><a href='https://rdrr.io/pkg/factoextra/man/hcut.html'>factoextra::hcut</a></code> function.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Sehyun Oh <a href='mailto:shbrief@gmail.com'>shbrief@gmail.com</a></p>
+
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
