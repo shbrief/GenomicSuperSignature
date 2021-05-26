@@ -7,7 +7,7 @@
 plotAnnotatedPCA(
   dataset,
   RAVmodel,
-  PCs,
+  PCnum,
   val_all = NULL,
   scoreCutoff = 0.5,
   nesCutoff = NULL,
@@ -24,7 +24,7 @@ format. If it is a matrix, genes should be in rows and samples in columns.}
 
 \item{RAVmodel}{PCAGenomicSignatures-class object}
 
-\item{PCs}{A numeric vector length of 2. It should be between 1 and 8.}
+\item{PCnum}{A numeric vector length of 2. It should be between 1 and 8.}
 
 \item{val_all}{The output from \code{\link{validate}}}
 
@@ -57,7 +57,7 @@ data(miniRAVmodel)
 library(bcellViper)
 data(bcellViper)
 \dontrun{
-plotAnnotatedPCA(exprs(dset), miniRAVmodel, PCs = c(1,2))
+plotAnnotatedPCA(exprs(dset), miniRAVmodel, PCnum = c(1,2))
 }
 
 }

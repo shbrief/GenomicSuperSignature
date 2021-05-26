@@ -8,7 +8,7 @@
 #' RangedSummarizedExperiment, or matrix. Rownames (genes) should be in symbol
 #' format. If it is a matrix, genes should be in rows and samples in columns.
 #' @param RAVmodel PCAGenomicSignatures-class object
-#' @param PCs A numeric vector length of 2. It should be between 1 and 8.
+#' @param PCnum A numeric vector length of 2. It should be between 1 and 8.
 #' @param val_all The output from \code{\link{validate}}
 #' @param scoreCutoff A numeric value for the minimum correlation.
 #' Default 0.5.
@@ -31,11 +31,11 @@
 #' library(bcellViper)
 #' data(bcellViper)
 #' \dontrun{
-#' plotAnnotatedPCA(exprs(dset), miniRAVmodel, PCs = c(1,2))
+#' plotAnnotatedPCA(exprs(dset), miniRAVmodel, PCnum = c(1,2))
 #' }
 #'
 #' @export
-plotAnnotatedPCA <- function(dataset, RAVmodel, PCs, val_all = NULL,
+plotAnnotatedPCA <- function(dataset, RAVmodel, PCnum, val_all = NULL,
                              scoreCutoff = 0.5, nesCutoff = NULL,
                              color_by = NULL, color_lab = NULL,
                              trimed_pathway_len = 45) {
@@ -47,8 +47,8 @@ plotAnnotatedPCA <- function(dataset, RAVmodel, PCs, val_all = NULL,
   PCAres <- stats::prcomp(dataset)$rotation %>% as.data.frame
 
   # two PCs to plot
-  ind1 <- which(colnames(PCAres) == paste0("PC", PCs[1]))
-  ind2 <- which(colnames(PCAres) == paste0("PC", PCs[2]))
+  ind1 <- which(colnames(PCAres) == paste0("PC", PCnum[1]))
+  ind2 <- which(colnames(PCAres) == paste0("PC", PCnum[2]))
 
   if (is.null(color_lab)) {color_lab = "Color By"}
   if (!is.null(color_by)) {
