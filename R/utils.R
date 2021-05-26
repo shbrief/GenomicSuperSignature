@@ -12,3 +12,13 @@
   return(dat)
 }
 
+
+### Check ind validity
+.availableRAV <- function(RAVmodel, ind) {
+  availableRAV <- gsub("RAV", "", colData(RAVmodel)$RAV) %>% as.numeric
+  if (!ind %in% availableRAV) {
+    stop("Selected ind doesn't exist.")
+  }
+}
+
+

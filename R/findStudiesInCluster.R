@@ -19,6 +19,8 @@
 #' @export
 findStudiesInCluster <- function(RAVmodel, ind = NULL) {
 
+  if (!is.null(ind)) {.availableRAV(RAVmodel, ind)}
+  
   if (is(RAVmodel,"PCAGenomicSignatures")) {
     x <- S4Vectors::metadata(RAVmodel)
     k <- x$k   # the number of clusters

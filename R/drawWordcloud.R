@@ -47,11 +47,8 @@ PCinRAV <- function(RAVmodel, ind) {
 #' @export
 meshTable <- function(RAVmodel, ind, rm.noise = NULL, weighted = TRUE) {
 
-    ### Check RAVind availability
-    availableRAV <- gsub("RAV", "", colData(RAVmodel)$RAV) %>% as.numeric
-    if (!ind %in% availableRAV) {
-        stop("Selected RAVindex doesn't exist.")
-    }
+    ### Check ind validity
+    .availableRAV(RAVmodel, ind)   
     
     ### Remove noise
     if (is.null(rm.noise)) {
@@ -167,11 +164,8 @@ meshTable <- function(RAVmodel, ind, rm.noise = NULL, weighted = TRUE) {
 drawWordcloud <- function(RAVmodel, ind, rm.noise = NULL, scale = c(3, 0.5),
                          weighted = TRUE) {
 
-    # Check RAVind availability
-    availableRAV <- gsub("RAV", "", colData(RAVmodel)$RAV) %>% as.numeric
-    if (!ind %in% availableRAV) {
-        stop("Selected RAVindex doesn't exist.")
-    }
+    # Check ind validity
+    .availableRAV(RAVmodel, ind) 
     
     if (is.null(rm.noise)) {
         s <- S4Vectors::metadata(RAVmodel)$size[paste0("RAV", ind)]
