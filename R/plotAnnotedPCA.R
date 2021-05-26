@@ -43,8 +43,8 @@ plotAnnotatedPCA <- function(dataset, RAVmodel, PCnum, val_all = NULL,
   # Extract expression matrix from different classes
   dat <- .extractExprsMatrix(dataset)
 
-  if (is.null(val_all)) {val_all <- validate(dataset, RAVmodel)}
-  PCAres <- stats::prcomp(dataset)$rotation %>% as.data.frame
+  if (is.null(val_all)) {val_all <- validate(dat, RAVmodel)}
+  PCAres <- stats::prcomp(dat)$rotation %>% as.data.frame
 
   # two PCs to plot
   ind1 <- which(colnames(PCAres) == paste0("PC", PCnum[1]))
