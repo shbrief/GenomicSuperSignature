@@ -78,6 +78,8 @@ findSignature <- function(RAVmodel, keyword, n = 5, k = NULL) {
 #' @export
 findKeywordInRAV <- function(RAVmodel, keyword, ind,
                              n = NULL, includeTotal = TRUE) {
+ 
+   .availableRAV(RAVmodel, ind)
   name <- paste0("RAV", ind)
   gsea <- gsea(RAVmodel)[[name]]
   total <- nrow(gsea)
@@ -86,10 +88,14 @@ findKeywordInRAV <- function(RAVmodel, keyword, ind,
   if (!is.null(n)) {gsea <- gsea[seq_len(n),]}
 
   keywordRank <- grep(keyword, gsea$Description, ignore.case = TRUE)
-  if (!includeTotal) {
-    res <- paste(keywordRank, collapse = "|")
+  if (length(keywordRank) == 0) {
+    warning(paste(name, "doesn't have any pathway with the keyword,", keyword))
   } else {
-    res <- paste0(paste(keywordRank, collapse = "|"), " (out of ", total, ")")
+    if (!includeTotal) {
+      res <- paste(keywordRank, collapse = "|")
+    } else {
+      res <- paste0(paste(keywordRank, collapse = "|"), " (out of ", total, ")")
+    }
+    return(res)
   }
-  return(res)
 }
