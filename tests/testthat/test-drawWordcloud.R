@@ -14,9 +14,9 @@ test_that("meshTable function", {
     expect_equal(round(res3[1,2], 4), 0.1429)
     
     expect_error(meshTable(miniRAVmodel, 1),
-                 "Selected RAVindex doesn't exist.")
+                 "Selected ind doesn't exist.")
     expect_equal(dim(meshTable(miniRAVmodel, 1994)), c(31, 2))
 })
 
 expect_error(drawWordcloud(miniRAVmodel, 1),
-             "Selected RAVindex doesn't exist.")
+             "Selected ind doesn't exist.")
