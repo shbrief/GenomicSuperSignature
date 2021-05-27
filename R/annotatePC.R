@@ -63,10 +63,13 @@ annotatePC <- function(PCnum, val_all, RAVmodel, n = 5,
       res[[i]] <- emptyTable
       names(res)[i] <- paste0("PC", PCnum[i], "-noAnnot")
     } else {
+      # absolute value of NES
+      FUN <- function(x) {if (abs) {abs(x)} else {I(x)}}
+        
       # apply NES cutoff
       if (!is.null(nesCutoff)) {
         annotatedCluster <- annotatedCluster[
-          annotatedCluster$NES >= nesCutoff,,drop = FALSE]
+          FUN(annotatedCluster$NES) >= nesCutoff,,drop = FALSE]
       }
 
       # absolute value of NES
