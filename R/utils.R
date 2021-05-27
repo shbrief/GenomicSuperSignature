@@ -1,3 +1,4 @@
+### Extract expression matrix from different classes of input datasets
 .extractExprsMatrix <- function(dataset) {
   if (is(dataset, "ExpressionSet")) {
     dat <- Biobase::exprs(dataset)
@@ -16,9 +17,7 @@
 ### Check ind validity
 .availableRAV <- function(RAVmodel, ind) {
   availableRAV <- gsub("RAV", "", colData(RAVmodel)$RAV) %>% as.numeric
-  if (!ind %in% availableRAV) {
-    stop("Selected ind doesn't exist.")
-  }
+  if (!ind %in% availableRAV) {stop("Selected ind doesn't exist.")}
 }
 
 

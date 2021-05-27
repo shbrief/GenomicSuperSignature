@@ -61,8 +61,8 @@ buildAvgLoading <- function(dat, k, n = 20, cluster = NULL, study = TRUE) {
         x <- table(cluster) %>% as.data.frame()
         res <- list(cluster = cluster, size = x$Freq)
     } else {
-        stop("Error: Cluster membership of elements should be provided through
-             'cluster' argument.")
+        stop("Cluster membership of elements should be provided 
+             through 'cluster' argument.")
     }
     stopifnot(length(study) == 1L, !is.na(study), is.logical(study))
 

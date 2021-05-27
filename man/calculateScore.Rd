@@ -33,4 +33,7 @@ library(bcellViper)
 data(bcellViper)
 score <- calculateScore(dset, miniRAVmodel)
 
+data(miniTCGA)
+score <- calculateScore(miniTCGA, miniRAVmodel)
+
 }

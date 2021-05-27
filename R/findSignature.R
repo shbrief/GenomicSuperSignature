@@ -40,8 +40,9 @@ findSignature <- function(RAVmodel, keyword, n = 5, k = NULL) {
     return(res)
   } else {
     if (!k %in% res[,1]) {
-      warning(paste("There is no RAV with", k,
-                    "keyword-containing, enriched pathways."))
+      msg <- paste("There is no RAV with", k,
+                   "keyword-containing, enriched pathways.")
+      warning(msg)
     } else {
       res <- which(nTopPathways == k) %>% as.numeric
       return(res)
@@ -89,7 +90,8 @@ findKeywordInRAV <- function(RAVmodel, keyword, ind,
 
   keywordRank <- grep(keyword, gsea$Description, ignore.case = TRUE)
   if (length(keywordRank) == 0) {
-    warning(paste(name, "doesn't have any pathway with the keyword,", keyword))
+    msg <- paste(name, "doesn't have any pathway with the keyword,", keyword)
+    warning(msg)
   } else {
     if (!includeTotal) {
       res <- paste(keywordRank, collapse = "|")
