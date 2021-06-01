@@ -22,15 +22,21 @@ extract interpretable annotations, and provide intuitive visualization, are impl
 as the GenomicSuperSignature R package, to be submitted to Bioconductor. 
 
 ### Results
-Usecases and benchmarking examples are further documented at [GenomicSuperSignaturePaper](https://shbrief.github.io/GenomicSuperSignaturePaper/) page.
+Preprint is available [**HERE**](https://www.biorxiv.org/content/10.1101/2021.05.26.445900v1). 
+Usecases and benchmarking examples included in the preprint are further documented at [GenomicSuperSignaturePaper](https://shbrief.github.io/GenomicSuperSignaturePaper/) page.
 
 
 
 
 ## Installation
-Currently, you can install GenomicSuperSignature package from GitHub.
+You can install GenomicSuperSignature in Bioconductor. This can be done using 
+`BiocManager`:
 ```
-devtools::install_github("shbrief/GenomicSuperSignature")
+if (!require("BiocManager"))
+    install.packages("BiocManager")
+
+library(BiocManager)
+install("GenomicSuperSignature")
 ```
 
 RAVmodel can be directly downloaded from Google bucket with no cost. The sizes of 
