@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GenomicSuperignature</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.4</span>
       </span>
     </div>
 
@@ -160,45 +160,46 @@ study contributing a give RAV. Default is <code>TRUE</code>.</p></td>
 the defined RAV (by <code>ind</code> argument) is ordered based on their frequency.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>miniRAVmodel</span><span class='op'>)</span>
-<span class='fu'>meshTable</span><span class='op'>(</span><span class='va'>miniRAVmodel</span>,<span class='fl'>1139</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;                                      word         freq
-#&gt; 22                  NOTCH1 protein, human 0.1242330284
-#&gt; 24                       Receptor, Notch1 0.1242330284
-#&gt; 16 Leukemia, Lymphocytic, Chronic, B-Cell 0.0745398170
-#&gt; 3                           CD28 Antigens 0.0656441334
-#&gt; 15                                 Infant 0.0468886667
-#&gt; 30                        T Cell Receptor 0.0468886667
-#&gt; 23                               Oncogene 0.0414110095
-#&gt; 18                  Lymphocyte Activation 0.0364689630
-#&gt; 14                                Indoles 0.0295148844
-#&gt; 1                           B-Lymphocytes 0.0266213632
-#&gt; 20                          Muromonab-CD3 0.0248496481
-#&gt; 10                        DNA Methylation 0.0113179540
-#&gt; 5                              Cell Cycle 0.0102568958
-#&gt; 4              CD4-Positive T-Lymphocytes 0.0091538548
-#&gt; 8                                   Child 0.0091172407
-#&gt; 21                               Mutation 0.0082822019
-#&gt; 34                Transcriptome Profiling 0.0071352319
-#&gt; 7                      Cell Proliferation 0.0065385804
-#&gt; 29                    Signal Transduction 0.0064258463
-#&gt; 11                    Epigenesis, Genetic 0.0063119359
-#&gt; 17               Leukemia, Myeloid, Acute 0.0056759393
-#&gt; 27                         RNA, Messenger 0.0044354144
-#&gt; 31                  Transcription Factors 0.0036068205
-#&gt; 6                               Cell Line 0.0032408616
-#&gt; 9                      Dimethyl Sulfoxide 0.0026352575
-#&gt; 12                                  Goals 0.0022703757
-#&gt; 35                 Whole Exome Sequencing 0.0018319490
-#&gt; 26                                RNA-Seq 0.0014356923
-#&gt; 32                          Transcriptome 0.0013462998
-#&gt; 33                 Transcriptome Analysis 0.0011295295
-#&gt; 13                                 Humans 0.0007936742
-#&gt; 25                                    RNA 0.0003967054
-#&gt; 2                           Base Sequence 0.0003965369
-#&gt; 19                                   mRNA 0.0003601398
-#&gt; 28                        Sequencing, RNA 0.0002691298</div><div class='input'>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>miniRAVmodel</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'>meshTable</span><span class='op'>(</span><span class='va'>miniRAVmodel</span>,<span class='fl'>1139</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                      word         freq</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 22                  NOTCH1 protein, human 0.1242330284</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 24                       Receptor, Notch1 0.1242330284</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 16 Leukemia, Lymphocytic, Chronic, B-Cell 0.0745398170</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3                           CD28 Antigens 0.0656441334</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 15                                 Infant 0.0468886667</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 30                        T Cell Receptor 0.0468886667</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 23                               Oncogene 0.0414110095</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 18                  Lymphocyte Activation 0.0364689630</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 14                                Indoles 0.0295148844</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1                           B-Lymphocytes 0.0266213632</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 20                          Muromonab-CD3 0.0248496481</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 10                        DNA Methylation 0.0113179540</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5                              Cell Cycle 0.0102568958</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4              CD4-Positive T-Lymphocytes 0.0091538548</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 8                                   Child 0.0091172407</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 21                               Mutation 0.0082822019</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 34                Transcriptome Profiling 0.0071352319</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 7                      Cell Proliferation 0.0065385804</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 29                    Signal Transduction 0.0064258463</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 11                    Epigenesis, Genetic 0.0063119359</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 17               Leukemia, Myeloid, Acute 0.0056759393</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 27                         RNA, Messenger 0.0044354144</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 31                  Transcription Factors 0.0036068205</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 6                               Cell Line 0.0032408616</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 9                      Dimethyl Sulfoxide 0.0026352575</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 12                                  Goals 0.0022703757</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 35                 Whole Exome Sequencing 0.0018319490</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 26                                RNA-Seq 0.0014356923</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 32                          Transcriptome 0.0013462998</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 33                 Transcriptome Analysis 0.0011295295</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 13                                 Humans 0.0007936742</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 25                                    RNA 0.0003967054</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2                           Base Sequence 0.0003965369</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 19                                   mRNA 0.0003601398</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 28                        Sequencing, RNA 0.0002691298</span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

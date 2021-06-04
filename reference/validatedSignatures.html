@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GenomicSuperignature</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.4</span>
       </span>
     </div>
 
@@ -184,16 +184,17 @@ outputs top scored signatures with any PC of your data.</p></td>
     <p>A subset of the input matrix, which meets the given condition.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>miniRAVmodel</span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>bcellViper</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>bcellViper</span><span class='op'>)</span>
-<span class='va'>val_all</span> <span class='op'>&lt;-</span> <span class='fu'><a href='validate.html'>validate</a></span><span class='op'>(</span><span class='va'>dset</span>, <span class='va'>miniRAVmodel</span><span class='op'>)</span>
-<span class='fu'>validatedSignatures</span><span class='op'>(</span><span class='va'>val_all</span>, num.out <span class='op'>=</span> <span class='fl'>3</span>, scoreCutoff <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;             score PC          sw cl_size cl_num
-#&gt; RAV1076 0.5950767  2 -0.04447124      10   1076
-#&gt; RAV2538 0.5838616  2  0.06996166       4   2538
-#&gt; RAV338  0.5709072  2 -0.04683319      21    338</div><div class='input'>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>miniRAVmodel</span><span class='op'>)</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>bcellViper</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>bcellViper</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>val_all</span> <span class='op'>&lt;-</span> <span class='fu'><a href='validate.html'>validate</a></span><span class='op'>(</span><span class='va'>dset</span>, <span class='va'>miniRAVmodel</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'>validatedSignatures</span><span class='op'>(</span><span class='va'>val_all</span>, num.out <span class='op'>=</span> <span class='fl'>3</span>, scoreCutoff <span class='op'>=</span> <span class='fl'>0</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>             score PC          sw cl_size cl_num</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> RAV1076 0.5950767  2 -0.04447124      10   1076</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> RAV2538 0.5838616  2  0.06996166       4   2538</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> RAV338  0.5709072  2 -0.04683319      21    338</span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

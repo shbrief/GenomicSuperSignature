@@ -39,7 +39,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">GenomicSuperignature</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.4</span>
       </span>
     </div>
 
@@ -100,13 +100,17 @@
 <div id="results" class="section level3">
 <h3 class="hasAnchor">
 <a href="#results" class="anchor"></a>Results</h3>
-<p>Usecases and benchmarking examples are further documented at <a href="https://shbrief.github.io/GenomicSuperSignaturePaper/">GenomicSuperSignaturePaper</a> page.</p>
+<p>Preprint is available <a href="https://www.biorxiv.org/content/10.1101/2021.05.26.445900v1"><strong>HERE</strong></a>. Usecases and benchmarking examples included in the preprint are further documented at <a href="https://shbrief.github.io/GenomicSuperSignaturePaper/">GenomicSuperSignaturePaper</a> page.</p>
 </div>
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<p>Currently, you can install GenomicSuperSignature package from GitHub.</p>
-<pre><code><a href="https://devtools.r-lib.org//reference/remote-reexports.html">devtools::install_github("shbrief/GenomicSuperSignature")</a></code></pre>
+<p>You can install GenomicSuperSignature in Bioconductor. This can be done using <code>BiocManager</code>:</p>
+<pre><code>if (!require("BiocManager"))
+    install.packages("BiocManager")
+
+library(BiocManager)
+install("GenomicSuperSignature")</code></pre>
 <p>RAVmodel can be directly downloaded from Google bucket with no cost. The sizes of RAVmodels<code>RAVmodel_C2.rds</code> and <code>RAVmodel_PLIERpriors.rds</code> are 476.1MB and 475.1MB, respectively. You can use <code>wget</code> or <code><a href="reference/getModel.html">GenomicSuperSignature::getModel</a></code> function.</p>
 <pre><code>## Download RAVmodel with wget
 wget https://storage.googleapis.com/genomic_super_signature/RAVmodel_C2.rds

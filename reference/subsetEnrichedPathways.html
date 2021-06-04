@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GenomicSuperignature</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.4</span>
       </span>
     </div>
 
@@ -161,65 +161,67 @@ top and bottom <code>n</code> pathways.</p></td>
 enrichment results.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>miniRAVmodel</span><span class='op'>)</span>
-
-<span class='co'># all RAVS in model</span>
-<span class='fu'>subsetEnrichedPathways</span><span class='op'>(</span><span class='va'>miniRAVmodel</span>,n<span class='op'>=</span><span class='fl'>5</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; DataFrame with 5 rows and 17 columns
-#&gt;                     RAV1076                RAV2538                 RAV338
-#&gt;                 &lt;character&gt;            &lt;character&gt;            &lt;character&gt;
-#&gt; Up_1 REACTOME_METABOLISM_..    REACTOME_CELL_CYCLE MIPS_PA700_20S_PA28_..
-#&gt; Up_2       KEGG_SPLICEOSOME REACTOME_CELL_CYCLE_.. REACTOME_RESPIRATORY..
-#&gt; Up_3 REACTOME_ASSEMBLY_OF.. REACTOME_DNA_REPLICA.. REACTOME_RESPIRATORY..
-#&gt; Up_4 REACTOME_LATE_PHASE_.. REACTOME_MITOTIC_M_M.. MIPS_55S_RIBOSOME_MI..
-#&gt; Up_5 MIPS_39S_RIBOSOMAL_S.. REACTOME_MITOTIC_PRO.. KEGG_PARKINSONS_DISE..
-#&gt;                     RAV1467                RAV1139                 RAV884
-#&gt;                 &lt;character&gt;            &lt;character&gt;            &lt;character&gt;
-#&gt; Up_1 REACTOME_DNA_REPLICA..              DMAP_ERY3              DMAP_ERY3
-#&gt; Up_2    REACTOME_CELL_CYCLE REACTOME_CYTOKINE_SI.. REACTOME_METABOLISM_..
-#&gt; Up_3 REACTOME_MITOTIC_M_M..     REACTOME_APOPTOSIS KEGG_ALZHEIMERS_DISE..
-#&gt; Up_4 REACTOME_CELL_CYCLE_.. KEGG_HUNTINGTONS_DIS.. KEGG_HUNTINGTONS_DIS..
-#&gt; Up_5 REACTOME_METABOLISM_.. REACTOME_MRNA_PROCES..        KEGG_CELL_CYCLE
-#&gt;                     RAV1614                 RAV294                RAV3071
-#&gt;                 &lt;character&gt;            &lt;character&gt;            &lt;character&gt;
-#&gt; Up_1 REACTOME_DNA_REPLICA.. REACTOME_MITOTIC_M_M.. KEGG_PURINE_METABOLISM
-#&gt; Up_2 REACTOME_MITOTIC_M_M.. REACTOME_CELL_CYCLE_.. MIPS_55S_RIBOSOME_MI..
-#&gt; Up_3 REACTOME_CELL_CYCLE_.. REACTOME_DNA_REPLICA..       PID_FOXM1PATHWAY
-#&gt; Up_4    REACTOME_CELL_CYCLE REACTOME_CELL_CYCLE_.. REACTOME_E2F_MEDIATE..
-#&gt; Up_5 REACTOME_METABOLISM_.. MIPS_55S_RIBOSOME_MI..        PID_ATR_PATHWAY
-#&gt;                     RAV1694                 RAV438                 RAV725
-#&gt;                 &lt;character&gt;            &lt;character&gt;            &lt;character&gt;
-#&gt; Up_1 REACTOME_ADAPTIVE_IM.. REACTOME_METABOLISM_.. REACTOME_ADAPTIVE_IM..
-#&gt; Up_2 KEGG_PURINE_METABOLISM              DMAP_ERY5 REACTOME_METABOLISM_..
-#&gt; Up_3              DMAP_ERY5              DMAP_ERY4              DMAP_ERY5
-#&gt; Up_4 REACTOME_SIGNALING_B.. REACTOME_POST_TRANSL..              DMAP_ERY4
-#&gt; Up_5              DMAP_ERY4              DMAP_ERY3              DMAP_ERY3
-#&gt;                     RAV1497                 RAV501                 RAV941
-#&gt;                 &lt;character&gt;            &lt;character&gt;            &lt;character&gt;
-#&gt; Up_1 MIPS_28S_RIBOSOMAL_S.. REACTOME_TRANSCRIPTION IRIS_DendriticCell-C..
-#&gt; Up_2 MIPS_55S_RIBOSOME_MI..    REACTOME_DNA_REPAIR       PID_FOXM1PATHWAY
-#&gt; Up_3 REACTOME_RESPIRATORY.. REACTOME_METABOLISM_..       PID_PLK1_PATHWAY
-#&gt; Up_4 KEGG_OXIDATIVE_PHOSP.. REACTOME_3_UTR_MEDIA.. IRIS_CD4Tcell-Th1-re..
-#&gt; Up_5 REACTOME_RESPIRATORY.. REACTOME_METABOLISM_.. REACTOME_SYNTHESIS_O..
-#&gt;                      RAV695                RAV1994
-#&gt;                 &lt;character&gt;            &lt;character&gt;
-#&gt; Up_1 IRIS_Bcell-Memory_Ig..           DMAP_TCELLA6
-#&gt; Up_2           DMAP_BCELLA3 SVM T cells CD4 memo..
-#&gt; Up_3  IRIS_Bcell-Memory_IgM           DMAP_TCELLA7
-#&gt; Up_4       IRIS_Bcell-naive           DMAP_TCELLA8
-#&gt; Up_5           DMAP_BCELLA4           DMAP_TCELLA2</div><div class='input'>
-<span class='co'># only a specific RAV (note the colnames above)</span>
-<span class='fu'>subsetEnrichedPathways</span><span class='op'>(</span><span class='va'>miniRAVmodel</span>,ind<span class='op'>=</span><span class='fl'>695</span>,n<span class='op'>=</span><span class='fl'>5</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; DataFrame with 5 rows and 1 column
-#&gt;                      RAV695
-#&gt;                 &lt;character&gt;
-#&gt; Up_1 IRIS_Bcell-Memory_Ig..
-#&gt; Up_2           DMAP_BCELLA3
-#&gt; Up_3  IRIS_Bcell-Memory_IgM
-#&gt; Up_4       IRIS_Bcell-naive
-#&gt; Up_5           DMAP_BCELLA4</div><div class='input'>
-
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>miniRAVmodel</span><span class='op'>)</span></span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># all RAVS in model</span></span>
+<span class='r-in'><span class='fu'>subsetEnrichedPathways</span><span class='op'>(</span><span class='va'>miniRAVmodel</span>,n<span class='op'>=</span><span class='fl'>5</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> DataFrame with 5 rows and 17 columns</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                     RAV1076                RAV2538                 RAV338</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                 &lt;character&gt;            &lt;character&gt;            &lt;character&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Up_1 REACTOME_METABOLISM_..    REACTOME_CELL_CYCLE MIPS_PA700_20S_PA28_..</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Up_2       KEGG_SPLICEOSOME REACTOME_CELL_CYCLE_.. REACTOME_RESPIRATORY..</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Up_3 REACTOME_ASSEMBLY_OF.. REACTOME_DNA_REPLICA.. REACTOME_RESPIRATORY..</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Up_4 REACTOME_LATE_PHASE_.. REACTOME_MITOTIC_M_M.. MIPS_55S_RIBOSOME_MI..</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Up_5 MIPS_39S_RIBOSOMAL_S.. REACTOME_MITOTIC_PRO.. KEGG_PARKINSONS_DISE..</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                     RAV1467                RAV1139                 RAV884</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                 &lt;character&gt;            &lt;character&gt;            &lt;character&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Up_1 REACTOME_DNA_REPLICA..              DMAP_ERY3              DMAP_ERY3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Up_2    REACTOME_CELL_CYCLE REACTOME_CYTOKINE_SI.. REACTOME_METABOLISM_..</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Up_3 REACTOME_MITOTIC_M_M..     REACTOME_APOPTOSIS KEGG_ALZHEIMERS_DISE..</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Up_4 REACTOME_CELL_CYCLE_.. KEGG_HUNTINGTONS_DIS.. KEGG_HUNTINGTONS_DIS..</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Up_5 REACTOME_METABOLISM_.. REACTOME_MRNA_PROCES..        KEGG_CELL_CYCLE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                     RAV1614                 RAV294                RAV3071</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                 &lt;character&gt;            &lt;character&gt;            &lt;character&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Up_1 REACTOME_DNA_REPLICA.. REACTOME_MITOTIC_M_M.. KEGG_PURINE_METABOLISM</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Up_2 REACTOME_MITOTIC_M_M.. REACTOME_CELL_CYCLE_.. MIPS_55S_RIBOSOME_MI..</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Up_3 REACTOME_CELL_CYCLE_.. REACTOME_DNA_REPLICA..       PID_FOXM1PATHWAY</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Up_4    REACTOME_CELL_CYCLE REACTOME_CELL_CYCLE_.. REACTOME_E2F_MEDIATE..</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Up_5 REACTOME_METABOLISM_.. MIPS_55S_RIBOSOME_MI..        PID_ATR_PATHWAY</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                     RAV1694                 RAV438                 RAV725</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                 &lt;character&gt;            &lt;character&gt;            &lt;character&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Up_1 REACTOME_ADAPTIVE_IM.. REACTOME_METABOLISM_.. REACTOME_ADAPTIVE_IM..</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Up_2 KEGG_PURINE_METABOLISM              DMAP_ERY5 REACTOME_METABOLISM_..</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Up_3              DMAP_ERY5              DMAP_ERY4              DMAP_ERY5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Up_4 REACTOME_SIGNALING_B.. REACTOME_POST_TRANSL..              DMAP_ERY4</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Up_5              DMAP_ERY4              DMAP_ERY3              DMAP_ERY3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                     RAV1497                 RAV501                 RAV941</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                 &lt;character&gt;            &lt;character&gt;            &lt;character&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Up_1 MIPS_28S_RIBOSOMAL_S.. REACTOME_TRANSCRIPTION IRIS_DendriticCell-C..</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Up_2 MIPS_55S_RIBOSOME_MI..    REACTOME_DNA_REPAIR       PID_FOXM1PATHWAY</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Up_3 REACTOME_RESPIRATORY.. REACTOME_METABOLISM_..       PID_PLK1_PATHWAY</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Up_4 KEGG_OXIDATIVE_PHOSP.. REACTOME_3_UTR_MEDIA.. IRIS_CD4Tcell-Th1-re..</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Up_5 REACTOME_RESPIRATORY.. REACTOME_METABOLISM_.. REACTOME_SYNTHESIS_O..</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                      RAV695                RAV1994</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                 &lt;character&gt;            &lt;character&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Up_1 IRIS_Bcell-Memory_Ig..           DMAP_TCELLA6</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Up_2           DMAP_BCELLA3 SVM T cells CD4 memo..</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Up_3  IRIS_Bcell-Memory_IgM           DMAP_TCELLA7</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Up_4       IRIS_Bcell-naive           DMAP_TCELLA8</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Up_5           DMAP_BCELLA4           DMAP_TCELLA2</span>
+<span class='r-in'></span>
+<span class='r-in'><span class='co'># only a specific RAV (note the colnames above)</span></span>
+<span class='r-in'><span class='fu'>subsetEnrichedPathways</span><span class='op'>(</span><span class='va'>miniRAVmodel</span>,ind<span class='op'>=</span><span class='fl'>695</span>,n<span class='op'>=</span><span class='fl'>5</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> DataFrame with 5 rows and 1 column</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                      RAV695</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                 &lt;character&gt;</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Up_1 IRIS_Bcell-Memory_Ig..</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Up_2           DMAP_BCELLA3</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Up_3  IRIS_Bcell-Memory_IgM</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Up_4       IRIS_Bcell-naive</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> Up_5           DMAP_BCELLA4</span>
+<span class='r-in'></span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

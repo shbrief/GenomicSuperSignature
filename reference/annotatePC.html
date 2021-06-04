@@ -73,7 +73,7 @@ including RAVs with the negative average silhouette." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GenomicSuperignature</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.4</span>
       </span>
     </div>
 
@@ -186,7 +186,7 @@ of enriched pathways.</p></td>
     <tr>
       <th>abs</th>
       <td><p>Default is <code>FALSE</code>. If it's set to <code>TRUE</code>, the enriched
-pathways will be listed based on <code><a href='https://rdrr.io/r/base/MathFun.html'>abs(NES)</a></code>.</p></td>
+pathways will be listed based on <code>abs(NES)</code>.</p></td>
     </tr>
     <tr>
       <th>trimed_pathway_len</th>
@@ -201,18 +201,19 @@ of pathway names. Default is 45.</p></td>
 the output detail above.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>miniRAVmodel</span><span class='op'>)</span>
-<span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>bcellViper</span><span class='op'>)</span>
-<span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>bcellViper</span><span class='op'>)</span>
-<span class='va'>val_all</span> <span class='op'>&lt;-</span> <span class='fu'><a href='validate.html'>validate</a></span><span class='op'>(</span><span class='va'>dset</span>, <span class='va'>miniRAVmodel</span><span class='op'>)</span>
-<span class='fu'>annotatePC</span><span class='op'>(</span><span class='fl'>2</span>, <span class='va'>val_all</span>, <span class='va'>miniRAVmodel</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;                                        PC2.RAV1076
-#&gt; 1                  REACTOME_METABOLISM_OF_PROTEINS
-#&gt; 2                                 KEGG_SPLICEOSOME
-#&gt; 3 REACTOME_ASSEMBLY_OF_THE_PRE_REPLICATIVE_COMP...
-#&gt; 4            REACTOME_LATE_PHASE_OF_HIV_LIFE_CYCLE
-#&gt; 5         MIPS_39S_RIBOSOMAL_SUBUNIT_MITOCHONDRIAL</div><div class='input'>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>miniRAVmodel</span><span class='op'>)</span></span>
+<span class='r-in'><span class='kw'><a href='https://rdrr.io/r/base/library.html'>library</a></span><span class='op'>(</span><span class='va'>bcellViper</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>bcellViper</span><span class='op'>)</span></span>
+<span class='r-in'><span class='va'>val_all</span> <span class='op'>&lt;-</span> <span class='fu'><a href='validate.html'>validate</a></span><span class='op'>(</span><span class='va'>dset</span>, <span class='va'>miniRAVmodel</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'>annotatePC</span><span class='op'>(</span><span class='fl'>2</span>, <span class='va'>val_all</span>, <span class='va'>miniRAVmodel</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>                                        PC2.RAV1076</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 1                  REACTOME_METABOLISM_OF_PROTEINS</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 2                                 KEGG_SPLICEOSOME</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 3 REACTOME_ASSEMBLY_OF_THE_PRE_REPLICATIVE_COMP...</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 4            REACTOME_LATE_PHASE_OF_HIV_LIFE_CYCLE</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> 5         MIPS_39S_RIBOSOMAL_SUBUNIT_MITOCHONDRIAL</span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

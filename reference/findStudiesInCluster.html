@@ -72,7 +72,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GenomicSuperignature</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.4</span>
       </span>
     </div>
 
@@ -155,11 +155,12 @@ associated with only the specified RAVs will be returned.</p>
     <p>Mainly used for model building, within <a href='buildAvgLoading.html'>buildAvgLoading</a>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>miniRAVmodel</span><span class='op'>)</span>
-<span class='fu'>findStudiesInCluster</span><span class='op'>(</span><span class='va'>miniRAVmodel</span>, <span class='fl'>1076</span><span class='op'>)</span>
-</div><div class='output co'>#&gt;  [1] "SRP028155" "SRP049340" "SRP058840" "SRP059035" "SRP063867" "SRP066204"
-#&gt;  [7] "SRP102952" "SRP107198" "SRP124967" "SRP178271"</div><div class='input'>
-</div></pre>
+    <pre class="examples"><span class='r-in'><span class='fu'><a href='https://rdrr.io/r/utils/data.html'>data</a></span><span class='op'>(</span><span class='va'>miniRAVmodel</span><span class='op'>)</span></span>
+<span class='r-in'><span class='fu'>findStudiesInCluster</span><span class='op'>(</span><span class='va'>miniRAVmodel</span>, <span class='fl'>1076</span><span class='op'>)</span></span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [1] "SRP028155" "SRP049340" "SRP058840" "SRP059035" "SRP063867" "SRP066204"</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [7] "SRP102952" "SRP107198" "SRP124967" "SRP178271"</span>
+<span class='r-in'></span>
+</pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
