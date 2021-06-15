@@ -106,7 +106,7 @@ one of the top 8 PCs from the dataset (`whichPC`).
 
 Here, we print out top 5 validated RAVs with average silhouette width above 0.
 
-```{r out.height="40%", out.width="40%", message=FALSE, warning=FALSE}
+```{r out.height="80%", out.width="80%", message=FALSE, warning=FALSE}
 heatmapTable(val_all, num.out = 5, swCutoff = 0)
 ```
 
@@ -175,7 +175,7 @@ validated_ind
 
 And we plot the wordcloud of those three RAVs.
 
-```{r out.height="50%", out.width="50%"}
+```{r out.height="60%", out.width="60%"}
 set.seed(1) # only if you want to reproduce identical display of the same words
 drawWordcloud(RAVmodel, validated_ind[1])
 drawWordcloud(RAVmodel, validated_ind[2])

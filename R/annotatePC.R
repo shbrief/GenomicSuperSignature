@@ -1,7 +1,8 @@
 #' Annotate top PCs from the dataset
 #'
-#' This function finds the RAV scored highest with the top PCs of the dataset,
-#' including RAVs with the negative average silhouette.
+#' This function finds the RAV with the highest validation score (including
+#' RAVs with negative silhouette width) for specified PC of the dataset and
+#' returns the top enriched pathways.
 #'
 #' @param PCnum A numeric vector. PC number of your dataset that you want to get
 #' the annotation results. The vector can contain any integer number among
@@ -65,7 +66,7 @@ annotatePC <- function(PCnum, val_all, RAVmodel, n = 5,
     } else {
       # absolute value of NES
       FUN <- function(x) {if (abs) {abs(x)} else {I(x)}}
-      
+
       # apply NES cutoff
       if (!is.null(nesCutoff)) {
         annotatedCluster <- annotatedCluster[
