@@ -4,6 +4,9 @@
 #' @param ind A numeric vector containing the RAV indexes. Under the default
 #' (\code{NULL}), studies associated with all the RAV indexes will be returned
 #' as a list.
+#' @param studyTitle Default is \code{FALSE}. This parameter is effective only when
+#' the \code{index} value is specificed. If it's \code{TRUE}, the output will be
+#' a data frame with the study
 #'
 #' @return A list of character vectors. Under the default condition
 #' (\code{ind = NULL}), all the RAVs will be checked for their contributing
@@ -17,10 +20,12 @@
 #'
 #' @note Mainly used for model building, within \link{buildAvgLoading}.
 #' @export
-findStudiesInCluster <- function(RAVmodel, ind = NULL) {
+findStudiesInCluster <- function(RAVmodel, ind = NULL, studyTitle = FALSE) {
 
+  ## Check the input validity
   if (!is.null(ind)) {.availableRAV(RAVmodel, ind)}
-  
+
+  ## Extract cluster information: size and the number of PCs
   if (is(RAVmodel,"PCAGenomicSignatures")) {
     x <- S4Vectors::metadata(RAVmodel)
     k <- x$k   # the number of clusters
@@ -30,7 +35,7 @@ findStudiesInCluster <- function(RAVmodel, ind = NULL) {
     k <- length(unique(RAVmodel$cluster))
   }
 
-  # z is a binary matrix showing the cluster membership of PCs
+  ## z is the binary matrix showing the cluster membership of PCs
   z <- matrix(0, ncol = k, nrow = sum(x$size))
   for (i in seq_along(x$cluster)) {
     z[i, x$cluster[i]] <- 1
@@ -39,23 +44,34 @@ findStudiesInCluster <- function(RAVmodel, ind = NULL) {
                         formatC(seq_len(k), width=2, format="d", flag="0"))
   rownames(z) <- names(x$cluster)
 
+  ## Extract study accession number part from PC names in each cluster
   if (is.null(ind)) {
     studies <- list()
     for (i in seq_len(ncol(z))) {
       studies[[i]] <- rownames(z)[which(z[,i] == 1)]
       studies[[i]] <- lapply(studies[[i]],
                              function(x) {unlist(strsplit(x, "\\."))[1]})
-      studies[[i]] <- unique(unlist(studies[[i]]))
+      studies[[i]] <- unique(unlist(studies[[i]]))  # remove redundancy
       names(studies)[i] <- colnames(z)[i]
-      res <- studies
     }
   } else {
     for (i in ind) {
       studies <- rownames(z[which(z[,i] == 1),])
       studies <- lapply(studies,
                         function(x) {unlist(strsplit(x, "\\."))[1]})
-      res <- studies <- unique(unlist(studies))
+      studies <- unique(unlist(studies))  # remove redundancy
     }
   }
+
+  ## Extract study titles
+  if (!studyTitle) {
+    res <- studies
+  } else {
+    dir <- system.file("extdata", package = "GenomicSuperSignature")
+    studyMeta <- utils::read.table(file.path(dir, "studyMeta.tsv.gz"))
+    studyMeta <- studyMeta[,c("studyName", "title")]
+    res <- studyMeta[which(studyMeta$studyName %in% studies),]
+  }
+
   return(res)
 }
