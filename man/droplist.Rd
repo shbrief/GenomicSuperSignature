@@ -13,4 +13,7 @@ droplist
 \description{
 MeSH terms to be excluded in drawWordcloud function
 }
+\author{
+Sehyun Oh \email{shbrief@gmail.com}
+}
 \keyword{datasets}

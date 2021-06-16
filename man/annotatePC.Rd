@@ -54,8 +54,9 @@ A data frame of a list based on the \code{simplify} argument. Check
 the output detail above.
 }
 \description{
-This function finds the RAV scored highest with the top PCs of the dataset,
-including RAVs with the negative average silhouette.
+This function finds the RAV with the highest validation score (including
+RAVs with negative silhouette width) for specified PC of the dataset and
+returns the top enriched pathways.
 }
 \examples{
 data(miniRAVmodel)
