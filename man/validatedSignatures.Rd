@@ -16,27 +16,28 @@ validatedSignatures(
 }
 \arguments{
 \item{val_all}{An output matrix from \code{\link{validate}} function. If this
-input is from multiple datasets, only \code{scoreCutoff} argument will be considered
-and other inputs will be ignored.}
+input is from multiple datasets, only \code{scoreCutoff} argument will be
+considered and other inputs will be ignored.}
 
 \item{num.out}{A number of highly validated RAVs to output. Default is 5.
 If any of the cutoff parameters are provided, \code{num.out} or the number of
 filtered RAVs, whichever smaller, will be chosen.}
 
-\item{scoreCutoff}{A numeric value for the minimum correlation. For multi-studies
-case, the default is 0.7.}
+\item{scoreCutoff}{A numeric value for the minimum correlation. For
+multi-studies case, the default is 0.7.}
 
 \item{swCutoff}{A numeric value for the minimum average silhouette width.}
 
 \item{clsizeCutoff}{An integer value for the minimum cluster size.}
 
-\item{indexOnly}{A logical. Under the default (= FALSE), the detailed information
-on validated RAVs, such as score, average silhouette width, cluster size, is
-printed. If it is set TRUE, only the RAV number will be printed.}
+\item{indexOnly}{A logical. Under the default (= \code{FALSE}), the detailed
+information on validated RAVs, such as score, average silhouette width,
+cluster size, is printed. If it is set TRUE, only the RAV number will be
+printed.}
 
-\item{whichPC}{An integer value between 1 and 8. PC number of your data to check
-the validated signatures with. Under the default (\code{NULL}), it outputs top
-scored signatures with any PC of your data.}
+\item{whichPC}{An integer value between 1 and 8. PC number of your data to
+check the validated signatures with. Under the default (\code{NULL}), it
+outputs top scored signatures with any PC of your data.}
 }
 \value{
 A subset of the input matrix, which meets the given condition.
@@ -50,9 +51,5 @@ library(bcellViper)
 data(bcellViper)
 val_all <- validate(dset, miniRAVmodel)
 validatedSignatures(val_all, num.out = 3, scoreCutoff = 0)
-#             score PC          sw cl_size cl_num
-# RAV1076 0.5950767  2 -0.04447124      10      1
-# RAV2538 0.5838616  2  0.06996166       4      2
-# RAV338  0.5709072  2 -0.04683319      21      3
 
 }

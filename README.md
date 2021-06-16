@@ -22,15 +22,21 @@ extract interpretable annotations, and provide intuitive visualization, are impl
 as the GenomicSuperSignature R package, to be submitted to Bioconductor. 
 
 ### Results
-Usecases and benchmarking examples are further documented at [GenomicSuperSignaturePaper](https://shbrief.github.io/GenomicSuperSignaturePaper/) page.
+Preprint is available [**HERE**](https://www.biorxiv.org/content/10.1101/2021.05.26.445900v1). 
+Usecases and benchmarking examples included in the preprint are further documented at [GenomicSuperSignaturePaper](https://shbrief.github.io/GenomicSuperSignaturePaper/) page.
 
 
 
 
 ## Installation
-Currently, you can install GenomicSuperSignature package from GitHub.
+You can install GenomicSuperSignature in Bioconductor. This can be done using 
+`BiocManager`:
 ```
-devtools::install_github("shbrief/GenomicSuperSignature")
+if (!require("BiocManager"))
+    install.packages("BiocManager")
+
+library(BiocManager)
+install("GenomicSuperSignature")
 ```
 
 RAVmodel can be directly downloaded from Google bucket with no cost. The sizes of 
@@ -63,6 +69,6 @@ The GenomicSuperSignature package allows users to access a RAVmodel (Z matrix, b
 #### Knoweledge graph assembled by GenomicSuperSignature
 GenomicSuperSignature connects different public databases and prior information through RAVindex, creating the knowledge graph illustrated here. Users can instantly access data and metadata resources from multiple entry points, such as gene expression profiles, MeSH terms, gene sets, and keywords. 
 
-<img src="https://raw.githubusercontent.com/shbrief/GenomicSuperSignature/master/vignettes/GSig_knowledge_graph.png" width="90%" height="90%"/>
+<img src="https://raw.githubusercontent.com/shbrief/GenomicSuperSignaturePaper/master/inst/images/GSig_knowledge_graph.png" width="90%" height="90%"/>
 
 

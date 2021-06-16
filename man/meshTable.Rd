@@ -11,8 +11,8 @@ meshTable(RAVmodel, ind, rm.noise = NULL, weighted = TRUE)
 
 \item{ind}{An index of RAV}
 
-\item{rm.noise}{An integer. Under the default condition (\code{rm.noise=NULL}),
-if cluster size (= \code{s}) is smaller than 8, \code{rm.noise = floor(s*0.5)}.
+\item{rm.noise}{An integer. Under the default (\code{rm.noise=NULL}), if
+cluster size (= \code{s}) is smaller than 8, \code{rm.noise = floor(s*0.5)}.
 For clusters with >= 8 PCs, \code{rm.noise = 4}. If \code{rm.noise = 0}, all
 the MeSH terms in RAV will be used to draw wordcloud.}
 

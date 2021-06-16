@@ -8,14 +8,15 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 output:
   BiocStyle::html_document:
-    number_sections: no
+    number_sections: yes
     toc: yes
     toc_depth: 4
 ---
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(
-  comment = "#>", collapse = TRUE, message = FALSE, warning = FALSE 
+  comment = "#>", collapse = TRUE, message = FALSE, warning = FALSE,
+  fig.align='center'
 )
 ```
 
@@ -23,249 +24,232 @@ knitr::opts_chunk$set(
 
 ## Install and load package
 ```{r eval = FALSE}
-if (!require("devtools")) {
-  install.packages("devtools")
-}
-devtools::install_github("shbrief/GenomicSuperSignature")
+if (!require("BiocManager"))
+    install.packages("BiocManager")
+BiocManager::install("GenomicSuperSignature")
+BiocManager::install("bcellViper")
 ```
 
 ```{r results="hide", message=FALSE, warning=FALSE}
 library(GenomicSuperSignature)
+library(bcellViper)
 ```
 
 
 ## Download RAVmodel
-Currently, you can download GenomicSuperSignature from Google Cloud bucket using 
-`GenomicSuperSignature::getModel` function. This model is built from top 20 PCs of 
-536 studies (containing 44,890 samples) containing 13,934 common genes from each 
-of 536 study's top 90% varying genes based on their study-level standard deviation.
-There are two versions of this using different gene sets for GSEA-based annotation;
-MSigDB C2 (`C2`) and three priors from PLIER package (`PLIERpriors`). In this 
-vignette, we are using the `C2` annotated model.
+You can download GenomicSuperSignature from Google Cloud bucket using
+`GenomicSuperSignature::getModel` function. Currently available models are 
+built from top 20 PCs of 536 studies (containing 44,890 samples) containing 
+13,934 common genes from each of 536 study's top 90% varying genes based on 
+their study-level standard deviation. There are two versions of this RAVmodel
+annotated with different gene sets for GSEA - MSigDB C2 (`C2`) and three 
+priors from PLIER package (`PLIERpriors`). 
+
+The demo in this vignette is based on human B-cell expression data, so we are 
+using the `PLIERpriors` model annotated with blood-associated gene sets. 
 
 Note that the first interactive run of this code, you will be asked to allow
-R to create a cache directory. The model file will be stored there and subsequent
-calls to `getModel` will read from the cache.
+R to create a cache directory. The model file will be stored there and 
+subsequent calls to `getModel` will read from the cache.
 
 ```{r load_model}
-RAVmodel <- getModel("C2", load=TRUE)
+RAVmodel <- getModel("PLIERpriors", load=TRUE)
+RAVmodel
 ```
+
 
 ## Example dataset
-**Human B-cell expression dataset** The human B-cell dataset (Gene Expression Omnibus series GSE2350) 
-consists of 211 normal and tumor human B-cell phenotypes whose expression was profiled on Affymatrix
-HG-U95Av2 arrays, and it is contained in an ExpressionSet object with 6,249 features x 211 samples.
-
-```{r echo=FALSE}
-if (!"BiocManager" %in% rownames(installed.packages())) {install.packages("BiocManager")}
-if (!"bcellViper" %in% rownames(installed.packages())) {BiocManager::install("bcellViper")}
-```
+The human B-cell dataset (Gene Expression Omnibus series GSE2350) consists of 
+211 normal and tumor human B-cell phenotypes. This dataset was generated on 
+Affymatrix HG-U95Av2 arrays and stored in an ExpressionSet object with 6,249 
+features x 211 samples.
 
 ```{r message=FALSE, warning=FALSE}
-suppressPackageStartupMessages(library(bcellViper))
 data(bcellViper)
 dset
-dataset <- exprs(dset)   # genes in SYMBOL
 ```
 
-You can provide your own expression dataset in any of these formats: simple matrix, 
-ExpressionSet, or SummarizedExperiment. Just make sure that genes in rows are in
-a 'symbol' format. 
+You can provide your own expression dataset in any of these formats: simple 
+matrix, ExpressionSet, or SummarizedExperiment. Just make sure that genes are 
+in a 'symbol' format. 
 
 
-# Validate
+## More examples
+You can find more usecases 
+[here](https://shbrief.github.io/GenomicSuperSignaturePaper/).
+
+
+
+# Which RAV best represents the dataset?
+`validate` function calculates validation score, which provides a quantitative 
+representation of the relevance between a new dataset and RAV. RAVs that give 
+the validation score is called _*validated RAV*_. The validation results can 
+be displayed in different ways for more intuitive interpretation. 
+
+```{r}
+val_all <- validate(dset, RAVmodel)
+head(val_all)
+```
+
+
 ## HeatmapTable
-`heatmapTable` outputs a two panel table: top panel represents average silhouette
-width (avg.sw) and the bottom panel represents the validation score.
+`heatmapTable` takes validation results as its input and displays them into 
+a two panel table: the top panel shows the average silhouette width (avg.sw) 
+and the bottom panel displays the validation score.
 
-You can display the validation output in multiple ways. For example, if you specify 
-`scoreCutoff` argument of `heatmapTable`, any validation result above that score 
-will be shown. If you specify the number of top validation results (= n) 
-through `num.out` argument of `heatmapTable`, the output will be a n-columned
-heatmap table. You can also use the average silhouette width (`swCutoff`), the 
-size of cluster (`clsizecutoff`), PC from dataset (`whichPC`).   
+`heatmapTable` can display different subsets of the validation output. For 
+example, if you specify `scoreCutoff`, any validation result above that score 
+will be shown. If you specify the number (n) of top validation results through 
+`num.out`, the output will be a n-columned heatmap table. You can also use the 
+average silhouette width (`swCutoff`), the size of cluster (`clsizecutoff`), 
+one of the top 8 PCs from the dataset (`whichPC`).
 
-Here, we print out top 5 validated RAVs with > 0 average silhouette width.
+Here, we print out top 5 validated RAVs with average silhouette width above 0.
 
-```{r fig.width=4.5, fig.height=2.5, message=FALSE, warning=FALSE}
-val_all <- validate(dataset, RAVmodel)  
+```{r out.height="80%", out.width="80%", message=FALSE, warning=FALSE}
 heatmapTable(val_all, num.out = 5, swCutoff = 0)
 ```
 
-## Interactive Graph
-Under the default condition, `plotValidate` plots all non single-element clusters'
-validation results in a single graph, where x-axis represent average silhouette
-width of the RAVs (a quality control measure of the signature) and y-axis
-represent validation score. We recommend users to focus on RAVs with higher
-validation score and use average silhouette width as a secondary criteria. 
 
-```{r plotValidate_function}
+## Interactive Graph
+Under the default condition, `plotValidate` plots validation results of all non 
+single-element RAVs in one graph, where x-axis represents average silhouette 
+width of the RAVs (a quality control measure of RAVs) and y-axis represents 
+validation score. We recommend users to focus on RAVs with higher validation 
+score and use average silhouette width as a secondary criteria. 
+
+```{r out.height="75%", out.width="75%", plotValidate_function}
 plotValidate(val_all, interactive = FALSE)
 ```
+
 Note that `interactive = TRUE` will result in a zoomable, interactive plot
 that included tooltips. 
-
-<br>
 
 You can hover each data point for more information:    
 
 - **sw** : the average silhouette width of the cluster   
-- **score** : the top validation score between 8 PCs of the dataset and the cluster   
-- **cl_size** : the size of the cluster, represented by the dot size   
-- **cl_num** : the RAV number. You need this index to find more information about the cluster.      
-- **PC** : Test dataset's PC number that validates the given RAV. Because we used 
-top 8 PCs of the test dataset, there are 8 categories. 
+- **score** : the top validation score between 8 PCs of the dataset and RAVs   
+- **cl_size** : the size of RAVs, represented by the dot size   
+- **cl_num** : the RAV number. You need this index to find more information 
+about the RAV.      
+- **PC** : test dataset's PC number that validates the given RAV. Because we 
+used top 8 PCs of the test dataset for validation, there are 8 categories. 
 
-If you double-click the PC legend on the right, you will enter an individual display
-mode where you can add an additional group of data point by single-click. 
+If you double-click the PC legend on the right, you will enter an 
+individual display mode where you can add an additional group of data 
+point by single-click. 
 
 
-# MeSH terms in wordcloud
-You can draw a wordcloud with the enriched MeSH term of RAVs that validate
-your dataset. Based on the heatmap table above, 1st-3rd RAVs (2538, 1139, and 884) 
-show high validation scores with positive average silhouette widths, so we draw 
-wordclouds of those RAVs using `drawWordcloud` function. You need to provide 
-RAVmodel and the index of the RAV you are interested in.
+# What kinds of information can you access through RAV?
+GenomicSuperSignature connects different public databases and prior information 
+through RAVmodel, creating the knowledge graph illustrated below. Through RAVs, 
+you can access and explore the knowledge graph from multiple entry points such 
+as gene expression profiles, publications, study metadata, keywords in MeSH 
+terms and gene sets.
+
+</br>
+
+<center>
+<img src="https://raw.githubusercontent.com/shbrief/GenomicSuperSignaturePaper/master/inst/images/GSig_knowledge_graph.png" width="120%" height="120%"/>
+</center>
+
+
+## MeSH terms in wordcloud
+You can draw a wordcloud with the enriched MeSH terms of RAVs. Based on the 
+heatmap table above, three RAVs (2538, 1139, and 884) show the high validation 
+scores with the positive average silhouette widths, so we draw wordclouds of 
+those RAVs using `drawWordcloud` function. You need to provide RAVmodel and 
+the index of the RAV you are interested in.
 
 Index of validated RAVs can be easily collected using `validatedSingatures`
 function, which outputs the validated index based on `num.out`, PC from dataset 
-(`whichPC`) or any `*Cutoff` arguments in a same way as `heatmapTable`. 
+(`whichPC`) or any `*Cutoff` arguments in the same way as `heatmapTable`. Here, 
+we choose the top 3 RAVs with the average silhouette width above 0, which will 
+returns RAV2538, RAV1139, and RAV884 as we discussed above.
 
-```{r fig.height=8, fig.width=8}
+```{r}
 validated_ind <- validatedSignatures(val_all, num.out = 3, 
                                      swCutoff = 0, indexOnly = TRUE)
-set.seed(1)
+validated_ind
+```
+
+And we plot the wordcloud of those three RAVs.
+
+```{r out.height="60%", out.width="60%"}
+set.seed(1) # only if you want to reproduce identical display of the same words
 drawWordcloud(RAVmodel, validated_ind[1])
 drawWordcloud(RAVmodel, validated_ind[2])
 drawWordcloud(RAVmodel, validated_ind[3])
 ```
 
 
-
-
-# GSEA
-## Annotation on RAV1139
-Because the test dataset is human B-cell expression data, we tried the model annotated
-with blood-associated gene sets. 
-
-```{r message=FALSE, warning=FALSE}
-RAVmodel <- getModel("PLIERpriors", load=TRUE)
-```
-
-You can directly access the GSEA outputs for each RAV using the accessor, `gsea`.
+## GSEA
+### Associated gene sets of validated RAV
+You can directly access the GSEA outputs for each RAV using `gsea`. Based on
+the wordclouds, RAV1139 seems to be associated with B-cell.
 
 ```{r}
-PCNum <- validated_ind[2]   # RAV1139
-res <- gsea(RAVmodel)[[PCNum]]   
+RAVnum <- validated_ind[2]  # RAV1139
+res <- gsea(RAVmodel)[[RAVnum]]   
 head(res)
 ```
 
+### Search enriched pathways through keyword
+You can also find the RAVs annotated with the keyword-containing pathways using
+`findSignature` function. Without the `k` argument, this function outputs a 
+data frame with two columns: the number of RAVs (`Freq` column) with the 
+different numbers of keyword-containing, enriched pathways 
+(`# of keyword-containing pathways` column).
 
-Find the RAVs annotated with the keyword-containing pathways. Without the `k` argument, 
-the data frame containing the number of RAVs (`Freq` column) with the different numbers 
-of keyword-containing, enriched pathways (`# of keyword-containing pathways` column).
-
+Here, we used the keyword, "Bcell".
 ```{r}
 findSignature(RAVmodel, "Bcell")
+```
+
+There are two RAVs with five keyword-containing pathways (row 6). We can check
+which RAVs they are.
+```{r}
 findSignature(RAVmodel, "Bcell", k = 5)
 ```
 
-Enriched pathways of the given RAVmodel, ordered by NES. If `both=TRUE`, both the
-top and bottom enriched pathways will be printed.
-
+Enriched pathways are ordered by NES and you can check the rank of any keyword-
+containing pathways using `findKeywordInRAV`.
 ```{r}
-subsetEnrichedPathways(RAVmodel, ind = PCNum, n = 3, both = TRUE)
+findKeywordInRAV(RAVmodel, "Bcell", ind = 695)
+```
+
+You can check all enriched pathways of RAV using `subsetEnrichedPathways` 
+function. If `both=TRUE`, both the top and bottom enriched pathways will 
+be printed.
+```{r}
+subsetEnrichedPathways(RAVmodel, ind = RAVnum, n = 3, both = TRUE)
 subsetEnrichedPathways(RAVmodel, ind = 695, n = 3, both = TRUE)
 subsetEnrichedPathways(RAVmodel, ind = 1994, n = 3, both = TRUE)
 ```
 
+## Related prior studies
+You can find the prior studies related to a given RAV using 
+`findStudiesInCluster` function.
+
 ```{r}
-annotateRAV(RAVmodel, ind = PCNum, n = 3, abs = FALSE)
-annotateRAV(RAVmodel, ind = 695, n = 3, abs = FALSE)
-annotateRAV(RAVmodel, ind = 1994, n = 3, abs = FALSE)
+studyAccess <- findStudiesInCluster(RAVmodel, validated_ind[2])
+studyAccess
 ```
 
+```{r}
+dir <- system.file("extdata", package = "GenomicSuperSignature")
+studyMeta <- read.table(file.path(dir, "studyMeta.tsv.gz"))
+
+ind <- which(studyMeta$studyName %in% studyAccess)
+studyMeta[ind, c("studyName", "title")]
+```
+
+
+
 # Session Info
+
+<details>
 ```{r}
 sessionInfo()
 ```
-
-
-
-
-
-
-
-
-
-```{r collapse=FALSE, echo=FALSE, eval=FALSE}
-### Ordered by NES
-msC2_2nes <- msC2_2[order(msC2_2$NES, decreasing = TRUE),]
-ind2 <- grep(keyword, msC2_2nes$Description, ignore.case = TRUE) # index containing keyword
-
-print(paste("The number of enriched pathways =", nrow(msC2_2nes)))
-print(paste("The number of enriched pathways containing keyword =", length(ind2)))
-
-### Ordered by qvalues
-msC2_2qval <- msC2_2[order(msC2_2$qvalues, decreasing = FALSE),]
-ind2 <- grep(keyword, msC2_2qval$Description, ignore.case = TRUE) # index containing keyword
-
-print(paste("The number of enriched pathways =", nrow(msC2_2qval)))
-print(paste("The number of enriched pathways containing keyword =", length(ind2)))
-```
-
-
-
-
-
-
-
-```{r echo=FALSE, eval=FALSE}
-res1 <- msigdb_gsea(validated_ind[1], RAVmodel, category = "C2")
-dim(res1)
-
-gseaSub <- subsetGSEA(res1, n = 20)
-gseaBarplot(gseaRes = gseaSub)
-res_os <- gseaNetwork(gseaRes = gseaSub, similarity_metric = "overlap_similarity", similarity_cutoff = 0.3)
-res_js <- gseaNetwork(gseaRes = gseaSub, similarity_metric = "jaccard_similarity", similarity_cutoff = 0.3)
-
-visNetwork::visSave(res_os, file = "res_os.html")
-htmltools::includeHTML("res_os.html")
-
-visNetwork::visSave(res_js, file = "res_js.html")
-htmltools::includeHTML("res_js.html")
-```
-
-
-```{r echo=FALSE, eval=FALSE}
-res2 <- msigdb_gsea(validated_ind[2], RAVmodel, category = "C2")
-dim(res2)
-
-gseaSub <- subsetGSEA(res2, n = 20)
-gseaBarplot(gseaRes = gseaSub)
-gseaNetwork(gseaRes = gseaSub, similarity_metric = "overlap_similarity", similarity_cutoff = 0.3)
-gseaNetwork(gseaRes = gseaSub, similarity_metric = "jaccard_similarity", similarity_cutoff = 0.3)
-```
-
-
-```{r echo=FALSE, eval=FALSE}
-res3 <- msigdb_gsea(validated_ind[3], RAVmodel, category = "C2")
-dim(res3)
-
-gseaSub <- subsetGSEA(res3, n = 20)
-gseaBarplot(gseaRes = gseaSub)
-gseaNetwork(gseaRes = gseaSub, similarity_metric = "overlap_similarity", similarity_cutoff = 0.3)
-gseaNetwork(gseaRes = gseaSub, similarity_metric = "jaccard_similarity", similarity_cutoff = 0.3)
-```
-
-
-```{r echo=FALSE, eval=FALSE}
-res4 <- msigdb_gsea(validated_ind[4], RAVmodel, category = "C2")
-dim(res4)
-
-gseaSub <- subsetGSEA(res4, n = 20)
-gseaBarplot(gseaRes = gseaSub)
-gseaNetwork(gseaRes = gseaSub, similarity_metric = "overlap_similarity", similarity_cutoff = 0.3)
-gseaNetwork(gseaRes = gseaSub, similarity_metric = "jaccard_similarity", similarity_cutoff = 0.3)
-```
-
+</details>

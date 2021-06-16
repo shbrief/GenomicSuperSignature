@@ -7,7 +7,7 @@
 plotAnnotatedPCA(
   dataset,
   RAVmodel,
-  PCs,
+  PCnum,
   val_all = NULL,
   scoreCutoff = 0.5,
   nesCutoff = NULL,
@@ -17,32 +17,37 @@ plotAnnotatedPCA(
 )
 }
 \arguments{
-\item{dataset}{An expression matrix with genes (rows) x samples (columns)}
+\item{dataset}{A gene expression profile to be validated. Different classes
+of objects can be used including ExpressionSet, SummarizedExperiment,
+RangedSummarizedExperiment, or matrix. Rownames (genes) should be in symbol
+format. If it is a matrix, genes should be in rows and samples in columns.}
 
 \item{RAVmodel}{PCAGenomicSignatures-class object}
 
-\item{PCs}{A numeric vector length of 2. It should be between 1 and 8.}
+\item{PCnum}{A numeric vector length of 2. It should be between 1 and 8.}
 
 \item{val_all}{The output from \code{\link{validate}}}
 
-\item{scoreCutoff}{A numeric value for the minimum correlation. Default is 0.5.}
+\item{scoreCutoff}{A numeric value for the minimum correlation.
+Default 0.5.}
 
-\item{nesCutoff}{A numeric value for the minimum NES. Default is \code{NULL} and
-the suggested value is 3.}
+\item{nesCutoff}{A numeric value for the minimum NES. Default is \code{NULL}
+and the suggested value is 3.}
 
-\item{color_by}{A named vector with the feature you want to color by. Name should
-be match with the sample names of the dataset.}
+\item{color_by}{A named vector with the feature you want to color by. Name
+should be match with the sample names of the dataset.}
 
-\item{color_lab}{A name for color legend. If this argument is not provided, the
-color legend will be labeld as "Color By" by default.}
+\item{color_lab}{A name for color legend. If this argument is not provided,
+the color legend will be labeled as "Color By" by default.}
 
-\item{trimed_pathway_len}{Positive inter values, which is the display width of
-pathway names. Default is 45.}
+\item{trimed_pathway_len}{Positive inter values, which is the display width
+of pathway names. Default is 45.}
 }
 \value{
-Scatter plot and the table with annotation. If enriched pathway didn't
-pass the \code{scoreCutoff} the table will be labeled as "No significant pathways".
-If any enriched pathway didn't pass the \code{nesCutoff}, it will labeled as NA.
+Scatter plot and the table with annotation. If enriched pathway
+didn't pass the \code{scoreCutoff} the table will be labeled as "No
+significant pathways". If any enriched pathway didn't pass the
+\code{nesCutoff}, it will labeled as NA.
 }
 \description{
 Two-dimentional PCA plot with the PC annotation
@@ -52,6 +57,7 @@ data(miniRAVmodel)
 library(bcellViper)
 data(bcellViper)
 \dontrun{
-plotAnnotatedPCA(exprs(dset), miniRAVmodel, PCs = c(1,2))
+plotAnnotatedPCA(exprs(dset), miniRAVmodel, PCnum = c(1,2))
 }
+
 }

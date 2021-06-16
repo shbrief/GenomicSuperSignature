@@ -7,28 +7,38 @@
 buildAvgLoading(dat, k, n = 20, cluster = NULL, study = TRUE)
 }
 \arguments{
-\item{dat}{A data frame. Each row represents principle components from different
-training datasets. Each column represents genes used for PCA analysis.}
+\item{dat}{A data frame. Each row represents principle components from
+different training datasets. Columns are genes used for PCA analysis.}
 
 \item{k}{The number of clusters used for hierarchical clustering}
 
-\item{n}{The number of top principle components from each datasets used for model buildling. Default is 20.}
+\item{n}{The number of top principle components from each datasets used for
+model building. Default is 20.}
 
 \item{cluster}{Provide pre-defined cluster membership of your data.}
 
-\item{study}{Under default (\code{TRUE}), studies involved in each cluster will be added in the output.}
+\item{study}{Under default (\code{TRUE}), studies involved in each cluster
+will be added in the output.}
 }
 \value{
 A named list of 6 elements is returned. It contains:
 \describe{
    \item{\code{cluster}}{A numeric vector on cluster membership of PCs}
    \item{\code{size}}{A integer vector on the size of clusters}
-   \item{\code{avgLoading}}{A matrix of average loadings. Columns for clusters and rows for genes}
+   \item{\code{avgLoading}}{A matrix of average loadings. Columns for
+   clusters and rows for genes}
    \item{\code{k}}{The number of clusters}
    \item{\code{n}}{The number of top PCs used for clustering}
-   \item{\code{studies}}{A list of character vector containing studies in each cluster}
+   \item{\code{studies}}{A list of character vector containing studies in
+   each cluster}
 }
 }
 \description{
 Calculate average loadings of each cluster
+}
+\examples{
+data(miniAllZ)
+data(res_hcut)
+res <- buildAvgLoading(miniAllZ, k = 40, cluster = res_hcut$cluster)
+
 }

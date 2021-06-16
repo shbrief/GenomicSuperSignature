@@ -10,9 +10,10 @@
 \item{value}{See details.}
 }
 \description{
-GenomicSignatures is a virtual class inherited from SummarizedExperiment
-and hosts GenomicSignatures models built from different dimensional reduction methods.
-Currently, PCA-based model, called PCAGenomicSignatures, is available.
+GenomicSignatures is a virtual class inherited from
+SummarizedExperiment and hosts GenomicSignatures models built from different
+dimensional reduction methods. Currently, PCA-based model, called
+PCAGenomicSignatures, is available.
 }
 \details{
 GenomicSignatures

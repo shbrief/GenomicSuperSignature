@@ -14,41 +14,44 @@ validate(
 )
 }
 \arguments{
-\item{dataset}{Single or a named list of SummarizedExperiment (RangedSummarizedExperiment,
-ExpressionSet or matrix) object(s). Gene names should be in 'symbol' format. Currently,
-each dataset should have at least 8 samples.}
+\item{dataset}{Single or a named list of SummarizedExperiment
+(RangedSummarizedExperiment, ExpressionSet or matrix) object(s). Gene names
+should be in 'symbol' format. Currently, each dataset should have at least
+8 samples.}
 
-\item{RAVmodel}{PCAGenomicSignatures object. You can also provide signature model matrix directly.}
+\item{RAVmodel}{PCAGenomicSignatures object.}
 
 \item{method}{A character string indicating which correlation coefficient is
-to be computed. One of "pearson" (default), "kendall", or "spearman": can be abbreviated.}
+to be computed. One of "pearson" (default), "kendall", or "spearman": can be
+abbreviated.}
 
-\item{maxFrom}{Select whether to display the maximum value from dataset's PCs or avgLoadings.
-Under the default (\code{maxFrom="PC"}), the maximum correlation coefficient from
-top 8 PCs for each avgLoading will be selected as an output. If you choose (\code{maxFrom="avgLoading"}),
-the avgLoading with the maximum correlation coefficient with each PC will be in the output.}
+\item{maxFrom}{Select whether to display the maximum value from dataset's PCs
+or avgLoadings. Under the default (\code{maxFrom="PC"}), the maximum
+correlation coefficient from top 8 PCs for each avgLoading will be selected
+as an output. If you choose (\code{maxFrom="avgLoading"}), the avgLoading
+with the maximum correlation coefficient with each PC will be in the output.}
 
-\item{level}{Output format of validated result. Two options are available: \code{c("max", "all")}.
-Default is "max", which outputs the matrix containing only the maximum coefficient.
-To get the coefficient of all 8 PCs, set this argument as "all". \code{level = "all"}
-can be used only for one dataset.}
+\item{level}{Output format of validated result. Two options are available:
+\code{c("max", "all")}. Default is "max", which outputs the matrix containing
+only the maximum coefficient. To get the coefficient of all 8 PCs, set this
+argument as "all". \code{level = "all"} can be used only for one dataset.}
 
-\item{scale}{Default is \code{FALSE}. If it is set to \code{TRUE}, dataset will
-be row normalized by \link{rowNorm} function.}
+\item{scale}{Default is \code{FALSE}. If it is set to \code{TRUE}, dataset
+will be row normalized by \link{rowNorm} function.}
 }
 \value{
-A data frame containing the maximum pearson correlation coefficient between
-the top 8 PCs of the dataset and pre-calculated average loadings (in row) of training
-datasets (\code{score} column). It also contains other metadata associated with
-each RAV: \code{PC} for one of the top 8 PCs of the dataset that results
-in the given \code{score}, \code{sw} for the average silhouette width of the RAV,
-\code{cl_size} for the size of each RAV.
+A data frame containing the maximum pearson correlation coefficient
+between the top 8 PCs of the dataset and pre-calculated average loadings
+(in row) of training datasets (\code{score} column). It also contains other
+metadata associated with each RAV: \code{PC} for one of the top 8 PCs of the
+dataset that results in the given \code{score}, \code{sw} for the average
+silhouette width of the RAV, \code{cl_size} for the size of each RAV.
 
-If the input for \code{dataset} argument is a list of different datasets, each row
-of the output represents a new dataset for test, and each column represents
-clusters from training datasets. If \code{level = "all"}, a list containing the matrices
-of the pearson correlation coefficient between all top 8 PCs of the datasets and
-avgLoading.
+If the input for \code{dataset} argument is a list of different datasets,
+each row of the output represents a new dataset for test, and each column
+represents clusters from training datasets. If \code{level = "all"}, a list
+containing the matrices of the pearson correlation coefficient between all
+top 8 PCs of the datasets and avgLoading.
 }
 \description{
 Validate new datasets

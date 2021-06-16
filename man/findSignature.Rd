@@ -10,15 +10,16 @@ findSignature(RAVmodel, keyword, n = 5, k = NULL)
 \item{RAVmodel}{PCAGenomicSignatures-object}
 
 \item{keyword}{A character vector. If you are searching for multiple keywords
-at the same time, use \code{\link{paste}} with \code{collapse = "|"} argument.}
+at the same time, use \code{\link{paste}} with \code{collapse="|"} argument.}
 
-\item{n}{The number of top ranked (based on abs(NES)) pathways you want to search your keyword}
+\item{n}{The number of top ranked (based on abs(NES)) pathways you want to
+search your keyword}
 
 \item{k}{The number of keyword-containing pathways you want to get the RAV
 number. Under default (\code{NULL}), the output will be a data frame with two
-columns: '# of keyword-containing pathways' and 'Freq'. If you assign the value
-for this argument, the output will be an integer vector containing the RAV
-index.}
+columns: '# of keyword-containing pathways' and 'Freq'. If you assign the
+value for this argument, the output will be an integer vector containing the
+RAV index.}
 }
 \value{
 A data frame or integer vector depending on the parameter \code{k}.
@@ -30,13 +31,7 @@ it will give you the RAV number.
 }
 \examples{
 data(miniRAVmodel)
-library(bcellViper)
-data(bcellViper)
 findSignature(miniRAVmodel, "Bcell")
-#   # of keyword-containing pathways Freq
-# 1                                0   15
-# 2                                5    2
 findSignature(miniRAVmodel, "Bcell", k = 5)
-# [1] 16 17
 
 }

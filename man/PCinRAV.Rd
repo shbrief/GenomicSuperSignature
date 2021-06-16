@@ -21,7 +21,6 @@ PCs from the RAV model given the index in the RAV model.
 }
 \examples{
 data(miniRAVmodel)
-miniRAVmodel
 PCinRAV(miniRAVmodel,695)
 
 }

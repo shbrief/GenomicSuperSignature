@@ -11,7 +11,6 @@
 #'
 #' @examples
 #' data(miniRAVmodel)
-#' miniRAVmodel
 #' PCinRAV(miniRAVmodel,695)
 #'
 #' @export
@@ -26,11 +25,12 @@ PCinRAV <- function(RAVmodel, ind) {
 #' Build a two-column word/frequency table
 #'
 #' @import dplyr
+#' @importFrom S4Vectors metadata
 #'
 #' @param RAVmodel A PCAGenomicSignatures object
 #' @param ind An index of RAV
-#' @param rm.noise An integer. Under the default condition (\code{rm.noise=NULL}),
-#' if cluster size (= \code{s}) is smaller than 8, \code{rm.noise = floor(s*0.5)}.
+#' @param rm.noise An integer. Under the default (\code{rm.noise=NULL}), if
+#' cluster size (= \code{s}) is smaller than 8, \code{rm.noise = floor(s*0.5)}.
 #' For clusters with >= 8 PCs, \code{rm.noise = 4}. If \code{rm.noise = 0}, all
 #' the MeSH terms in RAV will be used to draw wordcloud.
 #' @param weighted A logical. If \code{TRUE}, MeSH terms from each study are
@@ -47,6 +47,9 @@ PCinRAV <- function(RAVmodel, ind) {
 #' @export
 meshTable <- function(RAVmodel, ind, rm.noise = NULL, weighted = TRUE) {
 
+    ### Check ind validity
+    .availableRAV(RAVmodel, ind)
+
     ### Remove noise
     if (is.null(rm.noise)) {
         s <- S4Vectors::metadata(RAVmodel)$size[paste0("RAV", ind)]
@@ -55,12 +58,15 @@ meshTable <- function(RAVmodel, ind, rm.noise = NULL, weighted = TRUE) {
     }
 
     ### Create a 'universe' for bag-of-words model
-    bow <- unlist(S4Vectors::metadata(RAVmodel)$MeSH_freq)  # frequency of the `name` in the background
-    bow <- bow[which(bow > rm.noise)]   # remove rare terms
+    # frequency of the `name` in the background
+    bow <- unlist(S4Vectors::metadata(RAVmodel)$MeSH_freq)
+    # remove rare terms
+    bow <- bow[which(bow > rm.noise)]
 
     ### Not weighted version
     if (weighted == FALSE) {
-        study_id <- studies(RAVmodel)[[ind]]   # a list of studies in RAV
+        ind_name <- paste0("Cl", metadata(RAVmodel)$k, "_", ind)
+        study_id <- studies(RAVmodel)[[ind_name]]   # a list of studies in RAV
         all_MeSH <- mesh(RAVmodel)   # all the MeSH data
 
         # remove SRP069088 (no MeSH term)
@@ -71,7 +77,8 @@ meshTable <- function(RAVmodel, ind, rm.noise = NULL, weighted = TRUE) {
             study_id <- study_id[-ind_rm]
         }
 
-        mesh_subset <- all_MeSH[study_id]   # subset to the participating studies
+        # subset to the participating studies
+        mesh_subset <- all_MeSH[study_id]
 
         ### Combine all MeSH words
         d <- list()
@@ -137,18 +144,18 @@ meshTable <- function(RAVmodel, ind, rm.noise = NULL, weighted = TRUE) {
 #'
 #' @param RAVmodel PCAGenomicSignatures object
 #' @param ind An index of the RAV you want to draw wordcloud.
-#' @param rm.noise An integer. Under the default condition (\code{rm.noise=NULL}),
-#' if cluster size (= \code{s}) is smaller than 8, \code{rm.noise = floor(s*0.5)}.
+#' @param rm.noise An integer. Under the default (\code{rm.noise=NULL}), if
+#' cluster size (= \code{s}) is smaller than 8, \code{rm.noise = floor(s*0.5)}.
 #' For clusters with >= 8 PCs, \code{rm.noise = 4}. If \code{rm.noise = 0}, all
 #' the MeSH terms in RAV will be used to draw wordcloud.
-#' @param scale A \code{scale} argument for \code{\link[wordcloud]{wordcloud}} function
-#' @param weighted A logical. If \code{TRUE} (default), MeSH terms from each study are
-#' weighted based on the variance explained by the principle component of the
-#' study contributing to a given RAV.
+#' @param scale A \code{scale} argument for \code{\link[wordcloud]{wordcloud}}
+#' function
+#' @param weighted A logical. If \code{TRUE} (default), MeSH terms from each
+#' study are weighted based on the variance explained by the principle component
+#' of the study contributing to a given RAV.
 #' @param drop A character vector containing MeSH terms to be excluded from word
-#' cloud. Under the default (\code{NULL}), manually selected non-informative MeSH
-#' terms are excluded, which can be viewed through \code{data(droplist)}.
-#' @param seed Random seed. If it is not specified, \code{set.seed(1234)} will be used.
+#' cloud. Under the default (\code{NULL}), manually selected non-informative
+#' MeSH terms are excluded, which can be viewed through \code{data(droplist)}.
 #'
 #' @return A word cloud with the MeSH terms associated with the given cluster.
 #'
@@ -158,18 +165,15 @@ meshTable <- function(RAVmodel, ind, rm.noise = NULL, weighted = TRUE) {
 #'
 #' @export
 drawWordcloud <- function(RAVmodel, ind, rm.noise = NULL, scale = c(3, 0.5),
-                          weighted = TRUE, drop = NULL, seed = NULL) {
+                          weighted = TRUE, drop = NULL) {
+
+    # Check ind validity
+    .availableRAV(RAVmodel, ind)
 
     if (is.null(rm.noise)) {
         s <- S4Vectors::metadata(RAVmodel)$size[paste0("RAV", ind)]
         if (s < 8) {rm.noise = floor(s*0.5)}
         else if (s >= 8) {rm.noise = 4}
-
-        ## Minimum rm.noise version
-        # s <- S4Vectors::metadata(RAVmodel)$size[ind]
-        # rm.noise = floor(s*0.2)
-        # if (rm.noise > 4) {rm.noise = 4}
-        # else if (rm.noise == 0) {rm.noise = 1}
     }
 
     # MeSH word table

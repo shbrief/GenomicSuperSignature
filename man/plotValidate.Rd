@@ -18,17 +18,18 @@ plotValidate(
 \arguments{
 \item{val_all}{Output from \link{validate} function.}
 
-\item{minClusterSize}{The minimum size of clusters to be included in the plotting.
-Default value is 2, so any single-element clusters are excluded.}
+\item{minClusterSize}{The minimum size of clusters to be included in the
+plotting. Default value is 2, so any single-element clusters are excluded.}
 
 \item{swFilter}{If \code{swFilter=TRUE}, only RAV above the cutoff, defined
-through \code{minSilhouetteWidth} argument will be plotted. Default is \code{swFilter=FALSE}}
+through \code{minSilhouetteWidth} argument will be plotted. Default is
+\code{swFilter=FALSE}}
 
-\item{minSilhouetteWidth}{A minimum average silhouette width to be plotted. Only
-effective under \code{swFilter=TRUE} condition. Default is 0.}
+\item{minSilhouetteWidth}{A minimum average silhouette width to be plotted.
+Only effective under \code{swFilter=TRUE} condition. Default is 0.}
 
-\item{interactive}{If set to \code{TRUE}, the output will be interactive plot.
-Default is \code{FALSE}.}
+\item{interactive}{If set to \code{TRUE}, the output will be interactive
+plot. Default is \code{FALSE}.}
 
 \item{minClSize}{The minimum number of PCs in the clusters you want.}
 

@@ -18,35 +18,40 @@ annotatePC(
 }
 \arguments{
 \item{PCnum}{A numeric vector. PC number of your dataset that you want to get
-the annotation results. The vector can contain any integer number among \code{1:8}.}
+the annotation results. The vector can contain any integer number among
+\code{1:8}.}
 
 \item{val_all}{The output from \code{\link{validate}}}
 
-\item{RAVmodel}{The RAVmodel used to generate the input for the argument, \code{val_all}.}
+\item{RAVmodel}{The RAVmodel used to generate the input for the argument,
+\code{val_all}.}
 
-\item{n}{An integer. Default is 5. The number of the top enriched pathaways to
-print out. If there are fewer than n pathways passed the cutoff, it will print out \code{NA}.}
+\item{n}{An integer. Default is 5. The number of the top enriched pathways
+to print out. If there are fewer than n pathways passed the cutoff, it will
+print out \code{NA}.}
 
-\item{scoreCutoff}{A numeric value for the minimum correlation. Default is 0.5.}
+\item{scoreCutoff}{A numeric value for the minimum correlation.
+Default is 0.5.}
 
-\item{nesCutoff}{A numeric value for the minimum NES. Default is \code{NULL} and
-the suggested value is 3.}
+\item{nesCutoff}{A numeric value for the minimum NES. Default is \code{NULL}
+and the suggested value is 3.}
 
 \item{simplify}{A logical. Under default (\code{TRUE}), the output will be a
-data frame with the number of column same as the length of \code{PCnum} argument,
-and the number of row same as the \code{n} argument. If it is set to \code{FALSE},
-the output will be a list with the length of \code{PCnum} argument, where each
-element is a data frame containing detailed GSEA output of enriched pathways.}
+data frame with the number of column same as the length of \code{PCnum}
+argument, and the number of row same as the \code{n} argument. If it is set
+to \code{FALSE}, the output will be a list with the length of \code{PCnum}
+argument, where each element is a data frame containing detailed GSEA output
+of enriched pathways.}
 
 \item{abs}{Default is \code{FALSE}. If it's set to \code{TRUE}, the enriched
 pathways will be listed based on \code{abs(NES)}.}
 
-\item{trimed_pathway_len}{Positive inter values, which is the display width of
-pathway names. Default is 45.}
+\item{trimed_pathway_len}{Positive inter values, which is the display width
+of pathway names. Default is 45.}
 }
 \value{
-A data frame of a list based on the \code{simplify} argument. Check the
-output detail above.
+A data frame of a list based on the \code{simplify} argument. Check
+the output detail above.
 }
 \description{
 This function finds the RAV scored highest with the top PCs of the dataset,

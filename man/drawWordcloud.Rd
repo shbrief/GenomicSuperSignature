@@ -10,8 +10,7 @@ drawWordcloud(
   rm.noise = NULL,
   scale = c(3, 0.5),
   weighted = TRUE,
-  drop = NULL,
-  seed = NULL
+  drop = NULL
 )
 }
 \arguments{
@@ -19,22 +18,21 @@ drawWordcloud(
 
 \item{ind}{An index of the RAV you want to draw wordcloud.}
 
-\item{rm.noise}{An integer. Under the default condition (\code{rm.noise=NULL}),
-if cluster size (= \code{s}) is smaller than 8, \code{rm.noise = floor(s*0.5)}.
+\item{rm.noise}{An integer. Under the default (\code{rm.noise=NULL}), if
+cluster size (= \code{s}) is smaller than 8, \code{rm.noise = floor(s*0.5)}.
 For clusters with >= 8 PCs, \code{rm.noise = 4}. If \code{rm.noise = 0}, all
 the MeSH terms in RAV will be used to draw wordcloud.}
 
-\item{scale}{A \code{scale} argument for \code{\link[wordcloud]{wordcloud}} function}
+\item{scale}{A \code{scale} argument for \code{\link[wordcloud]{wordcloud}}
+function}
 
-\item{weighted}{A logical. If \code{TRUE} (default), MeSH terms from each study are
-weighted based on the variance explained by the principle component of the
-study contributing to a given RAV.}
+\item{weighted}{A logical. If \code{TRUE} (default), MeSH terms from each
+study are weighted based on the variance explained by the principle component
+of the study contributing to a given RAV.}
 
 \item{drop}{A character vector containing MeSH terms to be excluded from word
-cloud. Under the default (\code{NULL}), manually selected non-informative MeSH
-terms are excluded, which can be viewed through \code{data(droplist)}.}
-
-\item{seed}{Random seed. If it is not specified, \code{set.seed(1234)} will be used.}
+cloud. Under the default (\code{NULL}), manually selected non-informative
+MeSH terms are excluded, which can be viewed through \code{data(droplist)}.}
 }
 \value{
 A word cloud with the MeSH terms associated with the given cluster.

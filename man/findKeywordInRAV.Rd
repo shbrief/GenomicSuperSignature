@@ -4,25 +4,26 @@
 \alias{findKeywordInRAV}
 \title{Find the rank of your keyword in the RAV's GSEA annotation}
 \usage{
-findKeywordInRAV(RAVmodel, keyword, ind, n = NULL, includeTotal = FALSE)
+findKeywordInRAV(RAVmodel, keyword, ind, n = NULL, includeTotal = TRUE)
 }
 \arguments{
 \item{RAVmodel}{PCAGenomicSignatures-object.}
 
 \item{keyword}{A character vector. If you are searching for multiple keywords
-at the same time, use \code{\link{paste}} with \code{collapse = "|"} argument.}
+at the same time, use \code{\link{paste}} with \code{collapse="|"} argument.}
 
 \item{ind}{An integer. The RAV number you want to check.}
 
-\item{n}{An interger. The number of top enriched pathways (based on abs(NES))
+\item{n}{An integer. The number of top enriched pathways (based on abs(NES))
 to search. Under default (\code{NULL}), all the enriched pathways are used.}
 
-\item{includeTotal}{Default is \code{FALSE}. If it is set to \code{TRUE}, the
-total number of enriched pathways will be also printed out as an output.}
+\item{includeTotal}{Under the default condition (\code{TRUE}), the total
+number of enriched pathways will be also printed out as a part of the output.}
 }
 \value{
-A character containing the rank of keyword-containing pathways (separated
-by |), followed by the total number of enriched pathways in parenthesis.
+A character containing the rank of keyword-containing pathways
+(separated by |), followed by the total number of enriched pathways in
+parenthesis.
 }
 \description{
 Once you provide RAVmodel, keyword you're searching for, and the RAV number
@@ -33,6 +34,5 @@ uniquely your keyword-containing pathways are represented.
 \examples{
 data(miniRAVmodel)
 findKeywordInRAV(miniRAVmodel, "Bcell", ind = 695)
-# [1] "1|2|3|4|5|6|9"
 
 }

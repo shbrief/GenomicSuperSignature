@@ -7,11 +7,12 @@
 getModel(prior = c("C2", "PLIERpriors"), load = TRUE)
 }
 \arguments{
-\item{prior}{The name of gene sets used to annotate PCAGenomicSignatures. Currently
-there are two available options.
+\item{prior}{The name of gene sets used to annotate PCAGenomicSignatures.
+Currently  there are two available options.
 \itemize{
     \item \code{C2} : MSigDB C2 (curated gene sets)
-    \item \code{PLIERpriors} : bloodCellMarkersIRISDMAP, svmMarkers, and canonicalPathways
+    \item \code{PLIERpriors} : bloodCellMarkersIRISDMAP, svmMarkers, and
+    canonicalPathways
 }}
 
 \item{load}{Default is \code{TRUE}. If it's set to \code{FALSE}, the models

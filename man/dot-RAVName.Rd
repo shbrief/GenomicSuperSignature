@@ -7,7 +7,7 @@
 .RAVName(x, ...)
 }
 \arguments{
-\item{x}{PCAGenomicSignature-object}
+\item{x}{PCAGenomicSignatures object}
 
 \item{...}{Additional arguments for supporting functions.}
 }
@@ -15,7 +15,8 @@
 a character vector
 }
 \description{
-Keep the name with 'k + cluster number + number of PCs + number of unique studies'
-info during the model construction to make it easy to keep track of them, but at the
-PCAGenomicSignatures-class object building step, covert them into 'RAV + cluster number'.
+Keep the name with 'k + cluster number + number of PCs + number
+of unique studies' info during the model construction to make it easy to keep
+track of them, but at the PCAGenomicSignatures-class object building step,
+covert them into 'RAV + cluster number'.
 }

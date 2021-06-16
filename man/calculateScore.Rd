@@ -7,16 +7,18 @@
 calculateScore(dataset, RAVmodel, rescale.after = TRUE)
 }
 \arguments{
-\item{dataset}{A gene expression matrix, where genes are in rows and rownames
-are in 'symbol' format. It can be SummarizedExperiment, ExpressionSet, or matrix objects.}
+\item{dataset}{A gene expression profile to be validated. Different classes
+of objects can be used including ExpressionSet, SummarizedExperiment,
+RangedSummarizedExperiment, or matrix. Rownames (genes) should be in symbol
+format. If it is a matrix, genes should be in rows and samples in columns.}
 
-\item{RAVmodel}{PCAGenomicSignatures object. Output from \code{buildAvgLoading}
-function, a matrix of avaerage loadings, can be directly provided.}
+\item{RAVmodel}{PCAGenomicSignatures object. A matrix of average loadings, an
+output from \code{buildAvgLoading}, can be directly provided.}
 
-\item{rescale.after}{If it is \code{TRUE}, the continuous scores are rescaled
-post assignment, so avgerage loadings have the same standard deviation in different
-studies. If it is \code{FALSE}, the rescaling of column (= dividing by \code{sqrt(sum(x^2})
-is done before score assignment. Default is \code{TRUE}.}
+\item{rescale.after}{Under the default (\code{TRUE}), the continuous scores
+are rescaled post assignment, so average loadings have the same standard
+deviation in different studies. If it is \code{FALSE}, the rescaling of
+column (= dividing by \code{sqrt(sum(x^2}) is done before score assignment.}
 }
 \value{
 A list containing the score matrices for input datasets. Scores are
@@ -30,5 +32,8 @@ data(miniRAVmodel)
 library(bcellViper)
 data(bcellViper)
 score <- calculateScore(dset, miniRAVmodel)
+
+data(miniTCGA)
+score <- calculateScore(miniTCGA, miniRAVmodel)
 
 }

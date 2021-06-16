@@ -18,9 +18,11 @@ run_gsea(
 \arguments{
 \item{geneList}{A list of genes ordered by rank}
 
-\item{TERM2GENE}{User input annotation of TERM TO GENE mapping, a data.frame of 2 column with term and gene}
+\item{TERM2GENE}{User input annotation of TERM TO GENE mapping, a data frame
+of 2 column with term and gene}
 
-\item{TERM2NAME}{User input of TERM TO NAME mapping, a data.frame of 2 column with term and name. Optional.}
+\item{TERM2NAME}{User input of TERM TO NAME mapping, a data.frame of 2 column
+with term and name. Optional.}
 
 \item{minGSSize}{A mininum size of gene set to be analyzed}
 
@@ -30,12 +32,15 @@ run_gsea(
 
 \item{verbose}{Logical. Default is \code{FALSE}}
 
-\item{...}{Any additional argument inherited from \code{\link[clusterProfiler]{GSEA}}.}
+\item{...}{Any additional argument inherited from
+\code{\link[clusterProfiler]{GSEA}}.}
 }
 \value{
-A list of \code{gseaResult} objects. \code{NA} if there is no enrichment result.
+A list of \code{gseaResult} objects. If there is no enrichment
+result, \code{NA} will be returned.
 }
 \description{
-This function is a wrapper of \code{\link[clusterProfiler]{GSEA}} function,
-making it applicable to a list of gene lists. Set seed for reproducible result.
+This function is a wrapper of
+\code{\link[clusterProfiler]{GSEA}} function, making it applicable to a list
+of gene lists. Set seed for reproducible result.
 }
