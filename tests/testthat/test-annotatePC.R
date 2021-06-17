@@ -13,8 +13,10 @@ test_that("Users should choose one of the top 8 PCs of their dataset", {
 
   res2 <- annotatePC(2, val_all, miniRAVmodel, trimed_pathway_len = 10)
   expect_equal(res2[2,], "KEGG_SPLIC...")
-  expect_error(annotatePC(9, val_all, miniRAVmodel))
-  expect_error(annotatePC(c(1:2, 9), val_all, miniRAVmodel))
+  expect_error(annotatePC(9, val_all, miniRAVmodel),
+               "PCnum should be an integer among c\\(1:8\\).")
+  expect_error(annotatePC(c(1:2, 9), val_all, miniRAVmodel),
+               "PCnum should be an integer among c\\(1:8\\).")
 })
 
 test_that("Extract multiple PCs", {
@@ -30,10 +32,10 @@ test_that("Extract multiple PCs", {
 test_that("Using absolute NES for subsetting", {
   res5 <- annotatePC(2:4, val_all, miniRAVmodel, nesCutoff = 1, abs = TRUE)
   expect_equal(res5[1,1], "REACTOME_CELL_CYCLE")
-  
+
   res6 <- annotatePC(2, val_all, miniRAVmodel, nesCutoff = 1, abs = FALSE)
   expect_true(is.na(res6[1,]))
-  
+
   res7 <- annotatePC(2, val_all, miniRAVmodel, abs = FALSE, simplify = FALSE)
   expect_equal(res7[[1]][1,1], "REACTOME_METABOLISM_OF_PROTEINS")
 })
