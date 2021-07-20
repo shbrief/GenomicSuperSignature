@@ -11,6 +11,13 @@
 "miniRAVmodel"
 
 
+#' @name droplist
+#' @title MeSH terms to be excluded in drawWordcloud function
+#' @format A character vector containing MeSH terms to be excluded.
+#' @author Sehyun Oh \email{shbrief@gmail.com}
+"droplist"
+
+
 #' @name miniAllZ
 #' @title Subset of allZ matrix constructed from 8 CRC training datasets
 #' @docType data

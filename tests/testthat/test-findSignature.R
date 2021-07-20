@@ -21,9 +21,9 @@ test_that("findSignature function", {
 test_that("findKeywordInRAV function", {
     res <- findKeywordInRAV(miniRAVmodel, "Bcell", ind = 695)
     expect_equal(res, "1|2|3|4|5|6|9 (out of 9)")
-    
-    expect_error(findKeywordInRAV(miniRAVmodel, "Bcell", ind =  1), 
-                 "Selected ind doesn't exist.")
-    expect_warning(findKeywordInRAV(miniRAVmodel, "hello", ind =  695), 
+
+    expect_error(findKeywordInRAV(miniRAVmodel, "Bcell", ind =  1),
+                 "Selected ind \\(RAV1\\) doesn't exist.")
+    expect_warning(findKeywordInRAV(miniRAVmodel, "hello", ind =  695),
                    "RAV695 doesn't have any pathway with the keyword, hello")
 })

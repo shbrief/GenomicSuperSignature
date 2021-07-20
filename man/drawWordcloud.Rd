@@ -9,7 +9,8 @@ drawWordcloud(
   ind,
   rm.noise = NULL,
   scale = c(3, 0.5),
-  weighted = TRUE
+  weighted = TRUE,
+  drop = NULL
 )
 }
 \arguments{
@@ -28,6 +29,10 @@ function}
 \item{weighted}{A logical. If \code{TRUE} (default), MeSH terms from each
 study are weighted based on the variance explained by the principle component
 of the study contributing to a given RAV.}
+
+\item{drop}{A character vector containing MeSH terms to be excluded from word
+cloud. Under the default (\code{NULL}), manually selected non-informative
+MeSH terms are excluded, which can be viewed through \code{data(droplist)}.}
 }
 \value{
 A word cloud with the MeSH terms associated with the given cluster.

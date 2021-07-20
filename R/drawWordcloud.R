@@ -48,8 +48,8 @@ PCinRAV <- function(RAVmodel, ind) {
 meshTable <- function(RAVmodel, ind, rm.noise = NULL, weighted = TRUE) {
 
     ### Check ind validity
-    .availableRAV(RAVmodel, ind)   
-    
+    .availableRAV(RAVmodel, ind)
+
     ### Remove noise
     if (is.null(rm.noise)) {
         s <- S4Vectors::metadata(RAVmodel)$size[paste0("RAV", ind)]
@@ -153,6 +153,9 @@ meshTable <- function(RAVmodel, ind, rm.noise = NULL, weighted = TRUE) {
 #' @param weighted A logical. If \code{TRUE} (default), MeSH terms from each
 #' study are weighted based on the variance explained by the principle component
 #' of the study contributing to a given RAV.
+#' @param drop A character vector containing MeSH terms to be excluded from word
+#' cloud. Under the default (\code{NULL}), manually selected non-informative
+#' MeSH terms are excluded, which can be viewed through \code{data(droplist)}.
 #'
 #' @return A word cloud with the MeSH terms associated with the given cluster.
 #'
@@ -162,11 +165,11 @@ meshTable <- function(RAVmodel, ind, rm.noise = NULL, weighted = TRUE) {
 #'
 #' @export
 drawWordcloud <- function(RAVmodel, ind, rm.noise = NULL, scale = c(3, 0.5),
-                         weighted = TRUE) {
+                          weighted = TRUE, drop = NULL) {
 
     # Check ind validity
-    .availableRAV(RAVmodel, ind) 
-    
+    .availableRAV(RAVmodel, ind)
+
     if (is.null(rm.noise)) {
         s <- S4Vectors::metadata(RAVmodel)$size[paste0("RAV", ind)]
         if (s < 8) {rm.noise = floor(s*0.5)}
@@ -175,6 +178,17 @@ drawWordcloud <- function(RAVmodel, ind, rm.noise = NULL, scale = c(3, 0.5),
 
     # MeSH word table
     all <- meshTable(RAVmodel, ind, rm.noise = rm.noise, weighted = weighted)
+
+    # Remove enriched MeSH term if it is in 'droplist'
+    if (!is.null(drop)) {
+        droplist <- drop
+    } else {
+        local_data_store <- new.env(parent = emptyenv())
+        data("droplist", envir = local_data_store, package = "GenomicSuperSignature")
+        droplist <- local_data_store[["droplist"]]
+    }
+    drop_ind <- which(all$word %in% droplist)
+    if (length(drop_ind) != 0) {all <- all[-drop_ind,]}
     if (nrow(all) == 0) {stop("No MeSH term is enriched.")}
 
     # generate the word cloud

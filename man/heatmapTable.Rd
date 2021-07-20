@@ -33,8 +33,8 @@ printed.}
 If any of the cutoff parameters are provided, \code{num.out} or the number of
 filtered RAVs, whichever smaller, will be chosen.}
 
-\item{scoreCutoff}{A numeric value for the minimum correlation. If
-\code{val_all} input is from multiple studies, the default is 0.7 and this is
+\item{scoreCutoff}{A numeric value for the minimum correlation (not include).
+If \code{val_all} input is from multiple studies, the default is 0.7 and this is
 the only cutoff criteria considered: \code{swCutoff} and \code{clsizeCutoff}
 will be ignored.}
 

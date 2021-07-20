@@ -17,7 +17,21 @@
 ### Check ind validity
 .availableRAV <- function(RAVmodel, ind) {
   availableRAV <- gsub("RAV", "", colData(RAVmodel)$RAV) %>% as.numeric
-  if (!ind %in% availableRAV) {stop("Selected ind doesn't exist.")}
+
+  ## Check whether the ind exists in the model
+  x <- vector(length = length(ind))
+  for (i in seq_along(ind)) {
+    if (!ind[i] %in% availableRAV) {
+      x[i] <- TRUE   # assign TRUE if index doesn't exist
+    }
+  }
+
+  ## Print error message if any of the ind doesn't exist.
+  if (any(x)) {
+    y <- paste(paste0("RAV",ind[x]), collapse=", ")  # combine non-existing ind
+    msg <- paste0("Selected ind (", y, ") doesn't exist.")
+    stop(msg)
+  }
 }
 
 
