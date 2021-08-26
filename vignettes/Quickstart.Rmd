@@ -2,6 +2,9 @@
 title: "GenomicSuperSignature - Quickstart"
 author: "Sehyun Oh"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
+abstract: |
+    This vigenette demostrates a basic usage of GenomicSuperSignature. More
+    extensive and biology-relavant use cases are available [**HERE**](https://shbrief.github.io/GenomicSuperSignaturePaper/).
 vignette: >
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteIndexEntry{Quickstart}
@@ -20,8 +23,8 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Setup
 
+# Setup
 ## Install and load package
 ```{r eval = FALSE}
 if (!require("BiocManager"))
@@ -73,10 +76,6 @@ You can provide your own expression dataset in any of these formats: simple
 matrix, ExpressionSet, or SummarizedExperiment. Just make sure that genes are 
 in a 'symbol' format. 
 
-
-## More examples
-You can find more usecases 
-[here](https://shbrief.github.io/GenomicSuperSignaturePaper/).
 
 
 
@@ -232,16 +231,13 @@ You can find the prior studies related to a given RAV using
 `findStudiesInCluster` function.
 
 ```{r}
-studyAccess <- findStudiesInCluster(RAVmodel, validated_ind[2])
-studyAccess
+findStudiesInCluster(RAVmodel, validated_ind[2])
 ```
 
+With the devel version (>= 1.1.7), you can easily extract the study name 
+through the new argument, `studyTitle=TRUE`.
 ```{r}
-dir <- system.file("extdata", package = "GenomicSuperSignature")
-studyMeta <- read.table(file.path(dir, "studyMeta.tsv.gz"))
-
-ind <- which(studyMeta$studyName %in% studyAccess)
-studyMeta[ind, c("studyName", "title")]
+findStudiesInCluster(RAVmodel, validated_ind[2], studyTitle = TRUE)
 ```
 
 
