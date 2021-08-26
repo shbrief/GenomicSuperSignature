@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GenomicSuperignature</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.7</span>
       </span>
     </div>
 
@@ -59,7 +59,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/shbrief/GenomicSuperSignature">
-    <span class="fas fa-github fa-lg"></span>
+    <span class="fa fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -73,13 +73,13 @@
 
       
 
-      </header><script src="Quickstart_files/header-attrs-2.8/header-attrs.js"></script><div class="row">
+      </header><script src="Quickstart_files/header-attrs-2.10/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>GenomicSuperSignature - Quickstart</h1>
                         <h4 class="author">Sehyun Oh</h4>
             
-            <h4 class="date">June 04, 2021</h4>
+            <h4 class="date">August 25, 2021</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/shbrief/GenomicSuperSignature/blob/master/vignettes/Quickstart.Rmd"><code>vignettes/Quickstart.Rmd</code></a></small>
       <div class="hidden name"><code>Quickstart.Rmd</code></div>
@@ -87,6 +87,10 @@
     </div>
 
     
+        <div class="abstract">
+      <p class="abstract">Abstract</p>
+      <p>This vigenette demostrates a basic usage of GenomicSuperSignature. More extensive and biology-relavant use cases are available <a href="https://shbrief.github.io/GenomicSuperSignaturePaper/"><strong>HERE</strong></a>.</p>
+    </div>
     
 <div id="setup" class="section level1">
 <h1 class="hasAnchor">
@@ -144,11 +148,6 @@
 <span class="co">#&gt; Annotation:</span></code></pre></div>
 <p>You can provide your own expression dataset in any of these formats: simple matrix, ExpressionSet, or SummarizedExperiment. Just make sure that genes are in a ‘symbol’ format.</p>
 </div>
-<div id="more-examples" class="section level2">
-<h2 class="hasAnchor">
-<a href="#more-examples" class="anchor"></a>More examples</h2>
-<p>You can find more usecases <a href="https://shbrief.github.io/GenomicSuperSignaturePaper/">here</a>.</p>
-</div>
 </div>
 <div id="which-rav-best-represents-the-dataset" class="section level1">
 <h1 class="hasAnchor">
@@ -172,7 +171,7 @@
 <p>Here, we print out top 5 validated RAVs with average silhouette width above 0.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/heatmapTable.html">heatmapTable</a></span><span class="op">(</span><span class="va">val_all</span>, num.out <span class="op">=</span> <span class="fl">5</span>, swCutoff <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></code></pre></div>
-<p><img src="Quickstart_files/figure-html/unnamed-chunk-5-1.png" width="40%" height="40%" style="display: block; margin: auto;"></p>
+<p><img src="Quickstart_files/figure-html/unnamed-chunk-5-1.png" width="80%" height="80%" style="display: block; margin: auto;"></p>
 </div>
 <div id="interactive-graph" class="section level2">
 <h2 class="hasAnchor">
@@ -224,13 +223,13 @@
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="co"># only if you want to reproduce identical display of the same words</span>
 <span class="fu"><a href="../reference/drawWordcloud.html">drawWordcloud</a></span><span class="op">(</span><span class="va">RAVmodel</span>, <span class="va">validated_ind</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></code></pre></div>
-<p><img src="Quickstart_files/figure-html/unnamed-chunk-7-1.png" width="50%" height="50%" style="display: block; margin: auto;"></p>
+<p><img src="Quickstart_files/figure-html/unnamed-chunk-7-1.png" width="60%" height="60%" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/drawWordcloud.html">drawWordcloud</a></span><span class="op">(</span><span class="va">RAVmodel</span>, <span class="va">validated_ind</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span></code></pre></div>
-<p><img src="Quickstart_files/figure-html/unnamed-chunk-7-2.png" width="50%" height="50%" style="display: block; margin: auto;"></p>
+<p><img src="Quickstart_files/figure-html/unnamed-chunk-7-2.png" width="60%" height="60%" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="../reference/drawWordcloud.html">drawWordcloud</a></span><span class="op">(</span><span class="va">RAVmodel</span>, <span class="va">validated_ind</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span></code></pre></div>
-<p><img src="Quickstart_files/figure-html/unnamed-chunk-7-3.png" width="50%" height="50%" style="display: block; margin: auto;"></p>
+<p><img src="Quickstart_files/figure-html/unnamed-chunk-7-3.png" width="60%" height="60%" style="display: block; margin: auto;"></p>
 </div>
 <div id="gsea" class="section level2">
 <h2 class="hasAnchor">
@@ -319,15 +318,11 @@
 <a href="#related-prior-studies" class="anchor"></a>Related prior studies</h2>
 <p>You can find the prior studies related to a given RAV using <code>findStudiesInCluster</code> function.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">studyAccess</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/findStudiesInCluster.html">findStudiesInCluster</a></span><span class="op">(</span><span class="va">RAVmodel</span>, <span class="va">validated_ind</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span>
-<span class="va">studyAccess</span>
+<code class="sourceCode R"><span class="fu"><a href="../reference/findStudiesInCluster.html">findStudiesInCluster</a></span><span class="op">(</span><span class="va">RAVmodel</span>, <span class="va">validated_ind</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span>
 <span class="co">#&gt; [1] "SRP028567" "SRP059057" "SRP095405" "SRP144647"</span></code></pre></div>
+<p>With the devel version (&gt;= 1.1.7), you can easily extract the study name through the new argument, <code>studyTitle=TRUE</code>.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">dir</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, package <span class="op">=</span> <span class="st">"GenomicSuperSignature"</span><span class="op">)</span>
-<span class="va">studyMeta</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html">read.table</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="va">dir</span>, <span class="st">"studyMeta.tsv.gz"</span><span class="op">)</span><span class="op">)</span>
-
-<span class="va">ind</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/which.html">which</a></span><span class="op">(</span><span class="va">studyMeta</span><span class="op">$</span><span class="va">studyName</span> <span class="op"><a href="https://rdrr.io/r/base/match.html">%in%</a></span> <span class="va">studyAccess</span><span class="op">)</span>
-<span class="va">studyMeta</span><span class="op">[</span><span class="va">ind</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"studyName"</span>, <span class="st">"title"</span><span class="op">)</span><span class="op">]</span>
+<code class="sourceCode R"><span class="fu"><a href="../reference/findStudiesInCluster.html">findStudiesInCluster</a></span><span class="op">(</span><span class="va">RAVmodel</span>, <span class="va">validated_ind</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, studyTitle <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
 <span class="co">#&gt;      studyName</span>
 <span class="co">#&gt; 1045 SRP028567</span>
 <span class="co">#&gt; 2025 SRP059057</span>
@@ -345,7 +340,7 @@
 <a href="#session-info" class="anchor"></a>Session Info</h1>
 <details><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; R version 4.1.0 (2021-05-18)</span>
+<span class="co">#&gt; R version 4.1.1 (2021-08-10)</span>
 <span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span>
 <span class="co">#&gt; Running under: Ubuntu 18.04.5 LTS</span>
 <span class="co">#&gt; </span>
@@ -366,52 +361,52 @@
 <span class="co">#&gt; [8] methods   base     </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; other attached packages:</span>
-<span class="co">#&gt;  [1] bcellViper_1.28.0           GenomicSuperSignature_1.1.4</span>
+<span class="co">#&gt;  [1] bcellViper_1.28.0           GenomicSuperSignature_1.1.7</span>
 <span class="co">#&gt;  [3] SummarizedExperiment_1.22.0 Biobase_2.52.0             </span>
-<span class="co">#&gt;  [5] GenomicRanges_1.44.0        GenomeInfoDb_1.28.0        </span>
+<span class="co">#&gt;  [5] GenomicRanges_1.44.0        GenomeInfoDb_1.28.1        </span>
 <span class="co">#&gt;  [7] IRanges_2.26.0              S4Vectors_0.30.0           </span>
-<span class="co">#&gt;  [9] BiocGenerics_0.38.0         MatrixGenerics_1.4.0       </span>
-<span class="co">#&gt; [11] matrixStats_0.58.0          BiocStyle_2.20.0           </span>
+<span class="co">#&gt;  [9] BiocGenerics_0.38.0         MatrixGenerics_1.4.2       </span>
+<span class="co">#&gt; [11] matrixStats_0.60.0          BiocStyle_2.20.2           </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; loaded via a namespace (and not attached):</span>
-<span class="co">#&gt;   [1] colorspace_2.0-1       ggsignif_0.6.1         rjson_0.2.20          </span>
-<span class="co">#&gt;   [4] ellipsis_0.3.2         rio_0.5.26             rprojroot_2.0.2       </span>
-<span class="co">#&gt;   [7] circlize_0.4.12        XVector_0.32.0         GlobalOptions_0.1.2   </span>
+<span class="co">#&gt;   [1] colorspace_2.0-2       ggsignif_0.6.2         rjson_0.2.20          </span>
+<span class="co">#&gt;   [4] ellipsis_0.3.2         rio_0.5.27             rprojroot_2.0.2       </span>
+<span class="co">#&gt;   [7] circlize_0.4.13        XVector_0.32.0         GlobalOptions_0.1.2   </span>
 <span class="co">#&gt;  [10] fs_1.5.0               clue_0.3-59            farver_2.1.0          </span>
 <span class="co">#&gt;  [13] ggpubr_0.4.0           bit64_4.0.5            fansi_0.5.0           </span>
 <span class="co">#&gt;  [16] codetools_0.2-18       doParallel_1.0.16      cachem_1.0.5          </span>
 <span class="co">#&gt;  [19] knitr_1.33             jsonlite_1.7.2         Cairo_1.5-12.2        </span>
-<span class="co">#&gt;  [22] broom_0.7.6            cluster_2.1.2          dbplyr_2.1.1          </span>
-<span class="co">#&gt;  [25] png_0.1-7              readr_1.4.0            BiocManager_1.30.15   </span>
-<span class="co">#&gt;  [28] compiler_4.1.0         httr_1.4.2             backports_1.2.1       </span>
-<span class="co">#&gt;  [31] assertthat_0.2.1       Matrix_1.3-3           fastmap_1.1.0         </span>
-<span class="co">#&gt;  [34] htmltools_0.5.1.1      tools_4.1.0            gtable_0.3.0          </span>
-<span class="co">#&gt;  [37] glue_1.4.2             GenomeInfoDbData_1.2.6 dplyr_1.0.6           </span>
-<span class="co">#&gt;  [40] rappdirs_0.3.3         Rcpp_1.0.6             carData_3.0-4         </span>
+<span class="co">#&gt;  [22] broom_0.7.9            cluster_2.1.2          dbplyr_2.1.1          </span>
+<span class="co">#&gt;  [25] png_0.1-7              readr_2.0.1            BiocManager_1.30.16   </span>
+<span class="co">#&gt;  [28] compiler_4.1.1         httr_1.4.2             backports_1.2.1       </span>
+<span class="co">#&gt;  [31] assertthat_0.2.1       Matrix_1.3-4           fastmap_1.1.0         </span>
+<span class="co">#&gt;  [34] htmltools_0.5.1.1      tools_4.1.1            gtable_0.3.0          </span>
+<span class="co">#&gt;  [37] glue_1.4.2             GenomeInfoDbData_1.2.6 dplyr_1.0.7           </span>
+<span class="co">#&gt;  [40] rappdirs_0.3.3         Rcpp_1.0.7             carData_3.0-4         </span>
 <span class="co">#&gt;  [43] cellranger_1.1.0       jquerylib_0.1.4        pkgdown_1.6.1         </span>
-<span class="co">#&gt;  [46] vctrs_0.3.8            iterators_1.0.13       xfun_0.23             </span>
-<span class="co">#&gt;  [49] stringr_1.4.0          openxlsx_4.2.3         lifecycle_1.0.0       </span>
+<span class="co">#&gt;  [46] vctrs_0.3.8            iterators_1.0.13       xfun_0.25             </span>
+<span class="co">#&gt;  [49] stringr_1.4.0          openxlsx_4.2.4         lifecycle_1.0.0       </span>
 <span class="co">#&gt;  [52] rstatix_0.7.0          zlibbioc_1.38.0        scales_1.1.1          </span>
-<span class="co">#&gt;  [55] ragg_1.1.2             hms_1.1.0              RColorBrewer_1.1-2    </span>
-<span class="co">#&gt;  [58] ComplexHeatmap_2.8.0   yaml_2.2.1             curl_4.3.1            </span>
-<span class="co">#&gt;  [61] memoise_2.0.0          ggplot2_3.3.3          sass_0.4.0            </span>
-<span class="co">#&gt;  [64] stringi_1.6.2          RSQLite_2.2.7          highr_0.9             </span>
+<span class="co">#&gt;  [55] ragg_1.1.3             hms_1.1.0              RColorBrewer_1.1-2    </span>
+<span class="co">#&gt;  [58] ComplexHeatmap_2.8.0   yaml_2.2.1             curl_4.3.2            </span>
+<span class="co">#&gt;  [61] memoise_2.0.0          ggplot2_3.3.5          sass_0.4.0            </span>
+<span class="co">#&gt;  [64] stringi_1.7.3          RSQLite_2.2.7          highr_0.9             </span>
 <span class="co">#&gt;  [67] desc_1.3.0             foreach_1.5.1          filelock_1.0.2        </span>
-<span class="co">#&gt;  [70] zip_2.1.1              shape_1.4.6            rlang_0.4.11          </span>
+<span class="co">#&gt;  [70] zip_2.2.0              shape_1.4.6            rlang_0.4.11          </span>
 <span class="co">#&gt;  [73] pkgconfig_2.0.3        systemfonts_1.0.2      bitops_1.0-7          </span>
 <span class="co">#&gt;  [76] evaluate_0.14          lattice_0.20-44        purrr_0.3.4           </span>
 <span class="co">#&gt;  [79] labeling_0.4.2         bit_4.0.4              tidyselect_1.1.1      </span>
-<span class="co">#&gt;  [82] magrittr_2.0.1         bookdown_0.22          R6_2.5.0              </span>
+<span class="co">#&gt;  [82] magrittr_2.0.1         bookdown_0.23          R6_2.5.0              </span>
 <span class="co">#&gt;  [85] magick_2.7.2           generics_0.1.0         DelayedArray_0.18.0   </span>
-<span class="co">#&gt;  [88] DBI_1.1.1              withr_2.4.2            pillar_1.6.1          </span>
-<span class="co">#&gt;  [91] haven_2.4.1            foreign_0.8-81         abind_1.4-5           </span>
-<span class="co">#&gt;  [94] RCurl_1.98-1.3         tibble_3.1.2           crayon_1.4.1          </span>
-<span class="co">#&gt;  [97] car_3.0-10             wordcloud_2.6          utf8_1.2.1            </span>
-<span class="co">#&gt; [100] BiocFileCache_2.0.0    rmarkdown_2.8          GetoptLong_1.0.5      </span>
-<span class="co">#&gt; [103] grid_4.1.0             readxl_1.3.1           data.table_1.14.0     </span>
-<span class="co">#&gt; [106] blob_1.2.1             forcats_0.5.1          digest_0.6.27         </span>
-<span class="co">#&gt; [109] tidyr_1.1.3            textshaping_0.3.4      munsell_0.5.0         </span>
-<span class="co">#&gt; [112] bslib_0.2.5.1</span></code></pre></div>
+<span class="co">#&gt;  [88] DBI_1.1.1              withr_2.4.2            pillar_1.6.2          </span>
+<span class="co">#&gt;  [91] haven_2.4.3            foreign_0.8-81         abind_1.4-5           </span>
+<span class="co">#&gt;  [94] RCurl_1.98-1.3         tibble_3.1.3           crayon_1.4.1          </span>
+<span class="co">#&gt;  [97] car_3.0-11             wordcloud_2.6          utf8_1.2.2            </span>
+<span class="co">#&gt; [100] BiocFileCache_2.0.0    tzdb_0.1.2             rmarkdown_2.10        </span>
+<span class="co">#&gt; [103] GetoptLong_1.0.5       grid_4.1.1             readxl_1.3.1          </span>
+<span class="co">#&gt; [106] data.table_1.14.0      blob_1.2.2             forcats_0.5.1         </span>
+<span class="co">#&gt; [109] digest_0.6.27          tidyr_1.1.3            textshaping_0.3.5     </span>
+<span class="co">#&gt; [112] munsell_0.5.0          bslib_0.2.5.1</span></code></pre></div>
 </details>
 </div>
   </div>

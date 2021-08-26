@@ -73,7 +73,7 @@ the results as an object of class prcomp." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GenomicSuperignature</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.7</span>
       </span>
     </div>
 
@@ -101,7 +101,7 @@ the results as an object of class prcomp." />
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/shbrief/GenomicSuperSignature">
-    <span class="fas fa-github fa-lg"></span>
+    <span class="fa fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -152,30 +152,30 @@ samples in the columns.</p></td>
     <pre class="examples"><span class='r-in'><span class='va'>m</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/matrix.html'>matrix</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/stats/Normal.html'>rnorm</a></span><span class='op'>(</span><span class='fl'>100</span><span class='op'>)</span>,ncol<span class='op'>=</span><span class='fl'>5</span><span class='op'>)</span></span>
 <span class='r-in'><span class='fu'>extractPC</span><span class='op'>(</span><span class='va'>m</span><span class='op'>)</span></span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> Standard deviations (1, .., p=5):</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 3.462628e+00 2.635527e+00 2.048566e+00 1.793355e+00 3.260295e-16</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [1] 3.302708e+00 2.438158e+00 2.341146e+00 1.786600e+00 3.214289e-16</span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> </span>
 <span class='r-out co'><span class='r-pr'>#&gt;</span> Rotation (n x k) = (20 x 5):</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>               PC1         PC2         PC3         PC4          PC5</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>  [1,] -0.27817111  0.05211119 -0.11572250 -0.13258313  0.446620081</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>  [2,] -0.25781771 -0.10774861  0.19253027 -0.29931773  0.200232784</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>  [3,] -0.18316536 -0.10058578  0.16154914  0.22734894 -0.133518208</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>  [4,] -0.15063325  0.21384779 -0.36145699  0.22607761 -0.474963296</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>  [5,] -0.03920223  0.25439266 -0.42816101 -0.07622255  0.124950051</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>  [6,] -0.17643716  0.05993438  0.07852034  0.10815339 -0.142913545</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>  [7,]  0.04612530 -0.24226732 -0.24885230 -0.25920122  0.192000259</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>  [8,]  0.35603860  0.04776492 -0.15131688 -0.21821680  0.211340008</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span>  [9,]  0.33340107  0.03722977 -0.33642680  0.21989622  0.197029951</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> [10,] -0.16287093 -0.43742079 -0.07861413  0.29556024  0.213584920</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> [11,]  0.28832671 -0.22907157  0.38446024  0.10328921 -0.188371288</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> [12,] -0.24629769  0.13943986 -0.06705856  0.01977356 -0.082088228</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> [13,]  0.27247685  0.12347589 -0.01783349 -0.06982633 -0.102853358</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> [14,]  0.07319654 -0.26377437 -0.19423345 -0.31576440 -0.327596488</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> [15,]  0.13534655 -0.41392224 -0.06851865  0.01876046 -0.006876494</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> [16,]  0.11938549 -0.11500067  0.13399079 -0.46023146 -0.165176069</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> [17,]  0.23442431 -0.05144069 -0.17261310 -0.03517784 -0.177602986</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> [18,]  0.10378941 -0.24158519 -0.28505106  0.11795914 -0.113636177</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> [19,] -0.41744609 -0.34635912 -0.26987205 -0.19674922 -0.220256171</span>
-<span class='r-out co'><span class='r-pr'>#&gt;</span> [20,] -0.06865701  0.29248787  0.04729210 -0.37462158 -0.185998875</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>               PC1         PC2         PC3          PC4         PC5</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [1,]  0.15941075  0.21443742  0.11097515 -0.118658049  0.44462676</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [2,] -0.07964333 -0.25806106  0.68789939  0.035648797 -0.37938022</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [3,] -0.24103561 -0.04251069 -0.03738448 -0.239792689  0.16432569</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [4,] -0.27308728  0.05468303 -0.17189738  0.143960908  0.02509908</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [5,] -0.21269393  0.33629188 -0.15738918 -0.078719210 -0.42128433</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [6,] -0.18414627  0.15268476  0.20914856 -0.004411023 -0.21683073</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [7,] -0.20514899 -0.31279927 -0.01962280  0.285156730  0.04034952</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [8,] -0.07553045 -0.33383038 -0.24675322  0.248762683  0.11523513</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span>  [9,] -0.19991895  0.01496008  0.05413004 -0.051103678  0.02581457</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [10,]  0.12810801  0.16955408 -0.15852543  0.363389372 -0.19307526</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [11,]  0.36637335 -0.17178610 -0.16213626 -0.020029425  0.07347223</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [12,]  0.31416373 -0.33469021  0.09826708  0.235778903 -0.08865577</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [13,] -0.08926130  0.32990767  0.30876869  0.467460692  0.48829342</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [14,]  0.31649779  0.19533794  0.27680224 -0.294270685  0.07133737</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [15,] -0.27491128 -0.05477457 -0.07794636  0.046840183  0.02270141</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [16,]  0.25025691 -0.19659199 -0.06012648 -0.158682255  0.02549688</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [17,]  0.16294224  0.21183912 -0.17417224  0.308542686 -0.16628562</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [18,]  0.22526162  0.27318752  0.14669340  0.314365117 -0.16266181</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [19,]  0.17912943  0.22124692 -0.23609442 -0.151026054 -0.19110115</span>
+<span class='r-out co'><span class='r-pr'>#&gt;</span> [20,]  0.25219000 -0.09659323 -0.02229558  0.130509686 -0.06946018</span>
 <span class='r-in'></span>
 </pre>
   </div>
