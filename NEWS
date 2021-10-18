@@ -1,3 +1,23 @@
+CHANGES IN VERSION 1.2.0
+------------------------
+    o [Bug Fix]
+    - `n` argument of `annotatePC` was hard-coded. Now it can return
+    different number of enriched pathways.
+    - `abs` argument of `annotatePC` was fixed.
+    - Fix wrongfully assigned variable within `plotAnnotatedPCA` function.
+
+    o [Major]
+    - `drawWordcloud` has a new argument `droplist`.
+    - Argument name for `plotAnnotatedPCA` is changed from `PCs` to `PCnum`.
+    - New argument `studyTitle` for `findStudiesInCluster` function.
+
+    o [Minor]
+    - Description of the package is updated.
+    - If non-existing index is provided for any function, it will return with
+    the error message.
+
+
+
 CHANGES IN VERSION 1.0.0
 ------------------------
     o Initial release of the 'GenomicSuperSignature' package
