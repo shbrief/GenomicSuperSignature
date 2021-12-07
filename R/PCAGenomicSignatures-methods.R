@@ -14,8 +14,8 @@
 #' @return a character vector
 #'
 .RAVName <- function(x, ...) {
-    x@colData$RAV <- rownames(x@colData)
     rownames(x@colData) <- paste0("RAV", seq_len(ncol(x)))
+    x@colData$RAV <- rownames(x@colData)
     return(x)
 }
 
