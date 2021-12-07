@@ -33,6 +33,7 @@
 #'    \item RAVindex : Equivalent to \code{assays(x)$RAVindex}
 #'    \item geneSets : Access the \code{metadata(x)$geneSets} slot
 #'    \item updateNote : Access the \code{metadata(x)$updateNote} slot
+#'    \item version : Access the \code{metadata(x)$version} slot
 #' }
 #'
 #' @param x A \code{GenomicSignatures} object
@@ -81,6 +82,16 @@ setGeneric("updateNote", function(x) standardGeneric("updateNote"))
 #' @rdname GenomicSignatures-methods
 setMethod("updateNote", "GenomicSignatures", function(x) {
     out <- metadata(x)$updateNote
+    return(out)
+})
+
+#' @export
+setGeneric("version", function(x) standardGeneric("version"))
+
+#' @exportMethod version
+#' @rdname GenomicSignatures-methods
+setMethod("version", "GenomicSignatures", function(x) {
+    out <- metadata(x)$version
     return(out)
 })
 
