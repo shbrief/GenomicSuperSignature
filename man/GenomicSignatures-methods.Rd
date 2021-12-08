@@ -12,6 +12,7 @@
 \alias{RAVindex,GenomicSignatures-method}
 \alias{geneSets,GenomicSignatures-method}
 \alias{updateNote,GenomicSignatures-method}
+\alias{version,GenomicSignatures-method}
 \alias{geneSets<-,GenomicSignatures-method}
 \alias{updateNote<-,GenomicSignatures-method}
 \title{Methods and accesors for \code{GenomicSignatures} object}
@@ -21,6 +22,8 @@
 \S4method{geneSets}{GenomicSignatures}(x)
 
 \S4method{updateNote}{GenomicSignatures}(x)
+
+\S4method{version}{GenomicSignatures}(x)
 
 \S4method{geneSets}{GenomicSignatures}(x) <- value
 
@@ -68,6 +71,7 @@ Setter method values (i.e., \code{function(x) <- value}):
    \item RAVindex : Equivalent to \code{assays(x)$RAVindex}
    \item geneSets : Access the \code{metadata(x)$geneSets} slot
    \item updateNote : Access the \code{metadata(x)$updateNote} slot
+   \item version : Access the \code{metadata(x)$version} slot
 }
 }
 
