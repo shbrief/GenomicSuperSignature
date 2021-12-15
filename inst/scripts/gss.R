@@ -19,6 +19,8 @@ option_list <- list(
                 default = NULL, help = "Output file name"),
     make_option(c("--validate"), type = "character",
                 default = NULL, help = "Path to save validate.csv"),
+    make_option(c("--sampleScore"), type = "character",
+                default = NULL, help = "Path to save sampleScore.csv"),
     make_option(c("--html"), type = "character",
                 default = NULL, help = "Path to save HTML report"),
     make_option(c("--numOut"), type = "integer",
@@ -58,6 +60,9 @@ validated_ind <- validatedSignatures(val_all, num.out = num_out,
                                      swCutoff = 0, indexOnly = TRUE)
 n <- min(num_out, length(validated_ind), na.rm = TRUE)
 
+### sample score ---------------------------------------------------------------
+score <- calculateScore(dat, rav_model)
+
 ### Save tables in csv ---------------------------------------------------------
 # Validation
 if (is.null(opt$validate)) {
@@ -66,6 +71,16 @@ if (is.null(opt$validate)) {
     output_fname <- opt$validate
 }
 write.csv(val_all,
+          file = output_fname,
+          row.names = TRUE)
+
+# Sample Score
+if (is.null(opt$sampleScore)) {
+    output_fname <- file.path(out_dir, paste0(input_name, "_sampleScore.csv"))
+} else {
+    output_fname <- opt$sampleScore
+}
+write.csv(score,
           file = output_fname,
           row.names = TRUE)
 
@@ -84,7 +99,7 @@ for (i in seq_len(n)) {
 # Related prior studies
 for (i in seq_len(n)) {
     rav_num <- validated_ind[i]
-    res <- findStudiesInCluster(rav_model, rav_num)
+    res <- findStudiesInCluster(rav_model, rav_num, studyTitle = TRUE)
 
     output_fname <- paste0(input_name, "_literatures_RAV", rav_num, ".csv")
     write.csv(res,
@@ -106,7 +121,8 @@ rmarkdown::render(
         dat = dat,
         RAVmodel = rav_model,
         inputName = input_name,
-        numOut = num_out
+        numOut = num_out,
+        score = score
     ),
     output_file = output_fname,
     intermediates_dir = ".",

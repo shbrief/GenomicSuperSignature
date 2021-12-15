@@ -12,6 +12,7 @@ params:
     RAVmodel: RAVmodel
     inputName: inputName
     numOut: numOut
+    score: score
 ---
 
 ```{r setup, include=FALSE}
@@ -44,6 +45,21 @@ width above 0.
 
 ```{r out.height="45%", out.width="45%", message=FALSE, warning=FALSE}
 heatmapTable(params$val_all, num.out = params$numOut, swCutoff = 0)
+```
+
+## Sample Score
+RAV-assigned scores for each sample can be used to compare the features 
+represented by the given RAV across different datasets. Below shows a part 
+of sample scores in a heatmap, where scores are assigned to each sample (row) 
+from each RAV (column).
+The complete result is saved as `{input_name}__sampleScore.csv`.
+
+```{r out.height="65%", out.width="65%"}
+k <- min(nrow(params$score), 10)
+sampleScoreHeatmap(params$score[seq_len(k),], 
+                   dataName = params$inputName, 
+                   modelName = "RAV",
+                   column_names_gp = 10)
 ```
 
 ## Interactive Graph
