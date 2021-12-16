@@ -56,7 +56,7 @@ findStudiesInCluster <- function(RAVmodel, ind = NULL, studyTitle = FALSE) {
     }
   } else {
     for (i in ind) {
-      studies <- rownames(z[which(z[,i] == 1),])
+      studies <- rownames(z)[which(z[,i] == 1)]
       studies <- lapply(studies,
                         function(x) {unlist(strsplit(x, "\\."))[1]})
       studies <- unique(unlist(studies))  # remove redundancy
