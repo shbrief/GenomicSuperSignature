@@ -28,7 +28,7 @@ searchPathways <- function(RAVmodel, gsea.dir) {
     # If there is no enriched pathways
     if (nrow(res) == 0) {
       resName <- paste0("RAV", i)
-      gsea_all[[resName]] <- NA
+      gsea_all[[resName]] <- res[, c("Description", "NES", "pvalue", "qvalues"), drop = FALSE]
       print(paste("RAV", i, "has no enriched pathways."))
       next
     }
