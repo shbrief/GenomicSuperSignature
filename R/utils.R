@@ -35,3 +35,42 @@
 }
 
 
+## Restructure RAVmodel metadata slot
+.RAVmodelVersion <- function(RAVmodel) {
+  if (version(RAVmodel) == ">= 0.0.7") {
+    cluster <- S4Vectors::metadata(RAVmodel)$cluster
+  } else {
+    cluster <- colData(RAVmodel)$cluster
+  }
+}
+
+
+## Extract variance explained by PCs in a given cluster
+.varByPCsInCluster <- function(RAVmodel, ind) {
+  # components in clusters
+  cl_membership <- metadata(RAVmodel)$cluster
+  components <- names(which(cl_membership == ind))
+
+  # PCA summary
+  pcaSummary <- trainingData(RAVmodel)$PCAsummary
+  Projs <- lapply(components, function(x) {
+    unlist(strsplit(x, "\\."))[1] %>% as.character
+  }) %>% unlist
+  data <- pcaSummary[Projs]
+
+  # Extract variance explained
+  input_summary <- as.data.frame(matrix(ncol = 3, nrow = length(data)))
+  colnames(input_summary) <- c("studyName", "PC", "Variance explained (%)")
+
+  for (i in seq_along(data)) {
+    studyname <- Projs[i]
+    j <- unlist(strsplit(components[i], "\\.PC"))[2] %>% as.numeric
+    var <- data[[i]]["Variance",j]
+
+    input_summary[i, 1] <- studyname
+    input_summary[i, 2] <- j
+    input_summary[i, 3] <- round(var*100, digits = 2)
+  }
+
+  return(input_summary)
+}
