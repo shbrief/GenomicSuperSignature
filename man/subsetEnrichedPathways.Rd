@@ -4,7 +4,13 @@
 \alias{subsetEnrichedPathways}
 \title{Subset enriched pathways of RAV}
 \usage{
-subsetEnrichedPathways(RAVmodel, ind = NULL, n = 10, both = FALSE)
+subsetEnrichedPathways(
+  RAVmodel,
+  ind = NULL,
+  n = 10,
+  both = FALSE,
+  include_nes = FALSE
+)
 }
 \arguments{
 \item{RAVmodel}{PCAGenomicSignatures object. Also an output from
@@ -20,6 +26,9 @@ normalized enrichment score (NES).}
 \item{both}{Default is \code{FALSE}, where only the top \code{n} pathways
 will be printed. If it is set to \code{TRUE}, the output will contain both
 top and bottom \code{n} pathways.}
+
+\item{include_nes}{Defalt is \code{FALSE}. If it set to \code{TRUE}, the
+output will include both description and NES of the enriched pathway.}
 }
 \value{
 A DataFrame with top and bottom \code{n} pathways from the
