@@ -82,6 +82,7 @@ Collate:
     'findSignature.R'
     'findStudiesInCluster.R'
     'funcForGSEA.R'
+    'getMetadata.R'
     'getModel.R'
     'heatmapTable.R'
     'plotAnnotatedPCA.R'
