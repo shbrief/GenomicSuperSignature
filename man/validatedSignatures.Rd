@@ -6,18 +6,23 @@
 \usage{
 validatedSignatures(
   val_all,
+  RAVmodel,
   num.out = 5,
   scoreCutoff = NULL,
   swCutoff = NULL,
   clsizeCutoff = NULL,
   indexOnly = FALSE,
-  whichPC = NULL
+  whichPC = NULL,
+  filterMessage = TRUE
 )
 }
 \arguments{
 \item{val_all}{An output matrix from \code{\link{validate}} function. If this
 input is from multiple datasets, only \code{scoreCutoff} argument will be
 considered and other inputs will be ignored.}
+
+\item{RAVmodel}{PCAGenomicSignatures-class object. RAVmodel used to prepare
+\code{val_all} input.}
 
 \item{num.out}{A number of highly validated RAVs to output. Default is 5.
 If any of the cutoff parameters are provided, \code{num.out} or the number of
@@ -38,6 +43,11 @@ printed.}
 \item{whichPC}{An integer value between 1 and 8. PC number of your data to
 check the validated signatures with. Under the default (\code{NULL}), it
 outputs top scored signatures with any PC of your data.}
+
+\item{filterMessage}{A logical. Under the default \code{TRUE}, any output
+RAV belong to the filtering list will give a message. Silence this message
+with \code{filterMessage=FALSE}. You can check the filter list using
+\code{data("filterList")}.}
 }
 \value{
 A subset of the input matrix, which meets the given condition.
@@ -50,6 +60,6 @@ data(miniRAVmodel)
 library(bcellViper)
 data(bcellViper)
 val_all <- validate(dset, miniRAVmodel)
-validatedSignatures(val_all, num.out = 3, scoreCutoff = 0)
+validatedSignatures(val_all, RAVmodel, num.out = 3, scoreCutoff = 0)
 
 }

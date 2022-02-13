@@ -4,7 +4,13 @@
 \alias{meshTable}
 \title{Build a two-column word/frequency table}
 \usage{
-meshTable(RAVmodel, ind, rm.noise = NULL, weighted = TRUE)
+meshTable(
+  RAVmodel,
+  ind,
+  rm.noise = NULL,
+  weighted = TRUE,
+  filterMessage = TRUE
+)
 }
 \arguments{
 \item{RAVmodel}{A PCAGenomicSignatures object}
@@ -19,6 +25,11 @@ the MeSH terms in RAV will be used to draw wordcloud.}
 \item{weighted}{A logical. If \code{TRUE}, MeSH terms from each study are
 weighted based on the variance explained by the principle component of the
 study contributing a give RAV. Default is \code{TRUE}.}
+
+\item{filterMessage}{A logical. Under the default \code{TRUE}, any output
+RAV belong to the filtering list will give a message. Silence this message
+with \code{filterMessage=FALSE}. You can check the filter list using
+\code{data("filterList")}.}
 }
 \value{
 A table with two columns, \code{word} and \code{freq}. MeSH terms in

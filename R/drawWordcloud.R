@@ -15,9 +15,21 @@
 #'
 #' @export
 PCinRAV <- function(RAVmodel, ind) {
-    cluster <- S4Vectors::metadata(RAVmodel)$cluster
-    k <- which(cluster == ind)
-    out <- names(k)
+
+    ## Switching metadata structure of RAVmodel
+    if (version(RAVmodel) == ">= 0.0.7" | version(RAVmodel) == ">= 0.0.6") {
+        cluster <- S4Vectors::metadata(RAVmodel)$cluster
+        k <- which(cluster == ind)
+        out <- names(k)
+    } else {
+        ##### update with RAVmodel restructure #####
+        # cluster <- colData(RAVmodel)$cluster
+        # out <- cluster[[paste0("RAV", ind)]]
+        cluster <- S4Vectors::metadata(RAVmodel)$cluster
+        k <- which(cluster == ind)
+        out <- names(k)
+    }
+
     return(out)
 }
 
@@ -36,6 +48,10 @@ PCinRAV <- function(RAVmodel, ind) {
 #' @param weighted A logical. If \code{TRUE}, MeSH terms from each study are
 #' weighted based on the variance explained by the principle component of the
 #' study contributing a give RAV. Default is \code{TRUE}.
+#' @param filterMessage A logical. Under the default \code{TRUE}, any output
+#' RAV belong to the filtering list will give a message. Silence this message
+#' with \code{filterMessage=FALSE}. You can check the filter list using
+#' \code{data("filterList")}.
 #'
 #' @return A table with two columns, \code{word} and \code{freq}. MeSH terms in
 #' the defined RAV (by \code{ind} argument) is ordered based on their frequency.
@@ -45,16 +61,21 @@ PCinRAV <- function(RAVmodel, ind) {
 #' meshTable(miniRAVmodel,1139)
 #'
 #' @export
-meshTable <- function(RAVmodel, ind, rm.noise = NULL, weighted = TRUE) {
+meshTable <- function(RAVmodel, ind, rm.noise = NULL,
+                      weighted = TRUE, filterMessage = TRUE) {
 
     ### Check ind validity
     .availableRAV(RAVmodel, ind)
 
+    ### Check the RAV quality
+    .lowQualityRAVs(RAVmodel, ind, filterMessage)
+
     ### Remove noise
     if (is.null(rm.noise)) {
         s <- S4Vectors::metadata(RAVmodel)$size[paste0("RAV", ind)]
-        if (s < 8) {rm.noise = floor(s*0.5)}
-        else if (s >= 8) {rm.noise = 4}
+        # s <- colData(RAVmodel)$size[paste0("RAV", ind)] ## update with RAVmodel restructure
+        if (s < 8) {rm.noise <- floor(s*0.5)}
+        else if (s >= 8) {rm.noise <- 4}
     }
 
     ### Create a 'universe' for bag-of-words model
@@ -156,6 +177,10 @@ meshTable <- function(RAVmodel, ind, rm.noise = NULL, weighted = TRUE) {
 #' @param drop A character vector containing MeSH terms to be excluded from word
 #' cloud. Under the default (\code{NULL}), manually selected non-informative
 #' MeSH terms are excluded, which can be viewed through \code{data(droplist)}.
+#' @param filterMessage A logical. Under the default \code{TRUE}, any output
+#' RAV belong to the filtering list will give a message. Silence this message
+#' with \code{filterMessage=FALSE}. You can check the filter list using
+#' \code{data("filterList")}.
 #'
 #' @return A word cloud with the MeSH terms associated with the given cluster.
 #'
@@ -165,19 +190,24 @@ meshTable <- function(RAVmodel, ind, rm.noise = NULL, weighted = TRUE) {
 #'
 #' @export
 drawWordcloud <- function(RAVmodel, ind, rm.noise = NULL, scale = c(3, 0.5),
-                          weighted = TRUE, drop = NULL) {
+                          weighted = TRUE, drop = NULL, filterMessage = TRUE) {
 
     # Check ind validity
     .availableRAV(RAVmodel, ind)
 
+    # Check the RAV quality
+    .lowQualityRAVs(RAVmodel, ind, filterMessage)
+
     if (is.null(rm.noise)) {
         s <- S4Vectors::metadata(RAVmodel)$size[paste0("RAV", ind)]
-        if (s < 8) {rm.noise = floor(s*0.5)}
-        else if (s >= 8) {rm.noise = 4}
+        # s <- colData(RAVmodel)$size[paste0("RAV", ind)] ## update with RAVmodel restructure
+        if (s < 8) {rm.noise <- floor(s*0.5)}
+        else if (s >= 8) {rm.noise <- 4}
     }
 
     # MeSH word table
-    all <- meshTable(RAVmodel, ind, rm.noise = rm.noise, weighted = weighted)
+    all <- meshTable(RAVmodel, ind, rm.noise = rm.noise,
+                     weighted = weighted, filterMessage = FALSE)
 
     # Remove enriched MeSH term if it is in 'droplist'
     if (!is.null(drop)) {

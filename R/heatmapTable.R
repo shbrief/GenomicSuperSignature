@@ -1,11 +1,14 @@
-.heatmapTableMultiStudies <- function(val_all, scoreCutoff = scoreCutoff,
+.heatmapTableMultiStudies <- function(val_all, RAVmodel,
+                                      scoreCutoff = scoreCutoff,
                                       breaks = breaks, colors = colors,
                                       column_title = column_title,
-                                      row_title = row_title, ...) {
+                                      row_title = row_title,
+                                      filterMessage = filterMessage, ...) {
 
-  dat <- validatedSignatures(val_all, scoreCutoff = scoreCutoff)
+  dat <- validatedSignatures(val_all, scoreCutoff = scoreCutoff,
+                             filterMessage = FALSE)
 
-  # Define Heatmap Table Size
+  ## Define Heatmap Table Size
   if (is.null(column_title)) {
     column_title <- character(0)
     hmHeight <- nrow(dat) + 1
@@ -22,7 +25,11 @@
     hmWidth <- ncol(dat) + 2
   }
 
-  # Draw Heatmap
+  ## Check the RAV quality
+  dat_ind <- gsub("RAV", "", colnames(dat)) %>% as.numeric()
+  .lowQualityRAVs(RAVmodel, dat_ind, filterMessage)
+
+  ## Draw Heatmap
   ComplexHeatmap::Heatmap(dat, col = circlize::colorRamp2(breaks, colors),
                           name = "Corr",
                           cluster_rows = FALSE,
@@ -58,6 +65,8 @@
 #' @param val_all An output matrix from \code{\link{validate}} function with the
 #' parameter \code{level = "max"}. Subset of this matrix is plotted as a heatmap
 #' using \code{\link[ComplexHeatmap]{Heatmap}}
+#' @param RAVmodel PCAGenomicSignatures-class object. RAVmodel used to prepare
+#' \code{val_all} input.
 #' @param ind An integer vector. If this parameter is provided, the other
 #' parameters, \code{num.out, scoreCutoff, swCutoff, clsizeCutoff} will be
 #' ignored and the heatmap table containing only the provided index will be
@@ -81,6 +90,10 @@
 #' check the validated signatures with. Under the default (\code{NULL}), it
 #' outputs top scored signatures with any PC of your data.
 #' @param ... any additional argument for \code{\link[ComplexHeatmap]{Heatmap}}
+#' @param filterMessage A logical. Under the default \code{TRUE}, any output
+#' RAV belong to the filtering list will give a message. Silence this message
+#' with \code{filterMessage=FALSE}. You can check the filter list using
+#' \code{data("filterList")}.
 #'
 #' @return A heatmap displaying the subset of the validation result that met the
 #' given cutoff criteria. If \code{val_all} input is from a single dataset, the
@@ -95,41 +108,51 @@
 #' data(miniRAVmodel)
 #' library(bcellViper)
 #' data(bcellViper)
+#'
+#' ## Single dataset
 #' val_all <- validate(dset, miniRAVmodel)
-#' heatmapTable(val_all, swCutoff = 0)
+#' heatmapTable(val_all, miniRAVmodel, swCutoff = 0)
+#'
+#' ## A list of datasets
+#' val_all2 <- validate(miniTCGA, miniRAVmodel)
+#' heatmapTable(val_all2, miniRAVmodel)
 #'
 #' @export
-heatmapTable <- function(val_all, ind = NULL, num.out = 5,
+heatmapTable <- function(val_all, RAVmodel, ind = NULL, num.out = 5,
                          scoreCutoff = NULL, swCutoff = NULL,
                          clsizeCutoff = NULL,
                          breaks = c(0, 0.5, 1),
                          colors = c("white", "white smoke", "red"),
                          column_title = NULL, row_title = NULL,
-                         whichPC = NULL, ...) {
+                         whichPC = NULL, filterMessage = TRUE, ...) {
 
   score_ind <- which(colnames(val_all) == "score")
   sw_ind <- which(colnames(val_all) == "sw")
 
-  # If the validation result contains all PCs (`validate` with `level = "all"`)
+  ## If the validation result contains all PCs (`validate` with `level = "all"`)
   if (identical(colnames(val_all), paste0("PC", seq_len(8)))) {
     stop("'val_all' input should be created by `validate` function with
          `level = \"max\"`, not `level = \"all\"`.")
   }
 
-  # If the validation result is from the list of datasets
+  ## If the validation result is from the list of datasets
   if (length(score_ind) == 0) {
-    res <- .heatmapTableMultiStudies(val_all, scoreCutoff = scoreCutoff,
+    res <- .heatmapTableMultiStudies(val_all, RAVmodel,
+                                     scoreCutoff = scoreCutoff,
                                      breaks = breaks, colors = colors,
                                      column_title = column_title,
-                                     row_title = row_title)
+                                     row_title = row_title,
+                                     filterMessage = filterMessage)
     return(res)
     stop
   }
 
   if (is.null(ind)) {
-    val <- validatedSignatures(val_all, num.out = num.out, whichPC = whichPC,
+    val <- validatedSignatures(val_all, RAVmodel,
+                               num.out = num.out, whichPC = whichPC,
                                indexOnly = FALSE, scoreCutoff = scoreCutoff,
-                               swCutoff = swCutoff, clsizeCutoff = clsizeCutoff)
+                               swCutoff = swCutoff, clsizeCutoff = clsizeCutoff,
+                               filterMessage = FALSE)
     dat <- val[,score_ind,drop=FALSE] %>% t
     sw <- val[,sw_ind,drop=FALSE] %>% as.numeric
   } else {
@@ -139,7 +162,7 @@ heatmapTable <- function(val_all, ind = NULL, num.out = 5,
     sw <- val[,sw_ind,drop=FALSE] %>% unlist %>% as.numeric
   }
 
-  # Define Heatmap Table Size
+  ## Define Heatmap Table Size
   if (is.null(column_title)) {
     column_title <- character(0)
     hmHeight <- nrow(dat) + 2.5
@@ -156,7 +179,7 @@ heatmapTable <- function(val_all, ind = NULL, num.out = 5,
     hmWidth <- ncol(dat) + 3
   }
 
-  # Heatmap annotation representing Silhouette width of selected RAVs
+  ## Heatmap annotation representing Silhouette width of selected RAVs
   avg_sw <- ComplexHeatmap::anno_barplot(
     sw, baseline = 0, gp = grid::gpar(fill = ifelse(sw > 0, "red", "blue"),
                                       alpha = 0.5))
@@ -165,7 +188,11 @@ heatmapTable <- function(val_all, ind = NULL, num.out = 5,
                                           annotation_name_side = "left",
                                           annotation_name_gp = gp)
 
-  # Draw Heatmap
+  ## Check the RAV quality
+  dat_ind <- gsub("RAV", "", colnames(dat)) %>% as.numeric()
+  .lowQualityRAVs(RAVmodel, dat_ind, filterMessage)
+
+  ## Draw Heatmap
   ComplexHeatmap::Heatmap(dat, col = circlize::colorRamp2(breaks, colors),
                           name = "Corr",
                           cluster_rows = FALSE,
