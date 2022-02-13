@@ -18,6 +18,14 @@
 "droplist"
 
 
+#' @name filterList
+#' @title RAVs that will output with quanlity-control messages
+#' @format A named list with four elements - "Cluster_Size_filter",
+#' "GSEA_C2_filter", "GSEA_PLIERpriors_filter", and "Redundancy_filter".
+#' @author Sehyun Oh \email{shbrief@gmail.com}
+"filterList"
+
+
 #' @name miniAllZ
 #' @title Subset of allZ matrix constructed from 8 CRC training datasets
 #' @docType data
