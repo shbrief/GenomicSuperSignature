@@ -50,7 +50,7 @@ findStudiesInCluster <- function(RAVmodel, ind = NULL, studyTitle = FALSE) {
     for (i in seq_len(ncol(z))) {
       studies[[i]] <- rownames(z)[which(z[,i] == 1)]
       studies[[i]] <- lapply(studies[[i]],
-                             function(x) {unlist(strsplit(x, "\\."))[1]})
+                             function(x) {unlist(strsplit(x, "\\.PC"))[1]})
       studies[[i]] <- unique(unlist(studies[[i]]))  # remove redundancy
       names(studies)[i] <- colnames(z)[i]
     }
@@ -62,8 +62,7 @@ findStudiesInCluster <- function(RAVmodel, ind = NULL, studyTitle = FALSE) {
   if (!studyTitle) {
     res <- studies
   } else {
-    dir <- system.file("extdata", package = "GenomicSuperSignature")
-    studyMeta <- utils::read.table(file.path(dir, "studyMeta.tsv.gz"))
+    studyMeta <- .getStudyMeta(RAVmodel)
     studyMeta <- studyMeta[,c("studyName", "title")]
     res <- dplyr::left_join(studies, studyMeta, by = "studyName")
   }
