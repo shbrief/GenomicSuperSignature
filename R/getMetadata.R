@@ -71,8 +71,7 @@ getStudyInfo <- function(RAVmodel, study) {
     colnames(PCdistribution)[3] <- "Variance explained (%)"
 
     # Study info
-    dir <- system.file("extdata", package = "GenomicSuperSignature")
-    studyMeta <- utils::read.table(file.path(dir, "studyMeta.tsv.gz"))
+    studyMeta <- .getStudyMeta(RAVmodel)
     studyMeta_ind <- which(studyMeta$studyName == study)
     studyTitle <- studyMeta$title[studyMeta_ind]  # title
     studySize <- studyMeta$downloaded[studyMeta_ind]  # size
