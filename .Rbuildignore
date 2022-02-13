@@ -10,3 +10,7 @@ update.sh
 ^\.github$
 ^temp_note\.R$
 
+^update_release\.sh$
+
+^html$
+^inst/scripts/galaxy_test/$

@@ -33,3 +33,4 @@ docs
 /vignettes/*.rds
 
 GenomicSuperSignature.Rproj
+update_release.sh
