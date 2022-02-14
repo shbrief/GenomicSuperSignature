@@ -54,7 +54,7 @@
   # PCA summary
   pcaSummary <- trainingData(RAVmodel)$PCAsummary
   Projs <- lapply(components, function(x) {
-    unlist(strsplit(x, "\\."))[1] %>% as.character
+    unlist(strsplit(x, "\\.PC"))[1] %>% as.character
   }) %>% unlist
   data <- pcaSummary[Projs]
 
@@ -73,4 +73,61 @@
   }
 
   return(input_summary)
+}
+
+
+## Message for low-quality RAVs
+.lowQualityRAVs <- function(RAVmodel, ind, filterMessage = TRUE) {
+
+  if (isTRUE(filterMessage)) {
+    ## Load filterList
+    local_data_store <- new.env(parent = emptyenv())
+    data("filterList", envir = local_data_store, package = "GenomicSuperSignature")
+    filterList <- local_data_store[["filterList"]]
+
+    ## Select RAVmodel
+    filterListNames <- c("Cluster_Size_filter", "GSEA_C2_filter",
+                         "GSEA_PLIERpriors_filter", "Redundancy_filter")
+    c2 <- "MSigDB C2 version 7.1"
+    plier_priors <- "Three priors from PLIER (bloodCellMarkersIRISDMAP, svmMarkers, and canonicalPathways)"
+
+    if (nrow(trainingData(RAVmodel)) == 536 & geneSets(RAVmodel) == c2) {
+      filterList <- filterList[filterListNames[c(1,2,4)]]
+    } else if ((nrow(trainingData(RAVmodel)) == 536 &
+                geneSets(RAVmodel) == plier_priors)) {
+      filterList <- filterList[filterListNames[c(1,3,4)]]
+    }
+
+    ## Check whether index belong to the filter list
+    for (i in ind) {
+      res <- vapply(filterList, function(x) {i %in% x}, logical(1))
+      if (any(res)) {
+        filtered <- paste(names(res)[which(res == TRUE)], collapse = ", ") %>%
+          gsub("_filter", "", .)
+        msg <- paste(paste0("RAV", i), "can be filtered based on", filtered)
+        message(msg)
+      }
+    }
+
+    ## More information on GenomicSuperSignaturePaper GitHub page
+    # if (any(res)) {message("Information on filtering : bit.ly/rav_filtering")}
+  }
+}
+
+
+## Study metadata for different RAVmodels
+.getStudyMeta <- function(RAVmodel) {
+
+  td <- rownames(trainingData(RAVmodel)) # training data used for RAVmodel
+  dir <- system.file("extdata", package = "GenomicSuperSignature")
+
+  if ("DRP000987" %in% td) {
+    ## 536 datasets from refine.bio
+    studyMeta <- utils::read.table(file.path(dir, "studyMeta.tsv.gz"))
+  } else if ("GSE13294" %in% td) {
+    ## 8 CRC and 10 OV from curated data packages
+    studyMeta <- utils::read.table(file.path(dir, "studyMeta_CRCOV.tsv"))
+  }
+
+  return(studyMeta)
 }

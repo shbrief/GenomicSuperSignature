@@ -6,6 +6,7 @@
 \usage{
 heatmapTable(
   val_all,
+  RAVmodel,
   ind = NULL,
   num.out = 5,
   scoreCutoff = NULL,
@@ -16,6 +17,7 @@ heatmapTable(
   column_title = NULL,
   row_title = NULL,
   whichPC = NULL,
+  filterMessage = TRUE,
   ...
 )
 }
@@ -23,6 +25,9 @@ heatmapTable(
 \item{val_all}{An output matrix from \code{\link{validate}} function with the
 parameter \code{level = "max"}. Subset of this matrix is plotted as a heatmap
 using \code{\link[ComplexHeatmap]{Heatmap}}}
+
+\item{RAVmodel}{PCAGenomicSignatures-class object. RAVmodel used to prepare
+\code{val_all} input.}
 
 \item{ind}{An integer vector. If this parameter is provided, the other
 parameters, \code{num.out, scoreCutoff, swCutoff, clsizeCutoff} will be
@@ -56,6 +61,11 @@ assigned to three breaks. Default is \code{c("white", "white smoke", "red")}.}
 check the validated signatures with. Under the default (\code{NULL}), it
 outputs top scored signatures with any PC of your data.}
 
+\item{filterMessage}{A logical. Under the default \code{TRUE}, any output
+RAV belong to the filtering list will give a message. Silence this message
+with \code{filterMessage=FALSE}. You can check the filter list using
+\code{data("filterList")}.}
+
 \item{...}{any additional argument for \code{\link[ComplexHeatmap]{Heatmap}}}
 }
 \value{
@@ -76,7 +86,13 @@ and visualize it in a heatmap-like table.
 data(miniRAVmodel)
 library(bcellViper)
 data(bcellViper)
+
+## Single dataset
 val_all <- validate(dset, miniRAVmodel)
-heatmapTable(val_all, swCutoff = 0)
+heatmapTable(val_all, miniRAVmodel, swCutoff = 0)
+
+## A list of datasets
+val_all2 <- validate(miniTCGA, miniRAVmodel)
+heatmapTable(val_all2, miniRAVmodel)
 
 }

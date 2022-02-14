@@ -10,7 +10,8 @@ drawWordcloud(
   rm.noise = NULL,
   scale = c(3, 0.5),
   weighted = TRUE,
-  drop = NULL
+  drop = NULL,
+  filterMessage = TRUE
 )
 }
 \arguments{
@@ -33,6 +34,11 @@ of the study contributing to a given RAV.}
 \item{drop}{A character vector containing MeSH terms to be excluded from word
 cloud. Under the default (\code{NULL}), manually selected non-informative
 MeSH terms are excluded, which can be viewed through \code{data(droplist)}.}
+
+\item{filterMessage}{A logical. Under the default \code{TRUE}, any output
+RAV belong to the filtering list will give a message. Silence this message
+with \code{filterMessage=FALSE}. You can check the filter list using
+\code{data("filterList")}.}
 }
 \value{
 A word cloud with the MeSH terms associated with the given cluster.

@@ -37,6 +37,9 @@ reference:
       - extractPC
       - findKeywordInRAV
       - findSignature
+      - findStudiesInCluster
+      - getRAVInfo
+      - getStudyInfo
       - meshTable
       - subsetEnrichedPathways
       - validatedSignatures

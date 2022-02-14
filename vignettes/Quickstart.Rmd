@@ -106,7 +106,7 @@ one of the top 8 PCs from the dataset (`whichPC`).
 Here, we print out top 5 validated RAVs with average silhouette width above 0.
 
 ```{r out.height="80%", out.width="80%", message=FALSE, warning=FALSE}
-heatmapTable(val_all, num.out = 5, swCutoff = 0)
+heatmapTable(val_all, RAVmodel, num.out = 5, swCutoff = 0)
 ```
 
 
@@ -167,7 +167,7 @@ we choose the top 3 RAVs with the average silhouette width above 0, which will
 returns RAV2538, RAV1139, and RAV884 as we discussed above.
 
 ```{r}
-validated_ind <- validatedSignatures(val_all, num.out = 3, 
+validated_ind <- validatedSignatures(val_all, RAVmodel, num.out = 3, 
                                      swCutoff = 0, indexOnly = TRUE)
 validated_ind
 ```
@@ -234,8 +234,7 @@ You can find the prior studies related to a given RAV using
 findStudiesInCluster(RAVmodel, validated_ind[2])
 ```
 
-With the devel version (>= 1.1.7), you can easily extract the study name 
-through the new argument, `studyTitle=TRUE`.
+You can easily extract the study name with the `studyTitle=TRUE` parameter.
 ```{r}
 findStudiesInCluster(RAVmodel, validated_ind[2], studyTitle = TRUE)
 ```

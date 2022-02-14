@@ -25,6 +25,8 @@
 #' @param val_all An output matrix from \code{\link{validate}} function. If this
 #' input is from multiple datasets, only \code{scoreCutoff} argument will be
 #' considered and other inputs will be ignored.
+#' @param RAVmodel PCAGenomicSignatures-class object. RAVmodel used to prepare
+#' \code{val_all} input.
 #' @param num.out A number of highly validated RAVs to output. Default is 5.
 #' If any of the cutoff parameters are provided, \code{num.out} or the number of
 #' filtered RAVs, whichever smaller, will be chosen.
@@ -39,6 +41,10 @@
 #' @param whichPC An integer value between 1 and 8. PC number of your data to
 #' check the validated signatures with. Under the default (\code{NULL}), it
 #' outputs top scored signatures with any PC of your data.
+#' @param filterMessage A logical. Under the default \code{TRUE}, any output
+#' RAV belong to the filtering list will give a message. Silence this message
+#' with \code{filterMessage=FALSE}. You can check the filter list using
+#' \code{data("filterList")}.
 #'
 #' @return A subset of the input matrix, which meets the given condition.
 #'
@@ -47,12 +53,14 @@
 #' library(bcellViper)
 #' data(bcellViper)
 #' val_all <- validate(dset, miniRAVmodel)
-#' validatedSignatures(val_all, num.out = 3, scoreCutoff = 0)
+#' validatedSignatures(val_all, RAVmodel, num.out = 3, scoreCutoff = 0)
 #'
 #' @export
-validatedSignatures <- function(val_all, num.out = 5, scoreCutoff = NULL,
+validatedSignatures <- function(val_all, RAVmodel,
+                                num.out = 5, scoreCutoff = NULL,
                                 swCutoff = NULL, clsizeCutoff = NULL,
-                                indexOnly = FALSE, whichPC = NULL) {
+                                indexOnly = FALSE, whichPC = NULL,
+                                filterMessage = TRUE) {
   # Input validation
   stopifnot(length(indexOnly) == 1L, !is.na(indexOnly), is.logical(indexOnly))
 
@@ -105,6 +113,11 @@ validatedSignatures <- function(val_all, num.out = 5, scoreCutoff = NULL,
     dat <- common_subset[,ordered_ind, drop = FALSE]
   }
 
+  ## Check the RAV quality
+  dat_ind <- dat["cl_num",]
+  .lowQualityRAVs(RAVmodel, dat_ind, filterMessage)
+
+  ## Output as a data frame vs. a vector (of index only)
   if (!indexOnly) {
     return(t(dat))
   } else {
