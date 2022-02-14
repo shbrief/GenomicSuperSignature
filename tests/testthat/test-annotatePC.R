@@ -6,13 +6,15 @@ data(bcellViper)
 
 val_all <- validate(dset, miniRAVmodel)
 
+test_that("RAV filter message", {
+  expect_message(res <- annotatePC(2, val_all, miniRAVmodel))
+})
 
 test_that("Users should choose one of the top 8 PCs of their dataset", {
-  res <- annotatePC(2, val_all, miniRAVmodel)
   expect_equal(names(res), "PC2.RAV1076")
 
   res2 <- annotatePC(2, val_all, miniRAVmodel, trimed_pathway_len = 10)
-  expect_equal(res2[2,], "KEGG_SPLIC...")
+  expect_equal(res2[2,], "REACTOME_H...")
   expect_error(annotatePC(9, val_all, miniRAVmodel),
                "PCnum should be an integer among c\\(1:8\\).")
   expect_error(annotatePC(c(1:2, 9), val_all, miniRAVmodel),

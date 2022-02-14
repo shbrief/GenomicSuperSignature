@@ -5,9 +5,13 @@ data(miniRAVmodel)
 test_that("Confirm the output structure", {
   res <- annotateRAV(miniRAVmodel, ind = 695)
   des <- res$Description
-  val <- c("IRIS_Bcell-Memory_IgG_IgA", "DMAP_BCELLA3", 
-           "IRIS_Bcell-Memory_IgM", "IRIS_Bcell-naive", "DMAP_BCELLA4")
-  
+  ## RAVmodel version before 1.1.1
+  # val <- c("IRIS_Bcell-Memory_IgG_IgA", "DMAP_BCELLA3",
+  #          "IRIS_Bcell-Memory_IgM", "IRIS_Bcell-naive", "DMAP_BCELLA4")
+  ## RAVmodel version above 1.1.1
+  val <- c("IRIS_Bcell-Memory_IgG_IgA", "DMAP_BCELLA3",
+           "IRIS_Bcell-naive", "IRIS_Bcell-Memory_IgM", "DMAP_BCELLA2")
+
   expect_equal(dim(res), c(5, 4))
   expect_equal(colnames(res), c("Description","NES", "pvalue", "qvalues"))
   expect_equal(des, val)

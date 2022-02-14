@@ -52,7 +52,7 @@ annotatePC <- function(PCnum, val_all, RAVmodel, n = 5,
   res <- vector(mode = "list", length = length(PCnum))
 
   for (i in seq_along(PCnum)) {
-    annotPC <- validatedSignatures(val_all, num.out = 1,
+    annotPC <- validatedSignatures(val_all, num.out = 1, RAVmodel,
                                    scoreCutoff = scoreCutoff,
                                    whichPC = PCnum[i])
     cl_name <- paste0("RAV", annotPC[,"cl_num"])

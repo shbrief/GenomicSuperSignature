@@ -50,7 +50,7 @@ plotAnnotatedPCA <- function(dataset, RAVmodel, PCnum, val_all = NULL,
     ind1 <- which(colnames(PCAres) == paste0("PC", PCnum[1]))
     ind2 <- which(colnames(PCAres) == paste0("PC", PCnum[2]))
 
-    if (is.null(color_lab)) {color_lab = "Color By"}
+    if (is.null(color_lab)) {color_lab <- "Color By"}
     if (!is.null(color_by)) {
         colorFeature <- utils::stack(color_by) %>%
             tibble::column_to_rownames(var = "ind")
