@@ -27,6 +27,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -39,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">GenomicSuperignature</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">1.1.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.4</span>
       </span>
     </div>
 
@@ -66,7 +68,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/shbrief/GenomicSuperSignature">
+  <a href="https://github.com/shbrief/GenomicSuperSignature" class="external-link">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -83,34 +85,34 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div id="genomicsupersignature" class="section level1">
-<div class="page-header"><h1 class="hasAnchor">
-<a href="#genomicsupersignature" class="anchor"></a>GenomicSuperSignature</h1></div>
+<div class="section level1">
+<div class="page-header"><h1 id="genomicsupersignature">GenomicSuperSignature<a class="anchor" aria-label="anchor" href="#genomicsupersignature"></a>
+</h1></div>
 <p><strong>Interpretation of RNA-seq experiments through robust, efficient comparison to public databases</strong></p>
-<div id="purpose" class="section level3">
-<h3 class="hasAnchor">
-<a href="#purpose" class="anchor"></a>PURPOSE</h3>
+<div class="section level3">
+<h3 id="purpose">PURPOSE<a class="anchor" aria-label="anchor" href="#purpose"></a>
+</h3>
 <p>Thousands of RNA sequencing profiles have been deposited in public archives, yet remain unused for the interpretation of most newly performed experiments. Methods for leveraging these public resources have focused on the interpretation of existing data, or analysis of new datasets independently, but do not facilitate direct comparison of new to existing experiments. The interpretability of common unsupervised analysis methods such as Principal Component Analysis would be enhanced by efficient comparison of the results to previously published datasets.</p>
 </div>
-<div id="methods" class="section level3">
-<h3 class="hasAnchor">
-<a href="#methods" class="anchor"></a>METHODS</h3>
+<div class="section level3">
+<h3 id="methods">METHODS<a class="anchor" aria-label="anchor" href="#methods"></a>
+</h3>
 <p>To help identify replicable and interpretable axes of variation in any given gene expression dataset, we performed principal component analysis (PCA) on 536 studies comprising 44,890 RNA sequencing profiles. Sufficiently similar loading vectors, when compared across studies, were combined through simple averaging. We annotated the collection of resulting average loading vectors, which we call Replicable Axes of Variation (RAV), with details from the originating studies and gene set enrichment analysis. Functions to match PCA of new datasets to RAVs from existing studies, extract interpretable annotations, and provide intuitive visualization, are implemented as the GenomicSuperSignature R package, to be submitted to Bioconductor.</p>
 </div>
-<div id="results" class="section level3">
-<h3 class="hasAnchor">
-<a href="#results" class="anchor"></a>Results</h3>
-<p>Preprint is available <a href="https://www.biorxiv.org/content/10.1101/2021.05.26.445900v1"><strong>HERE</strong></a>. Usecases and benchmarking examples included in the preprint are further documented at <a href="https://shbrief.github.io/GenomicSuperSignaturePaper/">GenomicSuperSignaturePaper</a> page.</p>
+<div class="section level3">
+<h3 id="results">Results<a class="anchor" aria-label="anchor" href="#results"></a>
+</h3>
+<p>Preprint is available <a href="https://www.biorxiv.org/content/10.1101/2021.05.26.445900v1" class="external-link"><strong>HERE</strong></a>. Usecases and benchmarking examples included in the preprint are further documented at <a href="https://shbrief.github.io/GenomicSuperSignaturePaper/" class="external-link">GenomicSuperSignaturePaper</a> page.</p>
 </div>
-<div id="installation" class="section level2">
-<h2 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h2>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
 <p>You can install GenomicSuperSignature in Bioconductor. This can be done using <code>BiocManager</code>:</p>
-<pre><code>if (!require("BiocManager"))
-    install.packages("BiocManager")
+<pre><code><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span><span class="op">)</span>
+    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span>
 
-library(BiocManager)
-install("GenomicSuperSignature")</code></pre>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">BiocManager</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"GenomicSuperSignature"</span><span class="op">)</span></code></pre>
 <p>RAVmodel can be directly downloaded from Google bucket with no cost. The sizes of RAVmodels<code>RAVmodel_C2.rds</code> and <code>RAVmodel_PLIERpriors.rds</code> are 476.1MB and 475.1MB, respectively. You can use <code>wget</code> or <code><a href="reference/getModel.html">GenomicSuperSignature::getModel</a></code> function.</p>
 <pre><code>## Download RAVmodel with wget
 wget https://storage.googleapis.com/genomic_super_signature/RAVmodel_C2.rds
@@ -120,25 +122,25 @@ wget https://storage.googleapis.com/genomic_super_signature/RAVmodel_PLIERpriors
 getModel("C2")
 getModel("PLIERpriors")</code></pre>
 </div>
-<div id="schematic" class="section level2">
-<h2 class="hasAnchor">
-<a href="#schematic" class="anchor"></a>Schematic</h2>
-<div id="overview-of-genomicsupersignature" class="section level4">
-<h4 class="hasAnchor">
-<a href="#overview-of-genomicsupersignature" class="anchor"></a>Overview of GenomicSuperSignature</h4>
+<div class="section level2">
+<h2 id="schematic">Schematic<a class="anchor" aria-label="anchor" href="#schematic"></a>
+</h2>
+<div class="section level4">
+<h4 id="overview-of-genomicsupersignature">Overview of GenomicSuperSignature<a class="anchor" aria-label="anchor" href="#overview-of-genomicsupersignature"></a>
+</h4>
 <p>Schematic illustration of RAVmodel construction and GenomicSuperSignature application. Building the RAVmodel (components in grey) is performed once on a time scale of hours on a high-memory, high-storage server. Users can apply RAVmodel on their data (component in red) using the GenomicSuperSignature R/Bioconductor package (components in blue), which operates on a time scale of seconds for exploratory data analyses (components in orange) on a typical laptop computer.</p>
 <p><img src="https://raw.githubusercontent.com/shbrief/GenomicSuperSignature/master/vignettes/GSig_overview.png" width="90%" height="90%"></p>
 <p><br></p>
 </div>
-<div id="users-perspective" class="section level4">
-<h4 class="hasAnchor">
-<a href="#users-perspective" class="anchor"></a>User’s perspective</h4>
+<div class="section level4">
+<h4 id="users-perspective">User’s perspective<a class="anchor" aria-label="anchor" href="#users-perspective"></a>
+</h4>
 <p>The GenomicSuperSignature package allows users to access a RAVmodel (Z matrix, blue) and annotation information on each RAV. From a gene expression matrix (Y matrix, grey), users can calculate dataset-level validation score or sample score matrix (B matrix, red). Through the RAV of your interest, additional information such as related studies, GSEA, and MeSH terms can be easily extracted.</p>
 <p><img src="https://raw.githubusercontent.com/shbrief/GenomicSuperSignature/master/vignettes/GSig_model_usage_diagram.png" width="90%" height="90%"></p>
 </div>
-<div id="knoweledge-graph-assembled-by-genomicsupersignature" class="section level4">
-<h4 class="hasAnchor">
-<a href="#knoweledge-graph-assembled-by-genomicsupersignature" class="anchor"></a>Knoweledge graph assembled by GenomicSuperSignature</h4>
+<div class="section level4">
+<h4 id="information-assembled-by-genomicsupersignature">Information assembled by GenomicSuperSignature<a class="anchor" aria-label="anchor" href="#information-assembled-by-genomicsupersignature"></a>
+</h4>
 <p>GenomicSuperSignature connects different public databases and prior information through RAVindex, creating the knowledge graph illustrated here. Users can instantly access data and metadata resources from multiple entry points, such as gene expression profiles, MeSH terms, gene sets, and keywords.</p>
 <p><img src="https://raw.githubusercontent.com/shbrief/GenomicSuperSignaturePaper/master/inst/images/GSig_knowledge_graph.png" width="90%" height="90%"></p>
 </div>
@@ -148,24 +150,31 @@ getModel("PLIERpriors")</code></pre>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <div class="links">
-<h2>Links</h2>
+<h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Download from BIOC at <br><a href="https://www.bioconductor.org/packages/GenomicSuperSignature">https://​www.bioconductor.org/​packages/​GenomicSuperSignature</a>
-</li>
-<li>Browse source code at <br><a href="https://github.com/shbrief/GenomicSuperSignature/">https://​github.com/​shbrief/​GenomicSuperSignature/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/shbrief/GenomicSuperSignature/issues">https://​github.com/​shbrief/​GenomicSuperSignature/​issues</a>
-</li>
+<li><a href="https://www.bioconductor.org/packages/GenomicSuperSignature" class="external-link">View on Bioconductor</a></li>
+<li><a href="https://github.com/shbrief/GenomicSuperSignature/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/shbrief/GenomicSuperSignature/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
+
 <div class="license">
-<h2>License</h2>
+<h2 data-toc-skip>License</h2>
 <ul class="list-unstyled">
-<li><a href="https://www.r-project.org/Licenses/Artistic-2.0">Artistic-2.0</a></li>
+<li><a href="https://www.r-project.org/Licenses/Artistic-2.0" class="external-link">Artistic-2.0</a></li>
 </ul>
 </div>
+
+
+<div class="citation">
+<h2 data-toc-skip>Citation</h2>
+<ul class="list-unstyled">
+<li><a href="authors.html#citation">Citing GenomicSuperSignature</a></li>
+</ul>
+</div>
+
 <div class="developers">
-<h2>Developers</h2>
+<h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
 <li>Sehyun Oh <br><small class="roles"> Author, maintainer </small>  </li>
 <li>Levi Waldron <br><small class="roles"> Author </small>  </li>
@@ -173,16 +182,20 @@ getModel("PLIERpriors")</code></pre>
 </ul>
 </div>
 
+
+
   </div>
 </div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Sehyun Oh, Levi Waldron, Sean Davis.</p>
+  <p></p>
+<p>Developed by Sehyun Oh, Levi Waldron, Sean Davis.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
       </footer>
@@ -190,6 +203,8 @@ getModel("PLIERpriors")</code></pre>
 
   
 
+
+  
 
   </body>
 </html>

@@ -1,84 +1,147 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://shbrief.github.io/PCAGenomicSignatures/index.html</loc>
+    <loc>/404.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/GenomicSignatures-class.html</loc>
+    <loc>/articles/GenomicSuperSignature_Contents.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/PCAGenomicSignatures-class.html</loc>
+    <loc>/articles/Quickstart.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/PCAGenomicSignatures-methods.html</loc>
+    <loc>/articles/index.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/PCAGenomicSignatures.html</loc>
+    <loc>/authors.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/PCclusterName.html</loc>
+    <loc>/index.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/PCinCluster.html</loc>
+    <loc>/reference/GenomicSignatures-class.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/buildAvgLoading.html</loc>
+    <loc>/reference/GenomicSignatures-methods.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/calculateScore.html</loc>
+    <loc>/reference/PCAGenomicSignatures-class.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/commonGene.html</loc>
+    <loc>/reference/PCAGenomicSignatures-methods.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/dot-calculateSilhouetteWidth.html</loc>
+    <loc>/reference/PCAGenomicSignatures.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/dot-loadingCor.html</loc>
+    <loc>/reference/PCinRAV.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/drawWordcloud.html</loc>
+    <loc>/reference/annotatePC.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/extractPC.html</loc>
+    <loc>/reference/annotateRAV.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/findStudiesInCluster.html</loc>
+    <loc>/reference/buildAvgLoading.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/heatmapTable.html</loc>
+    <loc>/reference/calculateScore.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/makeGeneList.html</loc>
+    <loc>/reference/dot-RAVName.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/meshTable.html</loc>
+    <loc>/reference/dot-calculateSilhouetteWidth.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/plotValidate.html</loc>
+    <loc>/reference/dot-loadingCor.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/rmNaInf.html</loc>
+    <loc>/reference/drawWordcloud.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/rowNorm.html</loc>
+    <loc>/reference/droplist.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/run_gsea.html</loc>
+    <loc>/reference/extractPC.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/subsetPathways.html</loc>
+    <loc>/reference/filterList.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/validate.html</loc>
+    <loc>/reference/findKeywordInRAV.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/PCAGenomicSignatures/reference/validatedIndex.html</loc>
+    <loc>/reference/findSignature.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/PCAGenomicSignatures/articles/PCAGenomicSignatures_Contents.html</loc>
+    <loc>/reference/findStudiesInCluster.html</loc>
   </url>
   <url>
-    <loc>https://shbrief.github.io/PCAGenomicSignatures/articles/Quickstart.html</loc>
+    <loc>/reference/getModel.html</loc>
+  </url>
+  <url>
+    <loc>/reference/getRAVInfo.html</loc>
+  </url>
+  <url>
+    <loc>/reference/getStudyInfo.html</loc>
+  </url>
+  <url>
+    <loc>/reference/heatmapTable.html</loc>
+  </url>
+  <url>
+    <loc>/reference/index.html</loc>
+  </url>
+  <url>
+    <loc>/reference/makeGeneList.html</loc>
+  </url>
+  <url>
+    <loc>/reference/meshTable.html</loc>
+  </url>
+  <url>
+    <loc>/reference/miniAllZ.html</loc>
+  </url>
+  <url>
+    <loc>/reference/miniRAVmodel.html</loc>
+  </url>
+  <url>
+    <loc>/reference/miniTCGA.html</loc>
+  </url>
+  <url>
+    <loc>/reference/msigdb_gsea.html</loc>
+  </url>
+  <url>
+    <loc>/reference/plotAnnotatedPCA.html</loc>
+  </url>
+  <url>
+    <loc>/reference/plotValidate.html</loc>
+  </url>
+  <url>
+    <loc>/reference/res_hcut.html</loc>
+  </url>
+  <url>
+    <loc>/reference/rmNaInf.html</loc>
+  </url>
+  <url>
+    <loc>/reference/rowNorm.html</loc>
+  </url>
+  <url>
+    <loc>/reference/run_gsea.html</loc>
+  </url>
+  <url>
+    <loc>/reference/sampleScoreHeatmap.html</loc>
+  </url>
+  <url>
+    <loc>/reference/subsetEnrichedPathways.html</loc>
+  </url>
+  <url>
+    <loc>/reference/subsetGSEA.html</loc>
+  </url>
+  <url>
+    <loc>/reference/validate.html</loc>
+  </url>
+  <url>
+    <loc>/reference/validatedSignatures.html</loc>
   </url>
 </urlset>
