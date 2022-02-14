@@ -234,8 +234,7 @@ You can find the prior studies related to a given RAV using
 findStudiesInCluster(RAVmodel, validated_ind[2])
 ```
 
-With the devel version (>= 1.1.7), you can easily extract the study name 
-through the new argument, `studyTitle=TRUE`.
+You can easily extract the study name with the `studyTitle=TRUE` parameter.
 ```{r}
 findStudiesInCluster(RAVmodel, validated_ind[2], studyTitle = TRUE)
 ```
