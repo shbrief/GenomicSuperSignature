@@ -4,10 +4,12 @@ data(bcellViper)
 val_all <- validate(dset, miniRAVmodel)
 
 test_that("validatedSignatures.R", {
-    res <- validatedSignatures(val_all, num.out = 3, scoreCutoff = 0)
-    res2 <- validatedSignatures(val_all, num.out = 3, scoreCutoff = 0,
-                                indexOnly = TRUE)
-    res3 <- validatedSignatures(val_all, num.out = 10, scoreCutoff = 0.575)
+    res <- validatedSignatures(val_all, miniRAVmodel, 
+                               num.out = 3, scoreCutoff = 0)
+    res2 <- validatedSignatures(val_all, miniRAVmodel,
+                                num.out = 3, scoreCutoff = 0, indexOnly = TRUE)
+    res3 <- validatedSignatures(val_all, miniRAVmodel,
+                                num.out = 10, scoreCutoff = 0.575)
     
     expect_true(is.matrix(res))
     expect_true(is.vector(res2))

@@ -20,7 +20,7 @@ test_that("validate works with a list of input datasets", {
   val_miniTCGA <- validate(miniTCGA, miniRAVmodel)
 
   expect_true(is.matrix(val_miniTCGA))
-  expect_equal(dim(val_miniTCGA), c(17, 4))
+  expect_equal(dim(val_miniTCGA), c(20, 4))
 })
 
 
@@ -36,6 +36,6 @@ test_that("different arguments", {
   res <- validate(miniTCGA[[1]], miniRAVmodel, method = "spearman",
                   maxFrom = "avgLoading", level = "all")
   
-  expect_equal(dim(res), c(17, 8))
+  expect_equal(dim(res), c(20, 8))
   expect_equal(round(res[1,1], 4), 0.1949)
 })

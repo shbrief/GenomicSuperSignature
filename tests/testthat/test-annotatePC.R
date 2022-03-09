@@ -6,11 +6,8 @@ data(bcellViper)
 
 val_all <- validate(dset, miniRAVmodel)
 
-test_that("RAV filter message", {
-  expect_message(res <- annotatePC(2, val_all, miniRAVmodel))
-})
-
 test_that("Users should choose one of the top 8 PCs of their dataset", {
+  expect_message(res <- annotatePC(2, val_all, miniRAVmodel))
   expect_equal(names(res), "PC2.RAV1076")
 
   res2 <- annotatePC(2, val_all, miniRAVmodel, trimed_pathway_len = 10)

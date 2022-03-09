@@ -8,7 +8,7 @@ test_that("getRAVInfo", {
 
     expect_true(is.list(res))
     expect_equal(length(res), 4)
-    expect_true(all(unlist(res[1:3]) == c(6, 0.04, 44)))
+    expect_true(all(unlist(res[1:3]) == c(6, 0.04, 43)))
     expect_equal(res[[4]]$PC, val)
 })
 
