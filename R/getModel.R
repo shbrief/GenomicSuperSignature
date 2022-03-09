@@ -38,6 +38,8 @@ s2p_cached_url <- function(url, rname = url, ask_on_update=FALSE,
 #' }
 #' @param load Default is \code{TRUE}. If it's set to \code{FALSE}, the models
 #' are just downloaded to cache but not loaded into memory.
+#' @param version Default is \code{latest}. Available versions are listed in
+#' \code{version} column of \code{\link{availableRAVmodel()}} output.
 #'
 #' @return File cache location or PCAGenomicSignatures object loaded from it.
 #'
@@ -45,22 +47,36 @@ s2p_cached_url <- function(url, rname = url, ask_on_update=FALSE,
 #' z = getModel("C2")
 #'
 #' @export
-getModel <- function(prior = c("C2", "PLIERpriors"), load = TRUE) {
+getModel <- function(prior = c("C2", "PLIERpriors"), 
+                     version = "latest", load = TRUE) {
 
-  if (!prior %in% c("C2", "PLIERpriors")) {
-    stop("Prior you entered isn't available yet.")
-  }
+    dir <- system.file("extdata", package = "GenomicSuperSignature")
+    models <- read.table(file.path(dir, "availableRAVmodel.csv"), 
+                         sep = ",", header=TRUE)
+    models <- models[which(models$gcp == TRUE),] ## Only RAVmodels on GCP
+    
+    ## Check the input validity
+    if (!prior %in% unique(models$prior)) {
+      stop("Prior you entered isn't available.")
+    }
+    
+    prior_ind <- which(models$prior == prior)
+    if (!version %in% unique(models$version[prior_ind])) {
+      stop("Version you entered doesn't exist.")
+    }
+    
+    request_ind <- which(models$prior == prior & models$version == version)
+    request_model <- paste0(models$fname[request_ind], ".rds")
 
-  bucket_name <- "genomic_super_signature"
-  fname <- paste0("RAVmodel_", prior, ".rds")
-  fpath <- file.path('https://storage.googleapis.com',bucket_name, fname)
+    bucket_name <- "genomic_super_signature"
+    fpath <- file.path("https://storage.googleapis.com",
+                       bucket_name, request_model)
 
-  fpath <- s2p_cached_url(fpath)
-
-  if (isTRUE(load)) {
-    model <- readRDS(fpath)
-    return(model)
-  } else {return(fpath)}
+    fpath <- s2p_cached_url(fpath)
+    if (isTRUE(load)) {
+      model <- readRDS(fpath)
+      return(model)
+    } else {return(fpath)}
 }
 
 

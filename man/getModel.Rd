@@ -4,7 +4,7 @@
 \alias{getModel}
 \title{Download a PCAGenomicSignatures model}
 \usage{
-getModel(prior = c("C2", "PLIERpriors"), load = TRUE)
+getModel(prior = c("C2", "PLIERpriors"), version = "latest", load = TRUE)
 }
 \arguments{
 \item{prior}{The name of gene sets used to annotate PCAGenomicSignatures.
@@ -14,6 +14,9 @@ Currently  there are two available options.
     \item \code{PLIERpriors} : bloodCellMarkersIRISDMAP, svmMarkers, and
     canonicalPathways
 }}
+
+\item{version}{Default is \code{latest}. Available versions are listed in
+\code{version} column of \code{\link{availableRAVmodel()}} output.}
 
 \item{load}{Default is \code{TRUE}. If it's set to \code{FALSE}, the models
 are just downloaded to cache but not loaded into memory.}
