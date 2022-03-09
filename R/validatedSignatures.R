@@ -53,7 +53,7 @@
 #' library(bcellViper)
 #' data(bcellViper)
 #' val_all <- validate(dset, miniRAVmodel)
-#' validatedSignatures(val_all, RAVmodel, num.out = 3, scoreCutoff = 0)
+#' validatedSignatures(val_all, miniRAVmodel, num.out = 3, scoreCutoff = 0)
 #'
 #' @export
 validatedSignatures <- function(val_all, RAVmodel,
