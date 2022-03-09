@@ -4,4 +4,4 @@
 "C2","latest","1.1.1","GSEA with set.seed",TRUE,"refinebioRseq_RAVmodel_C2_20220115",20220115,"1.3.0"
 "PLIERpriors","beta",">= 0.0.6","beta version",TRUE,"RAVmodel_PLIERpriors",20201101,"1.1.0"
 "PLIERpriors","1.1.0","1.1.0","Debug: trainingData structure",FALSE,"refinebioRseq_RAVmodel_PLIERpriors_20211207",20211207,"1.3.0"
-"PLIERpriors","latest","1.1.1","GSEA with set.seed",TRUE,"refinebioRseq_RAVmodel_PLIERpriors_20220117",20220115,"1.3.0"
+"PLIERpriors","latest","1.1.1","GSEA with set.seed",TRUE,"refinebioRseq_RAVmodel_PLIERpriors_20220115",20220115,"1.3.0"
