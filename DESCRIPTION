@@ -15,7 +15,7 @@ Description: This package provides a novel method for interpreting new
   identify interpretable annotations and intuitive visualization options are 
   implemented in this package. 
 Depends: 
-  R (>= 4.0),
+  R (>= 4.1.0),
   SummarizedExperiment
 Imports:
   ComplexHeatmap,
