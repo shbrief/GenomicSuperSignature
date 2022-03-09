@@ -74,6 +74,7 @@ Collate:
     'PCAGenomicSignatures-methods.R'
     'annotatePC.R'
     'annotateRAV.R'
+    'availableRAVmodel.R'
     'buildAvgLoading.R'
     'calculateScore.R'
     'data.R'
