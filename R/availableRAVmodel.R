@@ -24,7 +24,11 @@ availableRAVmodel <- function(simplify = TRUE) {
     map <- utils::read.table(file.path(dir, "availableRAVmodel.csv"),
                              sep = ",", header = TRUE)
 
-    available_ind <- which(map$gcp == "TRUE")
-    map <- map[available_ind, c("prior", "version", "update", "pkg_version")]
+    if (isTRUE(simplify)) {
+        available_ind <- which(map$gcp == "TRUE")
+        map <- map[available_ind, 
+                   c("prior", "version", "update", "pkg_version")]
+    }
+    
     return(map)
 }
