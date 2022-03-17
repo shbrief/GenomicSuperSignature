@@ -34,6 +34,7 @@ reference:
     contents:
       - annotatePC
       - annotateRAV
+      - availableRAVmodel
       - extractPC
       - findKeywordInRAV
       - findSignature
