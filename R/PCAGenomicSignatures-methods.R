@@ -226,12 +226,12 @@ setGeneric("mesh<-", function(x, value) standardGeneric("mesh<-"))
 #' @exportMethod mesh<-
 #' @rdname PCAGenomicSignatures-methods
 setMethod("mesh<-", "PCAGenomicSignatures", function(x, value) {
-    trainingData(x)$MeSH = NA
+    trainingData(x)$MeSH <- NA
     for (i in seq_along(value)) {
-        ind = which(rownames(trainingData(x)) == names(value[i]))
-        trainingData(x)$MeSH[ind] = value[i]
+        ind <- which(rownames(trainingData(x)) == names(value[i]))
+        trainingData(x)$MeSH[ind] <- value[i]
     }
-    names(trainingData(x)$MeSH) = rownames(trainingData(x))
+    names(trainingData(x)$MeSH) <- rownames(trainingData(x))
     return(x)
 })
 
@@ -242,12 +242,12 @@ setGeneric("PCAsummary<-", function(x, value) standardGeneric("PCAsummary<-"))
 #' @exportMethod PCAsummary<-
 #' @rdname PCAGenomicSignatures-methods
 setMethod("PCAsummary<-", "PCAGenomicSignatures", function(x, value) {
-    trainingData(x)$PCAsummary = NA
+    trainingData(x)$PCAsummary <- NA
     for (i in seq_along(value)) {
-        ind = which(rownames(trainingData(x)) == names(value[i]))
-        trainingData(x)$PCAsummary[ind] = value[i]
+        ind <- which(rownames(trainingData(x)) == names(value[i]))
+        trainingData(x)$PCAsummary[ind] <- value[i]
     }
-    names(trainingData(x)$PCAsummary) = rownames(trainingData(x))
+    names(trainingData(x)$PCAsummary) <- rownames(trainingData(x))
     return(x)
 })
 

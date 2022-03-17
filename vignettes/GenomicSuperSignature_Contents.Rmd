@@ -61,6 +61,9 @@ studies in training dataset, such as MeSH terms assigned to each study.
 
 ```{r}
 RAVmodel
+
+version(RAVmodel)
+geneSets(RAVmodel)
 ```
 
 <center>
