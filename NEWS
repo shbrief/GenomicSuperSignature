@@ -1,3 +1,35 @@
+CHANGES IN VERSION 1.4.0
+------------------------
+    o [Bug Fix]
+    - `findStudiesInCluster`: single-element clusters return the correct
+    study now, instead of `null`
+
+    o [Major]
+    - `findStudiesInCluster`: the output includes PC number of the participating
+    study in the cluster and the variance explained by them. With `studyTitle=FALSE`,
+    the output will be a data frame, not a character vector.
+    - `subsetEnrichedPathways`: the new argument `include_nes` is added. If it
+    is set to `TRUE`, the output will include NES from GSEA.
+    - `getRAVInfo` and `getStudyInfo`: two new functions to extract basic
+    metadata for RAVs and studies, respectively.
+    - We characterize RAVs that are harder to interpret with the currently available
+    information associated with them (more detail can be found bit.ly/RAVmodel_characterization).
+    For the following functions, any output including those RAVs will have a
+    defulat message: `meshTable`, `drawWordcloud`, `heatmapTable`, `validatedSignatures`.
+    You can snooze this by setting `filterMessage = FALSE`
+    - New required parameter `RAVmodel` for the following functions:
+    `annotatePC`,`heatmapTable` and `validatedSignatures`.
+    - New accessor `version` is available to check the version of RAVmodel
+    - New function `availableRAVmodel` will output the different versions of 
+    RAVmodels available for downloading now. 
+    - `getModel` function now takes a new argument, `version`, to specify the 
+    version of RAVmodel to download.
+
+    o [Minor]
+    - miniRAVmodel is updated
+
+
+
 CHANGES IN VERSION 1.2.0
 ------------------------
     o [Bug Fix]
