@@ -42,8 +42,8 @@ setClass("GenomicSignatures",
 #'
 #' @exportClass PCAGenomicSignatures
 .PCAGenomicSignatures <- setClass("PCAGenomicSignatures",
-         slots = representation(
-             trainingData = "DataFrame"
+         slots = list(
+             trainingData = "DataFrame" 
          ),
          contains = "GenomicSignatures"
 )

@@ -82,6 +82,8 @@
 #' @slot trainingData A \code{\link[S4Vectors]{DataFrame}} class object for
 #' metadata associated with training data
 #'
+#' @param trainingData A \code{\link[S4Vectors]{DataFrame}} class object for
+#' metadata associated with training data
 #' @param ... Additional arguments for supporting functions.
 #' @return PCAGenomicSignatures object with multiple setters or accessors
 #'
@@ -90,11 +92,11 @@
 #' miniRAVmodel
 #'
 #' @export
-PCAGenomicSignatures <- function(...)
+PCAGenomicSignatures <- function(..., trainingData)
 {
     se <- SummarizedExperiment::SummarizedExperiment(...)
-    gs <- .PCAGenomicSignatures(se)
-    .RAVName(gs)
+    .RAVName(se) #--> Move this to the model_building process instead
+    gs <- .PCAGenomicSignatures(se, trainingData = trainingData)
 }
 
 

@@ -4,10 +4,12 @@
 \alias{PCAGenomicSignatures}
 \title{Construct \code{PCAGenomicSignatures} object}
 \usage{
-PCAGenomicSignatures(...)
+PCAGenomicSignatures(..., trainingData)
 }
 \arguments{
 \item{...}{Additional arguments for supporting functions.}
+
+\item{trainingData}{A \code{\link[S4Vectors]{DataFrame}} class object.}
 }
 \value{
 PCAGenomicSignatures object with multiple setters or accessors
