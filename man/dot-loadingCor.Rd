@@ -9,8 +9,10 @@
 \arguments{
 \item{dataset}{A gene expression profile to be validated. Different classes
 of objects can be used including ExpressionSet, SummarizedExperiment,
-RangedSummarizedExperiment, or matrix. Rownames (genes) should be in symbol
-format. If it is a matrix, genes should be in rows and samples in columns.}
+RangedSummarizedExperiment, or matrix. Rownames (genes) should be in 
+human gene symbol format (HGNC). If dataset is a matrix, genes should be in 
+rows and samples in columns. RNA-seq counts should be log(count + 1) 
+prior to the `validate()` call.}
 
 \item{avgLoading}{A matrix with genes by RAVs.}
 
@@ -18,8 +20,8 @@ format. If it is a matrix, genes should be in rows and samples in columns.}
 to be computed. One of "pearson" (default), "kendall", or "spearman": can be
 abbreviated.}
 
-\item{scale}{Default is \code{FALSE}. If it is set to \code{TRUE}, dataset
-will be row normalized by \link{rowNorm} function.}
+\item{scale}{Default is \code{FALSE}. If it is set to \code{TRUE}, rows 
+will be converted to z-score prior to PCA.}
 }
 \value{
 A matrix of Pearson correlation coefficient (default, defined through

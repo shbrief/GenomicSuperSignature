@@ -2,14 +2,16 @@
 #'
 #' @param dataset A gene expression profile to be validated. Different classes
 #' of objects can be used including ExpressionSet, SummarizedExperiment,
-#' RangedSummarizedExperiment, or matrix. Rownames (genes) should be in symbol
-#' format. If it is a matrix, genes should be in rows and samples in columns.
+#' RangedSummarizedExperiment, or matrix. Rownames (genes) should be in 
+#' human gene symbol format (HGNC). If dataset is a matrix, genes should be in 
+#' rows and samples in columns. RNA-seq counts should be log(count + 1) 
+#' prior to the `validate()` call.
 #' @param avgLoading A matrix with genes by RAVs.
 #' @param method A character string indicating which correlation coefficient is
 #' to be computed. One of "pearson" (default), "kendall", or "spearman": can be
 #' abbreviated.
-#' @param scale Default is \code{FALSE}. If it is set to \code{TRUE}, dataset
-#' will be row normalized by \link{rowNorm} function.
+#' @param scale Default is \code{FALSE}. If it is set to \code{TRUE}, rows 
+#' will be converted to z-score prior to PCA. 
 #'
 #' @return A matrix of Pearson correlation coefficient (default, defined through
 #' \code{method} argument) between RAVs (row) and the top 8 PCs from the
