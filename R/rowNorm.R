@@ -10,7 +10,6 @@
 #' y = rowNorm(x)
 #' apply(y,1,mean)
 #'
-#' @export
 rowNorm <- function(x){
   return(t(scale(t(x))))
 }
