@@ -89,7 +89,6 @@ Collate:
     'plotAnnotatedPCA.R'
     'plotValidate.R'
     'rmNaInf.R'
-    'rowNorm.R'
     'sampleScoreHeatmap.R'
     'subsetEnrichedPathways.R'
     'utils.R'

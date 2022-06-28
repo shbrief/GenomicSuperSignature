@@ -37,7 +37,7 @@ only the maximum coefficient. To get the coefficient of all 8 PCs, set this
 argument as "all". \code{level = "all"} can be used only for one dataset.}
 
 \item{scale}{Default is \code{FALSE}. If it is set to \code{TRUE}, dataset
-will be row normalized by \link{rowNorm} function.}
+will be row normalized.}
 }
 \value{
 A data frame containing the maximum pearson correlation coefficient

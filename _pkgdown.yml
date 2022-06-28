@@ -23,7 +23,6 @@ reference:
       - findStudiesInCluster
       - PCinRAV
       - rmNaInf
-      - rowNorm
   - title: Model Application
     desc: Functions for applying PCAGenomicSignatures model to a new data
     contents:
