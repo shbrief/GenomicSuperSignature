@@ -25,7 +25,7 @@
 
     # row normalization
     stopifnot(length(scale) == 1L, !is.na(scale), is.logical(scale))
-    if (scale) {dat <- rowNorm(dat)}
+    if (scale) {dat <- t(scale(t(dat)))} # row normalization
 
     dat <- dat[apply(dat, 1,
                      function (x) {!any(is.na(x) | (x==Inf) | (x==-Inf))}),]
@@ -60,7 +60,7 @@
 #' only the maximum coefficient. To get the coefficient of all 8 PCs, set this
 #' argument as "all". \code{level = "all"} can be used only for one dataset.
 #' @param scale Default is \code{FALSE}. If it is set to \code{TRUE}, dataset
-#' will be row normalized by \link{rowNorm} function.
+#' will be row normalized.
 #'
 #' @return A data frame containing the maximum pearson correlation coefficient
 #' between the top 8 PCs of the dataset and pre-calculated average loadings
