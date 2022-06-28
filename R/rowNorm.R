@@ -6,9 +6,9 @@
 #' @return a matrix with each row mean centered and scaled by rowwise sd
 #'
 #' @examples
-#' x = matrix(rnorm(100),nc=10)
-#' y = rowNorm(x)
-#' apply(y,1,mean)
+#' # x = matrix(rnorm(100),nc=10)
+#' # y = rowNorm(x)
+#' # apply(y,1,mean)
 #'
 rowNorm <- function(x){
   return(t(scale(t(x))))
