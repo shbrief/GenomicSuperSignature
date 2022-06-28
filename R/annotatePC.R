@@ -4,8 +4,8 @@
 #' RAVs with negative silhouette width) for specified PC of the dataset and
 #' returns the top enriched pathways.
 #'
-#' @param PCnum A numeric vector. PC number of your dataset that you want to get
-#' the annotation results. The vector can contain any integer number among
+#' @param PCnum A numeric vector. PC number of your dataset to retrieve
+#' annotation results for. The vector can contain any integer number among
 #' \code{1:8}.
 #' @param val_all The output from \code{\link{validate}}
 #' @param RAVmodel The RAVmodel used to generate the input for the argument,
@@ -13,10 +13,11 @@
 #' @param n An integer. Default is 5. The number of the top enriched pathways
 #' to print out. If there are fewer than n pathways passed the cutoff, it will
 #' print out \code{NA}.
-#' @param scoreCutoff A numeric value for the minimum correlation.
-#' Default is 0.5.
-#' @param nesCutoff A numeric value for the minimum NES. Default is \code{NULL}
-#' and the suggested value is 3.
+#' @param scoreCutoff A numeric value for the minimum correlation between loadings
+#' of the dataset principal component and the RAV. Default is 0.5.
+#' @param nesCutoff A numeric value for the minimum Normalized Enrichment Score
+#' (NES) for the enrichment analysis. Default is \code{NULL}
+#' The suggested value is 3.
 #' @param simplify A logical. Under default (\code{TRUE}), the output will be a
 #' data frame with the number of column same as the length of \code{PCnum}
 #' argument, and the number of row same as the \code{n} argument. If it is set
@@ -24,8 +25,9 @@
 #' argument, where each element is a data frame containing detailed GSEA output
 #' of enriched pathways.
 #' @param abs Default is \code{FALSE}. If it's set to \code{TRUE}, the enriched
-#' pathways will be listed based on \code{abs(NES)}.
-#' @param trimed_pathway_len Positive inter values, which is the display width
+#' pathways will be listed based on absolute value of the Normalized Enrichment
+#' Score (NES).
+#' @param trimed_pathway_len Positive integer values, which is the display width
 #' of pathway names. Default is 45.
 #'
 #' @return A data frame of a list based on the \code{simplify} argument. Check

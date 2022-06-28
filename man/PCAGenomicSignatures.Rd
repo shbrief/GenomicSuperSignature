@@ -9,7 +9,8 @@ PCAGenomicSignatures(..., trainingData)
 \arguments{
 \item{...}{Additional arguments for supporting functions.}
 
-\item{trainingData}{A \code{\link[S4Vectors]{DataFrame}} class object.}
+\item{trainingData}{A \code{\link[S4Vectors]{DataFrame}} class object for
+metadata associated with training data}
 }
 \value{
 PCAGenomicSignatures object with multiple setters or accessors

@@ -17,8 +17,8 @@ annotatePC(
 )
 }
 \arguments{
-\item{PCnum}{A numeric vector. PC number of your dataset that you want to get
-the annotation results. The vector can contain any integer number among
+\item{PCnum}{A numeric vector. PC number of your dataset to retrieve
+annotation results for. The vector can contain any integer number among
 \code{1:8}.}
 
 \item{val_all}{The output from \code{\link{validate}}}
@@ -30,11 +30,12 @@ the annotation results. The vector can contain any integer number among
 to print out. If there are fewer than n pathways passed the cutoff, it will
 print out \code{NA}.}
 
-\item{scoreCutoff}{A numeric value for the minimum correlation.
-Default is 0.5.}
+\item{scoreCutoff}{A numeric value for the minimum correlation between loadings
+of the dataset principal component and the RAV. Default is 0.5.}
 
-\item{nesCutoff}{A numeric value for the minimum NES. Default is \code{NULL}
-and the suggested value is 3.}
+\item{nesCutoff}{A numeric value for the minimum Normalized Enrichment Score
+(NES) for the enrichment analysis. Default is \code{NULL}
+The suggested value is 3.}
 
 \item{simplify}{A logical. Under default (\code{TRUE}), the output will be a
 data frame with the number of column same as the length of \code{PCnum}
@@ -44,9 +45,10 @@ argument, where each element is a data frame containing detailed GSEA output
 of enriched pathways.}
 
 \item{abs}{Default is \code{FALSE}. If it's set to \code{TRUE}, the enriched
-pathways will be listed based on \code{abs(NES)}.}
+pathways will be listed based on absolute value of the Normalized Enrichment
+Score (NES).}
 
-\item{trimed_pathway_len}{Positive inter values, which is the display width
+\item{trimed_pathway_len}{Positive integer values, which is the display width
 of pathway names. Default is 45.}
 }
 \value{
