@@ -1,14 +1,16 @@
-#' Two-dimentional PCA plot with the PC annotation
+#' Two-dimensional PCA plot with the PC annotation
 #'
 #' @import ggpubr
 #' @import ggplot2
+#' @import flextable
 #'
 #' @param dataset A gene expression profile to be validated. Different classes
 #' of objects can be used including ExpressionSet, SummarizedExperiment,
 #' RangedSummarizedExperiment, or matrix. Rownames (genes) should be in symbol
 #' format. If it is a matrix, genes should be in rows and samples in columns.
 #' @param RAVmodel PCAGenomicSignatures-class object
-#' @param PCnum A numeric vector length of 2. It should be between 1 and 8.
+#' @param PCnum A numeric vector length of 2. The values should be 
+#' between 1 and 8.
 #' @param val_all The output from \code{\link{validate}}
 #' @param scoreCutoff A numeric value for the minimum correlation.
 #' Default 0.5.
