@@ -1,5 +1,7 @@
 #' Validating new dataset
 #'
+#' @importFrom irlba irlba
+#' 
 #' @param dataset A gene expression profile to be validated. Different classes
 #' of objects can be used including ExpressionSet, SummarizedExperiment,
 #' RangedSummarizedExperiment, or matrix. Rownames (genes) should be in 
@@ -16,6 +18,8 @@
 #' @return A matrix of Pearson correlation coefficient (default, defined through
 #' \code{method} argument) between RAVs (row) and the top 8 PCs from the
 #' datasets (column)
+#' 
+#' @keywords internal
 #'
 .loadingCor <- function(dataset, avgLoading,
                         method = "pearson", scale = FALSE) {
@@ -23,15 +27,26 @@
     # Extract expression matrix from different classes
     dat <- .extractExprsMatrix(dataset)
 
-    # row normalization
-    stopifnot(length(scale) == 1L, !is.na(scale), is.logical(scale))
-    if (scale) {dat <- t(scale(t(dat)))} # row normalization
+    # # row normalization # Plan to remove `scale` argument <<<<<<<<<<<<<<<<<<<< 
+    # stopifnot(length(scale) == 1L, !is.na(scale), is.logical(scale))
+    # if (scale) {dat <- t(scale(t(dat)))}
 
-    dat <- dat[apply(dat, 1,
-                     function (x) {!any(is.na(x) | (x==Inf) | (x==-Inf))}),]
-    gene_common <- intersect(rownames(avgLoading), rownames(dat))
-    prcomRes <- stats::prcomp(t(dat[gene_common,]))  # centered, but not scaled
-    loadings <- prcomRes$rotation[, seq_len(8)]
+    if (!is(dataset, "SingleCellExperiment") & ncol(dataset) == 8) {
+        dat <- dat[apply(dat, 1,
+                         function (x) {!any(is.na(x) | (x==Inf) | (x==-Inf))}),]
+        gene_common <- intersect(rownames(avgLoading), rownames(dat))
+        prcomRes <- stats::prcomp(t(dat[gene_common,]))  # centered, but not scaled
+        loadings <- prcomRes$rotation[, seq_len(8)]
+    } else {    # Dimensional reduction for scRNAseq data
+        gene_common <- intersect(rownames(avgLoading), rownames(dat))
+        res <- irlba::irlba(as.matrix(t(dat[gene_common,])), 
+                            nv = 8, # Use only top 8 PCs for validation
+                            center = TRUE, scale = FALSE)
+        loadings <- res$v
+        rownames(loadings) <- rownames(dat[gene_common,])
+        colnames(loadings) <- paste0("PC", seq_len(8))
+    }
+    
     loading_cor <- abs(stats::cor(avgLoading[gene_common,],
                                   loadings[gene_common,],
                                   use = "pairwise.complete.obs",
