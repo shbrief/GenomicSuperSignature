@@ -5,7 +5,7 @@ Authors@R: c(
   person("Sehyun", "Oh", email = "shbrief@gmail.com", role = c("aut","cre")),
   person("Levi", "Waldron", role = "aut"),
   person("Sean", "Davis", email = "seandavi@gmail.com", role = "aut"))
-Version: 1.5.2
+Version: 1.5.3
 Date: 2022-7-26
 Description: This package provides a novel method for interpreting new 
   transcriptomic datasets through near-instantaneous comparison to public 
@@ -28,7 +28,8 @@ Imports:
   plotly,
   BiocFileCache,
   grid,
-  flextable
+  flextable,
+  irlba
 Suggests:
   knitr,
   rmarkdown,
