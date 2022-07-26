@@ -3,7 +3,7 @@
 \docType{data}
 \name{filterList}
 \alias{filterList}
-\title{RAVs that will output with quanlity-control messages}
+\title{RAVs that will output with quality-control messages}
 \format{
 A named list with four elements - "Cluster_Size_filter",
 "GSEA_C2_filter", "GSEA_PLIERpriors_filter", and "Redundancy_filter".
@@ -12,7 +12,7 @@ A named list with four elements - "Cluster_Size_filter",
 filterList
 }
 \description{
-RAVs that will output with quanlity-control messages
+RAVs that will output with quality-control messages
 }
 \author{
 Sehyun Oh \email{shbrief@gmail.com}

@@ -24,3 +24,4 @@ neighboring clusters.
 \seealso{
 \code{\link[stats]{kmeans}}
 }
+\keyword{internal}

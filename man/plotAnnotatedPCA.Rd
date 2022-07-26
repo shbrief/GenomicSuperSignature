@@ -2,7 +2,7 @@
 % Please edit documentation in R/plotAnnotatedPCA.R
 \name{plotAnnotatedPCA}
 \alias{plotAnnotatedPCA}
-\title{Two-dimentional PCA plot with the PC annotation}
+\title{Two-dimensional PCA plot with the PC annotation}
 \usage{
 plotAnnotatedPCA(
   dataset,
@@ -24,7 +24,8 @@ format. If it is a matrix, genes should be in rows and samples in columns.}
 
 \item{RAVmodel}{PCAGenomicSignatures-class object}
 
-\item{PCnum}{A numeric vector length of 2. It should be between 1 and 8.}
+\item{PCnum}{A numeric vector length of 2. The values should be 
+between 1 and 8.}
 
 \item{val_all}{The output from \code{\link{validate}}}
 
@@ -50,7 +51,7 @@ significant pathways". If any enriched pathway didn't pass the
 \code{nesCutoff}, it will labeled as NA.
 }
 \description{
-Two-dimentional PCA plot with the PC annotation
+Two-dimensional PCA plot with the PC annotation
 }
 \examples{
 data(miniRAVmodel)

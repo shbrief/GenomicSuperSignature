@@ -10,6 +10,8 @@
 #' @param kmeansRes Output from \code{stats::kmeans}.
 #'
 #' @return Silhouette-class object, which is an n x 3 matrix with attributes.
+#' 
+#' @keywords internal
 #'
 #' @seealso \code{\link[stats]{kmeans}}
 #'

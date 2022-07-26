@@ -20,3 +20,4 @@ of unique studies' info during the model construction to make it easy to keep
 track of them, but at the PCAGenomicSignatures-class object building step,
 covert them into 'RAV + cluster number'.
 }
+\keyword{internal}

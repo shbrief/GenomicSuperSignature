@@ -12,6 +12,8 @@
 #' @param ... Additional arguments for supporting functions.
 #'
 #' @return a character vector
+#' 
+#' @keywords internal
 #'
 .RAVName <- function(x, ...) {
     rownames(x@colData) <- paste0("RAV", seq_len(ncol(x)))

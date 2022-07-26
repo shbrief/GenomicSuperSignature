@@ -2,7 +2,6 @@
 #'
 #' @import ggpubr
 #' @import ggplot2
-#' @import flextable
 #'
 #' @param dataset A gene expression profile to be validated. Different classes
 #' of objects can be used including ExpressionSet, SummarizedExperiment,

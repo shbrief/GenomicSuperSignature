@@ -50,6 +50,15 @@ reference:
       - plotAnnotatedPCA
       - plotValidate
       - sampleScoreHeatmap
+  - title: Misc. Package Docs
+    desc: Other package information and data
+    contents:
+      - droplist
+      - filterList
+      - miniAllZ
+      - miniRAVmodel
+      - miniTCGA
+      - res_hcut
 
 navbar:
   title: ~

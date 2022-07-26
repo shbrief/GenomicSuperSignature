@@ -186,14 +186,21 @@ drawWordcloud(RAVmodel, validated_ind[3])
 
 ## GSEA
 ### Associated gene sets of validated RAV
-You can directly access the GSEA outputs for each RAV using `gsea`. Based on
-the wordclouds, RAV1139 seems to be associated with B-cell.
+You can directly access the GSEA outputs for each RAV using `annotateRAV` 
+function. Based on the wordclouds, RAV1139 seems to be associated with B-cell.
 
 ```{r}
-RAVnum <- validated_ind[2]  # RAV1139
-res <- gsea(RAVmodel)[[RAVnum]]   
-head(res)
+annotateRAV(RAVmodel, validated_ind[2]) # RAV1139
 ```
+
+If you want to check the enriched pathways for multiple RAVs, use
+`subsetEnrichedPathways` function instead. 
+```{r}
+subsetEnrichedPathways(RAVmodel, validated_ind[2], include_nes = TRUE)
+
+subsetEnrichedPathways(RAVmodel, validated_ind, include_nes = TRUE)
+```
+
 
 ### Search enriched pathways through keyword
 You can also find the RAVs annotated with the keyword-containing pathways using
@@ -223,8 +230,12 @@ You can check all enriched pathways of RAV using `subsetEnrichedPathways`
 function. If `both=TRUE`, both the top and bottom enriched pathways will 
 be printed.
 ```{r}
-subsetEnrichedPathways(RAVmodel, ind = RAVnum, n = 3, both = TRUE)
+## Chosen based on validation/MeSH terms
+subsetEnrichedPathways(RAVmodel, ind = validated_ind[2], n = 3, both = TRUE)
+
+## Chosen based on enriched pathways
 subsetEnrichedPathways(RAVmodel, ind = 695, n = 3, both = TRUE)
+subsetEnrichedPathways(RAVmodel, ind = 953, n = 3, both = TRUE)
 subsetEnrichedPathways(RAVmodel, ind = 1994, n = 3, both = TRUE)
 ```
 
