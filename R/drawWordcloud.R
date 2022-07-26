@@ -63,6 +63,10 @@ PCinRAV <- function(RAVmodel, ind) {
 #' @export
 meshTable <- function(RAVmodel, ind, rm.noise = NULL,
                       weighted = TRUE, filterMessage = TRUE) {
+    
+    ### Check ind validity for meshTable
+    if (length(ind) != 1) {stop("Provide only one index.")}
+    if (ind %% 1 != 0) {stop("`ind` should be integer.")}
 
     ### Check ind validity
     .availableRAV(RAVmodel, ind)
