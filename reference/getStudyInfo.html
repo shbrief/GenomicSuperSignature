@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GenomicSuperignature</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5.4</span>
       </span>
     </div>
 
@@ -26,7 +26,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Vignettes
      
     <span class="caret"></span>
@@ -35,7 +35,7 @@
       <a href="../articles/Quickstart.html">Quick Start Guide</a>
     </li>
     <li>
-      <a href="../articles/GenomicSuperSignature_Contents.html">Model Contents</a>
+      <a href="../articles/Contents.html">Model Contents</a>
     </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
@@ -63,29 +63,37 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">getStudyInfo</span><span class="op">(</span><span class="va">RAVmodel</span>, <span class="va">study</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">getStudyInfo</span><span class="op">(</span><span class="va">RAVmodel</span>, <span class="va">study</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>RAVmodel</dt>
 <dd><p>A PCAGenomicSignatures object</p></dd>
+
+
 <dt>study</dt>
 <dd><p>A character for SRA study accession.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A list with three elements: studyTitle, studySize (the number of
+    
+
+<p>A list with three elements: studyTitle, studySize (the number of
 samples from this study used in the RAVmodel building), and RAVs. 'RAVs' is
 a data frame with three columns - PC (1 to 20), RAV (RAV that the given PC
-belongs to), and Variance explained (<!-- %). In the example, we used -->miniRAVmodel, which doesn't have all the PCA summary information, so the
+belongs to), and Variance explained (<!-- %). In the example, we used --></p>
+
+
+<p>miniRAVmodel, which doesn't have all the PCA summary information, so the
 example will return only the two PCs of the study instead of all twenty.</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">miniRAVmodel</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">getStudyInfo</span><span class="op">(</span><span class="va">miniRAVmodel</span>, <span class="st">"SRP028155"</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">miniRAVmodel</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">getStudyInfo</span><span class="op">(</span><span class="va">miniRAVmodel</span>, <span class="st">"SRP028155"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $studyTitle</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Transcriptomic analysis of ERR alpha orphan nuclear receptor"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -97,7 +105,7 @@ example will return only the two PCs of the study instead of all twenty.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  1  725                  28.60</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  3 1076                   2.74</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -112,7 +120,7 @@ example will return only the two PCs of the study instead of all twenty.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

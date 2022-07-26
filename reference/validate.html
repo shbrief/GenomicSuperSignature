@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GenomicSuperignature</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5.4</span>
       </span>
     </div>
 
@@ -26,7 +26,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Vignettes
      
     <span class="caret"></span>
@@ -35,7 +35,7 @@
       <a href="../articles/Quickstart.html">Quick Start Guide</a>
     </li>
     <li>
-      <a href="../articles/GenomicSuperSignature_Contents.html">Model Contents</a>
+      <a href="../articles/Contents.html">Model Contents</a>
     </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
@@ -63,14 +63,14 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">validate</span><span class="op">(</span>
-  <span class="va">dataset</span>,
-  <span class="va">RAVmodel</span>,
-  method <span class="op">=</span> <span class="st">"pearson"</span>,
-  maxFrom <span class="op">=</span> <span class="st">"PC"</span>,
-  level <span class="op">=</span> <span class="st">"max"</span>,
-  scale <span class="op">=</span> <span class="cn">FALSE</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">validate</span><span class="op">(</span></span>
+<span>  <span class="va">dataset</span>,</span>
+<span>  <span class="va">RAVmodel</span>,</span>
+<span>  method <span class="op">=</span> <span class="st">"pearson"</span>,</span>
+<span>  maxFrom <span class="op">=</span> <span class="st">"PC"</span>,</span>
+<span>  level <span class="op">=</span> <span class="st">"max"</span>,</span>
+<span>  scale <span class="op">=</span> <span class="cn">FALSE</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -80,36 +80,51 @@
 (RangedSummarizedExperiment, ExpressionSet or matrix) object(s). Gene names
 should be in 'symbol' format. Currently, each dataset should have at least
 8 samples.</p></dd>
+
+
 <dt>RAVmodel</dt>
 <dd><p>PCAGenomicSignatures object.</p></dd>
+
+
 <dt>method</dt>
 <dd><p>A character string indicating which correlation coefficient is
 to be computed. One of "pearson" (default), "kendall", or "spearman": can be
 abbreviated.</p></dd>
+
+
 <dt>maxFrom</dt>
 <dd><p>Select whether to display the maximum value from dataset's PCs
 or avgLoadings. Under the default (<code>maxFrom="PC"</code>), the maximum
 correlation coefficient from top 8 PCs for each avgLoading will be selected
 as an output. If you choose (<code>maxFrom="avgLoading"</code>), the avgLoading
 with the maximum correlation coefficient with each PC will be in the output.</p></dd>
+
+
 <dt>level</dt>
 <dd><p>Output format of validated result. Two options are available:
 <code>c("max", "all")</code>. Default is "max", which outputs the matrix containing
 only the maximum coefficient. To get the coefficient of all 8 PCs, set this
 argument as "all". <code>level = "all"</code> can be used only for one dataset.</p></dd>
+
+
 <dt>scale</dt>
 <dd><p>Default is <code>FALSE</code>. If it is set to <code>TRUE</code>, dataset
-will be row normalized by <a href="rowNorm.html">rowNorm</a> function.</p></dd>
+will be row normalized.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A data frame containing the maximum pearson correlation coefficient
+    
+
+<p>A data frame containing the maximum pearson correlation coefficient
 between the top 8 PCs of the dataset and pre-calculated average loadings
 (in row) of training datasets (<code>score</code> column). It also contains other
 metadata associated with each RAV: <code>PC</code> for one of the top 8 PCs of the
 dataset that results in the given <code>score</code>, <code>sw</code> for the average
-silhouette width of the RAV, <code>cl_size</code> for the size of each RAV.
-If the input for <code>dataset</code> argument is a list of different datasets,
+silhouette width of the RAV, <code>cl_size</code> for the size of each RAV.</p>
+
+
+<p>If the input for <code>dataset</code> argument is a list of different datasets,
 each row of the output represents a new dataset for test, and each column
 represents clusters from training datasets. If <code>level = "all"</code>, a list
 containing the matrices of the pearson correlation coefficient between all
@@ -118,10 +133,10 @@ top 8 PCs of the datasets and avgLoading.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">miniRAVmodel</span><span class="op">)</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">bcellViper</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">bcellViper</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">validate</span><span class="op">(</span><span class="va">dset</span>, <span class="va">miniRAVmodel</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">miniRAVmodel</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">bcellViper</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">bcellViper</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">validate</span><span class="op">(</span><span class="va">dset</span>, <span class="va">miniRAVmodel</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>             score PC           sw cl_size cl_num</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> RAV1076 0.5950767  2 -0.044471242      10   1076</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> RAV338  0.5709072  2 -0.046833188      21    338</span>
@@ -143,7 +158,7 @@ top 8 PCs of the datasets and avgLoading.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> RAV1994 0.1729988  3 -0.034939005       3   1994</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> RAV312  0.3774798  8 -0.066746154      24    312</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> RAV468  0.3989300  8  0.124024704       7    468</span>
-<span class="r-in"><span class="fu">validate</span><span class="op">(</span><span class="va">dset</span>, <span class="va">miniRAVmodel</span>, maxFrom <span class="op">=</span> <span class="st">"avgLoading"</span><span class="op">)</span></span>
+<span class="r-in"><span><span class="fu">validate</span><span class="op">(</span><span class="va">dset</span>, <span class="va">miniRAVmodel</span>, maxFrom <span class="op">=</span> <span class="st">"avgLoading"</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>         score validated_RAV</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> PC1 0.2285693       RAV1139</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> PC2 0.5950767       RAV1076</span>
@@ -153,7 +168,7 @@ top 8 PCs of the datasets and avgLoading.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> PC6 0.2126171        RAV338</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> PC7 0.1762712        RAV468</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> PC8 0.3989300        RAV468</span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -168,7 +183,7 @@ top 8 PCs of the datasets and avgLoading.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

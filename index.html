@@ -41,7 +41,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">GenomicSuperignature</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5.4</span>
       </span>
     </div>
 
@@ -51,7 +51,7 @@
   <a href="reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Vignettes
      
     <span class="caret"></span>
@@ -61,7 +61,7 @@
       <a href="articles/Quickstart.html">Quick Start Guide</a>
     </li>
     <li>
-      <a href="articles/GenomicSuperSignature_Contents.html">Model Contents</a>
+      <a href="articles/Contents.html">Model Contents</a>
     </li>
   </ul>
 </li>
@@ -102,17 +102,17 @@
 <div class="section level3">
 <h3 id="results">Results<a class="anchor" aria-label="anchor" href="#results"></a>
 </h3>
-<p>Preprint is available <a href="https://www.biorxiv.org/content/10.1101/2021.05.26.445900v1" class="external-link"><strong>HERE</strong></a>. Usecases and benchmarking examples included in the preprint are further documented at <a href="https://shbrief.github.io/GenomicSuperSignaturePaper/" class="external-link">GenomicSuperSignaturePaper</a> page.</p>
+<p>GenomicSuperSignature paper is available <a href="https://www.nature.com/articles/s41467-022-31411-3" class="external-link"><strong>HERE</strong></a>. Usecases and benchmarking examples included in the paper are further documented at <a href="https://shbrief.github.io/GenomicSuperSignaturePaper/" class="external-link">GenomicSuperSignaturePaper</a> page.</p>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
 <p>You can install GenomicSuperSignature in Bioconductor. This can be done using <code>BiocManager</code>:</p>
-<pre><code><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span><span class="op">)</span>
-    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span>
-
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">BiocManager</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"GenomicSuperSignature"</span><span class="op">)</span></code></pre>
+<pre><code><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">BiocManager</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"GenomicSuperSignature"</span><span class="op">)</span></span></code></pre>
 <p>RAVmodel can be directly downloaded from Google bucket with no cost. The sizes of RAVmodels<code>RAVmodel_C2.rds</code> and <code>RAVmodel_PLIERpriors.rds</code> are 476.1MB and 475.1MB, respectively. You can use <code>wget</code> or <code><a href="reference/getModel.html">GenomicSuperSignature::getModel</a></code> function.</p>
 <pre><code>## Download RAVmodel with wget
 wget https://storage.googleapis.com/genomic_super_signature/RAVmodel_C2.rds
@@ -144,6 +144,14 @@ getModel("PLIERpriors")</code></pre>
 <p>GenomicSuperSignature connects different public databases and prior information through RAVindex, creating the knowledge graph illustrated here. Users can instantly access data and metadata resources from multiple entry points, such as gene expression profiles, MeSH terms, gene sets, and keywords.</p>
 <p><img src="https://raw.githubusercontent.com/shbrief/GenomicSuperSignaturePaper/master/inst/images/GSig_knowledge_graph.png" width="90%" height="90%"></p>
 </div>
+</div>
+<div class="section level2">
+<h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
+</h2>
+<p>If you use GenomicSuperSignature in published research, please cite:</p>
+<blockquote>
+<p>Oh S, Geistlinger L, Ramos M, Blankenberg D, van den Beek M, Taroni JN, Carey VJ, Waldron L, Davis S. GenomicSuperSignature facilitates interpretation of RNA-seq experiments through robust, efficient comparison to public databases. <em>Nature Communications</em> <strong>2022</strong>;13: 3695. <a href="https://www.nature.com/articles/s41467-022-31411-3" class="external-link">doi: 10.1038/s41467-022-31411-3</a></p>
+</blockquote>
 </div>
 </div>
   </div>
@@ -195,7 +203,7 @@ getModel("PLIERpriors")</code></pre>
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>

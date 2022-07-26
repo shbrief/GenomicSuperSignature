@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GenomicSuperignature</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5.4</span>
       </span>
     </div>
 
@@ -43,7 +43,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Vignettes
      
     <span class="caret"></span>
@@ -53,7 +53,7 @@
       <a href="../articles/Quickstart.html">Quick Start Guide</a>
     </li>
     <li>
-      <a href="../articles/GenomicSuperSignature_Contents.html">Model Contents</a>
+      <a href="../articles/Contents.html">Model Contents</a>
     </li>
   </ul>
 </li>
@@ -81,7 +81,7 @@
       <h1 data-toc-skip>GenomicSuperSignature - Quickstart</h1>
                         <h4 data-toc-skip class="author">Sehyun Oh</h4>
             
-            <h4 data-toc-skip class="date">February 13, 2022</h4>
+            <h4 data-toc-skip class="date">July 25, 2022</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/shbrief/GenomicSuperSignature/blob/HEAD/vignettes/Quickstart.Rmd" class="external-link"><code>vignettes/Quickstart.Rmd</code></a></small>
       <div class="hidden name"><code>Quickstart.Rmd</code></div>
@@ -91,7 +91,9 @@
     
         <div class="abstract">
       <p class="abstract">Abstract</p>
-      <p>This vigenette demostrates a basic usage of GenomicSuperSignature. More extensive and biology-relavant use cases are available <a href="https://shbrief.github.io/GenomicSuperSignaturePaper/" class="external-link"><strong>HERE</strong></a>.</p>
+      <p>This vigenette demostrates a basic usage of
+      GenomicSuperSignature. More extensive and biology-relavant use
+      cases are available <a href="https://shbrief.github.io/GenomicSuperSignaturePaper/" class="external-link"><strong>HERE</strong></a>.</p>
     </div>
     
 <div class="section level2">
@@ -101,111 +103,165 @@
 <h3 id="install-and-load-package">Install and load package<a class="anchor" aria-label="anchor" href="#install-and-load-package"></a>
 </h3>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span><span class="op">)</span>
-    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span>
-<span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"GenomicSuperSignature"</span><span class="op">)</span>
-<span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"bcellViper"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">require</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span></span>
+<span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"GenomicSuperSignature"</span><span class="op">)</span></span>
+<span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/install.html" class="external-link">install</a></span><span class="op">(</span><span class="st">"bcellViper"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/shbrief/GenomicSuperSignature" class="external-link">GenomicSuperSignature</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">bcellViper</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/shbrief/GenomicSuperSignature" class="external-link">GenomicSuperSignature</a></span><span class="op">)</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">bcellViper</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="download-ravmodel">Download RAVmodel<a class="anchor" aria-label="anchor" href="#download-ravmodel"></a>
 </h3>
-<p>You can download GenomicSuperSignature from Google Cloud bucket using <code><a href="../reference/getModel.html">GenomicSuperSignature::getModel</a></code> function. Currently available models are built from top 20 PCs of 536 studies (containing 44,890 samples) containing 13,934 common genes from each of 536 study’s top 90% varying genes based on their study-level standard deviation. There are two versions of this RAVmodel annotated with different gene sets for GSEA - MSigDB C2 (<code>C2</code>) and three priors from PLIER package (<code>PLIERpriors</code>).</p>
-<p>The demo in this vignette is based on human B-cell expression data, so we are using the <code>PLIERpriors</code> model annotated with blood-associated gene sets.</p>
-<p>Note that the first interactive run of this code, you will be asked to allow R to create a cache directory. The model file will be stored there and subsequent calls to <code>getModel</code> will read from the cache.</p>
+<p>You can download GenomicSuperSignature from Google Cloud bucket using
+<code><a href="../reference/getModel.html">GenomicSuperSignature::getModel</a></code> function. Currently
+available models are built from top 20 PCs of 536 studies (containing
+44,890 samples) containing 13,934 common genes from each of 536 study’s
+top 90% varying genes based on their study-level standard deviation.
+There are two versions of this RAVmodel annotated with different gene
+sets for GSEA - MSigDB C2 (<code>C2</code>) and three priors from PLIER
+package (<code>PLIERpriors</code>).</p>
+<p>The demo in this vignette is based on human B-cell expression data,
+so we are using the <code>PLIERpriors</code> model annotated with
+blood-associated gene sets.</p>
+<p>Note that the first interactive run of this code, you will be asked
+to allow R to create a cache directory. The model file will be stored
+there and subsequent calls to <code>getModel</code> will read from the
+cache.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">RAVmodel</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getModel.html">getModel</a></span><span class="op">(</span><span class="st">"PLIERpriors"</span>, load<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span>
-<span class="va">RAVmodel</span>
-<span class="co">#&gt; class: PCAGenomicSignatures </span>
-<span class="co">#&gt; dim: 13934 4764 </span>
-<span class="co">#&gt; metadata(8): cluster size ... updateNote version</span>
-<span class="co">#&gt; assays(1): RAVindex</span>
-<span class="co">#&gt; rownames(13934): CASKIN1 DDX3Y ... CTC-457E21.9 AC007966.1</span>
-<span class="co">#&gt; rowData names(0):</span>
-<span class="co">#&gt; colnames(4764): RAV1 RAV2 ... RAV4763 RAV4764</span>
-<span class="co">#&gt; colData names(4): RAV studies silhouetteWidth gsea</span>
-<span class="co">#&gt; trainingData(2): PCAsummary MeSH</span>
-<span class="co">#&gt; trainingData names(536): DRP000987 SRP059172 ... SRP164913 SRP188526</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">RAVmodel</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/getModel.html">getModel</a></span><span class="op">(</span><span class="st">"PLIERpriors"</span>, load<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "downloading"</span></span>
+<span><span class="va">RAVmodel</span></span>
+<span><span class="co">#&gt; class: PCAGenomicSignatures </span></span>
+<span><span class="co">#&gt; dim: 13934 4764 </span></span>
+<span><span class="co">#&gt; metadata(8): cluster size ... version geneSets</span></span>
+<span><span class="co">#&gt; assays(1): RAVindex</span></span>
+<span><span class="co">#&gt; rownames(13934): CASKIN1 DDX3Y ... CTC-457E21.9 AC007966.1</span></span>
+<span><span class="co">#&gt; rowData names(0):</span></span>
+<span><span class="co">#&gt; colnames(4764): RAV1 RAV2 ... RAV4763 RAV4764</span></span>
+<span><span class="co">#&gt; colData names(4): RAV studies silhouetteWidth gsea</span></span>
+<span><span class="co">#&gt; trainingData(2): PCAsummary MeSH</span></span>
+<span><span class="co">#&gt; trainingData names(536): DRP000987 SRP059172 ... SRP164913 SRP188526</span></span>
+<span></span>
+<span><span class="fu"><a href="https://rdrr.io/pkg/BiocManager/man/version.html" class="external-link">version</a></span><span class="op">(</span><span class="va">RAVmodel</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "1.1.1"</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="example-dataset">Example dataset<a class="anchor" aria-label="anchor" href="#example-dataset"></a>
 </h3>
-<p>The human B-cell dataset (Gene Expression Omnibus series GSE2350) consists of 211 normal and tumor human B-cell phenotypes. This dataset was generated on Affymatrix HG-U95Av2 arrays and stored in an ExpressionSet object with 6,249 features x 211 samples.</p>
+<p>The human B-cell dataset (Gene Expression Omnibus series GSE2350)
+consists of 211 normal and tumor human B-cell phenotypes. This dataset
+was generated on Affymatrix HG-U95Av2 arrays and stored in an
+ExpressionSet object with 6,249 features x 211 samples.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">bcellViper</span><span class="op">)</span>
-<span class="va">dset</span>
-<span class="co">#&gt; ExpressionSet (storageMode: lockedEnvironment)</span>
-<span class="co">#&gt; assayData: 6249 features, 211 samples </span>
-<span class="co">#&gt;   element names: exprs </span>
-<span class="co">#&gt; protocolData: none</span>
-<span class="co">#&gt; phenoData</span>
-<span class="co">#&gt;   sampleNames: GSM44075 GSM44078 ... GSM44302 (211 total)</span>
-<span class="co">#&gt;   varLabels: sampleID description detailed_description</span>
-<span class="co">#&gt;   varMetadata: labelDescription</span>
-<span class="co">#&gt; featureData: none</span>
-<span class="co">#&gt; experimentData: use 'experimentData(object)'</span>
-<span class="co">#&gt; Annotation:</span></code></pre></div>
-<p>You can provide your own expression dataset in any of these formats: simple matrix, ExpressionSet, or SummarizedExperiment. Just make sure that genes are in a ‘symbol’ format.</p>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">bcellViper</span><span class="op">)</span></span>
+<span><span class="va">dset</span></span>
+<span><span class="co">#&gt; ExpressionSet (storageMode: lockedEnvironment)</span></span>
+<span><span class="co">#&gt; assayData: 6249 features, 211 samples </span></span>
+<span><span class="co">#&gt;   element names: exprs </span></span>
+<span><span class="co">#&gt; protocolData: none</span></span>
+<span><span class="co">#&gt; phenoData</span></span>
+<span><span class="co">#&gt;   sampleNames: GSM44075 GSM44078 ... GSM44302 (211 total)</span></span>
+<span><span class="co">#&gt;   varLabels: sampleID description detailed_description</span></span>
+<span><span class="co">#&gt;   varMetadata: labelDescription</span></span>
+<span><span class="co">#&gt; featureData: none</span></span>
+<span><span class="co">#&gt; experimentData: use 'experimentData(object)'</span></span>
+<span><span class="co">#&gt; Annotation:</span></span></code></pre></div>
+<p>You can provide your own expression dataset in any of these formats:
+simple matrix, ExpressionSet, or SummarizedExperiment. Just make sure
+that genes are in a ‘symbol’ format.</p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="which-rav-best-represents-the-dataset">Which RAV best represents the dataset?<a class="anchor" aria-label="anchor" href="#which-rav-best-represents-the-dataset"></a>
 </h2>
-<p><code>validate</code> function calculates validation score, which provides a quantitative representation of the relevance between a new dataset and RAV. RAVs that give the validation score is called <em><em>validated RAV</em></em>. The validation results can be displayed in different ways for more intuitive interpretation.</p>
+<p><code>validate</code> function calculates validation score, which
+provides a quantitative representation of the relevance between a new
+dataset and RAV. RAVs that give the validation score is called
+<em><em>validated RAV</em></em>. The validation results can be displayed
+in different ways for more intuitive interpretation.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">val_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/validate.html">validate</a></span><span class="op">(</span><span class="va">dset</span>, <span class="va">RAVmodel</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">val_all</span><span class="op">)</span>
-<span class="co">#&gt;          score PC          sw cl_size cl_num</span>
-<span class="co">#&gt; RAV1 0.2249382  2 -0.05470163       6      1</span>
-<span class="co">#&gt; RAV2 0.3899341  2  0.06426256      21      2</span>
-<span class="co">#&gt; RAV3 0.1887409  2 -0.01800335       4      3</span>
-<span class="co">#&gt; RAV4 0.2309703  6 -0.04005584       7      4</span>
-<span class="co">#&gt; RAV5 0.2017431  2  0.05786189       3      5</span>
-<span class="co">#&gt; RAV6 0.1903602  8 -0.02520973       3      6</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">val_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/validate.html">validate</a></span><span class="op">(</span><span class="va">dset</span>, <span class="va">RAVmodel</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">val_all</span><span class="op">)</span></span>
+<span><span class="co">#&gt;          score PC          sw cl_size cl_num</span></span>
+<span><span class="co">#&gt; RAV1 0.2249382  2 -0.05470163       6      1</span></span>
+<span><span class="co">#&gt; RAV2 0.3899341  2  0.06426256      21      2</span></span>
+<span><span class="co">#&gt; RAV3 0.1887409  2 -0.01800335       4      3</span></span>
+<span><span class="co">#&gt; RAV4 0.2309703  6 -0.04005584       7      4</span></span>
+<span><span class="co">#&gt; RAV5 0.2017431  2  0.05786189       3      5</span></span>
+<span><span class="co">#&gt; RAV6 0.1903602  8 -0.02520973       3      6</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="heatmaptable">HeatmapTable<a class="anchor" aria-label="anchor" href="#heatmaptable"></a>
 </h3>
-<p><code>heatmapTable</code> takes validation results as its input and displays them into a two panel table: the top panel shows the average silhouette width (avg.sw) and the bottom panel displays the validation score.</p>
-<p><code>heatmapTable</code> can display different subsets of the validation output. For example, if you specify <code>scoreCutoff</code>, any validation result above that score will be shown. If you specify the number (n) of top validation results through <code>num.out</code>, the output will be a n-columned heatmap table. You can also use the average silhouette width (<code>swCutoff</code>), the size of cluster (<code>clsizecutoff</code>), one of the top 8 PCs from the dataset (<code>whichPC</code>).</p>
-<p>Here, we print out top 5 validated RAVs with average silhouette width above 0.</p>
+<p><code>heatmapTable</code> takes validation results as its input and
+displays them into a two panel table: the top panel shows the average
+silhouette width (avg.sw) and the bottom panel displays the validation
+score.</p>
+<p><code>heatmapTable</code> can display different subsets of the
+validation output. For example, if you specify <code>scoreCutoff</code>,
+any validation result above that score will be shown. If you specify the
+number (n) of top validation results through <code>num.out</code>, the
+output will be a n-columned heatmap table. You can also use the average
+silhouette width (<code>swCutoff</code>), the size of cluster
+(<code>clsizecutoff</code>), one of the top 8 PCs from the dataset
+(<code>whichPC</code>).</p>
+<p>Here, we print out top 5 validated RAVs with average silhouette width
+above 0.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/heatmapTable.html">heatmapTable</a></span><span class="op">(</span><span class="va">val_all</span>, <span class="va">RAVmodel</span>, num.out <span class="op">=</span> <span class="fl">5</span>, swCutoff <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/heatmapTable.html">heatmapTable</a></span><span class="op">(</span><span class="va">val_all</span>, <span class="va">RAVmodel</span>, num.out <span class="op">=</span> <span class="fl">5</span>, swCutoff <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Quickstart_files/figure-html/unnamed-chunk-5-1.png" width="80%" height="80%" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level3">
 <h3 id="interactive-graph">Interactive Graph<a class="anchor" aria-label="anchor" href="#interactive-graph"></a>
 </h3>
-<p>Under the default condition, <code>plotValidate</code> plots validation results of all non single-element RAVs in one graph, where x-axis represents average silhouette width of the RAVs (a quality control measure of RAVs) and y-axis represents validation score. We recommend users to focus on RAVs with higher validation score and use average silhouette width as a secondary criteria.</p>
+<p>Under the default condition, <code>plotValidate</code> plots
+validation results of all non single-element RAVs in one graph, where
+x-axis represents average silhouette width of the RAVs (a quality
+control measure of RAVs) and y-axis represents validation score. We
+recommend users to focus on RAVs with higher validation score and use
+average silhouette width as a secondary criteria.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/plotValidate.html">plotValidate</a></span><span class="op">(</span><span class="va">val_all</span>, interactive <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/plotValidate.html">plotValidate</a></span><span class="op">(</span><span class="va">val_all</span>, interactive <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Quickstart_files/figure-html/plotValidate_function-1.png" width="75%" height="75%" style="display: block; margin: auto;"></p>
-<p>Note that <code>interactive = TRUE</code> will result in a zoomable, interactive plot that included tooltips.</p>
+<p>Note that <code>interactive = TRUE</code> will result in a zoomable,
+interactive plot that included tooltips.</p>
 <p>You can hover each data point for more information:</p>
 <ul>
 <li>
-<strong>sw</strong> : the average silhouette width of the cluster<br>
+<strong>sw</strong> : the average silhouette width of the
+cluster<br>
 </li>
 <li>
-<strong>score</strong> : the top validation score between 8 PCs of the dataset and RAVs<br>
+<strong>score</strong> : the top validation score between 8 PCs of
+the dataset and RAVs<br>
 </li>
 <li>
-<strong>cl_size</strong> : the size of RAVs, represented by the dot size<br>
+<strong>cl_size</strong> : the size of RAVs, represented by the dot
+size<br>
 </li>
 <li>
-<strong>cl_num</strong> : the RAV number. You need this index to find more information about the RAV.<br>
+<strong>cl_num</strong> : the RAV number. You need this index to
+find more information about the RAV.<br>
 </li>
 <li>
-<strong>PC</strong> : test dataset’s PC number that validates the given RAV. Because we used top 8 PCs of the test dataset for validation, there are 8 categories.</li>
+<strong>PC</strong> : test dataset’s PC number that validates the
+given RAV. Because we used top 8 PCs of the test dataset for validation,
+there are 8 categories.</li>
 </ul>
-<p>If you double-click the PC legend on the right, you will enter an individual display mode where you can add an additional group of data point by single-click.</p>
+<p>If you double-click the PC legend on the right, you will enter an
+individual display mode where you can add an additional group of data
+point by single-click.</p>
 </div>
 </div>
 <div class="section level2">
 <h2 id="what-kinds-of-information-can-you-access-through-rav">What kinds of information can you access through RAV?<a class="anchor" aria-label="anchor" href="#what-kinds-of-information-can-you-access-through-rav"></a>
 </h2>
-<p>GenomicSuperSignature connects different public databases and prior information through RAVmodel, creating the knowledge graph illustrated below. Through RAVs, you can access and explore the knowledge graph from multiple entry points such as gene expression profiles, publications, study metadata, keywords in MeSH terms and gene sets.</p>
+<p>GenomicSuperSignature connects different public databases and prior
+information through RAVmodel, creating the knowledge graph illustrated
+below. Through RAVs, you can access and explore the knowledge graph from
+multiple entry points such as gene expression profiles, publications,
+study metadata, keywords in MeSH terms and gene sets.</p>
 <p></p>
 <center>
 <img src="https://raw.githubusercontent.com/shbrief/GenomicSuperSignaturePaper/master/inst/images/GSig_knowledge_graph.png" width="120%" height="120%">
@@ -213,23 +269,34 @@
 <div class="section level3">
 <h3 id="mesh-terms-in-wordcloud">MeSH terms in wordcloud<a class="anchor" aria-label="anchor" href="#mesh-terms-in-wordcloud"></a>
 </h3>
-<p>You can draw a wordcloud with the enriched MeSH terms of RAVs. Based on the heatmap table above, three RAVs (2538, 1139, and 884) show the high validation scores with the positive average silhouette widths, so we draw wordclouds of those RAVs using <code>drawWordcloud</code> function. You need to provide RAVmodel and the index of the RAV you are interested in.</p>
-<p>Index of validated RAVs can be easily collected using <code>validatedSingatures</code> function, which outputs the validated index based on <code>num.out</code>, PC from dataset (<code>whichPC</code>) or any <code>*Cutoff</code> arguments in the same way as <code>heatmapTable</code>. Here, we choose the top 3 RAVs with the average silhouette width above 0, which will returns RAV2538, RAV1139, and RAV884 as we discussed above.</p>
+<p>You can draw a wordcloud with the enriched MeSH terms of RAVs. Based
+on the heatmap table above, three RAVs (2538, 1139, and 884) show the
+high validation scores with the positive average silhouette widths, so
+we draw wordclouds of those RAVs using <code>drawWordcloud</code>
+function. You need to provide RAVmodel and the index of the RAV you are
+interested in.</p>
+<p>Index of validated RAVs can be easily collected using
+<code>validatedSingatures</code> function, which outputs the validated
+index based on <code>num.out</code>, PC from dataset
+(<code>whichPC</code>) or any <code>*Cutoff</code> arguments in the same
+way as <code>heatmapTable</code>. Here, we choose the top 3 RAVs with
+the average silhouette width above 0, which will returns RAV2538,
+RAV1139, and RAV884 as we discussed above.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">validated_ind</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/validatedSignatures.html">validatedSignatures</a></span><span class="op">(</span><span class="va">val_all</span>, <span class="va">RAVmodel</span>, num.out <span class="op">=</span> <span class="fl">3</span>, 
-                                     swCutoff <span class="op">=</span> <span class="fl">0</span>, indexOnly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="va">validated_ind</span>
-<span class="co">#&gt; [1] 2538 1139  884</span></code></pre></div>
+<code class="sourceCode R"><span><span class="va">validated_ind</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/validatedSignatures.html">validatedSignatures</a></span><span class="op">(</span><span class="va">val_all</span>, <span class="va">RAVmodel</span>, num.out <span class="op">=</span> <span class="fl">3</span>, </span>
+<span>                                     swCutoff <span class="op">=</span> <span class="fl">0</span>, indexOnly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="va">validated_ind</span></span>
+<span><span class="co">#&gt; [1] 2538 1139  884</span></span></code></pre></div>
 <p>And we plot the wordcloud of those three RAVs.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="co"># only if you want to reproduce identical display of the same words</span>
-<span class="fu"><a href="../reference/drawWordcloud.html">drawWordcloud</a></span><span class="op">(</span><span class="va">RAVmodel</span>, <span class="va">validated_ind</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">1</span><span class="op">)</span> <span class="co"># only if you want to reproduce identical display of the same words</span></span>
+<span><span class="fu"><a href="../reference/drawWordcloud.html">drawWordcloud</a></span><span class="op">(</span><span class="va">RAVmodel</span>, <span class="va">validated_ind</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Quickstart_files/figure-html/unnamed-chunk-7-1.png" width="60%" height="60%" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/drawWordcloud.html">drawWordcloud</a></span><span class="op">(</span><span class="va">RAVmodel</span>, <span class="va">validated_ind</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/drawWordcloud.html">drawWordcloud</a></span><span class="op">(</span><span class="va">RAVmodel</span>, <span class="va">validated_ind</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Quickstart_files/figure-html/unnamed-chunk-7-2.png" width="60%" height="60%" style="display: block; margin: auto;"></p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/drawWordcloud.html">drawWordcloud</a></span><span class="op">(</span><span class="va">RAVmodel</span>, <span class="va">validated_ind</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/drawWordcloud.html">drawWordcloud</a></span><span class="op">(</span><span class="va">RAVmodel</span>, <span class="va">validated_ind</span><span class="op">[</span><span class="fl">3</span><span class="op">]</span><span class="op">)</span></span></code></pre></div>
 <p><img src="Quickstart_files/figure-html/unnamed-chunk-7-3.png" width="60%" height="60%" style="display: block; margin: auto;"></p>
 </div>
 <div class="section level3">
@@ -238,178 +305,244 @@
 <div class="section level4">
 <h4 id="associated-gene-sets-of-validated-rav">Associated gene sets of validated RAV<a class="anchor" aria-label="anchor" href="#associated-gene-sets-of-validated-rav"></a>
 </h4>
-<p>You can directly access the GSEA outputs for each RAV using <code>gsea</code>. Based on the wordclouds, RAV1139 seems to be associated with B-cell.</p>
+<p>You can directly access the GSEA outputs for each RAV using
+<code>annotateRAV</code> function. Based on the wordclouds, RAV1139
+seems to be associated with B-cell.</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">RAVnum</span> <span class="op">&lt;-</span> <span class="va">validated_ind</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>  <span class="co"># RAV1139</span>
-<span class="va">res</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/PCAGenomicSignatures-methods.html">gsea</a></span><span class="op">(</span><span class="va">RAVmodel</span><span class="op">)</span><span class="op">[[</span><span class="va">RAVnum</span><span class="op">]</span><span class="op">]</span>   
-<span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span>
-<span class="co">#&gt;                                                               Description</span>
-<span class="co">#&gt; DMAP_ERY3                                                       DMAP_ERY3</span>
-<span class="co">#&gt; IRIS_CD4Tcell-Th1-restimulated48hour IRIS_CD4Tcell-Th1-restimulated48hour</span>
-<span class="co">#&gt; IRIS_CD4Tcell-Th2-restimulated48hour IRIS_CD4Tcell-Th2-restimulated48hour</span>
-<span class="co">#&gt; IRIS_MemoryTcell-RO-activated               IRIS_MemoryTcell-RO-activated</span>
-<span class="co">#&gt; KEGG_CELL_CYCLE                                           KEGG_CELL_CYCLE</span>
-<span class="co">#&gt; KEGG_HUNTINGTONS_DISEASE                         KEGG_HUNTINGTONS_DISEASE</span>
-<span class="co">#&gt;                                            NES pvalue      qvalues</span>
-<span class="co">#&gt; DMAP_ERY3                            -2.184449  1e-10 6.221805e-10</span>
-<span class="co">#&gt; IRIS_CD4Tcell-Th1-restimulated48hour -2.834540  1e-10 6.221805e-10</span>
-<span class="co">#&gt; IRIS_CD4Tcell-Th2-restimulated48hour -2.790389  1e-10 6.221805e-10</span>
-<span class="co">#&gt; IRIS_MemoryTcell-RO-activated        -2.802690  1e-10 6.221805e-10</span>
-<span class="co">#&gt; KEGG_CELL_CYCLE                      -2.910950  1e-10 6.221805e-10</span>
-<span class="co">#&gt; KEGG_HUNTINGTONS_DISEASE             -2.653498  1e-10 6.221805e-10</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/annotateRAV.html">annotateRAV</a></span><span class="op">(</span><span class="va">RAVmodel</span>, <span class="va">validated_ind</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span> <span class="co"># RAV1139</span></span>
+<span><span class="co">#&gt;                                        Description       NES pvalue</span></span>
+<span><span class="co">#&gt; 1                                        DMAP_ERY3 -2.179082  1e-10</span></span>
+<span><span class="co">#&gt; 2                          KEGG_ALZHEIMERS_DISEASE -2.443701  1e-10</span></span>
+<span><span class="co">#&gt; 3 REACTOME_POST_TRANSLATIONAL_PROTEIN_MODIFICATION -2.458995  1e-10</span></span>
+<span><span class="co">#&gt; 4                               REACTOME_APOPTOSIS -2.645437  1e-10</span></span>
+<span><span class="co">#&gt; 5                         KEGG_HUNTINGTONS_DISEASE -2.670108  1e-10</span></span>
+<span><span class="co">#&gt;        qvalues</span></span>
+<span><span class="co">#&gt; 1 6.390977e-10</span></span>
+<span><span class="co">#&gt; 2 6.390977e-10</span></span>
+<span><span class="co">#&gt; 3 6.390977e-10</span></span>
+<span><span class="co">#&gt; 4 6.390977e-10</span></span>
+<span><span class="co">#&gt; 5 6.390977e-10</span></span></code></pre></div>
+<p>If you want to check the enriched pathways for multiple RAVs, use
+<code>subsetEnrichedPathways</code> function instead.</p>
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/subsetEnrichedPathways.html">subsetEnrichedPathways</a></span><span class="op">(</span><span class="va">RAVmodel</span>, <span class="va">validated_ind</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, include_nes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; DataFrame with 10 rows and 2 columns</span></span>
+<span><span class="co">#&gt;          RAV1139.Description RAV1139.NES</span></span>
+<span><span class="co">#&gt;                  &lt;character&gt;   &lt;numeric&gt;</span></span>
+<span><span class="co">#&gt; Up_1               DMAP_ERY3    -2.17908</span></span>
+<span><span class="co">#&gt; Up_2  KEGG_ALZHEIMERS_DISE..    -2.44370</span></span>
+<span><span class="co">#&gt; Up_3  REACTOME_POST_TRANSL..    -2.45899</span></span>
+<span><span class="co">#&gt; Up_4      REACTOME_APOPTOSIS    -2.64544</span></span>
+<span><span class="co">#&gt; Up_5  KEGG_HUNTINGTONS_DIS..    -2.67011</span></span>
+<span><span class="co">#&gt; Up_6  REACTOME_MRNA_PROCES..    -2.67431</span></span>
+<span><span class="co">#&gt; Up_7  REACTOME_HOST_INTERA..    -2.69593</span></span>
+<span><span class="co">#&gt; Up_8         PID_E2F_PATHWAY    -2.74887</span></span>
+<span><span class="co">#&gt; Up_9  KEGG_PYRIMIDINE_META..    -2.75404</span></span>
+<span><span class="co">#&gt; Up_10 REACTOME_CDK_MEDIATE..    -2.75535</span></span>
+<span></span>
+<span><span class="fu"><a href="../reference/subsetEnrichedPathways.html">subsetEnrichedPathways</a></span><span class="op">(</span><span class="va">RAVmodel</span>, <span class="va">validated_ind</span>, include_nes <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; DataFrame with 10 rows and 6 columns</span></span>
+<span><span class="co">#&gt;          RAV2538.Description RAV2538.NES    RAV1139.Description RAV1139.NES</span></span>
+<span><span class="co">#&gt;                  &lt;character&gt;   &lt;numeric&gt;            &lt;character&gt;   &lt;numeric&gt;</span></span>
+<span><span class="co">#&gt; Up_1     REACTOME_CELL_CYCLE     3.25799              DMAP_ERY3    -2.17908</span></span>
+<span><span class="co">#&gt; Up_2  REACTOME_CELL_CYCLE_..     3.22323 KEGG_ALZHEIMERS_DISE..    -2.44370</span></span>
+<span><span class="co">#&gt; Up_3  REACTOME_DNA_REPLICA..     3.18974 REACTOME_POST_TRANSL..    -2.45899</span></span>
+<span><span class="co">#&gt; Up_4  REACTOME_MITOTIC_M_M..     3.10711     REACTOME_APOPTOSIS    -2.64544</span></span>
+<span><span class="co">#&gt; Up_5  REACTOME_MITOTIC_PRO..     2.91384 KEGG_HUNTINGTONS_DIS..    -2.67011</span></span>
+<span><span class="co">#&gt; Up_6         KEGG_CELL_CYCLE     2.86725 REACTOME_MRNA_PROCES..    -2.67431</span></span>
+<span><span class="co">#&gt; Up_7  REACTOME_CHROMOSOME_..     2.85931 REACTOME_HOST_INTERA..    -2.69593</span></span>
+<span><span class="co">#&gt; Up_8        REACTOME_S_PHASE     2.85345        PID_E2F_PATHWAY    -2.74887</span></span>
+<span><span class="co">#&gt; Up_9  REACTOME_MITOTIC_G1_..     2.83497 KEGG_PYRIMIDINE_META..    -2.75404</span></span>
+<span><span class="co">#&gt; Up_10 REACTOME_CELL_CYCLE_..     2.80616 REACTOME_CDK_MEDIATE..    -2.75535</span></span>
+<span><span class="co">#&gt;           RAV884.Description RAV884.NES</span></span>
+<span><span class="co">#&gt;                  &lt;character&gt;  &lt;numeric&gt;</span></span>
+<span><span class="co">#&gt; Up_1               DMAP_ERY3   -1.43162</span></span>
+<span><span class="co">#&gt; Up_2  REACTOME_METABOLISM_..   -1.54368</span></span>
+<span><span class="co">#&gt; Up_3  KEGG_ALZHEIMERS_DISE..   -1.62716</span></span>
+<span><span class="co">#&gt; Up_4  KEGG_HUNTINGTONS_DIS..   -1.65062</span></span>
+<span><span class="co">#&gt; Up_5         KEGG_CELL_CYCLE   -1.65473</span></span>
+<span><span class="co">#&gt; Up_6  REACTOME_MITOTIC_G1_..   -1.67482</span></span>
+<span><span class="co">#&gt; Up_7  REACTOME_METABOLISM_..   -1.68713</span></span>
+<span><span class="co">#&gt; Up_8     REACTOME_CELL_CYCLE   -1.69922</span></span>
+<span><span class="co">#&gt; Up_9  REACTOME_CELL_CYCLE_..   -1.72169</span></span>
+<span><span class="co">#&gt; Up_10 REACTOME_DNA_REPLICA..   -1.76756</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="search-enriched-pathways-through-keyword">Search enriched pathways through keyword<a class="anchor" aria-label="anchor" href="#search-enriched-pathways-through-keyword"></a>
 </h4>
-<p>You can also find the RAVs annotated with the keyword-containing pathways using <code>findSignature</code> function. Without the <code>k</code> argument, this function outputs a data frame with two columns: the number of RAVs (<code>Freq</code> column) with the different numbers of keyword-containing, enriched pathways (<code># of keyword-containing pathways</code> column).</p>
+<p>You can also find the RAVs annotated with the keyword-containing
+pathways using <code>findSignature</code> function. Without the
+<code>k</code> argument, this function outputs a data frame with two
+columns: the number of RAVs (<code>Freq</code> column) with the
+different numbers of keyword-containing, enriched pathways
+(<code># of keyword-containing pathways</code> column).</p>
 <p>Here, we used the keyword, “Bcell”.</p>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/findSignature.html">findSignature</a></span><span class="op">(</span><span class="va">RAVmodel</span>, <span class="st">"Bcell"</span><span class="op">)</span>
-<span class="co">#&gt;   # of keyword-containing pathways Freq</span>
-<span class="co">#&gt; 1                                0 4685</span>
-<span class="co">#&gt; 2                                1   38</span>
-<span class="co">#&gt; 3                                2   17</span>
-<span class="co">#&gt; 4                                3   14</span>
-<span class="co">#&gt; 5                                4    8</span>
-<span class="co">#&gt; 6                                5    2</span></code></pre></div>
-<p>There are two RAVs with five keyword-containing pathways (row 6). We can check which RAVs they are.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/findSignature.html">findSignature</a></span><span class="op">(</span><span class="va">RAVmodel</span>, <span class="st">"Bcell"</span>, k <span class="op">=</span> <span class="fl">5</span><span class="op">)</span>
-<span class="co">#&gt; [1]  695 1994</span></code></pre></div>
-<p>Enriched pathways are ordered by NES and you can check the rank of any keyword- containing pathways using <code>findKeywordInRAV</code>.</p>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/findSignature.html">findSignature</a></span><span class="op">(</span><span class="va">RAVmodel</span>, <span class="st">"Bcell"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   # of keyword-containing pathways Freq</span></span>
+<span><span class="co">#&gt; 1                                0 4678</span></span>
+<span><span class="co">#&gt; 2                                1   46</span></span>
+<span><span class="co">#&gt; 3                                2   15</span></span>
+<span><span class="co">#&gt; 4                                3   16</span></span>
+<span><span class="co">#&gt; 5                                4    6</span></span>
+<span><span class="co">#&gt; 6                                5    3</span></span></code></pre></div>
+<p>There are two RAVs with five keyword-containing pathways (row 6). We
+can check which RAVs they are.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/findKeywordInRAV.html">findKeywordInRAV</a></span><span class="op">(</span><span class="va">RAVmodel</span>, <span class="st">"Bcell"</span>, ind <span class="op">=</span> <span class="fl">695</span><span class="op">)</span>
-<span class="co">#&gt; [1] "1|2|3|4|5|6|9 (out of 9)"</span></code></pre></div>
-<p>You can check all enriched pathways of RAV using <code>subsetEnrichedPathways</code> function. If <code>both=TRUE</code>, both the top and bottom enriched pathways will be printed.</p>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/findSignature.html">findSignature</a></span><span class="op">(</span><span class="va">RAVmodel</span>, <span class="st">"Bcell"</span>, k <span class="op">=</span> <span class="fl">5</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1]  695  953 1994</span></span></code></pre></div>
+<p>Enriched pathways are ordered by NES and you can check the rank of
+any keyword- containing pathways using
+<code>findKeywordInRAV</code>.</p>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/subsetEnrichedPathways.html">subsetEnrichedPathways</a></span><span class="op">(</span><span class="va">RAVmodel</span>, ind <span class="op">=</span> <span class="va">RAVnum</span>, n <span class="op">=</span> <span class="fl">3</span>, both <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="co">#&gt; DataFrame with 6 rows and 1 column</span>
-<span class="co">#&gt;           RAV1139.Description</span>
-<span class="co">#&gt;                   &lt;character&gt;</span>
-<span class="co">#&gt; Up_1                DMAP_ERY3</span>
-<span class="co">#&gt; Up_2   REACTOME_CYTOKINE_SI..</span>
-<span class="co">#&gt; Up_3       REACTOME_APOPTOSIS</span>
-<span class="co">#&gt; Down_1 REACTOME_DNA_REPLICA..</span>
-<span class="co">#&gt; Down_2 REACTOME_CELL_CYCLE_..</span>
-<span class="co">#&gt; Down_3    REACTOME_CELL_CYCLE</span>
-<span class="fu"><a href="../reference/subsetEnrichedPathways.html">subsetEnrichedPathways</a></span><span class="op">(</span><span class="va">RAVmodel</span>, ind <span class="op">=</span> <span class="fl">695</span>, n <span class="op">=</span> <span class="fl">3</span>, both <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="co">#&gt; DataFrame with 6 rows and 1 column</span>
-<span class="co">#&gt;            RAV695.Description</span>
-<span class="co">#&gt;                   &lt;character&gt;</span>
-<span class="co">#&gt; Up_1   IRIS_Bcell-Memory_Ig..</span>
-<span class="co">#&gt; Up_2             DMAP_BCELLA3</span>
-<span class="co">#&gt; Up_3    IRIS_Bcell-Memory_IgM</span>
-<span class="co">#&gt; Down_1           DMAP_BCELLA1</span>
-<span class="co">#&gt; Down_2     SVM B cells memory</span>
-<span class="co">#&gt; Down_3 IRIS_PlasmaCell-From..</span>
-<span class="fu"><a href="../reference/subsetEnrichedPathways.html">subsetEnrichedPathways</a></span><span class="op">(</span><span class="va">RAVmodel</span>, ind <span class="op">=</span> <span class="fl">1994</span>, n <span class="op">=</span> <span class="fl">3</span>, both <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="co">#&gt; DataFrame with 6 rows and 1 column</span>
-<span class="co">#&gt;           RAV1994.Description</span>
-<span class="co">#&gt;                   &lt;character&gt;</span>
-<span class="co">#&gt; Up_1             DMAP_TCELLA6</span>
-<span class="co">#&gt; Up_2   SVM T cells CD4 memo..</span>
-<span class="co">#&gt; Up_3             DMAP_TCELLA7</span>
-<span class="co">#&gt; Down_1       IRIS_Bcell-naive</span>
-<span class="co">#&gt; Down_2  IRIS_Bcell-Memory_IgM</span>
-<span class="co">#&gt; Down_3 IRIS_Bcell-Memory_Ig..</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/findKeywordInRAV.html">findKeywordInRAV</a></span><span class="op">(</span><span class="va">RAVmodel</span>, <span class="st">"Bcell"</span>, ind <span class="op">=</span> <span class="fl">695</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "1|2|3|4|5|6|8 (out of 9)"</span></span></code></pre></div>
+<p>You can check all enriched pathways of RAV using
+<code>subsetEnrichedPathways</code> function. If <code>both=TRUE</code>,
+both the top and bottom enriched pathways will be printed.</p>
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co">## Chosen based on validation/MeSH terms</span></span>
+<span><span class="fu"><a href="../reference/subsetEnrichedPathways.html">subsetEnrichedPathways</a></span><span class="op">(</span><span class="va">RAVmodel</span>, ind <span class="op">=</span> <span class="va">validated_ind</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, n <span class="op">=</span> <span class="fl">3</span>, both <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; DataFrame with 6 rows and 1 column</span></span>
+<span><span class="co">#&gt;           RAV1139.Description</span></span>
+<span><span class="co">#&gt;                   &lt;character&gt;</span></span>
+<span><span class="co">#&gt; Up_1                DMAP_ERY3</span></span>
+<span><span class="co">#&gt; Up_2   KEGG_ALZHEIMERS_DISE..</span></span>
+<span><span class="co">#&gt; Up_3   REACTOME_POST_TRANSL..</span></span>
+<span><span class="co">#&gt; Down_1 REACTOME_CELL_CYCLE_..</span></span>
+<span><span class="co">#&gt; Down_2 REACTOME_DNA_REPLICA..</span></span>
+<span><span class="co">#&gt; Down_3    REACTOME_CELL_CYCLE</span></span>
+<span></span>
+<span><span class="co">## Chosen based on enriched pathways</span></span>
+<span><span class="fu"><a href="../reference/subsetEnrichedPathways.html">subsetEnrichedPathways</a></span><span class="op">(</span><span class="va">RAVmodel</span>, ind <span class="op">=</span> <span class="fl">695</span>, n <span class="op">=</span> <span class="fl">3</span>, both <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; DataFrame with 6 rows and 1 column</span></span>
+<span><span class="co">#&gt;            RAV695.Description</span></span>
+<span><span class="co">#&gt;                   &lt;character&gt;</span></span>
+<span><span class="co">#&gt; Up_1   IRIS_Bcell-Memory_Ig..</span></span>
+<span><span class="co">#&gt; Up_2             DMAP_BCELLA3</span></span>
+<span><span class="co">#&gt; Up_3         IRIS_Bcell-naive</span></span>
+<span><span class="co">#&gt; Down_1     SVM B cells memory</span></span>
+<span><span class="co">#&gt; Down_2           DMAP_BCELLA1</span></span>
+<span><span class="co">#&gt; Down_3 IRIS_PlasmaCell-From..</span></span>
+<span><span class="fu"><a href="../reference/subsetEnrichedPathways.html">subsetEnrichedPathways</a></span><span class="op">(</span><span class="va">RAVmodel</span>, ind <span class="op">=</span> <span class="fl">953</span>, n <span class="op">=</span> <span class="fl">3</span>, both <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; DataFrame with 6 rows and 1 column</span></span>
+<span><span class="co">#&gt;            RAV953.Description</span></span>
+<span><span class="co">#&gt;                   &lt;character&gt;</span></span>
+<span><span class="co">#&gt; Up_1   IRIS_Bcell-Memory_Ig..</span></span>
+<span><span class="co">#&gt; Up_2    IRIS_Bcell-Memory_IgM</span></span>
+<span><span class="co">#&gt; Up_3         IRIS_Bcell-naive</span></span>
+<span><span class="co">#&gt; Down_1     IRIS_Monocyte-Day0</span></span>
+<span><span class="co">#&gt; Down_2 IRIS_DendriticCell-L..</span></span>
+<span><span class="co">#&gt; Down_3     IRIS_Monocyte-Day1</span></span>
+<span><span class="fu"><a href="../reference/subsetEnrichedPathways.html">subsetEnrichedPathways</a></span><span class="op">(</span><span class="va">RAVmodel</span>, ind <span class="op">=</span> <span class="fl">1994</span>, n <span class="op">=</span> <span class="fl">3</span>, both <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; DataFrame with 6 rows and 1 column</span></span>
+<span><span class="co">#&gt;           RAV1994.Description</span></span>
+<span><span class="co">#&gt;                   &lt;character&gt;</span></span>
+<span><span class="co">#&gt; Up_1   SVM T cells CD4 memo..</span></span>
+<span><span class="co">#&gt; Up_2             DMAP_TCELLA6</span></span>
+<span><span class="co">#&gt; Up_3             DMAP_TCELLA8</span></span>
+<span><span class="co">#&gt; Down_1       IRIS_Bcell-naive</span></span>
+<span><span class="co">#&gt; Down_2  IRIS_Bcell-Memory_IgM</span></span>
+<span><span class="co">#&gt; Down_3 IRIS_Bcell-Memory_Ig..</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level3">
 <h3 id="related-prior-studies">Related prior studies<a class="anchor" aria-label="anchor" href="#related-prior-studies"></a>
 </h3>
-<p>You can find the prior studies related to a given RAV using <code>findStudiesInCluster</code> function.</p>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/findStudiesInCluster.html">findStudiesInCluster</a></span><span class="op">(</span><span class="va">RAVmodel</span>, <span class="va">validated_ind</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span>
-<span class="co">#&gt;   studyName PC Variance explained (%)</span>
-<span class="co">#&gt; 1 SRP028567  2                  14.76</span>
-<span class="co">#&gt; 2 SRP059057  3                   7.45</span>
-<span class="co">#&gt; 3 SRP095405  1                  37.27</span>
-<span class="co">#&gt; 4 SRP144647  1                  32.82</span></code></pre></div>
-<p>You can easily extract the study name with the <code>studyTitle=TRUE</code> parameter.</p>
+<p>You can find the prior studies related to a given RAV using
+<code>findStudiesInCluster</code> function.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="../reference/findStudiesInCluster.html">findStudiesInCluster</a></span><span class="op">(</span><span class="va">RAVmodel</span>, <span class="va">validated_ind</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, studyTitle <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span>
-<span class="co">#&gt;   studyName PC Variance explained (%)</span>
-<span class="co">#&gt; 1 SRP028567  2                  14.76</span>
-<span class="co">#&gt; 2 SRP059057  3                   7.45</span>
-<span class="co">#&gt; 3 SRP095405  1                  37.27</span>
-<span class="co">#&gt; 4 SRP144647  1                  32.82</span>
-<span class="co">#&gt;                                                                                                                                              title</span>
-<span class="co">#&gt; 1                                                                       RNA-Seq analysis of primary AML specimens exposed to AhR modulating agents</span>
-<span class="co">#&gt; 2                                                              Transcriptome analysis of CD4+ T cells reveals imprint of BACH2 and IFN? regulation</span>
-<span class="co">#&gt; 3 Identification of genes induced by NOTCH1 in a chronic lymphocytic leukaemia (CLL) cell line and tracking of these genes in primary CLL patients</span>
-<span class="co">#&gt; 4                                         Transcriptomes from naïve CD4+ T-cells from infants and children with and without food allergy [RNA-seq]</span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/findStudiesInCluster.html">findStudiesInCluster</a></span><span class="op">(</span><span class="va">RAVmodel</span>, <span class="va">validated_ind</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   studyName PC Variance explained (%)</span></span>
+<span><span class="co">#&gt; 1 SRP028567  2                  14.76</span></span>
+<span><span class="co">#&gt; 2 SRP059057  3                   7.45</span></span>
+<span><span class="co">#&gt; 3 SRP095405  1                  37.27</span></span>
+<span><span class="co">#&gt; 4 SRP144647  1                  32.82</span></span></code></pre></div>
+<p>You can easily extract the study name with the
+<code>studyTitle=TRUE</code> parameter.</p>
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/findStudiesInCluster.html">findStudiesInCluster</a></span><span class="op">(</span><span class="va">RAVmodel</span>, <span class="va">validated_ind</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span>, studyTitle <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   studyName PC Variance explained (%)</span></span>
+<span><span class="co">#&gt; 1 SRP028567  2                  14.76</span></span>
+<span><span class="co">#&gt; 2 SRP059057  3                   7.45</span></span>
+<span><span class="co">#&gt; 3 SRP095405  1                  37.27</span></span>
+<span><span class="co">#&gt; 4 SRP144647  1                  32.82</span></span>
+<span><span class="co">#&gt;                                                                                                                                              title</span></span>
+<span><span class="co">#&gt; 1                                                                       RNA-Seq analysis of primary AML specimens exposed to AhR modulating agents</span></span>
+<span><span class="co">#&gt; 2                                                              Transcriptome analysis of CD4+ T cells reveals imprint of BACH2 and IFN? regulation</span></span>
+<span><span class="co">#&gt; 3 Identification of genes induced by NOTCH1 in a chronic lymphocytic leukaemia (CLL) cell line and tracking of these genes in primary CLL patients</span></span>
+<span><span class="co">#&gt; 4                                         Transcriptomes from naïve CD4+ T-cells from infants and children with and without food allergy [RNA-seq]</span></span></code></pre></div>
 </div>
 </div>
 <div class="section level2">
 <h2 id="session-info">Session Info<a class="anchor" aria-label="anchor" href="#session-info"></a>
 </h2>
-<details><div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span>
-<span class="co">#&gt; R version 4.1.2 (2021-11-01)</span>
-<span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span>
-<span class="co">#&gt; Running under: Ubuntu 20.04.3 LTS</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; Matrix products: default</span>
-<span class="co">#&gt; BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.9.0</span>
-<span class="co">#&gt; LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.9.0</span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; locale:</span>
-<span class="co">#&gt;  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              </span>
-<span class="co">#&gt;  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    </span>
-<span class="co">#&gt;  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   </span>
-<span class="co">#&gt;  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 </span>
-<span class="co">#&gt;  [9] LC_ADDRESS=C               LC_TELEPHONE=C            </span>
-<span class="co">#&gt; [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; attached base packages:</span>
-<span class="co">#&gt; [1] stats4    stats     graphics  grDevices utils     datasets  methods  </span>
-<span class="co">#&gt; [8] base     </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; other attached packages:</span>
-<span class="co">#&gt;  [1] bcellViper_1.30.0           GenomicSuperSignature_1.3.4</span>
-<span class="co">#&gt;  [3] SummarizedExperiment_1.24.0 Biobase_2.54.0             </span>
-<span class="co">#&gt;  [5] GenomicRanges_1.46.1        GenomeInfoDb_1.30.1        </span>
-<span class="co">#&gt;  [7] IRanges_2.28.0              S4Vectors_0.32.3           </span>
-<span class="co">#&gt;  [9] BiocGenerics_0.40.0         MatrixGenerics_1.6.0       </span>
-<span class="co">#&gt; [11] matrixStats_0.61.0          BiocStyle_2.22.0           </span>
-<span class="co">#&gt; </span>
-<span class="co">#&gt; loaded via a namespace (and not attached):</span>
-<span class="co">#&gt;   [1] colorspace_2.0-2       ggsignif_0.6.3         rjson_0.2.21          </span>
-<span class="co">#&gt;   [4] ellipsis_0.3.2         rprojroot_2.0.2        circlize_0.4.14       </span>
-<span class="co">#&gt;   [7] XVector_0.34.0         GlobalOptions_0.1.2    fs_1.5.2              </span>
-<span class="co">#&gt;  [10] clue_0.3-60            rstudioapi_0.13        farver_2.1.0          </span>
-<span class="co">#&gt;  [13] ggpubr_0.4.0           bit64_4.0.5            fansi_1.0.2           </span>
-<span class="co">#&gt;  [16] codetools_0.2-18       doParallel_1.0.17      cachem_1.0.6          </span>
-<span class="co">#&gt;  [19] knitr_1.37             jsonlite_1.7.3         broom_0.7.12          </span>
-<span class="co">#&gt;  [22] cluster_2.1.2          dbplyr_2.1.1           png_0.1-7             </span>
-<span class="co">#&gt;  [25] BiocManager_1.30.16    readr_2.1.2            compiler_4.1.2        </span>
-<span class="co">#&gt;  [28] httr_1.4.2             backports_1.4.1        assertthat_0.2.1      </span>
-<span class="co">#&gt;  [31] Matrix_1.4-0           fastmap_1.1.0          cli_3.1.1             </span>
-<span class="co">#&gt;  [34] htmltools_0.5.2        tools_4.1.2            gtable_0.3.0          </span>
-<span class="co">#&gt;  [37] glue_1.6.1             GenomeInfoDbData_1.2.7 dplyr_1.0.8           </span>
-<span class="co">#&gt;  [40] rappdirs_0.3.3         Rcpp_1.0.8             carData_3.0-5         </span>
-<span class="co">#&gt;  [43] jquerylib_0.1.4        pkgdown_2.0.2          vctrs_0.3.8           </span>
-<span class="co">#&gt;  [46] iterators_1.0.14       xfun_0.29              stringr_1.4.0         </span>
-<span class="co">#&gt;  [49] lifecycle_1.0.1        rstatix_0.7.0          zlibbioc_1.40.0       </span>
-<span class="co">#&gt;  [52] scales_1.1.1           ragg_1.2.1             hms_1.1.1             </span>
-<span class="co">#&gt;  [55] parallel_4.1.2         RColorBrewer_1.1-2     ComplexHeatmap_2.10.0 </span>
-<span class="co">#&gt;  [58] yaml_2.2.2             curl_4.3.2             memoise_2.0.1         </span>
-<span class="co">#&gt;  [61] ggplot2_3.3.5          sass_0.4.0             stringi_1.7.6         </span>
-<span class="co">#&gt;  [64] RSQLite_2.2.9          highr_0.9              desc_1.4.0            </span>
-<span class="co">#&gt;  [67] foreach_1.5.2          filelock_1.0.2         shape_1.4.6           </span>
-<span class="co">#&gt;  [70] rlang_1.0.1            pkgconfig_2.0.3        systemfonts_1.0.4     </span>
-<span class="co">#&gt;  [73] bitops_1.0-7           evaluate_0.14          lattice_0.20-45       </span>
-<span class="co">#&gt;  [76] purrr_0.3.4            labeling_0.4.2         bit_4.0.4             </span>
-<span class="co">#&gt;  [79] tidyselect_1.1.1       magrittr_2.0.2         bookdown_0.24         </span>
-<span class="co">#&gt;  [82] R6_2.5.1               magick_2.7.3           generics_0.1.2        </span>
-<span class="co">#&gt;  [85] DelayedArray_0.20.0    DBI_1.1.2              pillar_1.7.0          </span>
-<span class="co">#&gt;  [88] withr_2.4.3            abind_1.4-5            RCurl_1.98-1.6        </span>
-<span class="co">#&gt;  [91] tibble_3.1.6           crayon_1.4.2           car_3.0-12            </span>
-<span class="co">#&gt;  [94] wordcloud_2.6          utf8_1.2.2             BiocFileCache_2.2.1   </span>
-<span class="co">#&gt;  [97] tzdb_0.2.0             rmarkdown_2.11         GetoptLong_1.0.5      </span>
-<span class="co">#&gt; [100] grid_4.1.2             blob_1.2.2             digest_0.6.29         </span>
-<span class="co">#&gt; [103] tidyr_1.2.0            textshaping_0.3.6      munsell_0.5.0         </span>
-<span class="co">#&gt; [106] bslib_0.3.1</span></code></pre></div>
+<details><div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span>
+<span><span class="co">#&gt; R version 4.2.0 (2022-04-22)</span></span>
+<span><span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span></span>
+<span><span class="co">#&gt; Running under: Ubuntu 20.04.4 LTS</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Matrix products: default</span></span>
+<span><span class="co">#&gt; BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3</span></span>
+<span><span class="co">#&gt; LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/liblapack.so.3</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; locale:</span></span>
+<span><span class="co">#&gt;  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              </span></span>
+<span><span class="co">#&gt;  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    </span></span>
+<span><span class="co">#&gt;  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   </span></span>
+<span><span class="co">#&gt;  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 </span></span>
+<span><span class="co">#&gt;  [9] LC_ADDRESS=C               LC_TELEPHONE=C            </span></span>
+<span><span class="co">#&gt; [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; attached base packages:</span></span>
+<span><span class="co">#&gt; [1] stats4    stats     graphics  grDevices utils     datasets  methods  </span></span>
+<span><span class="co">#&gt; [8] base     </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; other attached packages:</span></span>
+<span><span class="co">#&gt;  [1] bcellViper_1.32.0           GenomicSuperSignature_1.4.0</span></span>
+<span><span class="co">#&gt;  [3] SummarizedExperiment_1.26.1 Biobase_2.56.0             </span></span>
+<span><span class="co">#&gt;  [5] GenomicRanges_1.48.0        GenomeInfoDb_1.32.2        </span></span>
+<span><span class="co">#&gt;  [7] IRanges_2.30.0              S4Vectors_0.34.0           </span></span>
+<span><span class="co">#&gt;  [9] BiocGenerics_0.42.0         MatrixGenerics_1.8.1       </span></span>
+<span><span class="co">#&gt; [11] matrixStats_0.62.0          BiocStyle_2.24.0           </span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
+<span><span class="co">#&gt;   [1] colorspace_2.0-3       ggsignif_0.6.3         rjson_0.2.21          </span></span>
+<span><span class="co">#&gt;   [4] ellipsis_0.3.2         rprojroot_2.0.3        circlize_0.4.15       </span></span>
+<span><span class="co">#&gt;   [7] XVector_0.36.0         GlobalOptions_0.1.2    fs_1.5.2              </span></span>
+<span><span class="co">#&gt;  [10] clue_0.3-61            ggpubr_0.4.0           farver_2.1.1          </span></span>
+<span><span class="co">#&gt;  [13] bit64_4.0.5            fansi_1.0.3            codetools_0.2-18      </span></span>
+<span><span class="co">#&gt;  [16] doParallel_1.0.17      cachem_1.0.6           knitr_1.39            </span></span>
+<span><span class="co">#&gt;  [19] jsonlite_1.8.0         broom_1.0.0            cluster_2.1.3         </span></span>
+<span><span class="co">#&gt;  [22] dbplyr_2.2.1           png_0.1-7              BiocManager_1.30.18   </span></span>
+<span><span class="co">#&gt;  [25] readr_2.1.2            compiler_4.2.0         httr_1.4.3            </span></span>
+<span><span class="co">#&gt;  [28] backports_1.4.1        assertthat_0.2.1       Matrix_1.4-1          </span></span>
+<span><span class="co">#&gt;  [31] fastmap_1.1.0          cli_3.3.0              htmltools_0.5.3       </span></span>
+<span><span class="co">#&gt;  [34] tools_4.2.0            gtable_0.3.0           glue_1.6.2            </span></span>
+<span><span class="co">#&gt;  [37] GenomeInfoDbData_1.2.8 dplyr_1.0.9            rappdirs_0.3.3        </span></span>
+<span><span class="co">#&gt;  [40] Rcpp_1.0.9             carData_3.0-5          jquerylib_0.1.4       </span></span>
+<span><span class="co">#&gt;  [43] pkgdown_2.0.6          vctrs_0.4.1            iterators_1.0.14      </span></span>
+<span><span class="co">#&gt;  [46] xfun_0.31              stringr_1.4.0          lifecycle_1.0.1       </span></span>
+<span><span class="co">#&gt;  [49] rstatix_0.7.0          zlibbioc_1.42.0        scales_1.2.0          </span></span>
+<span><span class="co">#&gt;  [52] ragg_1.2.2             hms_1.1.1              parallel_4.2.0        </span></span>
+<span><span class="co">#&gt;  [55] RColorBrewer_1.1-3     ComplexHeatmap_2.12.0  yaml_2.3.5            </span></span>
+<span><span class="co">#&gt;  [58] curl_4.3.2             memoise_2.0.1          ggplot2_3.3.6         </span></span>
+<span><span class="co">#&gt;  [61] sass_0.4.2             stringi_1.7.8          RSQLite_2.2.15        </span></span>
+<span><span class="co">#&gt;  [64] highr_0.9              desc_1.4.1             foreach_1.5.2         </span></span>
+<span><span class="co">#&gt;  [67] filelock_1.0.2         shape_1.4.6            rlang_1.0.4           </span></span>
+<span><span class="co">#&gt;  [70] pkgconfig_2.0.3        systemfonts_1.0.4      bitops_1.0-7          </span></span>
+<span><span class="co">#&gt;  [73] evaluate_0.15          lattice_0.20-45        purrr_0.3.4           </span></span>
+<span><span class="co">#&gt;  [76] labeling_0.4.2         bit_4.0.4              tidyselect_1.1.2      </span></span>
+<span><span class="co">#&gt;  [79] magrittr_2.0.3         bookdown_0.27          R6_2.5.1              </span></span>
+<span><span class="co">#&gt;  [82] magick_2.7.3           generics_0.1.3         DelayedArray_0.22.0   </span></span>
+<span><span class="co">#&gt;  [85] DBI_1.1.3              pillar_1.8.0           abind_1.4-5           </span></span>
+<span><span class="co">#&gt;  [88] RCurl_1.98-1.7         tibble_3.1.8           crayon_1.5.1          </span></span>
+<span><span class="co">#&gt;  [91] car_3.1-0              wordcloud_2.6          utf8_1.2.2            </span></span>
+<span><span class="co">#&gt;  [94] BiocFileCache_2.4.0    tzdb_0.3.0             rmarkdown_2.14        </span></span>
+<span><span class="co">#&gt;  [97] GetoptLong_1.0.5       grid_4.2.0             blob_1.2.3            </span></span>
+<span><span class="co">#&gt; [100] digest_0.6.29          tidyr_1.2.0            textshaping_0.3.6     </span></span>
+<span><span class="co">#&gt; [103] munsell_0.5.0          bslib_0.4.0</span></span></code></pre></div>
 </details>
 </div>
   </div>
@@ -431,7 +564,7 @@
 
 <div class="pkgdown">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer>

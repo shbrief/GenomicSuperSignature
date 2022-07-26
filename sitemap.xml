@@ -4,7 +4,7 @@
     <loc>/404.html</loc>
   </url>
   <url>
-    <loc>/articles/GenomicSuperSignature_Contents.html</loc>
+    <loc>/articles/Contents.html</loc>
   </url>
   <url>
     <loc>/articles/Quickstart.html</loc>
@@ -41,6 +41,9 @@
   </url>
   <url>
     <loc>/reference/annotateRAV.html</loc>
+  </url>
+  <url>
+    <loc>/reference/availableRAVmodel.html</loc>
   </url>
   <url>
     <loc>/reference/buildAvgLoading.html</loc>
@@ -94,9 +97,6 @@
     <loc>/reference/index.html</loc>
   </url>
   <url>
-    <loc>/reference/makeGeneList.html</loc>
-  </url>
-  <url>
     <loc>/reference/meshTable.html</loc>
   </url>
   <url>
@@ -107,9 +107,6 @@
   </url>
   <url>
     <loc>/reference/miniTCGA.html</loc>
-  </url>
-  <url>
-    <loc>/reference/msigdb_gsea.html</loc>
   </url>
   <url>
     <loc>/reference/plotAnnotatedPCA.html</loc>
@@ -124,19 +121,10 @@
     <loc>/reference/rmNaInf.html</loc>
   </url>
   <url>
-    <loc>/reference/rowNorm.html</loc>
-  </url>
-  <url>
-    <loc>/reference/run_gsea.html</loc>
-  </url>
-  <url>
     <loc>/reference/sampleScoreHeatmap.html</loc>
   </url>
   <url>
     <loc>/reference/subsetEnrichedPathways.html</loc>
-  </url>
-  <url>
-    <loc>/reference/subsetGSEA.html</loc>
   </url>
   <url>
     <loc>/reference/validate.html</loc>

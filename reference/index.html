@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GenomicSuperignature</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5.4</span>
       </span>
     </div>
 
@@ -26,7 +26,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Vignettes
      
     <span class="caret"></span>
@@ -35,7 +35,7 @@
       <a href="../articles/Quickstart.html">Quick Start Guide</a>
     </li>
     <li>
-      <a href="../articles/GenomicSuperSignature_Contents.html">Model Contents</a>
+      <a href="../articles/Contents.html">Model Contents</a>
     </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
@@ -65,7 +65,7 @@
         </td>
         <td><p>Virtual class inherited from SummarizedExperiment</p></td>
       </tr><tr><td>
-          <p><code><a href="PCAGenomicSignatures-class.html">PCAGenomicSignatures-class</a></code> </p>
+          <p><code><a href="PCAGenomicSignatures-class.html">PCAGenomicSignatures-class</a></code> <code><a href="PCAGenomicSignatures-class.html">.PCAGenomicSignatures</a></code> </p>
         </td>
         <td><p>PCAGenomicSignatures-class</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
@@ -108,10 +108,6 @@
           <p><code><a href="rmNaInf.html">rmNaInf()</a></code> </p>
         </td>
         <td><p>Remove rows with missing and Inf values from a matrix</p></td>
-      </tr><tr><td>
-          <p><code><a href="rowNorm.html">rowNorm()</a></code> </p>
-        </td>
-        <td><p>z-score each row of the data</p></td>
       </tr></tbody><tbody><tr><th colspan="2">
           <h2 id="model-application">Model Application <a href="#model-application" class="anchor" aria-hidden="true"></a></h2>
           <p class="section-desc"></p><p>Functions for applying PCAGenomicSignatures model to a new data</p>
@@ -140,6 +136,10 @@
           <p><code><a href="annotateRAV.html">annotateRAV()</a></code> </p>
         </td>
         <td><p>Search the top enriched pathways for RAV</p></td>
+      </tr><tr><td>
+          <p><code><a href="availableRAVmodel.html">availableRAVmodel()</a></code> </p>
+        </td>
+        <td><p>List the available RAVmodels</p></td>
       </tr><tr><td>
           <p><code><a href="extractPC.html">extractPC()</a></code> </p>
         </td>
@@ -191,7 +191,7 @@
       </tr><tr><td>
           <p><code><a href="plotAnnotatedPCA.html">plotAnnotatedPCA()</a></code> </p>
         </td>
-        <td><p>Two-dimentional PCA plot with the PC annotation</p></td>
+        <td><p>Two-dimensional PCA plot with the PC annotation</p></td>
       </tr><tr><td>
           <p><code><a href="plotValidate.html">plotValidate()</a></code> </p>
         </td>
@@ -200,6 +200,34 @@
           <p><code><a href="sampleScoreHeatmap.html">sampleScoreHeatmap()</a></code> </p>
         </td>
         <td><p>Plot heatmap of the sample scores</p></td>
+      </tr></tbody><tbody><tr><th colspan="2">
+          <h2 id="misc-package-docs">Misc. Package Docs <a href="#misc-package-docs" class="anchor" aria-hidden="true"></a></h2>
+          <p class="section-desc"></p><p>Other package information and data</p>
+        </th>
+      </tr></tbody><tbody><tr><td>
+          <p><code><a href="droplist.html">droplist</a></code> </p>
+        </td>
+        <td><p>MeSH terms to be excluded in drawWordcloud function</p></td>
+      </tr><tr><td>
+          <p><code><a href="filterList.html">filterList</a></code> </p>
+        </td>
+        <td><p>RAVs that will output with quality-control messages</p></td>
+      </tr><tr><td>
+          <p><code><a href="miniAllZ.html">miniAllZ</a></code> </p>
+        </td>
+        <td><p>Subset of allZ matrix constructed from 8 CRC training datasets</p></td>
+      </tr><tr><td>
+          <p><code><a href="miniRAVmodel.html">miniRAVmodel</a></code> </p>
+        </td>
+        <td><p>RAVmodel from 536 studies, annotated with MSigDB C2</p></td>
+      </tr><tr><td>
+          <p><code><a href="miniTCGA.html">miniTCGA</a></code> </p>
+        </td>
+        <td><p>Subset of TCGA-COAD and TCGA-BRCA RNA sequencing datasets</p></td>
+      </tr><tr><td>
+          <p><code><a href="res_hcut.html">res_hcut</a></code> </p>
+        </td>
+        <td><p>Subset of allZ matrix constructed from 8 CRC training datasets</p></td>
       </tr></tbody></table></div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
@@ -213,7 +241,7 @@
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

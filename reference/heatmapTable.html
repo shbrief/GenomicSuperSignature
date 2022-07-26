@@ -18,7 +18,7 @@ and visualize it in a heatmap-like table."><!-- mathjax --><script src="https://
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GenomicSuperignature</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5.4</span>
       </span>
     </div>
 
@@ -27,7 +27,7 @@ and visualize it in a heatmap-like table."><!-- mathjax --><script src="https://
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Vignettes
      
     <span class="caret"></span>
@@ -36,7 +36,7 @@ and visualize it in a heatmap-like table."><!-- mathjax --><script src="https://
       <a href="../articles/Quickstart.html">Quick Start Guide</a>
     </li>
     <li>
-      <a href="../articles/GenomicSuperSignature_Contents.html">Model Contents</a>
+      <a href="../articles/Contents.html">Model Contents</a>
     </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
@@ -65,22 +65,22 @@ and visualize it in a heatmap-like table.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">heatmapTable</span><span class="op">(</span>
-  <span class="va">val_all</span>,
-  <span class="va">RAVmodel</span>,
-  ind <span class="op">=</span> <span class="cn">NULL</span>,
-  num.out <span class="op">=</span> <span class="fl">5</span>,
-  scoreCutoff <span class="op">=</span> <span class="cn">NULL</span>,
-  swCutoff <span class="op">=</span> <span class="cn">NULL</span>,
-  clsizeCutoff <span class="op">=</span> <span class="cn">NULL</span>,
-  breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.5</span>, <span class="fl">1</span><span class="op">)</span>,
-  colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"white"</span>, <span class="st">"white smoke"</span>, <span class="st">"red"</span><span class="op">)</span>,
-  column_title <span class="op">=</span> <span class="cn">NULL</span>,
-  row_title <span class="op">=</span> <span class="cn">NULL</span>,
-  whichPC <span class="op">=</span> <span class="cn">NULL</span>,
-  filterMessage <span class="op">=</span> <span class="cn">TRUE</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">heatmapTable</span><span class="op">(</span></span>
+<span>  <span class="va">val_all</span>,</span>
+<span>  <span class="va">RAVmodel</span>,</span>
+<span>  ind <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  num.out <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>  scoreCutoff <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  swCutoff <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  clsizeCutoff <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0.5</span>, <span class="fl">1</span><span class="op">)</span>,</span>
+<span>  colors <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"white"</span>, <span class="st">"white smoke"</span>, <span class="st">"red"</span><span class="op">)</span>,</span>
+<span>  column_title <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  row_title <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  whichPC <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  filterMessage <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -89,81 +89,112 @@ and visualize it in a heatmap-like table.</p>
 <dd><p>An output matrix from <code><a href="validate.html">validate</a></code> function with the
 parameter <code>level = "max"</code>. Subset of this matrix is plotted as a heatmap
 using <code><a href="https://rdrr.io/pkg/ComplexHeatmap/man/Heatmap.html" class="external-link">Heatmap</a></code></p></dd>
+
+
 <dt>RAVmodel</dt>
 <dd><p>PCAGenomicSignatures-class object. RAVmodel used to prepare
 <code>val_all</code> input.</p></dd>
+
+
 <dt>ind</dt>
 <dd><p>An integer vector. If this parameter is provided, the other
 parameters, <code>num.out, scoreCutoff, swCutoff, clsizeCutoff</code> will be
 ignored and the heatmap table containing only the provided index will be
 printed.</p></dd>
+
+
 <dt>num.out</dt>
 <dd><p>A number of highly validated RAVs to output. Default is 5.
 If any of the cutoff parameters are provided, <code>num.out</code> or the number of
 filtered RAVs, whichever smaller, will be chosen.</p></dd>
+
+
 <dt>scoreCutoff</dt>
 <dd><p>A numeric value for the minimum correlation (not include).
 If <code>val_all</code> input is from multiple studies, the default is 0.7 and this is
 the only cutoff criteria considered: <code>swCutoff</code> and <code>clsizeCutoff</code>
 will be ignored.</p></dd>
+
+
 <dt>swCutoff</dt>
 <dd><p>A numeric value for the minimum average silhouette width.</p></dd>
+
+
 <dt>clsizeCutoff</dt>
 <dd><p>A integer value for the minimum cluster size.</p></dd>
+
+
 <dt>breaks</dt>
 <dd><p>A numeric vector of length 3. Number represents the values
 assigned to three colors. Default is <code>c(0, 0.5, 1)</code>.</p></dd>
+
+
 <dt>colors</dt>
 <dd><p>A character vector of length 3. Each represents the color
 assigned to three breaks. Default is <code>c("white", "white smoke", "red")</code>.</p></dd>
+
+
 <dt>column_title</dt>
 <dd><p>A character string. Provide the column title.</p></dd>
+
+
 <dt>row_title</dt>
 <dd><p>A character string. Provide the row title.</p></dd>
+
+
 <dt>whichPC</dt>
 <dd><p>An integer value between 1 and 8. PC number of your data to
 check the validated signatures with. Under the default (<code>NULL</code>), it
 outputs top scored signatures with any PC of your data.</p></dd>
+
+
 <dt>filterMessage</dt>
 <dd><p>A logical. Under the default <code>TRUE</code>, any output
 RAV belong to the filtering list will give a message. Silence this message
 with <code>filterMessage=FALSE</code>. You can check the filter list using
 <code>data("filterList")</code>.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>any additional argument for <code><a href="https://rdrr.io/pkg/ComplexHeatmap/man/Heatmap.html" class="external-link">Heatmap</a></code></p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A heatmap displaying the subset of the validation result that met the
+    
+
+<p>A heatmap displaying the subset of the validation result that met the
 given cutoff criteria. If <code>val_all</code> input is from a single dataset, the
 output heatmap will contain both score and average silhouette width for each
-cluster.
-If <code>val_all</code> input is from multiple studies, the output heatmap's rows
+cluster.</p>
+
+
+<p>If <code>val_all</code> input is from multiple studies, the output heatmap's rows
 will represent each study and the columns will be RAVs, which meet
 <code>scoreCutoff</code> for any of the input studies.</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">miniRAVmodel</span><span class="op">)</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">bcellViper</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">bcellViper</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## Single dataset</span></span>
-<span class="r-in"><span class="va">val_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="validate.html">validate</a></span><span class="op">(</span><span class="va">dset</span>, <span class="va">miniRAVmodel</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">heatmapTable</span><span class="op">(</span><span class="va">val_all</span>, <span class="va">miniRAVmodel</span>, swCutoff <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">miniRAVmodel</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">bcellViper</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">bcellViper</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## Single dataset</span></span></span>
+<span class="r-in"><span><span class="va">val_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="validate.html">validate</a></span><span class="op">(</span><span class="va">dset</span>, <span class="va">miniRAVmodel</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">heatmapTable</span><span class="op">(</span><span class="va">val_all</span>, <span class="va">miniRAVmodel</span>, swCutoff <span class="op">=</span> <span class="fl">0</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> RAV2538 can be filtered based on GSEA_PLIERpriors</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> RAV1139 can be filtered based on GSEA_PLIERpriors</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> RAV884 can be filtered based on GSEA_PLIERpriors</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> RAV438 can be filtered based on GSEA_PLIERpriors</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> RAV725 can be filtered based on GSEA_PLIERpriors</span>
 <span class="r-plt img"><img src="heatmapTable-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="co">## A list of datasets</span></span>
-<span class="r-in"><span class="va">val_all2</span> <span class="op">&lt;-</span> <span class="fu"><a href="validate.html">validate</a></span><span class="op">(</span><span class="va">miniTCGA</span>, <span class="va">miniRAVmodel</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">heatmapTable</span><span class="op">(</span><span class="va">val_all2</span>, <span class="va">miniRAVmodel</span><span class="op">)</span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## A list of datasets</span></span></span>
+<span class="r-in"><span><span class="va">val_all2</span> <span class="op">&lt;-</span> <span class="fu"><a href="validate.html">validate</a></span><span class="op">(</span><span class="va">miniTCGA</span>, <span class="va">miniRAVmodel</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">heatmapTable</span><span class="op">(</span><span class="va">val_all2</span>, <span class="va">miniRAVmodel</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="heatmapTable-2.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -178,7 +209,7 @@ will represent each study and the columns will be RAVs, which meet
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

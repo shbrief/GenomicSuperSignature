@@ -1,8 +1,8 @@
-pandoc: 2.14.0.2
-pkgdown: 2.0.2
+pandoc: 2.17.1.1
+pkgdown: 2.0.6
 pkgdown_sha: ~
 articles:
-  GenomicSuperSignature_Contents: GenomicSuperSignature_Contents.html
+  Contents: Contents.html
   Quickstart: Quickstart.html
-last_built: 2022-02-14T02:09Z
+last_built: 2022-07-25T20:50Z
 

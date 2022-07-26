@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GenomicSuperignature</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5.4</span>
       </span>
     </div>
 
@@ -26,7 +26,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Vignettes
      
     <span class="caret"></span>
@@ -35,7 +35,7 @@
       <a href="../articles/Quickstart.html">Quick Start Guide</a>
     </li>
     <li>
-      <a href="../articles/GenomicSuperSignature_Contents.html">Model Contents</a>
+      <a href="../articles/Contents.html">Model Contents</a>
     </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
@@ -63,28 +63,35 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">getRAVInfo</span><span class="op">(</span><span class="va">RAVmodel</span>, <span class="va">ind</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">getRAVInfo</span><span class="op">(</span><span class="va">RAVmodel</span>, <span class="va">ind</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>RAVmodel</dt>
 <dd><p>A PCAGenomicSignatures object</p></dd>
+
+
 <dt>ind</dt>
 <dd><p>An index of RAV</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A list with four elements: clusterSize, silhouetteWidth,
+    
+
+<p>A list with four elements: clusterSize, silhouetteWidth,
 enrichedPathways (the number of enriched pathways), and members.
 The 'members' is the summary table of PCs in RAV, containing three columns:
 studyName, PC, and Variance explained (<!-- %). --></p>
+
+
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">miniRAVmodel</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">getRAVInfo</span><span class="op">(</span><span class="va">miniRAVmodel</span>, ind <span class="op">=</span> <span class="fl">438</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">miniRAVmodel</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">getRAVInfo</span><span class="op">(</span><span class="va">miniRAVmodel</span>, ind <span class="op">=</span> <span class="fl">438</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $clusterSize</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] 6</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -103,7 +110,7 @@ studyName, PC, and Variance explained (<!-- %). --></p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5 SRP155976  5                   2.48</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 6 SRP172499  6                   2.45</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -118,7 +125,7 @@ studyName, PC, and Variance explained (<!-- %). --></p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

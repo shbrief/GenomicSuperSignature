@@ -25,7 +25,7 @@ color : Test dataset's PC number that validate each RAV. Because we
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GenomicSuperignature</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5.4</span>
       </span>
     </div>
 
@@ -34,7 +34,7 @@ color : Test dataset's PC number that validate each RAV. Because we
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Vignettes
      
     <span class="caret"></span>
@@ -43,7 +43,7 @@ color : Test dataset's PC number that validate each RAV. Because we
       <a href="../articles/Quickstart.html">Quick Start Guide</a>
     </li>
     <li>
-      <a href="../articles/GenomicSuperSignature_Contents.html">Model Contents</a>
+      <a href="../articles/Contents.html">Model Contents</a>
     </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
@@ -76,57 +76,74 @@ color : Test dataset's PC number that validate each RAV. Because we
 </ul></div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">plotValidate</span><span class="op">(</span>
-  <span class="va">val_all</span>,
-  minClusterSize <span class="op">=</span> <span class="fl">2</span>,
-  swFilter <span class="op">=</span> <span class="cn">FALSE</span>,
-  minSilhouetteWidth <span class="op">=</span> <span class="fl">0</span>,
-  interactive <span class="op">=</span> <span class="cn">FALSE</span>,
-  minClSize <span class="op">=</span> <span class="cn">NULL</span>,
-  maxClSize <span class="op">=</span> <span class="cn">NULL</span>,
-  colorPalette <span class="op">=</span> <span class="st">"Dark2"</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">plotValidate</span><span class="op">(</span></span>
+<span>  <span class="va">val_all</span>,</span>
+<span>  minClusterSize <span class="op">=</span> <span class="fl">2</span>,</span>
+<span>  swFilter <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  minSilhouetteWidth <span class="op">=</span> <span class="fl">0</span>,</span>
+<span>  interactive <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  minClSize <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  maxClSize <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  colorPalette <span class="op">=</span> <span class="st">"Dark2"</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>val_all</dt>
 <dd><p>Output from <a href="validate.html">validate</a> function.</p></dd>
+
+
 <dt>minClusterSize</dt>
 <dd><p>The minimum size of clusters to be included in the
 plotting. Default value is 2, so any single-element clusters are excluded.</p></dd>
+
+
 <dt>swFilter</dt>
 <dd><p>If <code>swFilter=TRUE</code>, only RAV above the cutoff, defined
 through <code>minSilhouetteWidth</code> argument will be plotted. Default is
 <code>swFilter=FALSE</code></p></dd>
+
+
 <dt>minSilhouetteWidth</dt>
 <dd><p>A minimum average silhouette width to be plotted.
 Only effective under <code>swFilter=TRUE</code> condition. Default is 0.</p></dd>
+
+
 <dt>interactive</dt>
 <dd><p>If set to <code>TRUE</code>, the output will be interactive
 plot. Default is <code>FALSE</code>.</p></dd>
+
+
 <dt>minClSize</dt>
 <dd><p>The minimum number of PCs in the clusters you want.</p></dd>
+
+
 <dt>maxClSize</dt>
 <dd><p>The maximum number of PCs in the clusters you want.</p></dd>
+
+
 <dt>colorPalette</dt>
 <dd><p>Default is <code>Dark2</code>. For other color options, please
 check <code><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html" class="external-link">scale_color_brewer</a></code></p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>a ggplot object</p>
+    
+
+<p>a ggplot object</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">miniRAVmodel</span><span class="op">)</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">bcellViper</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">bcellViper</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">val_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="validate.html">validate</a></span><span class="op">(</span><span class="va">dset</span>, <span class="va">miniRAVmodel</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">plotValidate</span><span class="op">(</span><span class="va">val_all</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">miniRAVmodel</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">bcellViper</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">bcellViper</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">val_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="validate.html">validate</a></span><span class="op">(</span><span class="va">dset</span>, <span class="va">miniRAVmodel</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">plotValidate</span><span class="op">(</span><span class="va">val_all</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="plotValidate-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -141,7 +158,7 @@ check <code><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html" 
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

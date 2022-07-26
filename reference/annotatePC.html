@@ -19,7 +19,7 @@ returns the top enriched pathways."><!-- mathjax --><script src="https://cdnjs.c
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GenomicSuperignature</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5.4</span>
       </span>
     </div>
 
@@ -28,7 +28,7 @@ returns the top enriched pathways."><!-- mathjax --><script src="https://cdnjs.c
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Vignettes
      
     <span class="caret"></span>
@@ -37,7 +37,7 @@ returns the top enriched pathways."><!-- mathjax --><script src="https://cdnjs.c
       <a href="../articles/Quickstart.html">Quick Start Guide</a>
     </li>
     <li>
-      <a href="../articles/GenomicSuperSignature_Contents.html">Model Contents</a>
+      <a href="../articles/Contents.html">Model Contents</a>
     </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
@@ -67,40 +67,53 @@ returns the top enriched pathways.</p>
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">annotatePC</span><span class="op">(</span>
-  <span class="va">PCnum</span>,
-  <span class="va">val_all</span>,
-  <span class="va">RAVmodel</span>,
-  n <span class="op">=</span> <span class="fl">5</span>,
-  scoreCutoff <span class="op">=</span> <span class="fl">0.5</span>,
-  nesCutoff <span class="op">=</span> <span class="cn">NULL</span>,
-  simplify <span class="op">=</span> <span class="cn">TRUE</span>,
-  abs <span class="op">=</span> <span class="cn">FALSE</span>,
-  trimed_pathway_len <span class="op">=</span> <span class="fl">45</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">annotatePC</span><span class="op">(</span></span>
+<span>  <span class="va">PCnum</span>,</span>
+<span>  <span class="va">val_all</span>,</span>
+<span>  <span class="va">RAVmodel</span>,</span>
+<span>  n <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>  scoreCutoff <span class="op">=</span> <span class="fl">0.5</span>,</span>
+<span>  nesCutoff <span class="op">=</span> <span class="cn">NULL</span>,</span>
+<span>  simplify <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  abs <span class="op">=</span> <span class="cn">FALSE</span>,</span>
+<span>  trimed_pathway_len <span class="op">=</span> <span class="fl">45</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>PCnum</dt>
-<dd><p>A numeric vector. PC number of your dataset that you want to get
-the annotation results. The vector can contain any integer number among
+<dd><p>A numeric vector. PC number of your dataset to retrieve
+annotation results for. The vector can contain any integer number among
 <code>1:8</code>.</p></dd>
+
+
 <dt>val_all</dt>
 <dd><p>The output from <code><a href="validate.html">validate</a></code></p></dd>
+
+
 <dt>RAVmodel</dt>
 <dd><p>The RAVmodel used to generate the input for the argument,
 <code>val_all</code>.</p></dd>
+
+
 <dt>n</dt>
 <dd><p>An integer. Default is 5. The number of the top enriched pathways
 to print out. If there are fewer than n pathways passed the cutoff, it will
 print out <code>NA</code>.</p></dd>
+
+
 <dt>scoreCutoff</dt>
-<dd><p>A numeric value for the minimum correlation.
-Default is 0.5.</p></dd>
+<dd><p>A numeric value for the minimum correlation between loadings
+of the dataset principal component and the RAV. Default is 0.5.</p></dd>
+
+
 <dt>nesCutoff</dt>
-<dd><p>A numeric value for the minimum NES. Default is <code>NULL</code>
-and the suggested value is 3.</p></dd>
+<dd><p>A numeric value for the minimum Normalized Enrichment Score
+(NES) for the enrichment analysis. Default is <code>NULL</code>
+The suggested value is 3.</p></dd>
+
+
 <dt>simplify</dt>
 <dd><p>A logical. Under default (<code>TRUE</code>), the output will be a
 data frame with the number of column same as the length of <code>PCnum</code>
@@ -108,26 +121,34 @@ argument, and the number of row same as the <code>n</code> argument. If it is se
 to <code>FALSE</code>, the output will be a list with the length of <code>PCnum</code>
 argument, where each element is a data frame containing detailed GSEA output
 of enriched pathways.</p></dd>
+
+
 <dt>abs</dt>
 <dd><p>Default is <code>FALSE</code>. If it's set to <code>TRUE</code>, the enriched
-pathways will be listed based on <code>abs(NES)</code>.</p></dd>
+pathways will be listed based on absolute value of the Normalized Enrichment
+Score (NES).</p></dd>
+
+
 <dt>trimed_pathway_len</dt>
-<dd><p>Positive inter values, which is the display width
+<dd><p>Positive integer values, which is the display width
 of pathway names. Default is 45.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A data frame of a list based on the <code>simplify</code> argument. Check
+    
+
+<p>A data frame of a list based on the <code>simplify</code> argument. Check
 the output detail above.</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">miniRAVmodel</span><span class="op">)</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">bcellViper</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">bcellViper</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">val_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="validate.html">validate</a></span><span class="op">(</span><span class="va">dset</span>, <span class="va">miniRAVmodel</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">annotatePC</span><span class="op">(</span><span class="fl">2</span>, <span class="va">val_all</span>, <span class="va">miniRAVmodel</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">miniRAVmodel</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">bcellViper</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">bcellViper</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">val_all</span> <span class="op">&lt;-</span> <span class="fu"><a href="validate.html">validate</a></span><span class="op">(</span><span class="va">dset</span>, <span class="va">miniRAVmodel</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">annotatePC</span><span class="op">(</span><span class="fl">2</span>, <span class="va">val_all</span>, <span class="va">miniRAVmodel</span><span class="op">)</span></span></span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> RAV1076 can be filtered based on GSEA_PLIERpriors</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>                                        PC2.RAV1076</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1                  REACTOME_METABOLISM_OF_PROTEINS</span>
@@ -135,7 +156,7 @@ the output detail above.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 3                                 MIPS_SPLICEOSOME</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 4                                 KEGG_SPLICEOSOME</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 5 REACTOME_ASSEMBLY_OF_THE_PRE_REPLICATIVE_COMP...</span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -150,7 +171,7 @@ the output detail above.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

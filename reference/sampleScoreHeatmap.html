@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GenomicSuperignature</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5.4</span>
       </span>
     </div>
 
@@ -26,7 +26,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Vignettes
      
     <span class="caret"></span>
@@ -35,7 +35,7 @@
       <a href="../articles/Quickstart.html">Quick Start Guide</a>
     </li>
     <li>
-      <a href="../articles/GenomicSuperSignature_Contents.html">Model Contents</a>
+      <a href="../articles/Contents.html">Model Contents</a>
     </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
@@ -63,18 +63,18 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">sampleScoreHeatmap</span><span class="op">(</span>
-  <span class="va">score</span>,
-  <span class="va">dataName</span>,
-  <span class="va">modelName</span>,
-  cluster_rows <span class="op">=</span> <span class="cn">TRUE</span>,
-  cluster_columns <span class="op">=</span> <span class="cn">TRUE</span>,
-  show_row_names <span class="op">=</span> <span class="cn">TRUE</span>,
-  show_column_names <span class="op">=</span> <span class="cn">TRUE</span>,
-  row_names_gp <span class="op">=</span> <span class="fl">0.7</span>,
-  column_names_gp <span class="op">=</span> <span class="fl">5</span>,
-  <span class="va">...</span>
-<span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">sampleScoreHeatmap</span><span class="op">(</span></span>
+<span>  <span class="va">score</span>,</span>
+<span>  <span class="va">dataName</span>,</span>
+<span>  <span class="va">modelName</span>,</span>
+<span>  cluster_rows <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  cluster_columns <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  show_row_names <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  show_column_names <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  row_names_gp <span class="op">=</span> <span class="fl">0.7</span>,</span>
+<span>  column_names_gp <span class="op">=</span> <span class="fl">5</span>,</span>
+<span>  <span class="va">...</span></span>
+<span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -83,44 +83,65 @@
 <dd><p>An output from <code><a href="calculateScore.html">calculateScore</a></code> function, which is
 a matrix with samples (row) and PrcompClusters (column) If it is a simple
 vector, it will be converted to a one-column matrix.</p></dd>
+
+
 <dt>dataName</dt>
 <dd><p>Title on the row. The name of the dataset to be scored.</p></dd>
+
+
 <dt>modelName</dt>
 <dd><p>Title on the column. The RAVmodel used for scoring.</p></dd>
+
+
 <dt>cluster_rows</dt>
 <dd><p>A logical. Under the default (<code>TRUE</code>), rows will be
 clustered.</p></dd>
+
+
 <dt>cluster_columns</dt>
 <dd><p>A logical. Under the default (<code>TRUE</code>), columns
 will be clustered.</p></dd>
+
+
 <dt>show_row_names</dt>
 <dd><p>Whether show row names. Default is <code>TRUE</code>, showing
 the row name.</p></dd>
+
+
 <dt>show_column_names</dt>
 <dd><p>Whether show column names. Default is <code>TRUE</code>,
 showing the column name.</p></dd>
+
+
 <dt>row_names_gp</dt>
 <dd><p>Graphic parameters for row names. The default is 0.7.</p></dd>
+
+
 <dt>column_names_gp</dt>
 <dd><p>Graphic parameters for column names. The default is 5.</p></dd>
+
+
 <dt>...</dt>
 <dd><p>Any additional argument for <code><a href="https://rdrr.io/pkg/ComplexHeatmap/man/Heatmap.html" class="external-link">Heatmap</a></code></p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A heatmap of the sample score. Rows represent samples and columns
+    
+
+<p>A heatmap of the sample score. Rows represent samples and columns
 represent RAVs.</p>
     </div>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">miniRAVmodel</span><span class="op">)</span></span>
-<span class="r-in"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">bcellViper</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">bcellViper</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">score</span> <span class="op">&lt;-</span> <span class="fu"><a href="calculateScore.html">calculateScore</a></span><span class="op">(</span><span class="va">dset</span>, <span class="va">miniRAVmodel</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">sampleScoreHeatmap</span><span class="op">(</span><span class="va">score</span>, dataName<span class="op">=</span><span class="st">"bcellViper"</span>, modelName<span class="op">=</span><span class="st">"miniRAVmodel"</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">miniRAVmodel</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">bcellViper</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">bcellViper</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">score</span> <span class="op">&lt;-</span> <span class="fu"><a href="calculateScore.html">calculateScore</a></span><span class="op">(</span><span class="va">dset</span>, <span class="va">miniRAVmodel</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">sampleScoreHeatmap</span><span class="op">(</span><span class="va">score</span>, dataName<span class="op">=</span><span class="st">"bcellViper"</span>, modelName<span class="op">=</span><span class="st">"miniRAVmodel"</span><span class="op">)</span></span></span>
 <span class="r-plt img"><img src="sampleScoreHeatmap-1.png" alt="" width="700" height="433"></span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -135,7 +156,7 @@ represent RAVs.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
