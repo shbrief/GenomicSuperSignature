@@ -22,9 +22,19 @@ extract interpretable annotations, and provide intuitive visualization, are impl
 as the GenomicSuperSignature R package, to be submitted to Bioconductor. 
 
 ### Results
-GenomicSuperSignature paper is available [**HERE**](https://www.nature.com/articles/s41467-022-31411-3). 
-Usecases and benchmarking examples included in the paper are further documented at 
-[GenomicSuperSignaturePaper](https://shbrief.github.io/GenomicSuperSignaturePaper/) page.
+Usecases and benchmark examples are documented in the 
+[GenomicSuperSignaturePaper](https://shbrief.github.io/GenomicSuperSignaturePaper/) 
+page. All the figures and tables can be reproduced using the code and 
+instruction in this page as well.
+
+### Citation
+If you use GenomicSuperSignature in published research, please cite:
+
+> Oh S, Geistlinger L, Ramos M, Blankenberg D, van den Beek M, Taroni JN, Carey VJ, Waldron L, Davis S. 
+> GenomicSuperSignature facilitates interpretation of RNA-seq experiments through robust, efficient comparison to public databases. 
+> *Nature Communications* **2022**;13: 3695.
+> [doi: 10.1038/s41467-022-31411-3](https://www.nature.com/articles/s41467-022-31411-3)
+
 
 ## Installation
 You can install GenomicSuperSignature in Bioconductor. This can be done using 
@@ -68,14 +78,3 @@ The GenomicSuperSignature package allows users to access a RAVmodel (Z matrix, b
 GenomicSuperSignature connects different public databases and prior information through RAVindex, creating the knowledge graph illustrated here. Users can instantly access data and metadata resources from multiple entry points, such as gene expression profiles, MeSH terms, gene sets, and keywords. 
 
 <img src="https://raw.githubusercontent.com/shbrief/GenomicSuperSignaturePaper/master/inst/images/GSig_knowledge_graph.png" width="90%" height="90%"/>
-
-
-
-
-## Citation
-If you use GenomicSuperSignature in published research, please cite:
-
-> Oh S, Geistlinger L, Ramos M, Blankenberg D, van den Beek M, Taroni JN, Carey VJ, Waldron L, Davis S. 
-> GenomicSuperSignature facilitates interpretation of RNA-seq experiments through robust, efficient comparison to public databases. 
-> *Nature Communications* **2022**;13: 3695.
-> [doi: 10.1038/s41467-022-31411-3](https://www.nature.com/articles/s41467-022-31411-3)
