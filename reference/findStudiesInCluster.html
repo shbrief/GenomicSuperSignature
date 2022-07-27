@@ -17,7 +17,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GenomicSuperignature</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5.3</span>
       </span>
     </div>
 
@@ -26,7 +26,7 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Vignettes
      
     <span class="caret"></span>
@@ -35,7 +35,7 @@
       <a href="../articles/Quickstart.html">Quick Start Guide</a>
     </li>
     <li>
-      <a href="../articles/GenomicSuperSignature_Contents.html">Model Contents</a>
+      <a href="../articles/Contents.html">Model Contents</a>
     </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
@@ -63,25 +63,32 @@
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">findStudiesInCluster</span><span class="op">(</span><span class="va">RAVmodel</span>, ind <span class="op">=</span> <span class="cn">NULL</span>, studyTitle <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">findStudiesInCluster</span><span class="op">(</span><span class="va">RAVmodel</span>, ind <span class="op">=</span> <span class="cn">NULL</span>, studyTitle <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
     <h2>Arguments</h2>
     <dl><dt>RAVmodel</dt>
 <dd><p>PCAGenomicSignatures object.</p></dd>
+
+
 <dt>ind</dt>
 <dd><p>A numeric vector containing the RAV indexes. Under the default
 (<code>NULL</code>), studies associated with all the RAV indexes will be returned
 as a list.</p></dd>
+
+
 <dt>studyTitle</dt>
 <dd><p>Default is <code>FALSE</code>. This parameter is effective only when
 the <code>index</code> value is specificed. If it's <code>TRUE</code>, the output will be
 a data frame with the study</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A list of character vectors. Under the default condition
+    
+
+<p>A list of character vectors. Under the default condition
 (<code>ind = NULL</code>), all the RAVs will be checked for their contributing
 studies and the length of the list will be same as the number of RAVs
 (= <code>metadata(x)$k</code>). If you provide the <code>ind</code> argument, studies
@@ -94,8 +101,8 @@ associated with only the specified RAVs will be returned.</p>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">miniRAVmodel</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">findStudiesInCluster</span><span class="op">(</span><span class="va">miniRAVmodel</span>, <span class="fl">1076</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="va">miniRAVmodel</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">findStudiesInCluster</span><span class="op">(</span><span class="va">miniRAVmodel</span>, <span class="fl">1076</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    studyName PC Variance explained (%)</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1  SRP028155  3                   2.74</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2  SRP049340  8                   1.17</span>
@@ -107,7 +114,7 @@ associated with only the specified RAVs will be returned.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 8  SRP107198  7                   1.79</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 9  SRP124967  1                   4.98</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 10 SRP178271  2                   8.16</span>
-<span class="r-in"></span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -122,7 +129,7 @@ associated with only the specified RAVs will be returned.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>

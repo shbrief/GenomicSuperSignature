@@ -18,7 +18,7 @@ the results as an object of class prcomp."><!-- mathjax --><script src="https://
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">GenomicSuperignature</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.3.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="">1.5.3</span>
       </span>
     </div>
 
@@ -27,7 +27,7 @@ the results as an object of class prcomp."><!-- mathjax --><script src="https://
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Vignettes
      
     <span class="caret"></span>
@@ -36,7 +36,7 @@ the results as an object of class prcomp."><!-- mathjax --><script src="https://
       <a href="../articles/Quickstart.html">Quick Start Guide</a>
     </li>
     <li>
-      <a href="../articles/GenomicSuperSignature_Contents.html">Model Contents</a>
+      <a href="../articles/Contents.html">Model Contents</a>
     </li>
   </ul></li>
       </ul><ul class="nav navbar-nav navbar-right"><li>
@@ -65,7 +65,7 @@ the results as an object of class <code><a href="https://rdrr.io/r/stats/prcomp.
     </div>
 
     <div id="ref-usage">
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">extractPC</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">extractPC</span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div id="arguments">
@@ -74,10 +74,13 @@ the results as an object of class <code><a href="https://rdrr.io/r/stats/prcomp.
 <dd><p>a numeric or complex matrix (or data frame) which provides the gene
 expression data for the principal components analysis. Genes in the rows and
 samples in the columns.</p></dd>
+
 </dl></div>
     <div id="value">
     <h2>Value</h2>
-    <p>A <code><a href="https://rdrr.io/r/stats/prcomp.html" class="external-link">prcomp</a></code> object.</p>
+    
+
+<p>A <code><a href="https://rdrr.io/r/stats/prcomp.html" class="external-link">prcomp</a></code> object.</p>
     </div>
     <div id="see-also">
     <h2>See also</h2>
@@ -86,34 +89,34 @@ samples in the columns.</p></dd>
 
     <div id="ref-examples">
     <h2>Examples</h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="va">m</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>,ncol<span class="op">=</span><span class="fl">5</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu">extractPC</span><span class="op">(</span><span class="va">m</span><span class="op">)</span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">m</span> <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/matrix.html" class="external-link">matrix</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/stats/Normal.html" class="external-link">rnorm</a></span><span class="op">(</span><span class="fl">100</span><span class="op">)</span>,ncol<span class="op">=</span><span class="fl">5</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu">extractPC</span><span class="op">(</span><span class="va">m</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Standard deviations (1, .., p=5):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 2.657803e+00 2.304456e+00 2.128930e+00 1.960785e+00 6.095177e-16</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 3.170726e+00 2.413504e+00 2.067806e+00 1.938086e+00 2.970886e-16</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> Rotation (n x k) = (20 x 5):</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>               PC1          PC2          PC3         PC4          PC5</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [1,]  0.31525545 -0.271939921  0.225274774 -0.10942126  0.731587883</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [2,] -0.05681500 -0.191443052 -0.182132019 -0.19020980 -0.297425400</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [3,] -0.10858456  0.404838026  0.015210989  0.03393839  0.333197825</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [4,] -0.01887602 -0.211887994 -0.041854372 -0.07611815  0.292072456</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [5,]  0.03286103 -0.041286241  0.219548050 -0.12570910 -0.045513634</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [6,]  0.19292775  0.049661636  0.007833188  0.21337680 -0.008228419</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [7,] -0.41608958  0.289838579  0.097772186  0.05411148  0.123534507</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [8,] -0.08480583  0.007832205 -0.337836534 -0.11804556  0.136618856</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [9,] -0.05869767  0.023724388 -0.536928742  0.18702488  0.224518940</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [10,]  0.21762108  0.071171008 -0.216848216  0.59298800  0.054204297</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [11,] -0.26450625 -0.102904210 -0.281124848 -0.13240872  0.134294715</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [12,] -0.19385762  0.269996639 -0.178748258 -0.21089737  0.090475149</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [13,]  0.17755562  0.023160092 -0.042956062 -0.13229739 -0.041856973</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [14,] -0.18129414 -0.174853786 -0.133564940 -0.06141440  0.051373149</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [15,] -0.09665086  0.507496856  0.140667588  0.04775902  0.024232895</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [16,] -0.43645953 -0.212924718  0.459529601  0.18704489  0.003527805</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [17,]  0.08421784 -0.147548253 -0.168225094  0.11692608 -0.182180648</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [18,] -0.25554432 -0.314686586  0.003342005  0.27132643 -0.048594156</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [19,]  0.39851349  0.212286357  0.075469697 -0.22084739 -0.154303284</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [20,]  0.11325414  0.058222225  0.105813522  0.47273565 -0.002500894</span>
-<span class="r-in"></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>                PC1         PC2          PC3         PC4         PC5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [1,]  0.310977893 -0.06865639 -0.112438657  0.26633488 -0.15029696</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [2,] -0.463857571 -0.21504003 -0.177777156  0.10141107  0.06054872</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [3,]  0.204409307  0.02782121  0.283250815  0.34507699  0.50297385</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [4,]  0.251175038  0.01174769 -0.299018439 -0.06244783  0.66960792</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [5,] -0.024028285 -0.35844722  0.030526747  0.38100283  0.10702513</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [6,] -0.111862702 -0.01755458 -0.462627101 -0.10600589  0.06134808</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [7,]  0.121093058 -0.55469316 -0.052762352 -0.21899050  0.12934575</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [8,]  0.149858161  0.02373739 -0.188417976 -0.30403529 -0.16312653</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [9,] -0.190741780  0.48184682 -0.107879998 -0.09304583  0.21268294</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [10,] -0.192335145  0.01507630 -0.186177932 -0.03250441  0.14817543</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [11,] -0.026948531 -0.36647785  0.010775017 -0.33315629 -0.06538003</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [12,]  0.005514519 -0.02701274  0.125484426  0.13762531 -0.06660812</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [13,]  0.327511952  0.25365671 -0.397799548  0.07471330 -0.17831754</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [14,] -0.041665341  0.17185796  0.368269911  0.08871858 -0.13081173</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [15,] -0.368301527  0.07220185 -0.011303243 -0.03957643  0.08404394</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [16,]  0.076321337 -0.15873718  0.064170701  0.05460422 -0.04182739</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [17,] -0.010855195  0.12295681  0.368239212 -0.43854176  0.22689941</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [18,] -0.291209190 -0.02681791 -0.006205672  0.03904063 -0.05509745</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [19,] -0.113594498  0.04574835 -0.187584711  0.35667576 -0.08107403</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [20,] -0.332592803 -0.03787068 -0.042031002  0.14247609  0.13825206</span>
+<span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
   </div>
@@ -128,7 +131,7 @@ samples in the columns.</p></dd>
 </div>
 
 <div class="pkgdown">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
       </footer></div>
