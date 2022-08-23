@@ -1,7 +1,8 @@
 # GenomicSuperSignature
 **Interpretation of RNA-seq experiments through robust, efficient comparison to public databases**
 
-### PURPOSE
+
+### Purpose
 Thousands of RNA sequencing profiles have been deposited in public archives, yet 
 remain unused for the interpretation of most newly performed experiments. Methods 
 for leveraging these public resources have focused on the interpretation of existing 
@@ -10,7 +11,7 @@ of new to existing experiments. The interpretability of common unsupervised anal
 methods such as Principal Component Analysis would be enhanced by efficient comparison 
 of the results to previously published datasets.
 
-### METHODS
+### Methods
 To help identify replicable and interpretable axes of variation in any given gene 
 expression dataset, we performed principal component analysis (PCA) on 536 studies 
 comprising 44,890 RNA sequencing profiles. Sufficiently similar loading vectors, 
@@ -35,6 +36,8 @@ If you use GenomicSuperSignature in published research, please cite:
 > *Nature Communications* **2022**;13: 3695.
 > [doi: 10.1038/s41467-022-31411-3](https://www.nature.com/articles/s41467-022-31411-3)
 
+### Other relevant code
+The workflow to build the RAVmodel is available from https://github.com/shbrief/model_building which is archived in Zenodo with the identifier https://doi.org/10.5281/zenodo.6496552. All analyses presented in the GenomicSuperSignatures manuscript are reproducible using code accessible from https://github.com/shbrief/GenomicSuperSignaturePaper/ and archived in Zenodo with the identifier https://doi.org/10.5281/zenodo.6496612.
 
 ## Installation
 You can install GenomicSuperSignature in Bioconductor. This can be done using 
@@ -78,3 +81,5 @@ The GenomicSuperSignature package allows users to access a RAVmodel (Z matrix, b
 GenomicSuperSignature connects different public databases and prior information through RAVindex, creating the knowledge graph illustrated here. Users can instantly access data and metadata resources from multiple entry points, such as gene expression profiles, MeSH terms, gene sets, and keywords. 
 
 <img src="https://raw.githubusercontent.com/shbrief/GenomicSuperSignaturePaper/master/inst/images/GSig_knowledge_graph.png" width="90%" height="90%"/>
+
+### 
