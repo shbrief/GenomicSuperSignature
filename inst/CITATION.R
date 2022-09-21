@@ -1,0 +1,16 @@
+bibentry(bibtype = "Article",
+         author = c(person(given = "Sehyun", family = "Oh"),
+                    person(given = "Ludwig", family = "Geistlinger"),
+                    person(given = "Marcel", family = "Ramos"),
+                    person(given = "Daniel", family = "Blankenberg"),
+                    person(given = "Marius", family = "van den Beek"),
+                    person(given = "Jaclyn N.", family = "Taroni"),
+                    person(given = "Vincent J.", family = "Carey"),
+                    person(given = "Levi", family = "Waldron"),
+                    person(given = "Sean", family = "Davis")),
+         title = "GenomicSuperSignature facilitates interpretation of RNA-seq experiments through robust, efficient comparison to public databases",
+         year = "2022",
+         volume = "13",
+         doi = "10.1038/s41467-022-31411-3",
+         journal = "Nature Communications"
+)
