@@ -19,6 +19,12 @@ knitr::opts_chunk$set(
 )
 ```
 
+# Citing GenomicSuperSignature
+
+Please cite GenomicSuperSignature as follows:
+
+Oh, S., Geistlinger, L., Ramos, M. _et al._ GenomicSuperSignature facilitates interpretation of RNA-seq experiments through robust, efficient comparison to public databases. Nat Commun 13, 3695 (2022). https://doi.org/10.1038/s41467-022-31411-3
+
 # Setup
 
 ## Install and load package
@@ -190,6 +196,11 @@ PCA summary results: standard deviation (SD), variance explained by each PC
 length(PCAsummary(RAVmodel))
 PCAsummary(RAVmodel)[1]
 ```
+
+
+# Other relevant code
+
+The workflow to build the RAVmodel is available from https://github.com/shbrief/model_building which is archived in Zenodo with the identifier https://doi.org/10.5281/zenodo.6496552. All analyses presented in the GenomicSuperSignatures manuscript are reproducible using code accessible from https://github.com/shbrief/GenomicSuperSignaturePaper/ and archived in Zenodo with the identifier [https://doi.org/10.5281/zenodo.6496612].
 
 
 # Session Info
