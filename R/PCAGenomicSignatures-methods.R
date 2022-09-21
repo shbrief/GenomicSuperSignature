@@ -182,7 +182,11 @@ setMethod("studies<-", "PCAGenomicSignatures", function(x, value) {
     x@colData$studies <- value
     allStudies <- unlist(value)
     allStudies <- unique(allStudies)
-    x@trainingData <- S4Vectors::DataFrame(row.names = allStudies)
+    
+    if (!all(allStudies %in% row.names(x@trainingData))) {
+        stop("Studies do not match with the training datasets.")
+    }
+    # x@trainingData <- S4Vectors::DataFrame(row.names = allStudies) 
     # validObject(x)
     return(x)
 })
