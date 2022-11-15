@@ -1,3 +1,21 @@
+CHANGES IN VERSION 1.6.0
+------------------------
+    o [Bug Fix]
+    - `PCAGenomicSignatures` construction function has a bug in its object 
+    inheritence step, which is fixed now. 
+    - `validate` function can perform better with scRNAseq data, because it now 
+    uses `irlba` instead of `prcomp`, which significantly improves the speed.
+    
+     o [Major]
+    - `rowNorm` function is deprecated.
+    - Remove the `scale` argument of `validate` function.
+    - Deprecate the `rowNorm` function.
+
+     o [Minor]
+    - Citation is added.  
+    
+
+
 CHANGES IN VERSION 1.4.0
 ------------------------
     o [Bug Fix]
