@@ -1,3 +1,15 @@
+.set_n <- function(dataset, n) {
+    if (is.null(n)) {
+      if (ncol(dataset) >= 8) {
+        n = 8
+      } else {
+        n = ceiling(ncol(dataset)*0.5)
+      }
+    }
+    return(n)
+}
+
+
 #' Validating new dataset
 #'
 #' @importFrom irlba irlba
@@ -9,6 +21,8 @@
 #' rows and samples in columns. RNA-seq counts should be log(count + 1) 
 #' prior to the `validate()` call.
 #' @param avgLoading A matrix with genes by RAVs.
+#' @param n A integer. The number of PCs to use for validation. It should be
+#' equal or less then the number of samples in the input dataset. 
 #' @param method A character string indicating which correlation coefficient is
 #' to be computed. One of "pearson" (default), "kendall", or "spearman": can be
 #' abbreviated.
@@ -21,8 +35,11 @@
 #' 
 #' @keywords internal
 #'
-.loadingCor <- function(dataset, avgLoading,
-                        method = "pearson", scale = FALSE) {
+.loadingCor <- function(dataset, 
+                        avgLoading,
+                        n = n,
+                        method = method, 
+                        scale = FALSE) {
 
     # Extract expression matrix from different classes
     dat <- .extractExprsMatrix(dataset)
@@ -31,20 +48,20 @@
     # stopifnot(length(scale) == 1L, !is.na(scale), is.logical(scale))
     # if (scale) {dat <- t(scale(t(dat)))}
 
-    if (!is(dataset, "SingleCellExperiment") & ncol(dataset) == 8) {
+    if (!is(dataset, "SingleCellExperiment")) {
         dat <- dat[apply(dat, 1,
                          function (x) {!any(is.na(x) | (x==Inf) | (x==-Inf))}),]
         gene_common <- intersect(rownames(avgLoading), rownames(dat))
         prcomRes <- stats::prcomp(t(dat[gene_common,]))  # centered, but not scaled
-        loadings <- prcomRes$rotation[, seq_len(8)]
+        loadings <- prcomRes$rotation[, seq_len(n)]
     } else {    # Dimensional reduction for scRNAseq data
         gene_common <- intersect(rownames(avgLoading), rownames(dat))
         res <- irlba::irlba(as.matrix(t(dat[gene_common,])), 
-                            nv = 8, # Use only top 8 PCs for validation
+                            nv = n, 
                             center = TRUE, scale = FALSE)
         loadings <- res$v
         rownames(loadings) <- rownames(dat[gene_common,])
-        colnames(loadings) <- paste0("PC", seq_len(8))
+        colnames(loadings) <- paste0("PC", seq_len(n))
     }
     
     loading_cor <- abs(stats::cor(avgLoading[gene_common,],
@@ -58,9 +75,9 @@
 #' Validate new datasets
 #'
 #' @param dataset Single or a named list of SummarizedExperiment
-#' (RangedSummarizedExperiment, ExpressionSet or matrix) object(s). Gene names
-#' should be in 'symbol' format. Currently, each dataset should have at least
-#' 8 samples.
+#' (RangedSummarizedExperiment, ExpressionSet or matrix) object(s). Columns 
+#' should contain samples (or cells for single-cell data), and the row names
+#' should be in 'gene symbol' format. 
 #' @param RAVmodel PCAGenomicSignatures object.
 #' @param method A character string indicating which correlation coefficient is
 #' to be computed. One of "pearson" (default), "kendall", or "spearman": can be
@@ -70,18 +87,23 @@
 #' correlation coefficient from top 8 PCs for each avgLoading will be selected
 #' as an output. If you choose (\code{maxFrom="avgLoading"}), the avgLoading
 #' with the maximum correlation coefficient with each PC will be in the output.
+#' @param n A integer. The number of PCs to use for validation. It should be
+#' equal or less then the number of samples in the input dataset. If there are 
+#' >= 8 samples in the input dataset or the input datasets is a list, it is set 
+#' to 8 as a default. If there are less than 8 samples in the input, it is set 
+#' to half of the number of samples as a default.
 #' @param level Output format of validated result. Two options are available:
 #' \code{c("max", "all")}. Default is "max", which outputs the matrix containing
-#' only the maximum coefficient. To get the coefficient of all 8 PCs, set this
+#' only the maximum coefficient. To get the coefficient of all PCs, set this
 #' argument as "all". \code{level = "all"} can be used only for one dataset.
 #' @param scale Default is \code{FALSE}. If it is set to \code{TRUE}, dataset
 #' will be row normalized.
 #'
 #' @return A data frame containing the maximum pearson correlation coefficient
-#' between the top 8 PCs of the dataset and pre-calculated average loadings
+#' between the top `n` PCs of the dataset and pre-calculated average loadings
 #' (in row) of training datasets (\code{score} column). It also contains other
-#' metadata associated with each RAV: \code{PC} for one of the top 8 PCs of the
-#' dataset that results in the given \code{score}, \code{sw} for the average
+#' metadata associated with each RAV: \code{PC} for one of the top `n` PCs of 
+#' the dataset that results in the given \code{score}, \code{sw} for the average
 #' silhouette width of the RAV, \code{cl_size} for the size of each RAV.
 #'
 #' If the input for \code{dataset} argument is a list of different datasets,
@@ -98,15 +120,22 @@
 #' validate(dset, miniRAVmodel, maxFrom = "avgLoading")
 #'
 #' @export
-validate <- function(dataset, RAVmodel, method = "pearson",
-                     maxFrom = "PC", level = "max", scale = FALSE) {
-
+validate <- function(dataset, 
+                     RAVmodel, 
+                     n = NULL,
+                     method = "pearson",
+                     maxFrom = "PC", 
+                     level = "max", 
+                     scale = FALSE) {
+  
     if (!is.list(dataset)) {
-        if (ncol(dataset) < 8) {
-            stop("Provide a study with at least 8 samples.")}
+        n <- .set_n(dataset, n)
+        if (ncol(dataset) < n) {
+            stop("n should be equal or less than the number of samples.")}
     } else {
-        if (any(lapply(dataset, ncol) < 8)) {
-            stop("Provide a study with at least 8 samples.")}
+        if (is.null(n)) {n <- 8}
+        if (any(lapply(dataset, ncol) < n)) {
+            stop("n should be equal or less than the number of samples.")}
         if (level == "all") {
             stop("'level = \"all\"' is not available for a list of datasets.")}
     }
@@ -119,7 +148,7 @@ validate <- function(dataset, RAVmodel, method = "pearson",
     if (maxFrom == "PC") {
         # For a single dataset
         if (!is.list(dataset)) {
-            x <- .loadingCor(dataset, avgLoading, method, scale)
+            x <- .loadingCor(dataset, avgLoading, n, method, scale)
             if (level == "max") {
                 z <- apply(x, 1, max) %>% as.data.frame   # rowMax
                 z$PC <- apply(x, 1, which.max)
@@ -135,7 +164,7 @@ validate <- function(dataset, RAVmodel, method = "pearson",
             }
         } else {
             # For a list of datasets
-            x <- lapply(dataset, .loadingCor, avgLoading, method, scale)
+            x <- lapply(dataset, .loadingCor, avgLoading, n, method, scale)
             l <- nrow(x[[1]]) # the number of RAVs in validation output
             if (level == "max") {
                 z <- vapply(x, function(y) {apply(y, 1, max)},
@@ -153,9 +182,9 @@ validate <- function(dataset, RAVmodel, method = "pearson",
     }
 
     # The maximum correlation coefficient among avgLoadings
-    else if (maxFrom == "avgLoading") {
+    if (maxFrom == "avgLoading") {
         if (!is.list(dataset)) {
-            x <- .loadingCor(dataset, avgLoading, method)
+            x <- .loadingCor(dataset, avgLoading, n, method)
             if (level == "max") {
                 z <- apply(x, 2, max) %>% as.data.frame # colMax
                 max_z_ind <- apply(x, 2, which.max)

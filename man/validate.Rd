@@ -7,6 +7,7 @@
 validate(
   dataset,
   RAVmodel,
+  n = NULL,
   method = "pearson",
   maxFrom = "PC",
   level = "max",
@@ -15,11 +16,17 @@ validate(
 }
 \arguments{
 \item{dataset}{Single or a named list of SummarizedExperiment
-(RangedSummarizedExperiment, ExpressionSet or matrix) object(s). Gene names
-should be in 'symbol' format. Currently, each dataset should have at least
-8 samples.}
+(RangedSummarizedExperiment, ExpressionSet or matrix) object(s). Columns 
+should contain samples (or cells for single-cell data), and the row names
+should be in 'gene symbol' format.}
 
 \item{RAVmodel}{PCAGenomicSignatures object.}
+
+\item{n}{A integer. The number of PCs to use for validation. It should be
+equal or less then the number of samples in the input dataset. If there are 
+>= 8 samples in the input dataset or the input datasets is a list, it is set 
+to 8 as a default. If there are less than 8 samples in the input, it is set 
+to half of the number of samples as a default.}
 
 \item{method}{A character string indicating which correlation coefficient is
 to be computed. One of "pearson" (default), "kendall", or "spearman": can be
@@ -33,7 +40,7 @@ with the maximum correlation coefficient with each PC will be in the output.}
 
 \item{level}{Output format of validated result. Two options are available:
 \code{c("max", "all")}. Default is "max", which outputs the matrix containing
-only the maximum coefficient. To get the coefficient of all 8 PCs, set this
+only the maximum coefficient. To get the coefficient of all PCs, set this
 argument as "all". \code{level = "all"} can be used only for one dataset.}
 
 \item{scale}{Default is \code{FALSE}. If it is set to \code{TRUE}, dataset
@@ -41,10 +48,10 @@ will be row normalized.}
 }
 \value{
 A data frame containing the maximum pearson correlation coefficient
-between the top 8 PCs of the dataset and pre-calculated average loadings
+between the top `n` PCs of the dataset and pre-calculated average loadings
 (in row) of training datasets (\code{score} column). It also contains other
-metadata associated with each RAV: \code{PC} for one of the top 8 PCs of the
-dataset that results in the given \code{score}, \code{sw} for the average
+metadata associated with each RAV: \code{PC} for one of the top `n` PCs of 
+the dataset that results in the given \code{score}, \code{sw} for the average
 silhouette width of the RAV, \code{cl_size} for the size of each RAV.
 
 If the input for \code{dataset} argument is a list of different datasets,

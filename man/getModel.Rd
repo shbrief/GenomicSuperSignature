@@ -16,7 +16,7 @@ Currently  there are two available options.
 }}
 
 \item{version}{Default is \code{latest}. Available versions are listed in
-\code{version} column of \code{\link{availableRAVmodel()}} output.}
+\code{version} column of \code{\link{[GenomicSuperSignature]availableRAVmodel()}} output.}
 
 \item{load}{Default is \code{TRUE}. If it's set to \code{FALSE}, the models
 are just downloaded to cache but not loaded into memory.}

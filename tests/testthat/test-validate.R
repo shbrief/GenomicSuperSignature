@@ -26,7 +26,7 @@ test_that("validate works with a list of input datasets", {
 
 test_that("Filter out invalid inputs for validate function", {
   expect_error(validate(microTCGA, miniRAVmodel),
-               "Provide a study with at least 8 samples.")
+               "n should be equal or less than the number of samples.")
   expect_error(validate(miniTCGA, miniRAVmodel, level = "all"),
                "'level = \"all\"' is not available for a list of datasets.")
 })

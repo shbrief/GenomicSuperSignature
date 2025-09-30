@@ -4,7 +4,7 @@
 \alias{.loadingCor}
 \title{Validating new dataset}
 \usage{
-.loadingCor(dataset, avgLoading, method = "pearson", scale = FALSE)
+.loadingCor(dataset, avgLoading, n = n, method = method, scale = FALSE)
 }
 \arguments{
 \item{dataset}{A gene expression profile to be validated. Different classes
@@ -15,6 +15,9 @@ rows and samples in columns. RNA-seq counts should be log(count + 1)
 prior to the `validate()` call.}
 
 \item{avgLoading}{A matrix with genes by RAVs.}
+
+\item{n}{A integer. The number of PCs to use for validation. It should be
+equal or less then the number of samples in the input dataset.}
 
 \item{method}{A character string indicating which correlation coefficient is
 to be computed. One of "pearson" (default), "kendall", or "spearman": can be
