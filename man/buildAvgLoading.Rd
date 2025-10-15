@@ -4,21 +4,16 @@
 \alias{buildAvgLoading}
 \title{Calculate average loadings of each cluster}
 \usage{
-buildAvgLoading(dat, k, n = 20, cluster = NULL, study = TRUE)
+buildAvgLoading(dat, cluster = NULL, study = TRUE)
 }
 \arguments{
-\item{dat}{A data frame. Each row represents principle components from
+\item{dat}{A data frame. Each row represents principal components from
 different training datasets. Columns are genes used for PCA analysis.}
-
-\item{k}{The number of clusters used for hierarchical clustering}
-
-\item{n}{The number of top principle components from each datasets used for
-model building. Default is 20.}
 
 \item{cluster}{Provide pre-defined cluster membership of your data.}
 
 \item{study}{Under default (\code{TRUE}), studies involved in each cluster
-will be added in the output.}
+will be added to the output.}
 }
 \value{
 A named list of 6 elements is returned. It contains:
@@ -39,6 +34,6 @@ Calculate average loadings of each cluster
 \examples{
 data(miniAllZ)
 data(res_hcut)
-res <- buildAvgLoading(miniAllZ, k = 40, cluster = res_hcut$cluster)
+res <- buildAvgLoading(miniAllZ, cluster = res_hcut$cluster)
 
 }
