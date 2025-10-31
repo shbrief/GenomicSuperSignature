@@ -23,17 +23,17 @@ searchPathways <- function(RAVmodel, gsea.dir) {
 
   for (i in seq_len(ncol(RAVmodel))) {
     pathToRes <- file.path(gsea.dir, paste0("gsea_", i, ".rds"))
-    res <- readRDS(pathToRes)
+    res <- readRDS(pathToRes) %>% as.data.frame
 
     # If there is no enriched pathways
     if (nrow(res) == 0) {
       resName <- paste0("RAV", i)
-      gsea_all[[resName]] <- res[, c("Description", "NES", "pvalue", "qvalues"), drop = FALSE]
+      gsea_all[[resName]] <- res[, c("Description", "NES", "pvalue", "qvalue"), drop = FALSE]
       print(paste("RAV", i, "has no enriched pathways."))
       next
     }
 
-    res <- res[which(res$qvalues == min(res$qvalues)), c("Description", "NES", "pvalue", "qvalues"), drop = FALSE]
+    res <- res[which(res$qvalues == min(res$qvalues)), c("Description", "NES", "pvalue", "qvalue"), drop = FALSE]
     resName <- paste0("RAV", i)
     gsea_all[[resName]] <- res
     print(paste("RAV", i, "is added."))
